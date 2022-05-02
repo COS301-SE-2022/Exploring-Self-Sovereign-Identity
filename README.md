@@ -2,11 +2,11 @@
 ### The idea of the SSI-System is to explore the world of SSI and the use cases thereof as we move into the era of the Metaverse.
 ---
 
-## Demo Videos
-* CodeOfDuty-Demo1 (13/05) <i> in progress. </i>
-* CodeOfDuty-Demo2 (10/06) <i> to be completed. </i>
-* CodeOfDuty-Demo3 (29/07) <i> to be completed. </i>
-* CodeOfDuty-Demo4 (08/09) <i> to be completed. </i>
+## Demo Pages
+* [Demo 1 (13/05)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-1)
+* Demo 2 (10/06) <i> to be completed. </i>
+* Demo 3 (29/07) <i> to be completed. </i>
+* Demo 4 (08/09) <i> to be completed. </i>
 
 ## Functional Requirements
 * Functional Requirements Elicitation <i> to be completed. </i>
