@@ -4,6 +4,7 @@
 
 ## Demo Pages
 * [Demo 1 (13/05)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-1)
+   * [video](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-1#3-use-cases-video)
 * Demo 2 (10/06) <i> to be completed. </i>
 * Demo 3 (29/07) <i> to be completed. </i>
 * Demo 4 (08/09) <i> to be completed. </i>
