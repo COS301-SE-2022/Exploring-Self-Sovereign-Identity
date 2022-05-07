@@ -5,7 +5,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Example
 {
     public interface IExampleRepository
     {
-        Task Add(ExampleModel e);
+        Task<ExampleModel> Add(ExampleModel e);
         Task<string> Get();
     }
 }

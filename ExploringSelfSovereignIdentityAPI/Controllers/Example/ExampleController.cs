@@ -1,4 +1,6 @@
-﻿using ExploringSelfSovereignIdentityAPI.Queries.Example;
+﻿using ExploringSelfSovereignIdentityAPI.Commands.Example;
+using ExploringSelfSovereignIdentityAPI.Models.Example;
+using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -24,9 +26,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Example
         }
 
         [HttpPost("addExamples")]
-        public async Task<OkResult> AddExample()
+        public async Task<ExampleModel> AddExample([FromBody] ExampleAddCommand command)
         {
-            return Ok();
+            return await mediator.Send(command);
         }
     }
 }

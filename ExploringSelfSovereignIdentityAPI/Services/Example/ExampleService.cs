@@ -12,9 +12,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Example
         {
             _repo = repository;
         }
-        public async Task Add(ExampleModel e)
+        public async Task<ExampleModel> Add(ExampleModel e)
         {
-            await _repo.Add(e);
+            return await _repo.Add(e);
         }
 
         public async Task<string> Get()

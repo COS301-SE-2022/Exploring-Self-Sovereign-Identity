@@ -7,6 +7,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Example
     {
         Task<string> Get();
 
-        Task Add(ExampleModel e);
+        Task<ExampleModel> Add(ExampleModel e);
     }
 }

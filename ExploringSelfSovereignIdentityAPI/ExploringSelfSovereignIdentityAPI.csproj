@@ -27,8 +27,4 @@
     <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Example\" />
-  </ItemGroup>
-
 </Project>
