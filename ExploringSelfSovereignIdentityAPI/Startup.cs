@@ -1,3 +1,6 @@
+using ExploringSelfSovereignIdentityAPI.Repositories.Example;
+using ExploringSelfSovereignIdentityAPI.Services.Example;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Connector.OAuth;
+using System.Reflection;
 
 namespace exploring_self_sovereign_identity_api
 {
@@ -26,6 +30,11 @@ namespace exploring_self_sovereign_identity_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "exploring_self_sovereign_identity_api", Version = "v1" });
             });
+
+            //Adding my service
+            services.AddTransient<IExampleRepository, ExampleRepository>();
+            services.AddTransient<IExampleService, ExampleService>();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

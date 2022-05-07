@@ -13,6 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions" Version="0.6.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="MediatR.SimpleInjector" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.*" />
   </ItemGroup>
 
@@ -24,11 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\Example\" />
-    <Folder Include="Controllers\Example\" />
-    <Folder Include="Handlers\Example\" />
-    <Folder Include="Queries\Example\" />
-    <Folder Include="Repositories\Example\" />
-    <Folder Include="Services\Example\" />
   </ItemGroup>
 
 </Project>
