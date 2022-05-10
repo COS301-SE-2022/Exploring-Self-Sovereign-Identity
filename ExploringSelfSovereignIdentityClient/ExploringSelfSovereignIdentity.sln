@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ExploringSelfSovereignIdentityClient", "ExploringSelfSovereignIdentityClient.esproj", "{B10484E2-1022-450E-9F2D-59F8BA462937}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF1E0513-4B33-476C-97D0-65EC06D34C77} = {FF1E0513-4B33-476C-97D0-65EC06D34C77}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExploringSelfSovereignIdentityAPI", "..\ExploringSelfSovereignIdentityAPI\ExploringSelfSovereignIdentityAPI.csproj", "{FF1E0513-4B33-476C-97D0-65EC06D34C77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +22,10 @@ Global
 		{B10484E2-1022-450E-9F2D-59F8BA462937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10484E2-1022-450E-9F2D-59F8BA462937}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B10484E2-1022-450E-9F2D-59F8BA462937}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FF1E0513-4B33-476C-97D0-65EC06D34C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1E0513-4B33-476C-97D0-65EC06D34C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1E0513-4B33-476C-97D0-65EC06D34C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1E0513-4B33-476C-97D0-65EC06D34C77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
