@@ -40,8 +40,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
                 return null;
 
             //Return the required set of fields
-            GetDefaultIdentityCommand identityCommand = new GetDefaultIdentityCommand();
-            return await mediator.Send(identityCommand);
+            return isSession._identity;
             //Should redirect to the page where they have to check/select the fields the Holder wants to expose
 
            //return Ok();
