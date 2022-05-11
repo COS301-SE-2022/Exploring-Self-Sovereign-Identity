@@ -12,9 +12,18 @@ $radius: 0.5em;
   background-color: #98D4BB;
   padding: 1em;
 
-  h4 {
+  div {
+    width: 80%;
+    display: inline-block;
+  }
+
+  span {
     margin: 0em;
     margin-left: 2em;
+
+    span {
+      margin: 0em;
+    }
   }
 
   p {
@@ -25,8 +34,10 @@ $radius: 0.5em;
   }
 
   input {
+    display: inline-block;
     position: relative;
     float: right;
+    width: 20%;
   }
 }
 
@@ -39,7 +50,7 @@ $radius: 0.5em;
 }
 
 .keyword {
-  color: #9ADADB;
+  color: #D5E4C3;
 }
 
 .buttons {
@@ -55,4 +66,9 @@ $radius: 0.5em;
     height: 3em;
     border-radius: $radius;
   }
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 1em;
 }
