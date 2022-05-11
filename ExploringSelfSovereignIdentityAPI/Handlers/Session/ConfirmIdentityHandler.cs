@@ -20,5 +20,10 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session
         {
             return await _service.confirmIdentity(new DefaultIdentityModel());
         }
+
+        public async Task<OtpResponse> Handle(OtpResponseCommand request, CancellationToken cancellationToken)
+        {
+
+        }
     }
 }
