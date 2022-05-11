@@ -18,6 +18,8 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
 
         public async Task<DefaultSessionModel> GetMockSession(DefaultSessionModel e)
         {
+            e.SessionId = 11111;
+
             return await Task.FromResult(e);
         }
     }
