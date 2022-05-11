@@ -28,14 +28,14 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         }
 
         [HttpPost("connect")]
-        public async Task<IActionResult> validateOTP()
+        public async Task<IActionResult> validateOTP() 
         {
             //Accept the OTP
             //Return the required set of fields
-            return await mediator.Send(new ConnectionEndpointGetDefaultIdentityQuerry());
+            //return await mediator.Send(new );
             //Should redirect to the page where they have to check/select the fields the Holder wants to expose
 
-           //return Ok();
+           return Ok();
         }
 
         [HttpPost("confirm")]
