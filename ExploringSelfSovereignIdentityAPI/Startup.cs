@@ -1,4 +1,6 @@
 using ExploringSelfSovereignIdentityAPI.Repositories.Example;
+using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
+using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.Example;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +36,8 @@ namespace exploring_self_sovereign_identity_api
             //Adding my service
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IExampleService, ExampleService>();
+            services.AddTransient<ISessionRepository, SessionRepository>();
+            services.AddTransient<ISessionService, SessionService>();     
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
         }
 
