@@ -14,9 +14,9 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session.ConnectEndpoint
         {
             _service = service
         }
-        public Task<DefaultIdentityModel> Handle(GetDefaultIdentityCommand request, CancellationToken cancellationToken)
+        public async Task<DefaultIdentityModel> Handle(GetDefaultIdentityCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            return await _service.GetMockDefaultIdentity(new DefaultIdentityModel());
         }
     }
 }
