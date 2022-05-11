@@ -2,6 +2,7 @@
 using ExploringSelfSovereignIdentityAPI.Commands.SessionCommand;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Example;
+using ExploringSelfSovereignIdentityAPI.Queries.ConnectEndpoint;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

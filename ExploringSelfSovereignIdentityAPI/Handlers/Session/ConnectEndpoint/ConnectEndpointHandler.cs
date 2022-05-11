@@ -12,7 +12,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session.ConnectEndpoint
         private readonly ISessionService _service;
         public ConnectEndpointHandler(ISessionService service)
         {
-            _service = service
+            _service = service;
         }
         public async Task<DefaultIdentityModel> Handle(GetDefaultIdentityCommand request, CancellationToken cancellationToken)
         {

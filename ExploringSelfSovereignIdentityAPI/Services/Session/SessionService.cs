@@ -1,19 +1,20 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
+using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public class SessionService : ISessionService
     {
-        private readonly ISessionService _sessionService;
+        private readonly ISessionRepository _sessionRepository;
 
-        public SessionService(ISessionService repository)
+        public SessionService(ISessionRepository repository)
         {
-            _sessionService = repository;
+            _sessionRepository = repository;
         }
         public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
         {
-            return await _sessionService.GetMockDefaultIdentity(e);
+            return await _sessionRepository.GetMockDefaultIdentity(e);
         }
     }
 }

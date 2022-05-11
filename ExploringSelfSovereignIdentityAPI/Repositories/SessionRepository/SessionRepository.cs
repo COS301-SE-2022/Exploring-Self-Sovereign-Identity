@@ -5,8 +5,6 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
 {
     public class SessionRepository : ISessionRepository
     {
-        private readonly ISessionRepository _sessionRepository;
-
         public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
         {
             e.addAttribute("Name", true);
@@ -14,8 +12,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             e.addAttribute("Email", true);
             e.addAttribute("Number", false);
 
-            await Task.FromResult(e);
-            return e;
+            return await Task.FromResult(e);
         }
 
     }
