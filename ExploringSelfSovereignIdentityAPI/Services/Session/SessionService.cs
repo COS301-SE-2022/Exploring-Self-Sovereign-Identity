@@ -5,9 +5,15 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public class SessionService : ISessionService
     {
-        public Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
+        private readonly ISessionService _sessionService;
+
+        public SessionService(ISessionService repository)
         {
-            throw new System.NotImplementedException();
+            _sessionService = repository;
+        }
+        public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
+        {
+            return await _sessionService.GetMockDefaultIdentity(e);
         }
     }
 }
