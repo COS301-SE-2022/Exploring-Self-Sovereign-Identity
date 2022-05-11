@@ -24,11 +24,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         }
 
         [HttpPost("init")]
-        public IActionResult init()
+        public async Task<OtpResponse> Init()
         {
             //return otp
 
-            return Ok();
+            return  await mediator.Send(new OtpResponseCommand());
+
         }
 
         [HttpPost("connect")]
