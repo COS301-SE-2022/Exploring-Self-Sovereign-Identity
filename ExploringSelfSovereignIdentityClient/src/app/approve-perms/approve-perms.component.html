@@ -1,7 +1,13 @@
-<div *ngFor="let perm of array" [ngClass]="perm.item2 ? 'required_perm' :'optional_perm'">
+<div class="perm-card" *ngFor="let perm of perms.permsArray" [ngClass]="perm.item2 ? 'required_perm' :'optional_perm'">
   <h4>Grant permission for {{perm.item1}}?</h4>
   <p *ngIf="perm.item2; else other">required</p>
-  <input type="checkbox" checked />
+  <input *ngIf="!perm.item2" type="checkbox" checked />
   <ng-template #other><p>optional</p></ng-template>
 
+</div>
+
+
+<div class="buttons">
+  <button type="button" class="required_perm">Deny</button>
+  <button type="button" class="optional_perm">Accept</button>
 </div>

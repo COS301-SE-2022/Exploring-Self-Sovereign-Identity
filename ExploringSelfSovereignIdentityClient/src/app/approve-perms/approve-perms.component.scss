@@ -1,4 +1,6 @@
-div {
+$radius: 0.5em;
+
+.perm-card {
   width: 22em;
   max-width: 90%;
   margin-left: auto;
@@ -6,7 +8,7 @@ div {
   margin-top: 1em;
   margin-bottom: 1em;
   height: 3em;
-  border-radius: 0.5em;
+  border-radius: $radius;
   background-color: #98D4BB;
   padding: 1em;
 
@@ -21,6 +23,11 @@ div {
     font-style: italic;
     font-weight: 300;
   }
+
+  input {
+    position: relative;
+    float: right;
+  }
 }
 
 .required_perm {
@@ -33,4 +40,19 @@ div {
 
 .keyword {
   color: #9ADADB;
+}
+
+.buttons {
+  width: 100%;
+  position: fixed;
+  bottom: 1em;
+  margin: 0em;
+  left: 0%;
+
+  button {
+    display: inline-block;
+    width: 50%;
+    height: 3em;
+    border-radius: $radius;
+  }
 }

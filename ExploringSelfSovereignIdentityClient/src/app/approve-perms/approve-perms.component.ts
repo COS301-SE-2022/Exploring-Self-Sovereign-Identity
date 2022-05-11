@@ -1,4 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
+import { ApprovePermsService } from '../services/approve-perms.service';
 
 @Component({
   selector: 'app-approve-perms',
@@ -7,31 +8,17 @@ import { Component, OnInit, NgModule } from '@angular/core';
 })
 export class ApprovePermsComponent implements OnInit {
 
-  public array: Array<permissions> = [];
+  perms: ApprovePermsService;
 
-
-  constructor() {
-    let perm = new permissions("name", true);
-    this.array.push(perm);
-    perm = new permissions("surname", false);
-    this.array.push(perm);
+  constructor(perms: ApprovePermsService) {
+    this.perms = perms;
   }
 
   ngOnInit(): void {
   }
 
-  
-  
 
-}
 
-export class permissions {
-  public item1= '';
-  public item2= true;
 
-  constructor(a :string, b: boolean) {
-    this.item1 = a;
-    this.item2 = b;
-  }
 }
 
