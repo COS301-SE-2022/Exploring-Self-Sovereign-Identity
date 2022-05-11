@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-approve-perms',
@@ -11,7 +11,9 @@ export class ApprovePermsComponent implements OnInit {
 
 
   constructor() {
-    let perm = new permissions("test", true);
+    let perm = new permissions("name", true);
+    this.array.push(perm);
+    perm = new permissions("surname", false);
     this.array.push(perm);
   }
 
@@ -25,7 +27,7 @@ export class ApprovePermsComponent implements OnInit {
 
 export class permissions {
   public item1= '';
-  public item2= false;
+  public item2= true;
 
   constructor(a :string, b: boolean) {
     this.item1 = a;
