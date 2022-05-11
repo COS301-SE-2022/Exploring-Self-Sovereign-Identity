@@ -2,6 +2,7 @@
 using ExploringSelfSovereignIdentityAPI.Commands.SessionCommand;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Example;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Queries.ConnectEndpoint;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
@@ -42,13 +43,14 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         }
 
         [HttpPost("confirm")]
-        public IActionResult confirm()
+        public async Task<DefaultIdentityResponse> confirm()
         {
+
             //Receive the selected fields  to expose
             //Finalise the identity creation
             //Return the fileds to expose and a token
+            return await mediator.Send(new ConfirmIdentityCommand());
 
-            return Ok();
         }
 
 
