@@ -13,5 +13,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         Task<DefaultSessionModel> GetMockDefaultSession(DefaultSessionModel e);
 
         Task<DefaultIdentityResponse> confirmIdentity(DefaultIdentityModel e);
+
+        Task<OtpResponse> GetOtpResponse(OtpResponse e);
     }
 }

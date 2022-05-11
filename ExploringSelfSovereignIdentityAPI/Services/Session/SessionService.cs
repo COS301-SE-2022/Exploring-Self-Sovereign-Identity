@@ -30,5 +30,10 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         {
             return await _sessionRepository.GetMockSession(e);
         }
+
+        public async Task<OtpResponse> GetOtpResponse(OtpResponse e)
+        {
+            return await _sessionRepository.GetOtpResponse(e);
+        }
     }
 }
