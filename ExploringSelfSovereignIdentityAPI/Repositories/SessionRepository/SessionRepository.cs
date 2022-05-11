@@ -16,9 +16,9 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             return await Task.FromResult(e);
         }
 
-        public Task<DefaultIdentityModel> GetMockSession(DefaultSessionModel e)
+        public async Task<DefaultSessionModel> GetMockSession(DefaultSessionModel e)
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(e);
         }
     }
 }

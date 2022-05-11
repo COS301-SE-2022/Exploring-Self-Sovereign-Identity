@@ -8,6 +8,6 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
     {
         Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e);
 
-        Task<DefaultIdentityModel> GetMockSession(DefaultSessionModel e);
+        Task<DefaultSessionModel> GetMockSession(DefaultSessionModel e);
     }
 }
