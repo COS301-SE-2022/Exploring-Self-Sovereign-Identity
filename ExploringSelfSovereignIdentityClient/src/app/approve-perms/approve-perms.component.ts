@@ -7,11 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApprovePermsComponent implements OnInit {
 
-  constructor() { }
+  public array: Array<permissions> = [];
+
+
+  constructor() {
+    let perm = new permissions("test", true);
+    this.array.push(perm);
+  }
 
   ngOnInit(): void {
   }
 
-  permissions = ['Test', 'Test 2'];
+  
+  
 
 }
+
+export class permissions {
+  public item1= '';
+  public item2= false;
+
+  constructor(a :string, b: boolean) {
+    this.item1 = a;
+    this.item2 = b;
+  }
+}
+
