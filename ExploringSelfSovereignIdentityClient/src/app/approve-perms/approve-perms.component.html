@@ -3,7 +3,7 @@
     <span class="heading">Grant permission for <span class="keyword">{{perm.item1}}</span>?</span>
     <p *ngIf="perm.item2; else other">required</p>
   </div>
-  <input *ngIf="!perm.item2" type="checkbox" checked value=""/>
+  <input *ngIf="!perm.item2" type="checkbox" checked value="{{perm.item1}}" (change)="update($event)" />
   <ng-template #other><p>optional</p></ng-template>
 
 </div>

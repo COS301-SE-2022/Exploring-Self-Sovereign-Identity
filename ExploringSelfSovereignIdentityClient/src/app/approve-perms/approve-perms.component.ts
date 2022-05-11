@@ -1,6 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { ApprovePermsService } from '../services/approve-perms.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 
 @Component({
@@ -11,14 +13,36 @@ import { HttpClient } from '@angular/common/http';
 export class ApprovePermsComponent implements OnInit {
 
   perms: ApprovePermsService;
+  options: Array<string> = [];
+
 
 
   constructor(perms: ApprovePermsService, private http: HttpClient) {
     this.perms = perms;
-
+    for (let p of this.perms.permsArray) {
+      if (!p.item2)
+        this.options.push(p.item1);
+    }
   }
 
   ngOnInit(): void {
+  }
+
+  send() {
+    this.http.post("localhost:5000/api", JSON.stringify(this.options));
+
+  }
+
+  update(event: any) {
+    if (!event.target.checked) {
+      if (this.options.includes(event.target.value))
+        this.options.splice(this.options.indexOf(event.target.value), 1);
+    }
+    else
+      this.options.push(event.target.value);
+    console.log(this.options);
+
+
   }
 
 
