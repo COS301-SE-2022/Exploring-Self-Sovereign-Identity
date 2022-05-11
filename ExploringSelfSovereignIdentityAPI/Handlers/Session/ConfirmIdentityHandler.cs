@@ -23,7 +23,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session
 
         public async Task<OtpResponse> Handle(OtpResponseCommand request, CancellationToken cancellationToken)
         {
-
+            return await _service.GetOtpResponse(new OtpResponse());
         }
     }
 }
