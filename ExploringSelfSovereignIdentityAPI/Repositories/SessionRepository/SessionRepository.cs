@@ -1,3 +1,5 @@
+﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
+using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 ﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using System;
@@ -17,6 +19,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             return await Task.FromResult(e);
         }
 
+        public async Task<DefaultSessionModel> GetMockSession(DefaultSessionModel e)
+        {
+            e.SessionId = 11111;
+            e._identity = await GetMockDefaultIdentity(new DefaultIdentityModel());
+
+            return await Task.FromResult(e);
+        }
         public async Task<DefaultIdentityResponse> confirmIdentity(DefaultIdentityModel e)
         {
             DefaultIdentityResponse response = new DefaultIdentityResponse();
