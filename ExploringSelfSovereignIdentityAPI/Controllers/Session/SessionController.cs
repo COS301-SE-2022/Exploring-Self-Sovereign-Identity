@@ -1,4 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Example;
+using ExploringSelfSovereignIdentityAPI.Commands.SessionCommand;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Example;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
@@ -28,14 +29,15 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         }
 
         [HttpPost("connect")]
-        public async Task<IActionResult> validateOTP() 
+        public async Task<DefaultIdentityModel> validateOTP() 
         {
             //Accept the OTP
             //Return the required set of fields
-            //return await mediator.Send(new );
+            GetDefaultIdentityCommand command = new GetDefaultIdentityCommand();
+            return await mediator.Send(command);
             //Should redirect to the page where they have to check/select the fields the Holder wants to expose
 
-           return Ok();
+           //return Ok();
         }
 
         [HttpPost("confirm")]
