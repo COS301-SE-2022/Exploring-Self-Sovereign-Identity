@@ -36,5 +36,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             return await Task.FromResult(response);
         }
 
+        public async Task<OtpResponse> GetOtpResponse(OtpResponse e)
+        {
+            //throw new NotImplementedException();
+            OtpResponse response = new OtpResponse();
+            response.otp = "123456";
+
+            return await Task.FromResult(response);
+        }
     }
 }
