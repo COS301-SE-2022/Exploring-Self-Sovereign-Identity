@@ -1,9 +1,9 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using System.Threading.Tasks;
 
-namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
+namespace ExploringSelfSovereignIdentityAPI.Services
 {
-    public interface ISessionRepository
+    public interface ISessionService
     {
         Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e);
     }

@@ -7,13 +7,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
     {
         private readonly ISessionRepository _sessionRepository;
 
-        public async Task<DefaultIdentityModel> Add(DefaultIdentityModel e)
-        {
-            await Task.FromResult(e);
-            return e;
-        }
-
-        public async Task<DefaultIdentityModel> Update(DefaultIdentityModel e)
+        public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
         {
             e.addAttribute("Name", true);
             e.addAttribute("Surame", false);
@@ -23,5 +17,6 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             await Task.FromResult(e);
             return e;
         }
+
     }
 }
