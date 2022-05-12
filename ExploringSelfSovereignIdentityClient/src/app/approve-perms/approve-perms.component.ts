@@ -29,8 +29,9 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-    let temp = this.http.post<any>("localhost:5000/api", JSON.stringify(this.options));
-    console.log(temp);
+    //let temp = this.http.post<any>("localhost:5000/api", JSON.stringify(this.options), { observe: 'response' });
+    //let temp = this.http.get("https://api.chucknorris.io/jokes/random", { observe: 'response', responseType: 'json' });
+    //console.log(temp);
   }
 
   update(event: any) {
