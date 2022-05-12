@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+//Primary Colours: Mint to Be 
+
+$sea-green: #218B82;
+$light-blue: #9AD9DB;
+$Gainsboro: #E5DBD9;
+$dark-sea-green: #98D4BB;
+$pink: #EB96AA; 
+
+//Background Colours: To Be Defined 
+
+
+//Notification Colours: To Be Defined 
+
+
+//Universal Breakpoints
+$desktop-width: 1024px;
+$tablet-width: 768px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

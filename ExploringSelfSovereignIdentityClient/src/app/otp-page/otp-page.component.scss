@@ -1,0 +1,63 @@
+@import '/src/styles.scss';
+
+.ele {
+    display: flex; 
+    margin-top: 50px; 
+}
+
+.otp-card {
+  
+  width: 50%;
+  padding-bottom: 50px; 
+  margin-left: 25%;
+  margin-top: 6000px;
+  background-color: #9AD9DB;
+}
+
+.heading {
+  padding-left: 200px;
+  font-size: 50px;
+  color: #218B82;
+}
+
+.heading2 {
+  padding-top: 50px;
+  margin-left: 268px;
+  font-size: 30px;
+  color: white; 
+}
+
+
+
+.form {
+  padding-top: 50px;
+  padding-left: 280px;
+  width: 500px;
+  
+}
+
+
+.btn {
+  width: 100%;
+  background-color: #174372;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #195ba1;
+}
+
+.mat-card {
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+}
+
+
+
