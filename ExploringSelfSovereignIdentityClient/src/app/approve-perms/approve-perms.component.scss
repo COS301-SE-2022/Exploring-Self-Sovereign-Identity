@@ -1,4 +1,5 @@
 $radius: 0.5em;
+@import '../../styles.scss';
 
 .perm-card {
   width: 22em;
@@ -54,11 +55,11 @@ $radius: 0.5em;
 
 
 .required_perm {
-  background-color: #EB96AA;
+  background-color: $pink;
 }
 
 .optional_perm {
-  background-color: #218B82;
+  background-color: $sea-green;
 }
 
 .keyword {
