@@ -26,9 +26,10 @@ export class ApprovePermsService {
     return false;
   }
 
-  public populate(data: JSON) {
-    let temp = data.parse;
-    
+  public populate(data: any) {
+    for (let d of data.attributes) {
+      this.permsArray.push(new permissions(d.item1, d.item2));
+    }
   }
 
 

@@ -6,7 +6,7 @@ import { CertificatesComponent } from './certificates/certificates.component'
 
 const routes: Routes = [
   { path: 'approve', component: ApprovePermsComponent },
-  { path: 'otp', component: OtpPageComponent },
+  { path: '', component: OtpPageComponent },
   { path: 'certificates', component: CertificatesComponent }
 ];
 
