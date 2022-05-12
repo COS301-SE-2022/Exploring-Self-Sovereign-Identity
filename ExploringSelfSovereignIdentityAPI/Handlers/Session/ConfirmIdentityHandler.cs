@@ -18,7 +18,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session
 
         public async Task<DefaultIdentityResponse> Handle(ConfirmIdentityCommand request, CancellationToken cancellationToken)
         {
-            return await _service.confirmIdentity(new DefaultIdentityModel());
+            return await _service.confirmIdentity(request.requiredFields);
         }
 
     }

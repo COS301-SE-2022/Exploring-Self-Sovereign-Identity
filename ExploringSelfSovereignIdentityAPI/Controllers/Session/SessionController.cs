@@ -50,13 +50,13 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         }
 
         [HttpPost("confirm")]
-        public async Task<DefaultIdentityResponse> confirm()
+        public async Task<DefaultIdentityResponse> confirm([FromBody] ConfirmIdentityCommand command)
         {
 
             //Receive the selected fields  to expose
             //Finalise the identity creation
             //Return the fileds to expose and a token
-            return await mediator.Send(new ConfirmIdentityCommand());
+            return await mediator.Send(command);
 
         }
 

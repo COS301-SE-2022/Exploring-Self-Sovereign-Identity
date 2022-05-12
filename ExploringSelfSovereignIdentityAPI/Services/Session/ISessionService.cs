@@ -2,6 +2,7 @@
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 ﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
@@ -12,7 +13,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
         Task<DefaultSessionModel> GetMockDefaultSession(DefaultSessionModel e);
 
-        Task<DefaultIdentityResponse> confirmIdentity(DefaultIdentityModel e);
+        Task<DefaultIdentityResponse> confirmIdentity(LinkedList<string> fields);
 
         Task<OtpResponse> GetOtpResponse(OtpResponse e);
     }
