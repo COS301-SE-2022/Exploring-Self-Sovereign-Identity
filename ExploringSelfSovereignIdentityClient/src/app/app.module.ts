@@ -11,6 +11,9 @@ import { ApprovePermsComponent } from './approve-perms/approve-perms.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
+    MatDividerModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
