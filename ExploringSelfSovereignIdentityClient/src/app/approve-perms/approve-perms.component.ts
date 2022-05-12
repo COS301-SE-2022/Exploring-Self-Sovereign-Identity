@@ -3,6 +3,7 @@ import { ApprovePermsService } from '../services/approve-perms.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ApprovePermsComponent implements OnInit {
 
 
 
-  constructor(perms: ApprovePermsService, private http: HttpClient) {
+  constructor(perms: ApprovePermsService, private http: HttpClient, private router: Router) {
     this.perms = perms;
     for (let p of this.perms.permsArray) {
       if (!p.item2)
@@ -29,9 +30,13 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-    //let temp = this.http.post<any>("localhost:5000/api", JSON.stringify(this.options), { observe: 'response' });
-    //let temp = this.http.get("https://api.chucknorris.io/jokes/random", { observe: 'response', responseType: 'json' });
-    //console.log(temp);
+    let temp = this.http.post<any>("localhost:5000/connect", JSON.stringify(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });
+
+    this.router.navigate(['/certificates']);
+  }
+
+  back() {
+    this.router.navigate(['']);
   }
 
   update(event: any) {
@@ -42,8 +47,6 @@ export class ApprovePermsComponent implements OnInit {
     else
       this.options.push(event.target.value);
     console.log(this.options);
-
-
   }
 
 
