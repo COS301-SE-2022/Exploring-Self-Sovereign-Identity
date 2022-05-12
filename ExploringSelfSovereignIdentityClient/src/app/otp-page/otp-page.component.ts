@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
+import { ApprovePermsService } from '../services/approve-perms.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class OtpPageComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private approve: ApprovePermsService) {
     
   }
 
@@ -23,6 +24,7 @@ export class OtpPageComponent implements OnInit {
       .subscribe(data => {
         if (data != null) {
           this.router.navigate(["/approve"]);
+          this.approve.populate(data);
           //console.log(data);
         }
         else {
