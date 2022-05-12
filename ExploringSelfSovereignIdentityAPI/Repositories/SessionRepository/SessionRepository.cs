@@ -1,8 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
-using System;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
@@ -39,10 +37,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
         public async Task<OtpResponse> GetOtpResponse(OtpResponse e)
         {
             //throw new NotImplementedException();
-            OtpResponse response = new OtpResponse();
-            response.otp = "123456";
+            //OtpResponse response = new OtpResponse();
+            //response.otp = "123456";
 
-            return await Task.FromResult(response);
+            e.otp = "654321";
+
+            //return await Task.FromResult(response);
+            return await Task.FromResult(e);
         }
     }
 }
