@@ -78,11 +78,15 @@ $radius: 0.5em;
     height: 3em;
     border-radius: $radius;
     border-width: 0em;
-    cursor: pointer;    
+    cursor: pointer;
   }
 }
 
 .heading {
   font-weight: bold;
   font-size: 1em;
+}
+
+.grey {
+  background-color: #C6C9D0;
 }
