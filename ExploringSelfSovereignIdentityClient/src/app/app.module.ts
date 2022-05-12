@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { AppComponent } from './app.component';
 import { OtpPageComponent } from './otp-page/otp-page.component'; 
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     MatCardModule,
     NoopAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [],

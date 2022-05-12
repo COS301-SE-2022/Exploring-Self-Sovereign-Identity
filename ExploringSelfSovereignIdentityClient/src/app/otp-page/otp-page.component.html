@@ -9,7 +9,7 @@
     </mat-card-title>
 
     <div class="form">
-      <input id="otp" type="text" [formControl]="otp">
+      <input id="otp" type="text" [(ngModel)]="_otp">
     </div>
 
     <button class="btn" (click)="onSubmit()"> Submit</button>
