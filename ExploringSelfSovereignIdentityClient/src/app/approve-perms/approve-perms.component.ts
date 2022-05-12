@@ -49,7 +49,6 @@ export class ApprovePermsComponent implements OnInit {
     }
     else
       this.options.push(event.target.value);
-    console.log(this.options);
   }
 
   required(event: any) {
@@ -60,12 +59,17 @@ export class ApprovePermsComponent implements OnInit {
     if (this.requireList.length == 0)
       this.approve = true;
     else this.approve = false;
-    console.log(this.requireList);
-    console.log(this.requireList.length);
   }
 
+}
 
-
+class data {
+  requiredFields: Array<string> = [];
+  constructor(array: Array<string>) {
+    for (let a of array)
+      this.requiredFields.push(a);
+  }
 
 }
+
 
