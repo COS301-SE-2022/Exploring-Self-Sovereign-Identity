@@ -15,14 +15,17 @@ export class ApprovePermsComponent implements OnInit {
 
   perms: ApprovePermsService;
   options: Array<string> = [];
+  public approve = false;
+  private requireList: Array<string> = [];
 
 
 
   constructor(perms: ApprovePermsService, private http: HttpClient, private router: Router) {
     this.perms = perms;
     for (let p of this.perms.permsArray) {
-      if (!p.item2)
-        this.options.push(p.item1);
+      this.options.push(p.item1);
+      if (p.item2)
+        this.requireList.push(p.item1);
     }
   }
 
@@ -47,6 +50,18 @@ export class ApprovePermsComponent implements OnInit {
     else
       this.options.push(event.target.value);
     console.log(this.options);
+  }
+
+  required(event: any) {
+    if (event.target.checked)
+      this.requireList.splice(this.requireList.indexOf(event.target.value), 1);
+    else
+      this.requireList.push(event.target.value);
+    if (this.requireList.length == 0)
+      this.approve = true;
+    else this.approve = false;
+    console.log(this.requireList);
+    console.log(this.requireList.length);
   }
 
 
