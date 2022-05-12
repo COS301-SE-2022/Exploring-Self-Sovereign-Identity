@@ -33,9 +33,7 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-
-    let temp = this.http.post<any>("localhost:5000/confirm", JSON.stringify(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });
-    
+    let temp = this.http.post<any>("http://localhost:5000/api/Session/confirm", new data(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });    
     this.router.navigate(['/certificates']);
   }
 
@@ -50,7 +48,6 @@ export class ApprovePermsComponent implements OnInit {
     }
     else
       this.options.push(event.target.value);
-    console.log(this.options);
   }
 
   required(event: any) {
@@ -61,12 +58,17 @@ export class ApprovePermsComponent implements OnInit {
     if (this.requireList.length == 0)
       this.approve = true;
     else this.approve = false;
-    console.log(this.requireList);
-    console.log(this.requireList.length);
   }
 
+}
 
-
+class data {
+  requiredFields: Array<string> = [];
+  constructor(array: Array<string>) {
+    for (let a of array)
+      this.requiredFields.push(a);
+  }
 
 }
+
 
