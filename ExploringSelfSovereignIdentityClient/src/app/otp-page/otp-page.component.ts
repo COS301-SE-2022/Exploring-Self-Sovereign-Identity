@@ -16,16 +16,20 @@ export class OtpPageComponent implements OnInit {
   }
 
   _otp: string = "";
+  errMsg: string = "";
 
   onSubmit() {
     this.http.post<any>("http://localhost:5000/api/Session/connect", { "otp": this._otp })
       .subscribe(data => {
         if (data != null) {
-          //this.router.navigate(["/approve"]);
-          console.log(data);
+          this.router.navigate(["/approve"]);
+          //console.log(data);
         }
         else {
-          console.log(data);
+          this.errMsg = "invalid session...";
+          setTimeout(() => {
+            this.errMsg = "";
+          }, 2000);
         }
       });
   }

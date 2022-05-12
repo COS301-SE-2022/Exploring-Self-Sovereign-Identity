@@ -1,11 +1,11 @@
-<div class="ele">
+<div class="ele" style="text-align: center">
   <mat-card class="otp-card">
     <mat-card-title class="heading">
-      SSI Registration
+      Link to Session
     </mat-card-title>
 
     <mat-card-title class="heading2">
-      Enter your OTP: 
+      Enter your OTP:
     </mat-card-title>
 
     <div class="form">
@@ -13,7 +13,7 @@
     </div>
 
     <button class="btn" (click)="onSubmit()"> Submit</button>
-
+    <p style="color: red;"> {{ errMsg }} </p>
   </mat-card>
 
 </div> 
