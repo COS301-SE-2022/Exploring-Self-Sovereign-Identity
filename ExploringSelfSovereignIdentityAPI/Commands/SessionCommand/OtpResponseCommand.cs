@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ExploringSelfSovereignIdentityAPI.Commands.SessionCommand
 {
-    public class OtpResponseCommand:IRequest<OtpResponse>
+    public class OtpResponseCommand: IRequest<OtpResponse>
     {
 
     }
