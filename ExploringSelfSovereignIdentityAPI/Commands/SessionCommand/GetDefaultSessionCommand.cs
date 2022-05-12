@@ -5,11 +5,13 @@ namespace ExploringSelfSovereignIdentityAPI.Commands.SessionCommand
 {
     public class GetDefaultSessionCommand : IRequest<DefaultSessionModel>
     {
-        public short SessionId { get; set; }
+        //public short SessionId { get; set; }
 
-        public GetDefaultSessionCommand(short sessionId)
+        public string otp { get; set; }
+
+        public GetDefaultSessionCommand(string otp)
         {
-            SessionId = sessionId;
+            this.otp = otp;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
         public async Task<DefaultSessionModel> GetMockSession(DefaultSessionModel e)
         {
             e.SessionId = 11111;
+            e.otp = "654321";
             e._identity = await GetMockDefaultIdentity(new DefaultIdentityModel());
 
             return await Task.FromResult(e);
