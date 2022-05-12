@@ -6,5 +6,6 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Default
     {
         public DefaultIdentityModel _identity { get; set; }
         public short SessionId { get; set; }
+        public string otp { get; set; }
     }
 }

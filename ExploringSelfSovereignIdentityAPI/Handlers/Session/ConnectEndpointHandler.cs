@@ -27,7 +27,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Session.ConnectEndpoint
             
             DefaultSessionModel d = await _service.GetMockDefaultSession(new DefaultSessionModel());
 
-            if (d.SessionId.Equals(request.SessionId))
+            if (d.otp.Equals(request.otp))
                 return d;
             return null;
         }
