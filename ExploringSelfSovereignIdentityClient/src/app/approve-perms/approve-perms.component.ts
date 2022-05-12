@@ -33,8 +33,7 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-    let temp = this.http.post<any>("http://localhost:5000/api/Session/confirm", new data(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });
-
+    let temp = this.http.post<any>("http://localhost:5000/api/Session/confirm", new data(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });    
     this.router.navigate(['/certificates']);
   }
 
