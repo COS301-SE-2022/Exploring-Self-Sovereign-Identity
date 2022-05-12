@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms'; 
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router'; 
 
 
 @Component({
@@ -9,7 +10,11 @@ import { FormControl } from '@angular/forms';
 })
 export class OtpPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, ) {}
+
+  onSubmit() {
+    this.router.navigate(['/approve'])
+  }
 
   otp = new FormControl(''); 
 
