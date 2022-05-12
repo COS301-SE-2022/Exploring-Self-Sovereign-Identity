@@ -1,16 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { OtpPageComponent } from './otp-page/otp-page.component'; 
+import { MatCardModule } from '@angular/material/card';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CertificatesComponent } from './certificates/certificates.component'; 
+import { ApprovePermsComponent } from './approve-perms/approve-perms.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    ApprovePermsComponent,
+    OtpPageComponent,
+    CertificatesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserModule,
+    MatCardModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
