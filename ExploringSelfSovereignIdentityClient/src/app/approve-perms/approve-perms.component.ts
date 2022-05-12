@@ -30,9 +30,7 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-    //let temp = this.http.post<any>("localhost:5000/api", JSON.stringify(this.options), { observe: 'response' });
-    //let temp = this.http.get("https://api.chucknorris.io/jokes/random", { observe: 'response', responseType: 'json' });
-    //console.log(temp);
+    let temp = this.http.post<any>("localhost:5000/connect", JSON.stringify(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });
 
     this.router.navigate(['/certificates']);
   }
@@ -49,8 +47,6 @@ export class ApprovePermsComponent implements OnInit {
     else
       this.options.push(event.target.value);
     console.log(this.options);
-
-
   }
 
 
