@@ -20,4 +20,7 @@
 ## Team Members
 *  <b>Johan Smit</b> - I am the Project Manager for our team and will be working on all aspects of the project to ensure effiecient collaboration, deadlines are being met and we meet the client's requirements. Professional Profile, [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157)
 *  <b>Rebecca Pillay</b> - I am the Business Analyst for the team. Along with development, I will be responsible for all documentation and ensuring seamless translation of client requirements to development specifications. Professional Profile, [LinkedIn](https://www.linkedin.com/in/rebecca-p-48b236118)
+*  <b>Henri van der Grijp</b> - I am one of the developers for the team. I will be responible for the front end as a designer and UI engineer as well as backend work, when we implement it. Professional Profile, [LinkedIn](https://www.linkedin.com/in/henri-van-der-grijp-31a70123a/)
+*  <b>Sboniso Masilela</b> - I am one of the developers for the team. I will be responsible mostly for the back end implementation. Professional Profile, [LinkedIn](https://www.linkedin.com/in/sboniso-masilela-b0a5a335/)
 *  <b>Mxolisi Mkanzi</b> - I am the Service and API Engineer for the team. I will be responsible for developing services for our backend project and provide end points for our API. Professional Profile, [LinkedIn](https://www.linkedin.com/in/mxolisi-mkanzi-1a40bb168)
+
