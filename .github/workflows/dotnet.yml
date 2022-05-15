@@ -32,23 +32,24 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v3
     - name: Install Node
       uses: actions/setup-node@v1
       with:
         node-version: 14.15.x
   
     - name: npm dependencies
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: /ExploringSelfSovereignIdentityClient
       run: npm install
       
     - name: BuildClient
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: /ExploringSelfSovereignIdentityClient
       run: npm build -- --prod
       
     - name: Lint
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: /ExploringSelfSovereignIdentityClient
       run: npm run Lint
       
     - name: TestClient
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: /ExploringSelfSovereignIdentityClient
       run: npm run test -- --prod
