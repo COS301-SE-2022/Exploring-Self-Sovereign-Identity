@@ -34,9 +34,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Setup NPM
-      uses: actions/setup-npm@v2
+      uses: actions/setup-node@v1
       with:
-        npm-version: 6.14.x
+        node-version: 14.15.5
 
     - name: BuildAPI
       working-directory: ./ExploringSelfSovereignIdentityClient
