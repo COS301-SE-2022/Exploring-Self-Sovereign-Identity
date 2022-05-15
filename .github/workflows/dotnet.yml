@@ -20,9 +20,9 @@ jobs:
     - name: Restore dependencies
       working-directory: ./ExploringSelfSovereignIdentityAPI
       run: dotnet restore
-    - name: Build
+    - name: BuildAPI
       working-directory: ./ExploringSelfSovereignIdentityAPI
       run: dotnet build --no-restore
-    - name: Test
+    - name: TestAPI
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test
