@@ -40,7 +40,7 @@ jobs:
     - name: npm dependencies
       run: npm install     
     - name: npm Init
-      run: npm init
+      run: npm init -y
     - name: Build
       run: npm run build -- --prod
     - name: Typescript compiler
