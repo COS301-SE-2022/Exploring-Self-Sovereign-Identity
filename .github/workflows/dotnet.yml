@@ -33,15 +33,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup NPM
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.15.5
-
-    - name: BuildAPI
-      working-directory: ./ExploringSelfSovereignIdentityClient
-      run: npm build
-      
-    - name: TestAPI
-      working-directory: ./ExploringSelfSovereignIdentityClient
-      run: npm test
+    - name: Install npm
+      run:  npm install
+    - name: Typescript compiler
+      uses: iCrawl/action-tsc@v1
+    - name: npm Angular CLI 
+      run: npm install angular-cli
+    - name: Build
+      run:  npm build
