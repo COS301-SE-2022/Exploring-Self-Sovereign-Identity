@@ -1,0 +1,24 @@
+<div class="ele" style="text-align: center">
+
+  <mat-card class="otp-card">
+    <mat-card-title class="heading">
+      Link to Session
+    </mat-card-title>
+    <h4> *OTP's can be gained from 3rd party apps!'</h4>
+    <div class="wrapper">
+
+      <mat-card-title class="heading2">
+        Enter your OTP:
+      </mat-card-title>
+
+      <div class="form">
+        <input id="otp" type="text" [(ngModel)]="_otp">
+      </div>
+
+      <button class="btn" (click)="onSubmit()"> Submit</button>
+      <p style="color: red;"> {{ errMsg }} </p>
+    </div>
+  </mat-card>
+
+
+</div>

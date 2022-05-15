@@ -1,6 +1,7 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
@@ -25,11 +26,30 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
 
             return await Task.FromResult(e);
         }
-        public async Task<DefaultIdentityResponse> confirmIdentity(DefaultIdentityModel e)
+        public async Task<DefaultIdentityResponse> confirmIdentity(LinkedList<string> fields)
         {
             DefaultIdentityResponse response = new DefaultIdentityResponse();
 
-            response.identity = e;
+            foreach(string field in fields)
+            {
+                if(field == "name")
+                {
+                    response.identity.Add("name", "Jacob");
+                }
+                else if(field == "surname")
+                {
+                    response.identity.Add("surname", "Smith");
+                }
+                else if (field == "email")
+                {
+                    response.identity.Add("email", "jsp@gmail.com");
+                }
+                else if(field == "address")
+                {
+                    response.identity.Add("address", "14 Marais, Hatfield, Pretoria");
+                }
+            }
+
             response.token = "fwerwehvuvgvyvdwewmp5fwfewbiybjjhgyvbue";
 
             return await Task.FromResult(response);

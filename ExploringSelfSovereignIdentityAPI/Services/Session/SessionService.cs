@@ -4,6 +4,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
@@ -20,10 +21,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services
             return await _sessionRepository.GetMockDefaultIdentity(e);
         }
 
-        public async Task<DefaultIdentityResponse> confirmIdentity(DefaultIdentityModel e)
+        public async Task<DefaultIdentityResponse> confirmIdentity(LinkedList<string> fields)
         {
-            DefaultIdentityModel identity = await _sessionRepository.GetMockDefaultIdentity(e);
-            return await _sessionRepository.confirmIdentity(identity);
+            return await _sessionRepository.confirmIdentity(fields);
         }
 
         public async Task<DefaultSessionModel> GetMockDefaultSession(DefaultSessionModel e)

@@ -1,0 +1,16 @@
+# build output
+.vs/
+bin/
+obj/
+
+# Visual Studio
+/.vs/
+/bin/
+/obj/
+
+
+# Visual Studio Code
+/.vscode/
+
+# JetBrains Rider
+/.idea/

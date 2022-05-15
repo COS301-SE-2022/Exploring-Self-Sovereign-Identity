@@ -1,15 +1,16 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
+using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Models.Response
 {
     public class DefaultIdentityResponse
     {
-        public DefaultIdentityModel identity { get; set; }
+        public Dictionary<string,string> identity { get; set; }
         public string token { get; set; }
 
         public DefaultIdentityResponse()
         {
-            identity = new DefaultIdentityModel();
+            identity = new Dictionary<string, string>();
         }
     }
 }
