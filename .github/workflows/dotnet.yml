@@ -33,8 +33,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install npm
-      run:  npm install
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.8
+    - name: npm dependencies
+      run: npm install     
+    - name: Build
+      run: npm run build -- --prod
     - name: Typescript compiler
       uses: iCrawl/action-tsc@v1
     - name: npm Angular CLI 
