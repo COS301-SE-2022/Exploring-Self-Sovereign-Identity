@@ -6,12 +6,17 @@ import { Injectable } from '@angular/core';
 export class ApprovePermsService {
 
   public permsArray: Array<permissions> = [];
+  public issuer: string = "";
+  public id: string = "";
 
   constructor() {
     this.add("name", true);
     this.add("email", true);
     this.add("surname", false);
     this.add("address", false);
+    this.id = "Login";
+    this.issuer = "TUKS";
+
   }
 
   public add(s: string, b: boolean): void {
@@ -27,9 +32,15 @@ export class ApprovePermsService {
   }
 
   public populate(data: any) {
+    if (this.permsArray.length > 0) {
+      while (this.permsArray.length != 0)
+        this.permsArray.pop();
+    }
     for (let d of data.attributes) {
       this.permsArray.push(new permissions(d.item1, d.item2));
     }
+    this.issuer = data.issuerSignature;
+    this.id = data.identityName;
   }
 
 

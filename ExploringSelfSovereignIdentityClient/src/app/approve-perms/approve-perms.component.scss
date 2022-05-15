@@ -1,6 +1,18 @@
 $radius: 0.5em;
+@import '../../styles.scss';
+
+.issuer {
+    background-color: burlywood;
+    //font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.name {
+  //background-color: #deb870;
+}
 
 .perm-card {
+
   width: 22em;
   max-width: 90%;
   margin-left: auto;
@@ -54,15 +66,15 @@ $radius: 0.5em;
 
 
 .required_perm {
-  background-color: #EB96AA;
+  background-color: $pink;
 }
 
 .optional_perm {
-  background-color: #218B82;
+  background-color: $sea-green;
 }
 
 .keyword {
-  color: #D5E4C3;
+  color: #7600c3;
 }
 
 .buttons {

@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
+import { ApprovePermsService } from '../services/approve-perms.service';
 
 
 @Component({
@@ -10,15 +12,34 @@ import { Router } from '@angular/router';
 })
 export class OtpPageComponent implements OnInit {
 
-  constructor(private router: Router, ) {}
-
-  onSubmit() {
-    this.router.navigate(['/approve'])
+  constructor(private router: Router, private http: HttpClient, private approve: ApprovePermsService) {
+    
   }
 
-  otp = new FormControl(''); 
+  _otp: string = "";
+  errMsg: string = "";
+
+  onSubmit() {
+    this.http.post<any>("http://localhost:5000/api/Session/connect", { "otp": this._otp })
+      .subscribe(data => {
+        if (data != null) {
+          this.router.navigate(["/approve"]);
+          this.approve.populate(data);
+          //console.log(data);
+        }
+        else {
+          this.errMsg = "invalid session...";
+          setTimeout(() => {
+            this.errMsg = "";
+          }, 2000);
+        }
+      });
+  }
+
+  
 
   ngOnInit(): void {
+    
   }
 
 }

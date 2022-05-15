@@ -1,4 +1,5 @@
 @import '/src/styles.scss';
+@import '../../styles.scss';
 
 .ele {
   display: flex;
@@ -10,7 +11,7 @@
   padding-bottom: 50px;
   margin-left: 22%;
   margin-top: 6000px;
-  background-color: #EB96AA;
+  background-color: #A57283;
 }
 
 .identity {
@@ -18,7 +19,7 @@
   padding-bottom: 50px;
   margin-left: 22%;
   margin-top: 6000px;
-  background-color: #9AD9DB; 
+  background-color: $pink;
 }
 
 .identity2 {
@@ -32,7 +33,7 @@
 .heading {
   padding-left: 18px;
   font-size: 12px;
-  color: white; 
+  color: white;
 }
 
 .heading2 {
@@ -40,7 +41,6 @@
   margin-left: 10px;
   font-size: 10px;
   color: white;
- 
 }
 
 

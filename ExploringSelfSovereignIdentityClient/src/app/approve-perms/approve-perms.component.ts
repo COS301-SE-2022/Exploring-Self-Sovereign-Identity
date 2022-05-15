@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Route, Router } from '@angular/router';
+import { MatDivider } from '@angular/material/divider';
+import { MatList } from '@angular/material/list';
 
 
 @Component({
@@ -33,7 +35,8 @@ export class ApprovePermsComponent implements OnInit {
   }
 
   send() {
-    let temp = this.http.post<any>("http://localhost:5000/api/Session/confirm", new data(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });    
+
+    this.http.post<any>("http://localhost:5000/api/Session/confirm", new data(this.options), { observe: 'response' }).subscribe(resp => { console.log(resp); });
     this.router.navigate(['/certificates']);
   }
 
