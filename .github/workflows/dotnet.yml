@@ -26,3 +26,9 @@ jobs:
     - name: TestAPI
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
       run: dotnet test
+    - name: BuildClient
+      working-directory: ./ExploringSelfSovereignIdentityClient
+      run: ng build
+    - name: TestClient
+      working-directory: ./ExploringSelfSovereignIdentityClient
+      run: ng test
