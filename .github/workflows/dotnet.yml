@@ -55,4 +55,4 @@ jobs:
         working-directory: ./ExploringSelfSovereignIdentityClient
         run: |
           npm i
-          npm run build:prod
+          npm run build
