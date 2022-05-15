@@ -56,12 +56,13 @@ jobs:
       run: npm install
       
     - name: BuildClient
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: ExploringSelfSovereignIdentityClient/
       run: npm build -- --prod
       
     - name: Lint
+      working-directory: ExploringSelfSovereignIdentityClient/
       run: npm run Lint
       
     - name: TestClient
-      working-directory: ./ExploringSelfSovereignIdentityClient
+      working-directory: ExploringSelfSovereignIdentityClient/
       run: npm run test -- --prod
