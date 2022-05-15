@@ -1,4 +1,4 @@
-name: .NET
+name: ExploringSelfSovereignIdentity
 
 on:
   push:
@@ -32,16 +32,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Install Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: 14.15.x
     - name: npm dependencies
       run: npm install
+      
     - name: BuildClient
       working-directory: ./ExploringSelfSovereignIdentityClient
-      run: ng build
+      run: npm build
     - name: TestClient
       working-directory: ./ExploringSelfSovereignIdentityClient
-      run: ng test
+      run: npm test
