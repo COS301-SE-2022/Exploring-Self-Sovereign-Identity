@@ -39,6 +39,8 @@ jobs:
         node-version: 12.8
     - name: npm dependencies
       run: npm install     
+    - name: npm Init
+      run: npm init
     - name: Build
       run: npm run build -- --prod
     - name: Typescript compiler
