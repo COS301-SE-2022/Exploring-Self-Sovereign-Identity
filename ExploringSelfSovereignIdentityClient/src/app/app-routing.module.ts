@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApprovePermsComponent } from './approve-perms/approve-perms.component';
-import { OtpPageComponent } from './otp-page/otp-page.component';
-import { CertificatesComponent } from './certificates/certificates.component'
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: 'approve', component: ApprovePermsComponent },
-  { path: '', component: OtpPageComponent },
-  { path: 'certificates', component: CertificatesComponent }
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({
