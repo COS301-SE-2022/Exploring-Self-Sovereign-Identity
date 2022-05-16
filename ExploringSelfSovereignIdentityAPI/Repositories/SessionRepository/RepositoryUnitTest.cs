@@ -1,17 +1,15 @@
-using ExploringSelfSovereignIdentityAPI.Models.Default;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
-using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ExploringSelfSovereignIdentityAPIUnitTests
+namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
 {
-    public class SessionRepositoryUnitTest
+    public class RepositoryUnitTest
     {
+        public SessionRepository _sessionRepository;
 
-        /*public SessionRepository _sessionRepository;
-
-        public SessionRepositoryUnitTest()
+        public RepositoryUnitTest()
         {
             _sessionRepository = new SessionRepository();
         }
@@ -31,6 +29,6 @@ namespace ExploringSelfSovereignIdentityAPIUnitTests
             var otpResponse = await _sessionRepository.GetOtpResponse(new OtpResponse());
 
             Assert.Equal("654321", otpResponse.otp);
-        }*/
+        }
     }
 }

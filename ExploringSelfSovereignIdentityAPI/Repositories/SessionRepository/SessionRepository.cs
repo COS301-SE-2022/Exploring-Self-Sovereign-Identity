@@ -1,6 +1,8 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +10,15 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
 {
     public class SessionRepository : ISessionRepository
     {
+        private MongoClient client;
+        private IMongoDatabase database;
+
+        public SessionRepository()
+        {
+            client = new MongoClient();
+            database = client.GetDatabase("BlockChain");
+        }
+
         public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
         {
             e.addAttribute("Name", true);
