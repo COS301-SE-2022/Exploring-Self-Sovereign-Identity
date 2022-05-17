@@ -1,1 +1,5 @@
-<h1>SSI</h1>
+<mat-card *ngFor="let c of cardList">
+  <mat-card-title>{{c.title}}</mat-card-title>
+  <mat-card-subtitle>{{c.sub}}</mat-card-subtitle>
+</mat-card>
+<button mat-raised-button color="primary">Add new ID</button>

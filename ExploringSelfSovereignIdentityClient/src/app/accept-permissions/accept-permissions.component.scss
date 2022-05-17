@@ -1,0 +1,26 @@
+h1 {
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  display: block;
+  text-align: center;
+}
+
+div {
+  display: block;
+  width: 100%;
+
+  button {
+    margin-top: 2em;
+    /*bottom: 1em;*/
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    width: 50%;
+  }
+}
+
+mat-divider {
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
