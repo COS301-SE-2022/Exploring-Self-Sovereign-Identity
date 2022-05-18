@@ -28,7 +28,7 @@ class userInformation {
     this.birthday = b;
     this.nationality = nat;
     //this.birthdaystring = formatDate(this.birthday, "mediumDate")
-    this.birthdaystring = this.birthday.toString() | Date: "mediumDate" 
+    //this.birthdaystring = this.birthday.toString() | Date: "mediumDate" 
 
 }
 
