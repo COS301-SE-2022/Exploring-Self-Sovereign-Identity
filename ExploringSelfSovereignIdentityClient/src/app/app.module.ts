@@ -9,7 +9,11 @@ import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { SessionConnectComponent } from './session-connect/session-connect.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AcceptPermissionsComponent } from './accept-permissions/accept-permissions.component';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +44,10 @@ import { AcceptPermissionsComponent } from './accept-permissions/accept-permissi
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
