@@ -36,7 +36,7 @@ name: string = "";
 surname: string = "";
 birthday: Date;
 nationality: string = "";
-birthdaystring: string;
+//birthdaystring: string;
 
 data: any = [];
 }
