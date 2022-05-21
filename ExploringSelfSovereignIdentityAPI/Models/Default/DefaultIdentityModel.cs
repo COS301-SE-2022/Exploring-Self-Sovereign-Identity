@@ -10,11 +10,11 @@ namespace ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity
         public string IssuerSignature { get; }
 
         public string HolderSignature { get; set; }
-        public List<Tuple<string, bool>> attributes { get; }
+        //public List<Tuple<string, bool>> attributes { get; }
 
         public DefaultIdentityModel()
         {
-            attributes = new List<Tuple<string, bool>>();
+            //attributes = new List<Tuple<string, bool>>();
             IssuerSignature = "#CodeOfDuty";
             IdentityName = "Default Identity";
         }
@@ -27,7 +27,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity
                     throw new ArgumentException();
             }*/
 
-            attributes.Add(new Tuple<string, bool>(attribute, isRequired));
+            //attributes.Add(new Tuple<string, bool>(attribute, isRequired));
         }
 
     }
