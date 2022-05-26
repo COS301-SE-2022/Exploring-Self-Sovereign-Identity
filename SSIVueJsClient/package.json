@@ -12,6 +12,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@material/button": "^14.0.0",
+    "@material/mwc-button": "^0.26.1",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
@@ -31,7 +34,10 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^8.2.0",
     "jsdom": "^19.0.0",
+    "node-sass": "^7.0.1",
     "prettier": "^2.5.1",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
     "start-server-and-test": "^1.14.0",
     "typescript": "~4.6.3",
     "vite": "^2.9.5",
