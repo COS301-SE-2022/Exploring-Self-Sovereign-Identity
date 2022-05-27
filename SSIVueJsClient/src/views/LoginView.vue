@@ -2,22 +2,21 @@
 import { MDCRipple } from "@material/ripple";
 import IconBiometric from "../components/icons/IconBiometric.vue";
 import IconButton from "../components/Buttons/IconButton.vue";
+import IconHeading from "../components/icons/IconHeading.vue";
 export default {
   data() {
     return {};
   },
-  components: { IconBiometric, IconButton },
+  components: { IconBiometric, IconButton, IconHeading },
 };
 </script>
 
 <template>
-  <div class="heading">
-    <h2>Self</h2>
-    <h2>Sovereign</h2>
-    <h2>Identity</h2>
-  </div>
+  <div class="heading"><IconHeading /></div>
   <div class="Biometric">
-    <IconButton><IconBiometric /></IconButton>
+    <div>
+      <IconButton><IconBiometric /></IconButton>
+    </div>
   </div>
 </template>
 
@@ -29,21 +28,29 @@ export default {
   margin-left: auto;
   margin-right: auto;
   top: 10em;
-  width: 25%;
-  h2 {
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  text-align: center;
+  svg {
+    width: 80%;
+    height: auto;
+    backdrop-filter: grayscale(20%);
+    padding: 0.2em;
+    border-radius: 5em;
+    background-size: 1em;
+    border: 0.1em solid rgba(0, 0, 0, 0);
   }
 }
 
 .Biometric {
   display: block;
   bottom: 4em;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
+  position: fixed;
   width: 100%;
+  div {
+    height: auto;
+    width: 100%;
+    text-align: center;
+  }
   button {
     width: 25%;
     height: auto;
