@@ -11,18 +11,42 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="heading">
+    <h2>Self</h2>
+    <h2>Sovereign</h2>
+    <h2>Identity</h2>
+  </div>
+  <div class="Biometric">
     <IconButton><IconBiometric /></IconButton>
   </div>
 </template>
 
 <style lang="scss">
-@use "@material/button/styles";
+@import "@material/button/styles";
 
-div {
+.heading {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10em;
+  width: 25%;
+  h2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.Biometric {
+  display: block;
+  bottom: 4em;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  width: 100%;
+  button {
+    width: 25%;
+    height: auto;
+  }
 }
 </style>

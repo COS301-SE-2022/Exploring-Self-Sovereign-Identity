@@ -7,10 +7,14 @@ $mdc-theme-surface: #fffbfa;
 $mdc-theme-on-surface: #442c2e;
 $mdc-theme-background: #ffffff;
 $mdc-theme-on-background: #442c2e;
+
 body {
+  width: 100%;
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  // background: var(--color-background);
+  background: linear-gradient(to bottom left, #0099ff 0%, #00ffff 100%);
+  // background-color: rebeccapurple;
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -20,4 +24,5 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
