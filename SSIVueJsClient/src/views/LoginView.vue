@@ -3,19 +3,26 @@ import { MDCRipple } from "@material/ripple";
 import IconBiometric from "../components/icons/IconBiometric.vue";
 import IconButton from "../components/Buttons/IconButton.vue";
 import IconHeading from "../components/icons/IconHeading.vue";
+import { RouterLink } from "vue-router";
 export default {
   data() {
     return {};
   },
   components: { IconBiometric, IconButton, IconHeading },
+  methods: {
+    route() {
+      this.$router.push({ path: "/home" });
+    },
+  },
 };
 </script>
 
 <template>
   <div class="heading"><IconHeading /></div>
   <div class="Biometric">
-    <div>
+    <div @click="route">
       <IconButton><IconBiometric /></IconButton>
+      <!-- <router-link :to="'/home'"></router-link> -->
     </div>
   </div>
 </template>
