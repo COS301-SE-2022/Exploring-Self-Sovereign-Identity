@@ -1,15 +1,12 @@
 <script lang="ts">
-import { MDCRipple } from "@material/ripple";
 import IconBiometric from "../components/icons/IconBiometric.vue";
-import IconButton from "../components/Buttons/IconButton.vue";
 import IconHeading from "../components/icons/IconHeading.vue";
-import { RouterLink } from "vue-router";
 import IconButtonNoBG from "../components/Buttons/IconButtonNoBG.vue";
 export default {
   data() {
     return {};
   },
-  components: { IconBiometric, IconButton, IconHeading, IconButtonNoBG },
+  components: { IconBiometric, IconHeading, IconButtonNoBG },
   methods: {
     route() {
       this.$router.push({ path: "/home" });
