@@ -4,11 +4,12 @@ import IconBiometric from "../components/icons/IconBiometric.vue";
 import IconButton from "../components/Buttons/IconButton.vue";
 import IconHeading from "../components/icons/IconHeading.vue";
 import { RouterLink } from "vue-router";
+import IconButtonNoBG from "../components/Buttons/IconButtonNoBG.vue";
 export default {
   data() {
     return {};
   },
-  components: { IconBiometric, IconButton, IconHeading },
+  components: { IconBiometric, IconButton, IconHeading, IconButtonNoBG },
   methods: {
     route() {
       this.$router.push({ path: "/home" });
@@ -21,8 +22,7 @@ export default {
   <div class="heading"><IconHeading /></div>
   <div class="Biometric">
     <div @click="route">
-      <IconButton><IconBiometric /></IconButton>
-      <!-- <router-link :to="'/home'"></router-link> -->
+      <IconButtonNoBG><IconBiometric /></IconButtonNoBG>
     </div>
   </div>
 </template>
