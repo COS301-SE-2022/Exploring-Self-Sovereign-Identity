@@ -28,3 +28,19 @@ jobs:
     - name: TestAPI
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
       run: dotnet test
+
+  API-CodeCov:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v2
+      with:
+       token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml # optional
+       flags: unittests # optional
+       name: codecov-umbrella # optional
+       fail_ci_if_error: true # optional (default = false)
+       verbose: true # optional (default = false)
+  
