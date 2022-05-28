@@ -28,8 +28,3 @@ jobs:
     - name: TestAPI
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
       run: dotnet test
-      
-    - name: CodeCov
-      run: curl -Os https://uploader.codecov.io/latest/linux/codecov
-           chmod +x codecov
-           ./codecov -t ${09ed56e2-f76f-44ed-80d5-484d6668eef4}
