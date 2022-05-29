@@ -1,4 +1,4 @@
-class Attribute {
+export class Attribute {
 
     public constructor(id: string, name: string, value: string) {
         this.id = id;

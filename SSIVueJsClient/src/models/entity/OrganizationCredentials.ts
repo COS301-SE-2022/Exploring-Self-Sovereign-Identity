@@ -1,4 +1,4 @@
-class OrganizationCredentials {
+export class OrganizationCredentials {
 
     public constructor(id: string, credentials: Attribute[]) {
         this.id = id;
