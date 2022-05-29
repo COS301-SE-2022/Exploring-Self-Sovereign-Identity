@@ -28,22 +28,6 @@ jobs:
     - name: TestAPI
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
       run: dotnet test
-
-  API-CodeCov:
-  
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@master
-    - uses: codecov/codecov-action@v2
-      with:
-       token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml # optional
-       flags: unittests # optional
-       name: codecov-umbrella # optional
-       fail_ci_if_error: true # optional (default = false)
-       verbose: true # optional (default = false)
-  
   
   Frontend:
   
@@ -62,7 +46,7 @@ jobs:
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
   
-  Frontend-CodeCov:
+  CodeCov:
   
     runs-on: ubuntu-latest
 
@@ -71,7 +55,7 @@ jobs:
     - uses: codecov/codecov-action@v2
       with:
        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-       files: ./SSIVueJsClient/node_modules/.bin/codecov # optional
+       files: ./SSIVueJsClient/node_modules/.bin/codecov ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml # optional
        flags: unittests # optional
        name: codecov-umbrella # optional
        fail_ci_if_error: true # optional (default = false)
