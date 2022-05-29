@@ -7,6 +7,18 @@ export class Contract {
         this.attributes = attributes;
     }
 
+    public setSignature(signature: string) {
+        this.signature = signature;
+    }
+
+    public getAttributes() : Attribute[] {
+        return this.attributes;
+    }
+
+    public getSignature() : string {
+        return this.signature;
+    }
+
     private attributes : Attribute[];
     private signature: string = "";
 }

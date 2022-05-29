@@ -18,6 +18,10 @@ export class Attribute {
         return this.value;
     }
 
+    public setValue(value: string) {
+        this.value = value;
+    }
+
     private id : string;
     private name : string;
     private value : string;
