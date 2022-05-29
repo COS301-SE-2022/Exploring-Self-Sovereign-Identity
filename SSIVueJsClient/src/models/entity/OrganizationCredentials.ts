@@ -1,3 +1,5 @@
+import type { Attribute } from "./Attribute";
+
 export class OrganizationCredentials {
 
     public constructor(id: string, credentials: Attribute[]) {
