@@ -3,8 +3,9 @@ import type { OrganizationCredentials } from "./OrganizationCredentials";
 
 export class UserData {
 
-    public constructor(hash: string, version: number, attributes: Attribute[], credentials: OrganizationCredentials[]) {
+    public constructor(hash: string, id: string, version: number, attributes: Attribute[], credentials: OrganizationCredentials[]) {
         this.hash = hash;
+        this.id = id;
         this.version = version;
         this.attributes = attributes;
         this.credentials = credentials;
@@ -12,6 +13,10 @@ export class UserData {
 
     public getHash() : string {
         return this.hash;
+    }
+
+    public getId() : string {
+        return this.id;
     }
 
     public getVersion() : number {
@@ -27,6 +32,7 @@ export class UserData {
     }
     
     private hash : string;
+    private id : string;
     private version : number;
 
     private attributes : Attribute[];
