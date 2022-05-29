@@ -44,3 +44,19 @@ jobs:
        fail_ci_if_error: true # optional (default = false)
        verbose: true # optional (default = false)
   
+  
+  Frontend:
+  
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - name: Installing project dependencies
+      - run: npm install
+      - name: Building the project
+      - run: npm run build:dev
+      - name: Running Tests
+      - run: npm run test:unit
+  
+  
