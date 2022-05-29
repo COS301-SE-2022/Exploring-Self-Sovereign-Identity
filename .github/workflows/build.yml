@@ -53,10 +53,13 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
       - name: Installing project dependencies
-      - run: npm install
+        working-directory: ./SSIVueJsClient
+        run: npm install
       - name: Building the project
-      - run: npm run build:dev
+        working-directory: ./SSIVueJsClient
+        run: npm run build:dev
       - name: Running Tests
-      - run: npm run test:unit
+        working-directory: ./SSIVueJsClient
+        run: npm run test:unit
   
   
