@@ -57,7 +57,7 @@ jobs:
         run: npm install
       - name: Building the project
         working-directory: ./SSIVueJsClient
-        run: npm run build:dev
+        run: npm run build
       - name: Running Tests
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
