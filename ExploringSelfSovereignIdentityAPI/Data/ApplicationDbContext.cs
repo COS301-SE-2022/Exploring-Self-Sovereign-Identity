@@ -23,9 +23,18 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
             modelBuilder.Entity<DefaultIdentityModel>().ToTable("DefaultIdentityModel");
             modelBuilder.Entity<DefaultIdentityModel>().HasKey("IdentityName");
+
+            //modelBuilder.Entity<UserDataModel>().ToTable("UserDataModel");
+            //modelBuilder.Entity<UserDataModel>().HasKey("UserID");
+
+            //modelBuilder.Entity<OrganizationCredentials>().ToTable("OrganizationCredentials");
+            //modelBuilder.Entity<OrganizationCredentials>().HasKey("ID");
+
+            //modelBuilder.Entity<Attribute>().ToTable("Attribute");
+            //modelBuilder.Entity<Attribute>().HasKey("Value");
+
+
+
         }
-
-
-
     }
 }
