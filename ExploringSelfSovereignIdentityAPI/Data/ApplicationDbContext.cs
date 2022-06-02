@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
+using ExploringSelfSovereignIdentityAPI.Models.Entity; 
 using Microsoft.EntityFrameworkCore;
 
 namespace ExploringSelfSovereignIdentityAPI.Data
@@ -15,6 +16,11 @@ namespace ExploringSelfSovereignIdentityAPI.Data
         public DbSet<DefaultSessionModel> defaultSessionModels { get; set; }
         public DbSet<DefaultIdentityModel> DefaultIdentityModels { get; set; }
 
+        public DbSet<UserDataModel> userDataModels { get; set; }
+
+        public DbSet<Attribute> attributes { get; set; }
+
+        public DbSet<OrganizationCredentials> OrganizationCredentials { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
