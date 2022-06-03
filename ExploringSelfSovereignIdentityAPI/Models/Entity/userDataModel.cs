@@ -1,14 +1,15 @@
 ﻿
 
+using System;
+
 namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
     public class UserDataModel
     {
-        public string Hash { get; }
+        public Guid Id { get; set; }
+        public string Hash { get; set; }
 
-        public int Profile_version { get; }
-
-        public string UserID { get; } 
+        public int Profile_version { get; set; }
 
         //public List<Tuple<string, bool>> Attributes { get; }
 

@@ -1,9 +1,12 @@
-﻿namespace ExploringSelfSovereignIdentityAPI.Models.Entity
+﻿using System;
+
+namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
     public class UserAttribute
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
-        public string UserID { get; }
+        public Guid Id { get; set; }
+
+        public Guid UserId { get; set; }
+        public Guid AttributeID { get; set; }
     }
 }
