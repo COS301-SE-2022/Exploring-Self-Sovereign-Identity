@@ -1,17 +1,16 @@
 <script lang="ts">
-import ImageCard from "../components/cards/ImageCard.vue";
 export default {
   data() {
     return {
       user: "Peter",
     };
   },
-  components: { ImageCard },
+  components: {},
 };
 </script>
 
 <template>
-  <ImageCard />
+  <h1>In progress</h1>
 </template>
 
 <style lang="scss"></style>
