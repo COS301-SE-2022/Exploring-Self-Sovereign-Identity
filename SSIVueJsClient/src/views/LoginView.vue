@@ -1,7 +1,7 @@
 <script lang="ts">
 import IconBiometric from "../components/icons/IconBiometric.vue";
 import IconHeading from "../components/icons/IconHeading.vue";
-import IconButtonNoBG from "../components/Buttons/IconButtonNoBG.vue";
+import IconButtonNoBG from "../components/buttons/IconButtonNoBG.vue";
 export default {
   data() {
     return {};
