@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import { Calendar } from "@element-plus/icons-vue";
 
-import HomeView from "@/views/HomeView.vue";
+import HomeView from "./views/HomeView.vue";
 </script>
 
 <template>
@@ -11,5 +10,3 @@ import HomeView from "@/views/HomeView.vue";
   <HomeView />
   <!-- <RouterView /> -->
 </template>
-
-<style lang="scss"></style>
