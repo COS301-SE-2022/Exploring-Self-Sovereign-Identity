@@ -32,7 +32,7 @@ namespace ExploringSelfSovereignIdentityAPI.Data
             modelBuilder.Entity<DefaultIdentityModel>().ToTable("DefaultIdentityModel");
             modelBuilder.Entity<DefaultIdentityModel>().HasKey("Id");
 
-            modelBuilder.Entity<UserDataModel>().ToTable("User");
+            modelBuilder.Entity<UserDataModel>().ToTable("userDataModel");
             modelBuilder.Entity<UserDataModel>().HasKey("Id");
 
             modelBuilder.Entity<OrganizationCredentials>().ToTable("OrganizationCredentials");
@@ -43,6 +43,18 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
             modelBuilder.Entity<Organization>().ToTable("Organization");
             modelBuilder.Entity<Organization>().HasKey("Id");
+
+            modelBuilder.Entity<Contract>().ToTable("Contract");
+            modelBuilder.Entity<Contract>().HasKey("Id");
+
+            modelBuilder.Entity<ContractAttribute>().ToTable("ContractAttribute");
+            modelBuilder.Entity<ContractAttribute>().HasKey("Id");
+
+            modelBuilder.Entity<Transaction>().ToTable("Transaction");
+            modelBuilder.Entity<Transaction>().HasKey("Id");
+
+            modelBuilder.Entity<UserAttribute>().ToTable("UserAttribute");
+            modelBuilder.Entity<UserAttribute>().HasKey("Id");
 
 
 
