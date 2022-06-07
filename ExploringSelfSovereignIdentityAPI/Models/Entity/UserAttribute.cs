@@ -24,7 +24,5 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         public Guid UserId { get; set; }
         public Guid AttributeID { get; set; }
-
-        public Boolean granted { get; set; }
     }
 }

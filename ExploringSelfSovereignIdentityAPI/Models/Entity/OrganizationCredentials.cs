@@ -20,6 +20,14 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid Id { get; set; }
         public Guid OrganizationId { get; set; }
 
-        public Guid AttributeId { get; set; }
+        public Guid AttributeId { get; set; }  
+        
+        /*
+         * Changes:
+         UserID
+        OrgannizationID
+        Key
+        Value
+         */
     }
 }

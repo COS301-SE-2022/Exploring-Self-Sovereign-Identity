@@ -23,35 +23,20 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         public int Profile_version { get; set; }
 
-        //public List<Tuple<string, bool>> Attributes { get; }
-
-        //public List<Tuple<string, bool>> Credentials { get; } 
-
-        //! UserDataModel function 
         /*
-            Function to add User data 
+            Look into using the DBContext on the repository to CRUD user data
+            Implement endpoints to CRUD user data
+         */
 
-        */
+  
         public UserDataModel()
         {
-            //Attributes = new List<Tuple<string, bool>>();
        
         }
 
-        //! AddAttribute function 
-        /*
-            Function to add attributes to User Data table 
-
-        */
         public void AddAttribute(string attribute, bool isRequired)
         {
-            /*for (int i = 0; i < attributes.Count; i++)
-            {
-                if (attributes[i].Item1 == attribute)
-                    throw new ArgumentException();
-            }*/
 
-            //attributes.Add(new Tuple<string, bool>(attribute, isRequired));
         }
 
     }
