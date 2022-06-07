@@ -46,7 +46,7 @@ jobs:
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
   
-  CodeCov API:
+  CodeCov-API:
   
     runs-on: ubuntu-latest
 
@@ -61,7 +61,7 @@ jobs:
        fail_ci_if_error: true # optional (default = false)
        verbose: true # optional (default = false)
 
-  CodeCov UI:
+  CodeCov-UI:
   
     runs-on: ubuntu-latest
 
