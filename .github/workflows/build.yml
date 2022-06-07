@@ -55,7 +55,7 @@ jobs:
     - uses: codecov/codecov-action@v2
       with:
        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml, ./SSIVueJsClient/coverage/tmp/*.json  # optional
+       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml # optional
        flags: unittests # optional
        name: codecov-umbrella # optional
        fail_ci_if_error: true # optional (default = false)
