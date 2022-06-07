@@ -24,6 +24,15 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
         public DbSet<Organization> Organizations { get; set; }
 
+        public DbSet<Contract> Contracts { get; set; }
+
+        public DbSet<Transaction> Transactions { get; set; }
+
+        public DbSet<UserAttribute> UserAttributes { get; set; }
+
+        public DbSet<ContractAttribute> ContractAttributes { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DefaultSessionModel>().ToTable("defaultSessionModel");
