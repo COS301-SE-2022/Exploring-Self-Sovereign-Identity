@@ -9,7 +9,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
     public class UserDataRepository : IUserDataRepository
     {
         private readonly ApplicationDbContext _context;
-        public UserDataModel(ApplicationDbContext context)
+        public UserDataRepository(ApplicationDbContext context)
         {
             this._context = context;
         }
