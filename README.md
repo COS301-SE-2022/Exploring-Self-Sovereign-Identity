@@ -4,7 +4,7 @@
 
 [![API Code Coverage](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity/branch/main/graph/badge.svg)](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity)
 
-[Frontend Codecoverage](https://htmlpreview.github.io/?https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/blob/develop-vuejs-client/SSIVueJsClient/coverage/index.html)
+[Frontend Codecoverage](https://htmlpreview.github.io/?https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/blob/develop-vuejs-client/SSIVueJsClient/coverage/index.html) - Current Coverage: 100%
 
 ## Demo Pages
 * [Demo 1 (13/05)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-1)
