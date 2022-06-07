@@ -36,5 +36,9 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
            To get string values 
         */
         Task<string> Get();
+
+        Task<UserDataModel> DeleteUserData(UserDataModel e);
+
+        Task<UserDataModel> UpdateUserData(UserDataModel e);
     }
 }

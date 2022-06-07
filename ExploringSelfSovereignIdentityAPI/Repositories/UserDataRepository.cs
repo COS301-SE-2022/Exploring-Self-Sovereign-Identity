@@ -34,5 +34,31 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
 
             return e;
         }
+
+        public async Task<UserDataModel> DeleteUserData(UserDataModel e)
+        {
+            e.DeleteAttribute("Name");
+            e.DeleteAttribute("Surname");
+            e.DeleteAttribute("Email");
+            e.DeleteAttribute("Number");
+
+            await _context.UserDataModels.AddAsync(e);
+
+            return e;
+
+        }
+
+        public async Task<UserDataModel> UpdateUserData(UserDataModel e)
+        {
+            e.DeleteAttribute("Name");
+            e.DeleteAttribute("Surname");
+            e.DeleteAttribute("Email");
+            e.DeleteAttribute("Number");
+
+            await _context.UserDataModels.AddAsync(e);
+
+            return e;
+
+        }
     }
 }
