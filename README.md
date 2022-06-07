@@ -2,7 +2,9 @@
 ### The idea of the SSI-System is to explore the world of SSI and the use cases thereof as we move into the era of the Metaverse.
 ---
 
-[![codecov](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity/branch/main/graph/badge.svg)](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity)
+[![API Code Coverage](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity/branch/main/graph/badge.svg)](https://codecov.io/gh/COS301-SE-2022/Exploring-Self-Sovereign-Identity)
+
+[Frontend Codecoverage](SSIVueJsClient\coverage\index.html)
 
 ## Demo Pages
 * [Demo 1 (13/05)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-1)
