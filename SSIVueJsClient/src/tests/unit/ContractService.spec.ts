@@ -70,4 +70,14 @@ describe("ContractService", () => {
         expect(service.approve("google.email")).toBe(false);
         expect(service.approve("ssi.name")).toBe(false);
     });
+
+    test("UserData should not have changed", () => {
+        expect(userData.getId()).toBe("ssiUsr01");
+        expect(userData.getHash()).toBe("#fxxy");
+        expect(userData.getVersion()).toBe(1);
+    });
+
+    test("attribute id's should not change", () => {
+        expect(usrAttributes[0].getId()).toBe("1");
+    });
 });

@@ -19,6 +19,12 @@ export class Contract {
         return this.signature;
     }
 
+    /* Key - Value Pairs */
     private attributes : Attribute[];
+
+    /* 
+    * Signed - accepted
+    * Not Signed - declined
+    */
     private signature: string = "";
 }
