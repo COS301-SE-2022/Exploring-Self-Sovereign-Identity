@@ -11,6 +11,7 @@ $mdc-theme-on-background: #442c2e;
 body {
   max-width: 100vw;
   min-height: 100vh;
+  margin: 0%;
   color: var(--color-text);
   // background: var(--color-background);
   background: linear-gradient(to bottom left, #0099ff 0%, #00ffff 100%);
