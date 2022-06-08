@@ -1,80 +1,89 @@
 <script lang="ts">
-import IconHome from "../components/icons/IconHome.vue";
-import IconMenu from "../components/icons/IconMenu.vue";
-import IconGoogle from "../components/icons/IconGoogle.vue";
+import IconAvatar from "../components/icons/IconAvatar.vue";
+import IconPending from "../components/icons/IconPending.vue";
+import IconPast from "../components/icons/IconPast.vue";
+import IconFile from "../components/icons/IconFile.vue";
 export default {
   data() {
-    return {
-      user: "Peter",
-    };
+    return {};
   },
-  components: { IconHome, IconMenu, IconGoogle },
+  components: { IconAvatar, IconPending, IconPast, IconFile },
 };
 </script>
 
 <template>
-  <el-card class="card">
-    <template #header>
-      <div>
-        <IconGoogle class="icon" />
-        <el-divider direction="vertical" />
-        <h1>Google</h1>
-      </div>
-    </template>
-  </el-card>
+  <!-- * Row 1 -->
+  <el-row :gutter="2" class="row">
+    <el-col :span="12">
+      <!-- * Profile page -->
+      <el-card class="card">
+        <template #header>
+          <div>
+            <el-avatar :size="100" shape="square"
+              ><IconAvatar class="icon"
+            /></el-avatar>
+          </div>
+        </template>
+        <h3>Profile</h3>
+      </el-card>
+    </el-col>
 
-  <!-- *Bottom navbar -->
-  <div class="nav">
-    <el-menu default-active="1" mode="horizontal" class="menu">
-      <!-- <el-row :gutter="24" justify="space-evenly">
-        <el-col :span="12"> -->
-      <el-menu-item index="1">
-        <el-icon><IconHome class="icon" /></el-icon>
-      </el-menu-item>
-      <!-- </el-col>
-        <el-col :span="12"> -->
-      <el-menu-item index="3">
-        <el-icon><IconMenu class="icon" /></el-icon>
-      </el-menu-item>
-      <!-- </el-col> -->
-      <!-- </el-row>-->
-    </el-menu>
-  </div>
+    <!-- * Pending transations -->
+    <el-col :span="12">
+      <el-card class="card">
+        <template #header>
+          <div>
+            <el-avatar :size="100" shape="square">
+              <IconPending class="icon"
+            /></el-avatar>
+          </div>
+        </template>
+        <h3>Pedning</h3>
+      </el-card>
+    </el-col>
+  </el-row>
+
+  <!-- *Row 2 -->
+  <el-row :gutter="2" class="row">
+    <!-- *Past transactions -->
+    <el-col :span="12">
+      <el-card class="card">
+        <template #header>
+          <div>
+            <el-avatar :size="100" shape="square">
+              <IconPast class="icon"
+            /></el-avatar>
+          </div>
+        </template>
+        <h3>Past</h3>
+      </el-card>
+    </el-col>
+
+    <!-- * Request data -->
+    <el-col :span="12">
+      <el-card class="card">
+        <template #header>
+          <div>
+            <el-avatar :size="100" shape="square">
+              <IconFile class="icon"
+            /></el-avatar>
+          </div>
+        </template>
+        <h3>Request data</h3>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <style lang="scss">
-.nav {
-  width: 100%;
-  position: fixed;
-  bottom: 0%;
+.icon {
+  background-color: white;
+}
+.card {
+  // width: fit-content;
   text-align: center;
 }
-.menu {
-  height: 8vh;
-  // padding-top: 2vh;
-  // padding-bottom: 2vh;
-}
-
-.card {
-  margin: 8px;
-  margin-top: 0;
-}
-
-.icon {
-  width: 7vw;
-}
-//TODO: Need to chnage this so it doesn't apply to all headings
-h1 {
-  display: inline-block;
-}
-
-.card-header {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-div {
-  padding-top: 0%;
-  padding-bottom: 0%;
+.row {
+  margin-bottom: 1vw;
 }
 </style>
