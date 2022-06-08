@@ -7,6 +7,11 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    goProfile() {
+      this.$router.push({ path: "/profile" });
+    },
+  },
   components: { IconAvatar, IconPending, IconPast, IconFile },
 };
 </script>
@@ -16,7 +21,7 @@ export default {
   <el-row :gutter="2" class="row">
     <el-col :span="12">
       <!-- * Profile page -->
-      <el-card class="card">
+      <el-card class="card" @click="goProfile">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
