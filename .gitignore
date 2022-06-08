@@ -16,4 +16,4 @@ obj/
 /.idea/
 .vs/slnx.sqlite
 ExploringSelfSovereignIdentityClient/.vs/ExploringSelfSovereignIdentityClient/v17/.suo
-coverage
+coverage/
