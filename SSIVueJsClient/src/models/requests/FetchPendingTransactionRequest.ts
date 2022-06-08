@@ -1,8 +1,7 @@
 export class FetchPendingTransactionRequest {
+  public constructor(userID: string) {
+    this.userID = userID;
+  }
 
-    public constructor(userID: String) {
-        this.userID = userID;
-    }
-    
-    private userID : String;
+  private userID: string;
 }
