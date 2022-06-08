@@ -1,29 +1,27 @@
 export class Attribute {
+  public constructor(id: string, name: string, value: string) {
+    this.id = id;
+    this.name = name;
+    this.value = value;
+  }
 
-    public constructor(id: string, name: string, value: string) {
-        this.id = id;
-        this.name = name;
-        this.value = value;
-    }
+  public getId(): string {
+    return this.id;
+  }
 
-    public getId() : string {
-        return this.id;
-    }
+  public getName(): string {
+    return this.name;
+  }
 
-    public getName() : string {
-        return this.name;
-    }
+  public getValue(): string {
+    return this.value;
+  }
 
-    public getValue() : string {
-        return this.value;
-    }
+  public setValue(value: string) {
+    this.value = value;
+  }
 
-    public setValue(value: string) {
-        this.value = value;
-    }
-
-    private id : string;
-    private name : string;
-    private value : string;
-
+  private id: string;
+  private name: string;
+  private value: string;
 }
