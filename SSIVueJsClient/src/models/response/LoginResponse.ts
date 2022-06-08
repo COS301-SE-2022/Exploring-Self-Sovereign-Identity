@@ -1,8 +1,14 @@
+import type { UserData } from "../entity/UserData";
+
 export class LoginResponse {
 
-    public constructor(status: string) {
-        this.status = status;
+    public constructor(userData: UserData) {
+        this.userData = userData;
+    }
+
+    public getUserData() : UserData {
+        return this.userData;
     }
     
-    public status: string;
+    private userData : UserData;
 }
