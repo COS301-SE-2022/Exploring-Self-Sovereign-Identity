@@ -26,5 +26,15 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
          Created when a contract is sent from the front-end
         This action also creates the transaction
          */
+        public Contract()
+        {
+
+        }
+        public Contract(Guid Id, string Signature, Boolean granted)
+        {
+            this.Id = Id;
+            this.Signature = Signature;
+            this.granted = granted;
+        }
     }
 }

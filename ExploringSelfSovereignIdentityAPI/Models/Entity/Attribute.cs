@@ -20,5 +20,16 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Value { get; set; }
+
+        public Attribute()
+        {
+
+        }
+        public Attribute(Guid Id, string Name, string Value)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Value = Value;
+        }
     }
 }

@@ -21,6 +21,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid OrganizationId { get; set; }
 
         public Guid AttributeId { get; set; }  
+
+        public Guid Key { get; set; }
+
+        public Guid Value { get; set; }
         
         /*
          * Changes:
@@ -29,5 +33,18 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         Key
         Value
          */
+        public OrganizationCredentials()
+        {
+
+        }
+        public OrganizationCredentials(Guid id, Guid OrganizationId, Guid AttributeId, Guid Key, Guid Value)
+        {
+            this.Id = id;
+            this.OrganizationId = OrganizationId;
+            this.AttributeId = AttributeId;
+            this.Key = Key;
+            this.Value = Value;
+        }
+            
     }
 }

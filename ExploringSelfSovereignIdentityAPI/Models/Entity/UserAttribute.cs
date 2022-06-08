@@ -24,5 +24,16 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         public Guid UserId { get; set; }
         public Guid AttributeID { get; set; }
+
+        public UserAttribute()
+        {
+
+        }
+        public UserAttribute(Guid Id, Guid UserId, Guid AttributeID)
+        {
+            this.Id = Id;
+            this.UserId = UserId;
+            this.AttributeID = AttributeID;
+        }
     }
 }

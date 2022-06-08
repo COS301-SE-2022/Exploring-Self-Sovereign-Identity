@@ -21,5 +21,16 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public string Name { get; set; }
        
         public string hash { get; set; }
+
+        public Organization()
+        {
+
+        }
+        public Organization(Guid Id, string Name, string hash)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.hash = hash;
+        }
     }
 }

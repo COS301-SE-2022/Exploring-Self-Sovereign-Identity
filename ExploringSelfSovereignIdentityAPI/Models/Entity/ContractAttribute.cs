@@ -22,5 +22,16 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid ContractId { get; set; }
 
         public Guid attributeId { get; set; }
+
+        public ContractAttribute()
+        {
+
+        }
+        public ContractAttribute(Guid Id, Guid ContractId, Guid attributeId)
+        {
+            this.Id = Id;
+            this.ContractId = ContractId;
+            this.attributeId = attributeId;
+        }
     }
 }
