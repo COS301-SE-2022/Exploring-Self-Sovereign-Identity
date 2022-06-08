@@ -2,8 +2,8 @@ import type { RegisterRequest } from "@/models/requests/RegisterRequest";
 import type { RegisterResponse } from "@/models/response/RegisterResponse";
 import type { LoginRequest } from "@/models/requests/LoginRequest";
 import type { LoginResponse } from "@/models/response/LoginResponse";
-import type { UpdateRequest } from "../requests/UpdateRequest";
-import type { UpdateResponse } from "./UpdateResponse";
+import type { UpdateRequest } from "../models/requests/UpdateRequest";
+import type { UpdateResponse } from "../models/response/UpdateResponse";
 import axios from "axios";
 
 export class UserService {
