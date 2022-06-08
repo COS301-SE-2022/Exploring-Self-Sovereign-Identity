@@ -1,26 +1,37 @@
 <script lang="ts">
-import IconBiometric from "../components/icons/IconBiometric.vue";
-import IconHeading from "../components/icons/IconHeading.vue";
+import "@passageidentity/passage-elements/passage-auth";
 export default {
   data() {
     return {};
   },
-  components: { IconBiometric, IconHeading },
+  components: {},
   methods: {
-    route() {
-      this.$router.push({ path: "/home" });
-    },
+    // route() {
+    //   this.$router.push({ path: "/home" });
+    // },
+  },
+  setup() {
+    // * l6SXuEd5nIKKfC9Jc1YXVbSC
+    const appid = "Q17Gza9k49k1ieI15r73xaQf";
+    return { appid };
   },
 };
 </script>
 
 <template>
-  <div class="heading"><IconHeading /></div>
-  <div class="Biometric">
+  <!-- <div class="heading"><IconHeading /></div> -->
+
+  <!-- *Passage component -->
+  <div class="authContainer">
+    <passage-auth :app-id="appid"></passage-auth>
+  </div>
+
+  <!-- *! will need to replace this biometric with passage once it is setup -->
+  <!-- <div class="Biometric">
     <div @click="route">
       <IconButtonNoBG><IconBiometric /></IconButtonNoBG>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss">

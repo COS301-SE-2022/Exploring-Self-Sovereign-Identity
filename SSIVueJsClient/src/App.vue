@@ -7,6 +7,6 @@ import HomeView from "./views/HomeView.vue";
 <template>
   <!-- <LogingView /> -->
   <!-- <h1>SSI</h1> -->
-  <HomeView />
-  <!-- <RouterView /> -->
+  <!-- <HomeView /> -->
+  <RouterView />
 </template>
