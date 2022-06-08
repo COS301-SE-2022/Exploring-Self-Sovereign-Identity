@@ -41,12 +41,6 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         /*
            To delete user data attributes 
         */
-        Task<UserDataModel> DeleteUserData(UserDataModel e);
-
-        //! UpdateUserData Function
-        /*
-           To update user data attributes 
-        */
 
         Task<UserDataModel> UpdateUserData(UserDataModel e);
     }

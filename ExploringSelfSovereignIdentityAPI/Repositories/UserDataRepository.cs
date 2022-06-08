@@ -35,7 +35,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
             return e;
         }
 
-        public async Task<UserDataModel> DeleteUserData(UserDataModel e)
+       /* public async Task<UserDataModel> DeleteUserData(UserDataModel e)
         {
             e.DeleteAttribute("Name");
             e.DeleteAttribute("Surname");
@@ -46,16 +46,15 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
 
             return e;
 
-        }
+        }*/
 
         public async Task<UserDataModel> UpdateUserData(UserDataModel e)
         {
-            e.UpdateAttribute("Name");
-            e.UpdateAttribute("Surname");
-            e.UpdateAttribute("Email");
-            e.UpdateAttribute("Number");
+            UserDataModel userFromDB = await _context.UserDataModels.FindAsync(e.Id); //fetch user from db 
+            
+            userFromDB.Profile_version = e.Profile_version; 
 
-            await _context.UserDataModels.AddAsync(e);
+            await _context.SaveChangesAsync(); 
 
             return e;
 

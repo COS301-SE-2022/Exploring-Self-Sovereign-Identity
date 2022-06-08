@@ -54,11 +54,6 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         }
 
-        public void DeleteAttribute(string attribute)
-        {
-
-        }
-
         public void UpdateAttribute(string attribute)
         {
 

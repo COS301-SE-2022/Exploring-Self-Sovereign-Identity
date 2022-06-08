@@ -47,11 +47,11 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         }
 
-        // DELETE api/<ValuesController>/5
+        /* DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
 
-        }
+        }*/
     }
 }
