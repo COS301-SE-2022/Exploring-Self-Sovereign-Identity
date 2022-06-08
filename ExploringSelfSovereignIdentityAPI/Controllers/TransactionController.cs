@@ -1,4 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Contract;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         }*/
 
         [HttpPost("contract")]
-        public async Task<string> addContract([FromBody] AddContractCommand command)
+        public async Task<GetContractResponse> addContract([FromBody] AddContractCommand command)
         {
             return await mediator.Send(command);
         }
