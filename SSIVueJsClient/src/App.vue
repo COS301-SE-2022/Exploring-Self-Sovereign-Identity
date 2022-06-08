@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 
-import HomeView from "./views/HomeView.vue";
+import ProfileView from "./views/ProfileView.vue";
 </script>
 
 <template>
   <!-- <LogingView /> -->
   <!-- <h1>SSI</h1> -->
   <!-- <HomeView /> -->
-  <RouterView />
+  <!-- <RouterView /> -->
+  <ProfileView />
 </template>

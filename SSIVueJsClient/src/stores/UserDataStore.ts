@@ -9,7 +9,7 @@ export const UserDataStore = defineStore("userData", {
     };
   },
   getters: {
-    userData(state) {
+    getUserData(state) {
       return state.userData;
     },
   },
