@@ -37,6 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public void AddAttribute(string attribute, bool isRequired)
         {
 
+
         }
 
         public void DeleteAttribute(string attribute)
