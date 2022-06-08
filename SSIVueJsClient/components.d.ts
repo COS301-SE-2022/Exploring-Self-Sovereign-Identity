@@ -6,14 +6,10 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ElCard: typeof import('element-plus/es')['ElCard']
-    ElCol: typeof import('element-plus/es')['ElCol']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElRow: typeof import('element-plus/es')['ElRow']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     IconBiometric: typeof import('./src/components/icons/IconBiometric.vue')['default']
     IconButton: typeof import('./src/components/Buttons/IconButton.vue')['default']
     IconButtonNoBG: typeof import('./src/components/Buttons/IconButtonNoBG.vue')['default']
