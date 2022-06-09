@@ -2,15 +2,16 @@
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
 {
     public interface ITransactionService
     {
-        List<Transaction> GetPendingTransactions(Guid id);
+        Task<List<Transaction>> GetPendingTransactions(Guid id);
         Transaction AddPendingTransaction(AddTransactionCommand pendingTransaction);
 
-        Transaction GetPastTransactions(Guid id);
+        Task<List<Transaction>> GetPastTransactions(Guid id);
 
         Transaction SaveTransaction(SaveTransactionCommand saveTransaction);
     }

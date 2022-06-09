@@ -16,5 +16,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
 
         public  Task<int> SaveTransaction(Transaction saveTransaction);
 
+        //public Task<Contract>
+
     }
 }
