@@ -46,10 +46,10 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<ISessionService, SessionService>();     
-            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-            services.AddTransient<IUserDataService, UserdataService>();
             services.AddTransient<IUserDataRepository, UserDataRepository>();
-            
+            //services.AddTransient<IUserDataService, UserdataService>();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+
 
             services.AddCors(options =>
             {

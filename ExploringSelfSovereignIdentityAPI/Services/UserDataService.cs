@@ -5,7 +5,7 @@ using System.Threading.Tasks;
    
 namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
 {
-    public class UserdataService : IUserDataService
+    /*public class UserdataService : IUserDataService
     {
         private readonly IUserDataRepository _repo;
 
@@ -29,6 +29,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
         }
 
        
-    }
+    }*/
     
 }

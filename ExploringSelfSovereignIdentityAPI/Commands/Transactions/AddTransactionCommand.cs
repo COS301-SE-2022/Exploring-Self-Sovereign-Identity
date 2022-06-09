@@ -12,11 +12,11 @@ namespace ExploringSelfSovereignIdentityAPI.Commands.Transactions
         //public string signature { get; set; }
         public Guid To { get; set; }
         public Guid From { get; set; }
-        public LinkedList<AddContractRequest> Attributes { get; set; }
+        public AddContractRequest contract { get; set; }
 
         public AddTransactionCommand()
         {
-            Attributes = new LinkedList<AddContractRequest>();
+            
         }
 
 

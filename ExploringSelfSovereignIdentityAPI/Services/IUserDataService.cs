@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
 {
     
-    public interface IUserDataService
+    /*public interface IUserDataService
     {
 
         Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f); 
@@ -23,6 +23,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
             To add User Data Models 
 
         */
-        Task<UserDataModel> Add(UserDataModel e);
-    }
+       /* Task<UserDataModel> Add(UserDataModel e);
+    }*/
 }

@@ -13,7 +13,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     [ApiController]
     public class UserDataController : Controller
     {
-        private readonly IMediator mediator;
+        /*private readonly IMediator mediator;
         private readonly IUserDataService _UserDataService; 
 
         public UserDataController(IMediator med, UserdataService userDataService)
