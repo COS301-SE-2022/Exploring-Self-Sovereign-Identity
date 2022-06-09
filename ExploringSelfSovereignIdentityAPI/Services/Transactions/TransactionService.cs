@@ -3,6 +3,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Repositories.Transactions;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
 {
@@ -19,20 +20,29 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
         
         public Transaction AddPendingTransaction(AddTransactionCommand pendingTransaction)
         {
-            //var transaction = new Transaction();
-            //transaction.ContractID
-            //_transactionRepository.AddPendingTransaction(pendingTransaction);
+            /*var transaction = new Transaction();
+            transaction.
+            _transactionRepository.AddPendingTransaction(pendingTransaction);*/
             throw new NotImplementedException();
         }
 
-        public Transaction GetPastTransactions(Guid id)
+        public async Task<List<Transaction>> GetPastTransactions(Guid id)
         {
-            throw new NotImplementedException();
+           return await  _transactionRepository.GetPastTransactions(id);
         }
 
-        public List<Transaction> GetPendingTransactions(Guid id)
+        public async Task<List<Transaction>> GetPendingTransactions(Guid id)
         {
+            var transaction = await _transactionRepository.GetPendingTransactions(id);
+            List<Transaction> ret = new List<Transaction>();
+            transaction.ForEach(t =>
+            {
+                //ret.Add(_transactionRepository.GetContract(id));
+                
+            });
+
             throw new NotImplementedException();
+        
         }
 
         public Transaction SaveTransaction(SaveTransactionCommand saveTransaction)
