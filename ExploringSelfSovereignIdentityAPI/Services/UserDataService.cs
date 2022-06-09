@@ -5,7 +5,7 @@ using System.Threading.Tasks;
    
 namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
 {
-    /*public class UserdataService : IUserDataService
+    public class UserdataService : IUserDataService
     {
         private readonly IUserDataRepository _repo;
 
@@ -18,17 +18,17 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
             return await _repo.Add(e);
         }
 
-        public async Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f)
+        public async Task<UserDataModel> GetUser(UserDataModel e)
         {
-            return await _repo.GetUser(e, f); 
+            return await _repo.GetUser(e); 
         }
 
         public async Task<UserDataModel> GetUserData (UserDataModel e)
         {
-            return await (_repo.GetUserData(e)); 
+            return await _repo.GetUserData(e); 
         }
 
        
-    }*/
+    }
     
 }

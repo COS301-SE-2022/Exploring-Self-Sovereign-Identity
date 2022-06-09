@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
+using System.Collections.Generic;
 
 //! userDataModel Class 
 /*
@@ -22,6 +24,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public string Hash { get; set; }
 
         public int Profile_version { get; set; }
+       
 
 
 
@@ -59,6 +62,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         }
 
+        public static implicit operator UserDataModel(EntityEntry<UserDataModel> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
    

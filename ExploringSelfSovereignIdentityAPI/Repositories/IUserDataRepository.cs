@@ -36,7 +36,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         /*
            To get string values 
         */
-        Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f);
+        Task<UserDataModel> GetUser(UserDataModel e);
 
         //! DeleteUserData Function
         /*
@@ -44,5 +44,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         */
 
         Task<UserDataModel> UpdateUserData(UserDataModel e);
+
+        //Task<UserDataModel> AddUser(UserDataModel f);
     }
 }
