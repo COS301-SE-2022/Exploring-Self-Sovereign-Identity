@@ -24,6 +24,8 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
 
         public async Task<Transaction> AddPendingTransaction(Transaction transaction)
         {
+     
+            
             transaction.Id = new Guid();
             _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
@@ -79,6 +81,21 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
             await _context.SaveChangesAsync();
 
             return ca;
+        }
+
+        public async Task<Contract> GetContract(Guid contractID)
+        {
+            return await _context.Contracts.Where(c => c.Id == contractID).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<ContractAttribute>> GetContractAttribute(Guid id)
+        {
+            return await _context.ContractAttributes.Where(c => c.ContractId == id).ToListAsync();
+        }
+
+        public async Task<Models.Entity.Attribute> GetAttribute(Guid attributeId)
+        {
+            return await _context.Attributes.Where(c => c.Id == attributeId).FirstOrDefaultAsync();
         }
     }
 }
