@@ -1,7 +1,6 @@
 <script lang="ts">
 import { mapState } from "pinia";
 import { UserDataStore } from "@/stores/UserDataStore";
-import type { Attribute } from "@/models/entity/Attribute";
 export default {
   data() {
     return {
