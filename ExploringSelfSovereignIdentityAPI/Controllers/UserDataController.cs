@@ -37,7 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         //Login Endpoint 
         [HttpGet("{id, hash}")]
-        public IActionResult Get(int Id, string hash)
+        public IActionResult Get(UserDataModel Id, UserDataModel hash)
         {
 
             var user = _UserDataService.GetUser(Id, hash);

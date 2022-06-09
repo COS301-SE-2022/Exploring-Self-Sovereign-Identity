@@ -14,7 +14,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
     public interface IUserDataService
     {
 
-        Task<UserDataModel> GetUser(int Id, string hash); 
+        Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f); 
 
         Task<UserDataModel> GetUserData(UserDataModel e); 
 
