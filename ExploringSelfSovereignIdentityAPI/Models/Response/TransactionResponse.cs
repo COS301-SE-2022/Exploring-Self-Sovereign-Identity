@@ -7,6 +7,6 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
         public string From { get; set; }
         public string To { get; set; }
 
-        public Contract contract { get; set; }
+        public GetContractResponse contract { get; set; }
     }
 }
