@@ -1,10 +1,14 @@
+using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Repositories.Example;
 using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
+using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.Example;
+using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,12 +37,19 @@ namespace exploring_self_sovereign_identity_api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "exploring_self_sovereign_identity_api", Version = "v1" });
             });
 
+
+            services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+
+
             //Adding my service
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<ISessionService, SessionService>();     
+            services.AddTransient<IUserDataRepository, UserDataRepository>();
+            //services.AddTransient<IUserDataService, UserdataService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+
 
             services.AddCors(options =>
             {
