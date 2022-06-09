@@ -21,7 +21,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             this._context = context;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("login")]
         public IActionResult GetUser(UserDataModel Id)
         {
