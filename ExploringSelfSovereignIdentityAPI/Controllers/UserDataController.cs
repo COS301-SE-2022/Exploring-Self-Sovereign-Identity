@@ -55,9 +55,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         // Register Endpoint 
         [HttpPut("{id, hash}")]
-        public void Put(UserDataModel Id, UserDataModel hash)
+        public void Put(UserDataModel Id)
         {
-            var user = _UserDataService.Add(Id);
+            _UserDataService.Add(Id);
 
         }
 
