@@ -2,11 +2,18 @@
 using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Entity; 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.DataEncryption;
 
 namespace ExploringSelfSovereignIdentityAPI.Data
 {
     public class ApplicationDbContext:DbContext
     {
+
+        private readonly string _encryptionKey = "FxovdyhwSVdNT9nJYQNW";
+        private readonly string _encryptionIV = "Ztbt7M0ToceiC86vF1Qg";
+        private readonly IEncryptionProvider _provider;
+
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
