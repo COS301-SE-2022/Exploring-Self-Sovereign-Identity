@@ -12,7 +12,7 @@ export class UserService {
   ): Promise<RegisterResponse> {
     return (
       await axios.post<RegisterResponse>(
-        "https://localhost:5000/user/register",
+        "https://localhost:5000/api/UserData/register",
         registerRequest
       )
     ).data;
@@ -21,7 +21,7 @@ export class UserService {
   public async login(loginRequest: LoginRequest): Promise<LoginResponse> {
     return (
       await axios.post<LoginResponse>(
-        "https://localhost:5000/user/login",
+        "https://localhost:5000/api/UserData/login",
         loginRequest
       )
     ).data;
