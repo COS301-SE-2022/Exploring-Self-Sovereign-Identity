@@ -9,7 +9,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
     {
         private readonly IUserDataRepository _repo;
 
-        public UserdataService(IUserDataRepository repository)
+        public UserdataService(UserDataRepository repository)
         {
             _repo = repository;
         }

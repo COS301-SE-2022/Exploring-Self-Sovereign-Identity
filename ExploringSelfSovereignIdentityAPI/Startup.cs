@@ -1,8 +1,10 @@
 using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Repositories.Example;
 using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
+using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.Example;
+using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +47,9 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<ISessionService, SessionService>();     
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            services.AddTransient<IUserDataService, UserdataService>();
+            services.AddTransient<IUserDataRepository, UserDataRepository>();
+            
 
             services.AddCors(options =>
             {
