@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 //! ContractAttribute Class 
 /*
@@ -19,8 +20,12 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
     public class ContractAttribute
     {
         public Guid Id { get; set; }
+
+        [Encrypted]
         public Guid ContractId { get; set; }
 
+
+        [Encrypted]
         public Guid attributeId { get; set; }
 
         public ContractAttribute()
