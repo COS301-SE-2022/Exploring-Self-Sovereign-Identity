@@ -4,6 +4,7 @@ export default {
   methods: {
     goback() {
       this.$router.back();
+      console.log(this.page);
     },
   },
 };
