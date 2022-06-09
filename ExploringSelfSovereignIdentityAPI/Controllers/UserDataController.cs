@@ -14,12 +14,16 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     public class UserDataController : Controller
     {
         private readonly IMediator mediator;
-        private IUserDataService _UserDataService; 
+        private readonly IUserDataService _UserDataService; 
 
-        public UserDataController(IMediator med)
+        public UserDataController(IMediator med, UserdataService userDataService)
         {
             mediator = med;
+            _UserDataService = userDataService;
+
         }
+
+
 
         // GET: api/<ValuesController>
         [HttpGet]

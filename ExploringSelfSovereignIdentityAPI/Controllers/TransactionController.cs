@@ -1,10 +1,13 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Contract;
+using ExploringSelfSovereignIdentityAPI.Commands.Transactions;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Transactions;
+
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers
 {
@@ -26,13 +29,13 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         }*/
 
 
-        /*
-        [HttpGet("getExamples")]
-        public async Task<Transaction> AddPendingTransaction()
+        
+        [HttpPost("addPendingTransaction")]
+        public async Task<Transaction> AddPendingTransaction([FromBody] AddTransactionCommand pendingTransaction)
         {
-            //return await mediator.Send(new GetPendingTransactionQuery());
+            return await mediator.Send(pendingTransaction);
             
-        }*/
+        }
 
   
 
