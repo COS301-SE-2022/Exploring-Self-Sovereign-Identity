@@ -21,11 +21,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
     {
         public Guid Id { get; set; }
 
-        [Encrypted]
+  
         public Guid ContractId { get; set; }
 
 
-        [Encrypted]
         public Guid attributeId { get; set; }
 
         public ContractAttribute()
