@@ -22,10 +22,14 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
             _context = context;
         }
 
-        public async Task<int> AddPendingTransaction(Transaction transaction)
+        public async Task<Transaction> AddPendingTransaction(Transaction transaction)
         {
+            transaction.Id = new Guid();
             _context.Transactions.Add(transaction);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
+            return transaction;
+
         }
 
         public async Task<List<Transaction>> GetPastTransactions(Guid id)

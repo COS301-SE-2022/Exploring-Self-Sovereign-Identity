@@ -15,7 +15,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
 
         public  Task<List<Transaction>> GetPendingTransactions(Guid id);
 
-        public  Task<int> SaveTransaction(Transaction saveTransaction);
+        public  Task<Transaction> SaveTransaction(Transaction saveTransaction);
         public Task<Contract> addContract(Contract contract);
         Task<ContractAttribute> addContractAttribute(AddAttributeRequest att, Guid contractId);
 
