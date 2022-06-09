@@ -1,6 +1,7 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import "@passageidentity/passage-elements/passage-auth";
-export default {
+export default defineComponent({
   data() {
     return {};
   },
@@ -15,7 +16,7 @@ export default {
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
     return { appid };
   },
-};
+});
 </script>
 
 <template>

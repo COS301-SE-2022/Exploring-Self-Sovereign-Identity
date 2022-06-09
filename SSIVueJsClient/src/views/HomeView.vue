@@ -1,9 +1,10 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
-export default {
+export default defineComponent({
   data() {
     return {};
   },
@@ -13,7 +14,7 @@ export default {
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
-};
+});
 </script>
 
 <template>
