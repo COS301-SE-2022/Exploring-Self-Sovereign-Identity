@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,11 +41,40 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
             ).ToListAsync();
         }
 
-        public async Task<int> SaveTransaction(Transaction saveTransaction)
+        public async Task<Transaction> SaveTransaction(Transaction saveTransaction)
         {
-            _context.Transactions.Add(saveTransaction);
-            return await _context.SaveChangesAsync();
+            saveTransaction.Id = new Guid();
+            await _context.Transactions.AddAsync(saveTransaction);
+            await _context.SaveChangesAsync();
 
+            return saveTransaction;
+
+        }
+
+        public async Task<Contract> addContract(Contract contract)
+        {
+            contract.Id = new Guid();
+            await _context.Contracts.AddAsync(contract);
+            await _context.SaveChangesAsync();
+            return contract;
+        }
+
+        public async Task<ContractAttribute> addContractAttribute(AddAttributeRequest att, Guid contractId)
+        {
+            Models.Entity.Attribute a = new Models.Entity.Attribute(att.name, att.value);
+            a.Id = new Guid();
+            await _context.Attributes.AddAsync(a);
+            await _context.SaveChangesAsync();
+
+            ContractAttribute ca = new ContractAttribute();
+            ca.Id = new Guid();
+            ca.ContractId = contractId;
+            ca.AttributeId = a.Id;
+
+            await _context.ContractAttributes.AddAsync(ca);
+            await _context.SaveChangesAsync();
+
+            return ca;
         }
     }
 }

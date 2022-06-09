@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Transactions;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Repositories.Transactions;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,25 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
         }
 
         
-        public Transaction AddPendingTransaction(AddTransactionCommand pendingTransaction)
+        public async Task<Transaction> AddPendingTransaction(AddTransactionCommand pendingTransaction)
         {
-            /*var transaction = new Transaction();
-            transaction.
-            _transactionRepository.AddPendingTransaction(pendingTransaction);*/
-            throw new NotImplementedException();
+            Contract contract = new Contract();
+            contract.Signature = null;
+
+            contract = await _transactionRepository.addContract(contract);
+
+            foreach (AddAttributeRequest att in pendingTransaction.contract.Attributes)
+            {
+                await _transactionRepository.addContractAttribute(att, contract.Id);
+            }
+            
+            Transaction transaction = new Transaction();
+            transaction.ContractID = contract.Id;
+            transaction.To = pendingTransaction.To;
+            transaction.From = pendingTransaction.From;
+
+
+            return await _transactionRepository.AddPendingTransaction(transaction);
         }
 
         public async Task<List<Transaction>> GetPastTransactions(Guid id)

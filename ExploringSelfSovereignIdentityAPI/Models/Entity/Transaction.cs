@@ -4,7 +4,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
     public class Transaction
     {
-
+        public Guid Id { get; set; }
         public Guid From { get; set; }
         public Guid To { get; set; }
         public Guid ContractID { get; set;}

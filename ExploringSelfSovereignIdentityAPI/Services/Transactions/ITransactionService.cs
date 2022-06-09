@@ -9,7 +9,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
     public interface ITransactionService
     {
         Task<List<Transaction>> GetPendingTransactions(Guid id);
-        Transaction AddPendingTransaction(AddTransactionCommand pendingTransaction);
+        Task<Transaction> AddPendingTransaction(AddTransactionCommand pendingTransaction);
 
         Task<List<Transaction>> GetPastTransactions(Guid id);
 

@@ -25,7 +25,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid ContractId { get; set; }
 
 
-        public Guid attributeId { get; set; }
+        public Guid AttributeId { get; set; }
 
         public ContractAttribute()
         {
@@ -35,7 +35,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         {
             this.Id = Id;
             this.ContractId = ContractId;
-            this.attributeId = attributeId;
+            this.AttributeId = attributeId;
         }
     }
 }
