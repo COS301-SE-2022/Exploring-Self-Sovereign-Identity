@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import TransactionView from "./views/TransactionView.vue";
+import RequestDataView from "./views/RequestDataView.vue";
 </script>
 
 <template>
-  <!-- <LogingView /> -->
-  <!-- <h1>SSI</h1> -->
-  <!-- <RouterView /> -->
-  <!-- <ProfileView /> -->
-  <TransactionView />
+  <RouterView />
+  <!-- <RequestDataView /> -->
 </template>
