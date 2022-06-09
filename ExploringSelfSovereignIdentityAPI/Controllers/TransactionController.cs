@@ -1,8 +1,10 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Contract;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers
 {
@@ -22,6 +24,19 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         {
             return await mediator.Send(new ExampleGetQuery());
         }*/
+
+
+        /*
+        [HttpGet("getExamples")]
+        public async Task<Transaction> AddPendingTransaction()
+        {
+            //return await mediator.Send(new GetPendingTransactionQuery());
+            
+        }*/
+
+  
+
+
 
         [HttpPost("contract")]
         public async Task<GetContractResponse> addContract([FromBody] AddContractCommand command)
