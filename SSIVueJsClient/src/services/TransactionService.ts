@@ -11,18 +11,18 @@ import axios from "axios";
 export class TransactionService {
 
     public async save(saveTransactionRequest: SaveTransactionRequest) : Promise<SaveTransactionResponse> {
-        return (await axios.post<SaveTransactionResponse>("https://localhost:5000/transaction/save", saveTransactionRequest)).data;
+        return (await axios.post<SaveTransactionResponse>("https://localhost:5000/api/Transaction/addPendingTransaction", saveTransactionRequest)).data;
     }
 
     public async past(pastTransactionRequest: PastTransactionsRequest) : Promise<PastTransactionResponse> {
-        return (await axios.post<PastTransactionResponse>("https://localhost:5000/transaction/save", pastTransactionRequest)).data;
+        return (await axios.post<PastTransactionResponse>("https://localhost:5000/api/Transaction/getPastTransaction", pastTransactionRequest)).data;
     }
 
     public async pending(fetchPendingTransactionRequest: FetchPendingTransactionRequest) : Promise<FetchPendingTransactionResponse> {
-        return (await axios.post<FetchPendingTransactionResponse>("https://localhost:5000/transaction/save", fetchPendingTransactionRequest)).data;
+        return (await axios.post<FetchPendingTransactionResponse>("https://localhost:5000/api/Transaction/getPendingTransaction", fetchPendingTransactionRequest)).data;
     }
 
     public async add(addPendingTransactionRequest: AddPendingTransactionRequest) : Promise<AddPendingTransactionResponse> {
-        return (await axios.post<AddPendingTransactionResponse>("https://localhost:5000/transaction/save", addPendingTransactionRequest)).data;
+        return (await axios.post<AddPendingTransactionResponse>("https://localhost:5000/api/Transaction/addPendingTransaction", addPendingTransactionRequest)).data;
     }
 }
