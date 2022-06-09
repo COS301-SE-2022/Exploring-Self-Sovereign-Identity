@@ -3,14 +3,20 @@ using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
 using ExploringSelfSovereignIdentityAPI.Models.Entity; 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.DataEncryption;
+using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 
 namespace ExploringSelfSovereignIdentityAPI.Data
 {
     public class ApplicationDbContext:DbContext
     {
 
-        private readonly string _encryptionKey = "FxovdyhwSVdNT9nJYQNW";
-        private readonly string _encryptionIV = "Ztbt7M0ToceiC86vF1Qg";
+        //private readonly string _encryptionKey = "FxovdyhwSVdNT9nJYQNW";
+        //private readonly string _encryptionIV = "Ztbt7M0ToceiC86vF1Qg";
+
+
+        private readonly byte[] _encryptionKey = {0x56};
+        private readonly byte[] _encryptionIV = {0x28};
+
         private readonly IEncryptionProvider _provider;
 
 
@@ -18,6 +24,7 @@ namespace ExploringSelfSovereignIdentityAPI.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
             Database.EnsureCreated();
+            this._provider = new AesProvider(this._encryptionKey, this._encryptionIV);
         }
 
         public DbSet<DefaultSessionModel> DefaultSessionModels { get; set; }
@@ -71,6 +78,9 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
             modelBuilder.Entity<UserAttribute>().ToTable("UserAttribute");
             modelBuilder.Entity<UserAttribute>().HasKey("Id");
+
+
+            modelBuilder.UseEncryption(this._provider);
 
 
 
