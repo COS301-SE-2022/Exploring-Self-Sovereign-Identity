@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,16 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
             _context = context;
         }
 
-        public async Task<int> AddPendingTransaction(Transaction transaction)
+        public async Task<Transaction> AddPendingTransaction(Transaction transaction)
         {
+     
+            
+            transaction.Id = new Guid();
             _context.Transactions.Add(transaction);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
+            return transaction;
+
         }
 
         public async Task<List<Transaction>> GetPastTransactions(Guid id)
@@ -40,11 +47,55 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
             ).ToListAsync();
         }
 
-        public async Task<int> SaveTransaction(Transaction saveTransaction)
+        public async Task<Transaction> SaveTransaction(Transaction saveTransaction)
         {
-            _context.Transactions.Add(saveTransaction);
-            return await _context.SaveChangesAsync();
+            saveTransaction.Id = new Guid();
+            await _context.Transactions.AddAsync(saveTransaction);
+            await _context.SaveChangesAsync();
 
+            return saveTransaction;
+
+        }
+
+        public async Task<Contract> addContract(Contract contract)
+        {
+            contract.Id = new Guid();
+            await _context.Contracts.AddAsync(contract);
+            await _context.SaveChangesAsync();
+            return contract;
+        }
+
+        public async Task<ContractAttribute> addContractAttribute(AddAttributeRequest att, Guid contractId)
+        {
+            Models.Entity.Attribute a = new Models.Entity.Attribute(att.name, att.value);
+            a.Id = new Guid();
+            await _context.Attributes.AddAsync(a);
+            await _context.SaveChangesAsync();
+
+            ContractAttribute ca = new ContractAttribute();
+            ca.Id = new Guid();
+            ca.ContractId = contractId;
+            ca.AttributeId = a.Id;
+
+            await _context.ContractAttributes.AddAsync(ca);
+            await _context.SaveChangesAsync();
+
+            return ca;
+        }
+
+        public async Task<Contract> GetContract(Guid contractID)
+        {
+            return await _context.Contracts.Where(c => c.Id == contractID).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<ContractAttribute>> GetContractAttribute(Guid id)
+        {
+            return await _context.ContractAttributes.Where(c => c.ContractId == id).ToListAsync();
+        }
+
+        public async Task<Models.Entity.Attribute> GetAttribute(Guid attributeId)
+        {
+            return await _context.Attributes.Where(c => c.Id == attributeId).FirstOrDefaultAsync();
         }
     }
 }

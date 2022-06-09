@@ -31,9 +31,8 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         {
 
         }
-        public Attribute(Guid Id, string Name, string Value)
+        public Attribute(string Name, string Value)
         {
-            this.Id = Id;
             this.Name = Name;
             this.Value = Value;
         }

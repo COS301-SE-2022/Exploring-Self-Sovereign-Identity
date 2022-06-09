@@ -1,9 +1,12 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Transactions;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Repositories.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Attribute = ExploringSelfSovereignIdentityAPI.Models.Entity.Attribute;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
 {
@@ -18,12 +21,26 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
         }
 
         
-        public Transaction AddPendingTransaction(AddTransactionCommand pendingTransaction)
+        public async Task<Transaction> AddPendingTransaction(AddTransactionCommand pendingTransaction)
         {
-            /*var transaction = new Transaction();
-            transaction.
-            _transactionRepository.AddPendingTransaction(pendingTransaction);*/
-            throw new NotImplementedException();
+            Contract contract = new Contract();
+            
+            contract.Signature = pendingTransaction.contract.Signature;
+
+            contract = await _transactionRepository.addContract(contract);
+
+            foreach (AddAttributeRequest att in pendingTransaction.contract.Attributes)
+            {
+                await _transactionRepository.addContractAttribute(att, contract.Id);
+            }
+            
+            Transaction transaction = new Transaction();
+            transaction.ContractID = contract.Id;
+            transaction.To = pendingTransaction.To;
+            transaction.From = pendingTransaction.From;
+
+
+            return await _transactionRepository.AddPendingTransaction(transaction);
         }
 
         public async Task<List<Transaction>> GetPastTransactions(Guid id)
@@ -31,18 +48,48 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
            return await  _transactionRepository.GetPastTransactions(id);
         }
 
-        public async Task<List<Transaction>> GetPendingTransactions(Guid id)
+        public async Task<List<GetTransactionResponse>> GetPendingTransactions(Guid id)
         {
-            var transaction = await _transactionRepository.GetPendingTransactions(id);
-            List<Transaction> ret = new List<Transaction>();
-            transaction.ForEach(t =>
+            
+            List<Transaction> transactions = await _transactionRepository.GetPendingTransactions(id);
+            List<GetTransactionResponse> ret = new List<GetTransactionResponse>();
+            transactions.ForEach(async t =>
             {
-                //ret.Add(_transactionRepository.GetContract(id));
+                GetTransactionResponse response = await CreateTransactionResponse(t);
+                ret.Add(response);
                 
             });
 
-            throw new NotImplementedException();
+            return ret;
         
+        }
+
+        private async Task<GetTransactionResponse> CreateTransactionResponse(Transaction t)
+        {
+            GetTransactionResponse response = new GetTransactionResponse();
+            response.From = t.From;
+            response.To = t.To;
+            Contract contract = await _transactionRepository.GetContract(t.ContractID);
+            List<ContractAttribute> contractAttributes = await _transactionRepository.GetContractAttribute(contract.Id);
+
+            GetContractResponse contractResponse = new GetContractResponse();
+            contractResponse.Signature = contract.Signature;
+            contractResponse.Id = contract.Id;
+
+
+            foreach (ContractAttribute contractAttribute in contractAttributes)
+            {
+                Attribute attribute = await _transactionRepository.GetAttribute(contractAttribute.AttributeId);
+                AddAttributeRequest attObject = new AddAttributeRequest();
+                attObject.value = attribute.Value;
+                attObject.name = attribute.Name;
+
+                contractResponse.Attributes.AddLast(attObject);
+            }
+
+            response.contract = contractResponse;
+
+            return response;
         }
 
         public Transaction SaveTransaction(SaveTransactionCommand saveTransaction)

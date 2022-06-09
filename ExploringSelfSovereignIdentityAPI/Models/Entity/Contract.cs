@@ -20,7 +20,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         public Guid Id { get; set; }
         public string Signature { get; set; }
 
-        public Boolean granted { get; set; }
+        //public Boolean granted { get; set; }
 
         /*
          Created when a contract is sent from the front-end
@@ -34,7 +34,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         {
             this.Id = Id;
             this.Signature = Signature;
-            this.granted = granted;
+            //this.granted = granted;
         }
     }
 }
