@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Queries.Example
-{ 
-
-    public class GetPendingTransactionQuery:IRequest<List<Transaction>>
+{
+    public class GetPastTransactionQuery : IRequest<List<Transaction>>
     {
         public Guid Id { get; set; }
 
@@ -15,6 +14,4 @@ namespace ExploringSelfSovereignIdentityAPI.Queries.Example
 
 
     }
-
-
 }

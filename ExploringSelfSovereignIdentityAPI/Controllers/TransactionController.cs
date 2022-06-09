@@ -5,6 +5,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,10 +35,26 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         public async Task<Transaction> AddPendingTransaction([FromBody] AddTransactionCommand pendingTransaction)
         {
             return await mediator.Send(pendingTransaction);
-            
+
         }
 
-  
+
+        [HttpGet("getPendingTransaction")]
+        public async Task<List<Transaction>> FetchPendingTransaction([FromQuery] GetPendingTransactionQuery query)
+        {
+            
+            return await mediator.Send(query);
+
+        }
+
+        [HttpGet("getPastTransaction")]
+        public async Task<List<Transaction>> FetchPastTransaction([FromQuery] GetPastTransactionQuery query)
+        {
+            return await mediator.Send(query);
+
+        }
+
+
 
 
 
