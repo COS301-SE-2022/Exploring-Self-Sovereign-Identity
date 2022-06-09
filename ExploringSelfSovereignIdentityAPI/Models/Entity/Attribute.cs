@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 //! Attribute Class
 /*
@@ -18,7 +19,12 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
             Value - Value associated with Name attribute
          */
         public Guid Id { get; set; }
+
+        [Encrypted]
         public string Name { get; set; }
+
+
+        [Encrypted]
         public string Value { get; set; }
 
         public Attribute()
