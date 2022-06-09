@@ -1,6 +1,7 @@
 <script lang="ts">
 import { mapState } from "pinia";
 import { UserDataStore } from "@/stores/UserDataStore";
+import BackNav from "../components/Nav/BackNav.vue";
 export default {
   data() {
     return {
@@ -16,11 +17,7 @@ export default {
       return this.getUserData.getCredentials();
     },
   },
-  methods: {
-    goback() {
-      this.$router.push({ path: "/home" });
-    },
-  },
+  components: { BackNav },
 };
 </script>
 
@@ -72,9 +69,7 @@ export default {
     </el-collapse>
   </div>
 
-  <div class="nav">
-    <el-page-header content="Profile" @back="goback" />
-  </div>
+  <BackNav />
 </template>
 
 <style lang="scss">
@@ -88,13 +83,5 @@ export default {
 .id {
   background-color: black;
   color: white;
-}
-.nav {
-  width: 99vw;
-  padding: 4%;
-  position: fixed;
-  bottom: 0vh;
-  backdrop-filter: hue-rotate(30deg);
-  border-radius: 5px;
 }
 </style>
