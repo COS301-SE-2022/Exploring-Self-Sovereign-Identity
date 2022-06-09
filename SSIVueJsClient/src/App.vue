@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import RequestDataView from "./views/RequestDataView.vue";
+import PendingTransactionsView from "./views/PendingTransactionsView.vue";
 </script>
 
 <template>
   <!-- <RouterView /> -->
-  <RequestDataView />
+  <PendingTransactionsView />
 </template>

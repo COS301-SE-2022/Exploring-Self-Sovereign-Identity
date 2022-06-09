@@ -13,8 +13,8 @@ export const PendingTransactionsStore = defineStore(
         transactions: new Array<Transaction>(
           new Transaction(
             new Contract([new Attribute("Name", "Name", "Jones")]),
-            "You",
-            "Google"
+            "Google",
+            "You"
           )
         ),
       };

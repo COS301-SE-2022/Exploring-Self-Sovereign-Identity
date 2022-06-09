@@ -14,13 +14,13 @@ export default {
   <div>
     <el-card v-for="t in getPendingTransactions" :key="t.getFrom()">
       <template #header>
-        {{ t.getFrom() }}
+        <span class="from"> {{ t.getFrom() }}</span>
       </template>
       <div>
         <el-tag
           class="ml-2"
           type="info"
-          v-for="a in getPendingTransactions.getContract().getAttributes()"
+          v-for="a in t.getContract().getAttributes()"
           :key="a.getName()"
           >{{ a.getName() }}</el-tag
         >
@@ -30,3 +30,9 @@ export default {
 
   <BackNav />
 </template>
+
+<style lang="scss">
+.from {
+  font-weight: bold;
+}
+</style>
