@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElRow: typeof import('element-plus/es')['ElRow']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     IconAvatar: typeof import('./src/components/icons/IconAvatar.vue')['default']
     IconBiometric: typeof import('./src/components/icons/IconBiometric.vue')['default']
     IconButton: typeof import('./src/components/Buttons/IconButton.vue')['default']

@@ -1,5 +1,6 @@
 <script lang="ts">
 export default {
+  props: ["page"],
   methods: {
     goback() {
       this.$router.back();
@@ -9,8 +10,8 @@ export default {
 </script>
 
 <template>
-  <div class="nav">
-    <el-page-header content="Profile" @back="goback" />
+  <div class="nav" data-testid="NavBack">
+    <el-page-header :content="page" @back="goback" />
   </div>
 </template>
 

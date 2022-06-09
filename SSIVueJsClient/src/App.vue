@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import PendingTransactionsView from "./views/PendingTransactionsView.vue";
+import TransactionView from "./views/TransactionView.vue";
 </script>
 
 <template>
@@ -8,5 +8,5 @@ import PendingTransactionsView from "./views/PendingTransactionsView.vue";
   <!-- <h1>SSI</h1> -->
   <!-- <RouterView /> -->
   <!-- <ProfileView /> -->
-  <PendingTransactionsView />
+  <TransactionView />
 </template>
