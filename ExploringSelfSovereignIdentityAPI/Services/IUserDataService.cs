@@ -13,6 +13,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
 
         Task<UserDataModel> GetUserData(UserDataModel e);
 
+        Task<UserDataModel> UpdateUserData(UserDataModel e);
 
         Task<UserDataModel> Add(UserDataModel e);
     }

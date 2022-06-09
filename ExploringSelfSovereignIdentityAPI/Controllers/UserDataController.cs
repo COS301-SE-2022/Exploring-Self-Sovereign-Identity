@@ -21,7 +21,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             this._context = context;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
         public IActionResult GetUser(UserDataModel Id)
         {
@@ -30,7 +30,6 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return (IActionResult) user;
 
         }
-
 
         [HttpPost]
         [Route("register")]
@@ -41,10 +40,19 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return (IActionResult) user;    
         }
 
+        [HttpPost]
+        [Route("update")]
+
+        public IActionResult UpdateUserData(UserDataModel Id)
+        {
+            var user = _context.UpdateUserData(Id);
+            return (IActionResult)user;
+        }
 
 
 
-   
+
+
         /*private readonly IMediator mediator;
         private readonly IUserDataService _UserDataService; 
 
@@ -104,6 +112,6 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         }*/
 
-        
+
     }
 }

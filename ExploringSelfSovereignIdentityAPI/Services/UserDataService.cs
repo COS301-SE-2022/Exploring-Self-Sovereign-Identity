@@ -28,7 +28,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
             return await _repo.GetUserData(e); 
         }
 
-       
+        public async Task<UserDataModel> UpdateUserData(UserDataModel e)
+        {
+            return await _repo.UpdateUserData(e); 
+        }
+
+
     }
     
 }
