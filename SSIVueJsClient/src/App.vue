@@ -4,6 +4,6 @@ import RequestDataView from "./views/RequestDataView.vue";
 </script>
 
 <template>
-  <!-- <RouterView /> -->
-  <RequestDataView />
+  <RouterView />
+  <!-- <RequestDataView /> -->
 </template>
