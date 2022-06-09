@@ -35,18 +35,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
             return e;
         }
 
-       /* public async Task<UserDataModel> DeleteUserData(UserDataModel e)
+       public async Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f)
         {
-            e.DeleteAttribute("Name");
-            e.DeleteAttribute("Surname");
-            e.DeleteAttribute("Email");
-            e.DeleteAttribute("Number");
+            UserDataModel userFromDB = await _context.UserDataModels.FindAsync(e.Id, f.Hash); 
 
-            await _context.UserDataModels.AddAsync(e);
+            return userFromDB;
 
-            return e;
-
-        }*/
+        }
 
         public async Task<UserDataModel> UpdateUserData(UserDataModel e)
         {

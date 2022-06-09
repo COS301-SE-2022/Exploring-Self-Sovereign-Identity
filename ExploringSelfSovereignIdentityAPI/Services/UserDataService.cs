@@ -18,10 +18,17 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
             return await _repo.Add(e);
         }
 
-        public async Task<string> Get()
+        public async Task<UserDataModel> GetUser(int Id, string hash)
         {
-            return await _repo.Get();
+            return await _repo.GetUser(Id, hash); 
         }
+
+        public async Task<UserDataModel> GetUserData (UserDataModel e)
+        {
+            return await (_repo.GetUserData(e)); 
+        }
+
+       
     }
     
 }

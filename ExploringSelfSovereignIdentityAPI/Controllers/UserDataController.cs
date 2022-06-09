@@ -4,7 +4,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using ExploringSelfSovereignIdentityAPI.Services;
+using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -13,6 +14,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     public class UserDataController : Controller
     {
         private readonly IMediator mediator;
+        private IUserDataService _UserDataService; 
 
         public UserDataController(IMediator med)
         {
@@ -33,6 +35,15 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return "value";
         }
 
+        //Login Endpoint 
+        [HttpGet("{id, hash}")]
+        public IActionResult Get(int Id, string hash)
+        {
+
+            var user = _UserDataService.GetUser(Id, hash);
+            return (IActionResult)user; 
+
+        }
         // POST api/<ValuesController>
         [HttpPost]
         public void Post([FromBody] string value)

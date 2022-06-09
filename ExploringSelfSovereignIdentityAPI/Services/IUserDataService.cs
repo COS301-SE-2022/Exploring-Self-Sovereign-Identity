@@ -14,12 +14,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
     public interface IUserDataService
     {
 
-        //! Get Function
-        /*
-            To get string values for User Data service
+        Task<UserDataModel> GetUser(int Id, string hash); 
 
-        */
-        Task<string> Get();
+        Task<UserDataModel> GetUserData(UserDataModel e); 
 
         //! Add Function
         /*
