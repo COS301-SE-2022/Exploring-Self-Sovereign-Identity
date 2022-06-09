@@ -1,18 +1,50 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Entity; 
-using ExploringSelfSovereignIdentityAPI.Queries.ConnectEndpoint;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Repositories; 
+using Microsoft.AspNetCore.Http;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
-
+using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UserDataController : Controller
     {
+        private readonly IUserDataService _context;
+
+        public UserDataController(IUserDataService context)
+        {
+            this._context = context;
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult GetUser(UserDataModel Id)
+        {
+
+            var user = _context.GetUser(Id);
+            return (IActionResult) user;
+
+        }
+
+
+        [HttpPost]
+        [Route("register")]
+
+        public IActionResult Add(UserDataModel hash)
+        {
+            var user = _context.Add(hash); 
+            return (IActionResult) user;    
+        }
+
+
+
+
+   
         /*private readonly IMediator mediator;
         private readonly IUserDataService _UserDataService; 
 
@@ -71,5 +103,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         {
 
         }*/
+
+        
     }
 }

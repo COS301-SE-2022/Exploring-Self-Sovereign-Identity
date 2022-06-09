@@ -13,9 +13,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         {
             this._context = context;
         }
-        public Task<UserDataModel> Add(UserDataModel e)
+        public async Task<UserDataModel> Add(UserDataModel e)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+
+            UserDataModel newUser = await _context.UserDataModels.AddAsync(e);
+
+            return newUser;
         }
 
         public Task<string> Get()
@@ -35,13 +39,18 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
             return e;
         }
 
-       public async Task<UserDataModel> GetUser(UserDataModel e, UserDataModel f)
+       public async Task<UserDataModel> GetUser(UserDataModel e)
         {
-            UserDataModel userFromDB = await _context.UserDataModels.FindAsync(e.Id, f.Hash); 
+            UserDataModel userFromDB = await _context.UserDataModels.FindAsync(e.Id); 
 
             return userFromDB;
 
         }
+
+        /*public async Task<UserDataModel> AddUser(UserDataModel f)
+        {
+           
+        }*/
 
         public async Task<UserDataModel> UpdateUserData(UserDataModel e)
         {
