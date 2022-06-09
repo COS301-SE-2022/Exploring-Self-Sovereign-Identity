@@ -1,5 +1,7 @@
+import { Attribute } from "@/models/entity/Attribute";
+import { Contract } from "@/models/entity/Contract";
 import { Transaction } from "@/models/entity/Transaction";
-import { PropType } from "@vue/runtime-core";
+import type { PropType } from "@vue/runtime-core";
 import { defineStore } from "pinia";
 
 export const PendingTransactionsStore = defineStore(
@@ -7,7 +9,14 @@ export const PendingTransactionsStore = defineStore(
   {
     state: () => {
       return {
-        transactions: Array as PropType<Transaction[]>,
+        //transactions: Array as PropType<Transaction[]>,
+        transactions: new Array<Transaction>(
+          new Transaction(
+            new Contract([new Attribute("Name", "Name", "Jones")]),
+            "You",
+            "Google"
+          )
+        ),
       };
     },
     getters: {

@@ -12,6 +12,9 @@ export default defineComponent({
     goProfile() {
       this.$router.push({ path: "/profile" });
     },
+    go(p: string) {
+      this.$router.push({ path: p });
+    },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
 });
@@ -22,7 +25,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <el-col :span="12">
       <!-- * Profile page -->
-      <el-card class="card" @click="goProfile">
+      <el-card class="card" @click="go('profile')">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
@@ -36,7 +39,7 @@ export default defineComponent({
 
     <!-- * Pending transations -->
     <el-col :span="12">
-      <el-card class="card">
+      <el-card class="card" @click="go('pending')">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -44,7 +47,7 @@ export default defineComponent({
             /></el-avatar>
           </div>
         </template>
-        <h3>Pedning</h3>
+        <h3>Pending</h3>
       </el-card>
     </el-col>
   </el-row>
@@ -53,7 +56,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <!-- *Past transactions -->
     <el-col :span="12">
-      <el-card class="card">
+      <el-card class="card" @click="go('past')">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -67,7 +70,7 @@ export default defineComponent({
 
     <!-- * Request data -->
     <el-col :span="12">
-      <el-card class="card">
+      <el-card class="card" @click="go('request')">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">

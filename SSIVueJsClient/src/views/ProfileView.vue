@@ -2,7 +2,8 @@
 import { mapState } from "pinia";
 import { UserDataStore } from "@/stores/UserDataStore";
 import BackNav from "../components/Nav/BackNav.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   data() {
     return {
       id: "12gwbd83t823tdqwd",
@@ -18,7 +19,7 @@ export default {
     },
   },
   components: { BackNav },
-};
+});
 </script>
 
 <template>

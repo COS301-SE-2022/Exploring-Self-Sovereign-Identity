@@ -12,7 +12,6 @@ export default defineComponent({
     // },
   },
   setup() {
-    // * l6SXuEd5nIKKfC9Jc1YXVbSC
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
     return { appid };
   },

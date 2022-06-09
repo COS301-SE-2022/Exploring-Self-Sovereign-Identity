@@ -1,9 +1,10 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { values } from "lodash";
+import { defineComponent, isReactive, isRef, reactive, ref } from "vue";
+import BackNav from "../components/Nav/BackNav.vue";
 
 export default defineComponent({
   setup() {
-    const list = ref([]);
     const options = [
       {
         value: "Name",
@@ -18,7 +19,7 @@ export default defineComponent({
         label: "Number",
       },
     ];
-    return { list, options };
+    return { options };
   },
   data() {
     return {
@@ -28,12 +29,8 @@ export default defineComponent({
       },
     };
   },
-  methods: {
-    values(value: Array<string>) {
-      this.data.attributes;
-      console.log(value);
-    },
-  },
+  methods: {},
+  components: { BackNav },
 });
 </script>
 
@@ -44,21 +41,24 @@ export default defineComponent({
       <el-input v-model="data.id" placeholder="Please input"> </el-input>
     </el-form-item>
     <!-- * Attribute select -->
-    <el-select
-      @change="values"
-      v-model="list"
-      multiple
-      placeholder="Attributes"
-      style="width: 240px"
-    >
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      />
-    </el-select>
+    <el-form-item label="User ID">
+      <el-select
+        v-model="data.attributes"
+        multiple
+        placeholder="Attributes"
+        style="width: 240px"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
   </el-form>
+
+  <BackNav />
 </template>
 
 <style lang="scss">
