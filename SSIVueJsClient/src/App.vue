@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import RequestDataView from "./views/RequestDataView.vue";
+import { RouterView } from "vue-router";
 </script>
 
 <template>
   <RouterView />
-  <!-- <RequestDataView /> -->
 </template>

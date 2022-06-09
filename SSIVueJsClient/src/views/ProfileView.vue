@@ -36,10 +36,9 @@ export default defineComponent({
       <el-collapse-item title="Attributes" name="1">
         <!-- *! Need to make input editable -->
         <el-input
-          v-model="input1"
           :placeholder="att.getName()"
           v-for="att in getAttributes"
-          :key="att.getName"
+          :key="att.getName()"
           :value="att.getValue()"
           disabled
         >
@@ -50,27 +49,29 @@ export default defineComponent({
       <!-- * Credentials -->
       <el-collapse-item title="Credentials" name="2">
         <!-- * Inner collapsables -->
-        <el-collapse-item
-          v-for="cred in getCredentials()"
-          :key="cred.getId()"
-          :title="cred.getId()"
-          :name="cred.getId()"
-        >
-          <el-input
-            :placeholder="att.getName()"
-            v-for="att in cred.getCredentials()"
-            :key="att.getName()"
-            :value="att.getValue()"
-            disabled
+        <el-collapse accordion class="innerCollapse">
+          <el-collapse-item
+            v-for="cred in getCredentials"
+            :key="cred.getId()"
+            :title="cred.getId()"
+            :name="cred.getId()"
           >
-            <template #prepend>{{ att.getName() }}</template>
-          </el-input>
-        </el-collapse-item>
+            <el-input
+              :placeholder="att.getName()"
+              v-for="att in cred.getCredentials()"
+              :key="att.getName()"
+              :value="att.getValue()"
+              disabled
+            >
+              <template #prepend>{{ att.getName() }}</template>
+            </el-input>
+          </el-collapse-item>
+        </el-collapse>
       </el-collapse-item>
     </el-collapse>
   </div>
 
-  <BackNav />
+  <BackNav page="Profile" />
 </template>
 
 <style lang="scss">
@@ -84,5 +85,8 @@ export default defineComponent({
 .id {
   background-color: black;
   color: white;
+}
+.innerCollapse {
+  padding-left: 5vw;
 }
 </style>
