@@ -4,7 +4,7 @@ import type { PastTransactionsRequest } from "@/models/requests/PastTransactions
 import type { SaveTransactionRequest } from "@/models/requests/SaveTransactionRequest";
 import type { AddPendingTransactionResponse } from "@/models/response/AddPendingTransactionResponse";
 import type { FetchPendingTransactionResponse } from "@/models/response/FetchPendingTransactionResponse";
-import type { PastTransactionResponse } from "@/models/response/PastTransactionResponse";
+import { PastTransactionResponse } from "@/models/response/PastTransactionResponse";
 import type { SaveTransactionResponse } from "@/models/response/SaveTransactionResponse";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ export class TransactionService {
     }
 
     public async past(pastTransactionRequest: PastTransactionsRequest) : Promise<PastTransactionResponse> {
-        return (await axios.post<PastTransactionResponse>("https://localhost:5000/api/Transaction/getPastTransaction", pastTransactionRequest)).data;
+       return (await axios.post<PastTransactionResponse>("https://localhost:5000/api/Transaction/getPastTransaction", pastTransactionRequest)).data;
     }
 
     public async pending(fetchPendingTransactionRequest: FetchPendingTransactionRequest) : Promise<FetchPendingTransactionResponse> {

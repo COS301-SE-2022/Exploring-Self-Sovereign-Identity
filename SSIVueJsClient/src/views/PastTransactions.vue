@@ -16,10 +16,10 @@ export default defineComponent({
   },
   created() {
     var transactionService: TransactionService = new TransactionService();
-    var transactions: PastTransactionResponse = transactionService.past(
+    var transactions = transactionService.past(
       new PastTransactionsRequest(this.getUserData.getId())
     );
-    console.log(transactions);
+    console.log(transactions.then(result => {return result}));
   },
   components: { BackNav },
   computed: {
