@@ -3,10 +3,28 @@ import BackNav from "../components/Nav/BackNav.vue";
 import { mapState } from "pinia";
 import { PendingTransactionsStore } from "@/stores/PendingTransactionStore";
 import { defineComponent } from "vue";
+import { Contract } from "@/models/entity/Contract";
+import { TransactionService } from "@/services/TransactionService";
+import { UserDataStore } from "@/stores/UserDataStore";
+import { PastTransactionsRequest } from "@/models/requests/PastTransactionsRequest";
+import type { PastTransactionResponse } from "@/models/response/PastTransactionResponse";
 export default defineComponent({
+  data() {
+    return {
+      contract: Contract,
+    };
+  },
+  created() {
+    var transactionService: TransactionService = new TransactionService();
+    var transactions: PastTransactionResponse = transactionService.past(
+      new PastTransactionsRequest(this.getUserData.getId())
+    );
+    console.log(transactions);
+  },
   components: { BackNav },
   computed: {
     ...mapState(PendingTransactionsStore, ["getPendingTransactions"]),
+    ...mapState(UserDataStore, ["getUserData"]),
   },
   methods: {
     view(value: number) {

@@ -9,14 +9,11 @@ export default defineComponent({
     return { attributes };
   },
   props: {
-    contract: {
-      type: Contract,
-      required: true,
-      default: new Contract([]),
+    
     },
   },
   data() {
-    return {};
+    return { contract: Contract };
   },
   method: {
     toggle(name: string) {
