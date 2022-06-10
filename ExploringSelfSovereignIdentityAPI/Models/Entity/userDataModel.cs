@@ -62,10 +62,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 
         }
 
-        public static implicit operator UserDataModel(EntityEntry<UserDataModel> v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
    

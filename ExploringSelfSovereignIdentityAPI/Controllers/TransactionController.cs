@@ -39,16 +39,16 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         }
 
 
-        [HttpGet("getPendingTransaction")]
-        public async Task<List<Transaction>> FetchPendingTransaction([FromQuery] GetPendingTransactionQuery query)
+        [HttpPost("getPendingTransaction")]
+        public async Task<List<GetTransactionResponse>> FetchPendingTransaction([FromBody] GetPendingTransactionQuery query)
         {
             
             return await mediator.Send(query);
 
         }
 
-        [HttpGet("getPastTransaction")]
-        public async Task<List<Transaction>> FetchPastTransaction([FromQuery] GetPastTransactionQuery query)
+        [HttpPost("getPastTransaction")]
+        public async Task<List<Transaction>> FetchPastTransaction([FromBody] GetPastTransactionQuery query)
         {
             return await mediator.Send(query);
 

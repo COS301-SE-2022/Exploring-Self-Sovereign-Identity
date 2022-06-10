@@ -8,36 +8,36 @@ using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using System;
+
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UserDataController : Controller
     {
-        private readonly IUserDataService _context;
+        private readonly IUserDataService _service;
 
-        public UserDataController(IUserDataService context)
+        public UserDataController(IUserDataService service)
         {
-            this._context = context;
+            this._service = service;
         }
 
         [HttpPost]
         [Route("login")]
-        public IActionResult GetUser(UserDataModel Id)
+        public async Task<UserDataModel> GetUser([FromBody] Guid Id)
         {
 
-            var user = _context.GetUser(Id);
-            return (IActionResult) user;
+            return await _service.GetUser(Id);
 
         }
 
         [HttpPost]
         [Route("register")]
 
-        public IActionResult Add(UserDataModel hash)
+        public async Task<UserDataModel> Add()
         {
-            var user = _context.Add(hash); 
-            return (IActionResult) user;    
+            return await _service.Add(); 
         }
 
         [HttpPost]
@@ -45,8 +45,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         public IActionResult UpdateUserData(UserDataModel Id)
         {
-            var user = _context.UpdateUserData(Id);
-            return (IActionResult)user;
+           
+            var user = _service.UpdateUserData(Id);
+            return (IActionResult) user;
         }
 
 
