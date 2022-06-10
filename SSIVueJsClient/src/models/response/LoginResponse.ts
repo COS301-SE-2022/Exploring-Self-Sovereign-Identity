@@ -1,8 +1,13 @@
-export class LoginResponse {
+import type { UserData } from "../entity/UserData";
 
-    public constructor(status: string) {
-        this.status = status;
-    }
-    
-    public status: string;
+export class LoginResponse {
+  public constructor(userData: UserData) {
+    this.userData = userData;
+  }
+
+  public getUserData(): UserData {
+    return this.userData;
+  }
+
+  private userData: UserData;
 }

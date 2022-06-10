@@ -46,7 +46,7 @@ jobs:
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
   
-  CodeCov:
+  CodeCov-API:
   
     runs-on: ubuntu-latest
 
@@ -55,7 +55,7 @@ jobs:
     - uses: codecov/codecov-action@v2
       with:
        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml, ./SSIVueJsClient/node_modules/.bin/codecov  # optional
+       files: ./ExploringSelfSovereignIdentityAPIUnitTests/coverage.opencover.xml # optional
        flags: unittests # optional
        name: codecov-umbrella # optional
        fail_ci_if_error: true # optional (default = false)
