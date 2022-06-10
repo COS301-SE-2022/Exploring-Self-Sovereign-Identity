@@ -20,13 +20,16 @@ export default defineComponent({
 
 <template>
   <div>
-    <el-card v-for="(t, index) in getPendingTransactions" :key="t.getFrom()">
+    <el-card
+      v-for="(t, index) in getPendingTransactions"
+      :key="t.getFrom()"
+      @click="view(index)"
+    >
       <template #header>
         <span class="from"> {{ t.getFrom() }}</span>
       </template>
       <div>
         <el-tag
-          @click="view(index)"
           class="ml-2"
           type="info"
           v-for="a in t.getContract().getAttributes()"

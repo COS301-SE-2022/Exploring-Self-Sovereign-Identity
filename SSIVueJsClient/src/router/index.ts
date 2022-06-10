@@ -15,7 +15,7 @@ const routes = [
   {
     path: "/transaction",
     component: TransactionViewVue,
-    props: (route) => ({ ontract: route.query.c }),
+    props: (route) => ({ index: route.query.c }),
   },
 ];
 const router = createRouter({

@@ -1,28 +1,34 @@
 <script lang="ts">
-import { Attribute } from "@/models/entity/Attribute";
 import { Contract } from "@/models/entity/Contract";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import BackNav from "../components/Nav/BackNav.vue";
+import { mapState } from "pinia";
+import { PendingTransactionsStore } from "@/stores/PendingTransactionStore";
 export default defineComponent({
   setup() {
-    const attributes: string[] = [];
+    const attributes = ref([]);
     return { attributes };
   },
-  props: {
-    
-    },
-  },
+  props: ["index"],
   data() {
-    return { contract: Contract };
+    return {
+      contract: new Contract([]),
+    };
   },
   method: {
-    toggle(name: string) {
-      console.log(name);
+    sendData() {
+      console.log;
     },
   },
+  computed: {
+    ...mapState(PendingTransactionsStore, ["getPendingTransactions"]),
+  },
   mounted() {
-    for (var el = 0; el < this.contract.getAttributes().length; el++) {
-      this.attributes.push(this.contract?.getAttributes().at(el)?.getName());
+    this.contract = this.getPendingTransactions.at(this.index)?.getContract();
+    if (this.contract != undefined) {
+      for (var el = 0; el < this.contract.getAttributes().length; el++) {
+        this.attributes.push(this.contract?.getAttributes().at(el)?.getName());
+      }
     }
   },
   components: { BackNav },
@@ -31,21 +37,41 @@ export default defineComponent({
 
 <template>
   <div>
-    <el-card v-for="a in contract.getAttributes()" :key="a.getName()">
+    <el-card v-for="(a, index) in contract.getAttributes()" :key="a.getName()">
       <span>{{ a.getName() }}</span>
       <el-switch
-        v-model="attributes[attributes.indexOf(a.getName())]"
-        class="ml-2"
+        v-model="attributes[index]"
+        class="switch"
         inline-prompt
         active-color="#13ce66"
         inactive-color="#ff4949"
         active-text="Y"
         inactive-text="N"
-        :active-value="c.getName()"
-        @change="$emit('toggle', 2)"
+        inactive-value=""
+        :active-value="a.getName()"
       />
     </el-card>
+  </div>
+  <div class="submit">
+    <el-button @click="sendData" plain type="primary" round>Request</el-button>
   </div>
 
   <BackNav page="Transaction" />
 </template>
+
+<style lang="scss">
+.switch {
+  float: right;
+}
+
+.submit {
+  margin-top: 15vh;
+  width: 100vw;
+  text-align: center;
+  button {
+    margin-right: auto;
+    margin-left: auto;
+    // color: whitesmoke;
+    // background-color: black;
+  }
+</style>
