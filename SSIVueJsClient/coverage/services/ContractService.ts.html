@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/49</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/49</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -106,13 +106,7 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -130,18 +124,13 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -154,67 +143,63 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import type { Attribute } from "@/models/entity/Attribute";
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Attribute } from "@/models/entity/Attribute";
 import type { Contract } from "@/models/entity/Contract";
 import type { UserData } from "@/models/entity/UserData";
 &nbsp;
 export class ContractService {
+  public constructor(contract: Contract, user: UserData) {
+    this.contract = contract;
+    this.user = user;
+  }
 &nbsp;
-    public constructor(contract: Contract, user: UserData) {
-        this.contract = contract;
-        this.user = user;
+  public sign() {
+    this.contract.setSignature(this.user.getId());
+  }
+&nbsp;
+  public approve(name: string): boolean {
+    var attr: Attribute | undefined;
+&nbsp;
+    if (name.includes(".")) {
+      const args: string[] = name.split(".");
+&nbsp;
+      const org = this.user.getCredentials().find((c) =&gt; c.getId() === args[0]);
+&nbsp;
+      if (org === undefined) return false;
+      else attr = org.getCredentials().find((a) =&gt; a.getName() === args[1]);
+    } else {
+      attr = this.user.getAttributes().find((a) =&gt; a.getName() === name);
     }
 &nbsp;
-    public sign() {
-        this.contract.setSignature(this.user.getId());
+    if (attr != undefined) {
+      this.contract
+        .getAttributes()
+        .find((a) =&gt; a.getName() === name)
+        ?.setValue(attr.getValue());
+&nbsp;
+      return true;
+    } else {
+      return false;
     }
+  }
 &nbsp;
-    public approve(name: string) : boolean {
-&nbsp;
-        var attr : Attribute | undefined;
-&nbsp;
-        if (name.includes(".")) {
-            const args : string[] = name.split(".");
-&nbsp;
-            const org = this.user.getCredentials().find(c =&gt; c.getId() === args[0]);
-            
-            if (org === undefined)
-                return false;
-            else
-                attr = org.getCredentials().find(a =&gt; a.getName() === args[1]);
-        
-        }
-        else {
-            attr = this.user.getAttributes().find(a =&gt;a.getName() === name);
-        }
-&nbsp;
-        if (attr != undefined) {
-            this.contract.getAttributes().find(a =&gt; a.getName() === name)
-            ?.setValue(attr.getValue());
-&nbsp;
-            return true;
-        }
-        else {
-            return false;
-        }
-&nbsp;
-    }
-    
-    private contract : Contract;
-    private user: UserData;
-}</pre></td></tr></table></pre>
+  private contract: Contract;
+  private user: UserData;
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jun 08 2022 08:32:11 GMT+0200 (South Africa Standard Time)
+                at Fri Jun 10 2022 06:12:07 GMT+0200 (South Africa Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
