@@ -40,7 +40,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 
 
         [HttpPost("getPendingTransaction")]
-        public async Task<List<Transaction>> FetchPendingTransaction([FromBody] GetPendingTransactionQuery query)
+        public async Task<List<GetTransactionResponse>> FetchPendingTransaction([FromBody] GetPendingTransactionQuery query)
         {
             
             return await mediator.Send(query);

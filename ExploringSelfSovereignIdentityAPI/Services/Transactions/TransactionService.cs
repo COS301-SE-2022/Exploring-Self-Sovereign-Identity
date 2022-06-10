@@ -15,7 +15,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
         
         private readonly ITransactionRepository _transactionRepository;
 
-        public TransactionService(TransactionRepository transactionRepository)
+        public TransactionService(ITransactionRepository transactionRepository)
         {
             _transactionRepository = transactionRepository;
         }
