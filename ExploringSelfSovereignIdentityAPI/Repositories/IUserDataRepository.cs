@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity; 
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         /*
            To get string values 
         */
-        Task<UserDataModel> GetUser(UserDataModel e);
+        Task<UserDataModel> GetUser(Guid e);
 
         //! DeleteUserData Function
         /*

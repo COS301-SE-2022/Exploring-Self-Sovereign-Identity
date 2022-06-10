@@ -1,6 +1,7 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,17 +14,19 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         {
             this._context = context;
         }
+
         public async Task<UserDataModel> Add()
         {
             //throw new System.NotImplementedException();
             
             UserDataModel usr1 = new();
             
-            UserDataModel newUser = await _context.UserDataModels.AddAsync(usr1);
+            var newUser = await _context.UserDataModels.AddAsync(usr1);
+            await _context.SaveChangesAsync();
 
-            newUser = await _context.UserDataModels.FindAsync(newUser.Id);
+            //newUser = await _context.UserDataModels.FindAsync(newUser);
 
-            return newUser;
+            return newUser.Entity;
         }
 
         public Task<string> Get()
@@ -43,12 +46,9 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
             return e;
         }
 
-       public async Task<UserDataModel> GetUser(UserDataModel e)
+       public async Task<UserDataModel> GetUser(Guid e)
         {
-            UserDataModel userFromDB = await _context.UserDataModels.FindAsync(e.Id); 
-
-            return userFromDB;
-
+            return await _context.UserDataModels.FindAsync(e); 
         }
 
         /*public async Task<UserDataModel> AddUser(UserDataModel f)

@@ -51,7 +51,7 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<IUserDataRepository, UserDataRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
-            //services.AddTransient<IUserDataService, UserdataService>();
+            services.AddTransient<IUserDataService, UserdataService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             //services.AddScoped(typeof(IUniversityRepository), typeof(UniversitySqlServerRepository));
 

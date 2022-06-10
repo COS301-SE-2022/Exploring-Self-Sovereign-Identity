@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using System;
 using System.Threading.Tasks;
 
    
@@ -9,7 +10,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
     {
         private readonly IUserDataRepository _repo;
 
-        public UserdataService(UserDataRepository repository)
+        public UserdataService(IUserDataRepository repository)
         {
             _repo = repository;
         }
@@ -18,7 +19,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
             return await _repo.Add();
         }
 
-        public async Task<UserDataModel> GetUser(UserDataModel e)
+        public async Task<UserDataModel> GetUser(Guid e)
         {
             return await _repo.GetUser(e); 
         }
