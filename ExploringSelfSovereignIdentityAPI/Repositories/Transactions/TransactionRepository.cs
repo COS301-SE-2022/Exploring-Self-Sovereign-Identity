@@ -1,6 +1,7 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -41,10 +42,32 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.Transactions
 
         public async Task<List<Transaction>> GetPendingTransactions(Guid id)
         {
-            return await _context.Transactions.Where( t => 
-                t.To == id && 
-                _context.Contracts.FindAsync(t.ContractID).Result.Signature.Equals("")
+            /*var transactions = await _context.Transactions.Where( t => 
+                t.To == id 
             ).ToListAsync();
+
+            List<GetTransactionResponse> ret = new List<GetTransactionResponse>();
+
+            foreach (var t in transactions)
+            {
+                Contract c = await _context.Contracts.Where(c => c.Id == t.ContractID).FirstAsync();
+
+                if (c.Signature == "")
+                {
+                    var cx = new GetContractResponse();
+                    cx.Attributes = 
+                    var x = new GetTransactionResponse();
+                    x.To = t.To;
+                    x.From = t.From;
+                    x.contract = ne
+                }
+                    
+            }*/
+
+            //List<GetTransactionResponse> ret = new List<GetTransactionResponse>();
+
+            return await _context.Transactions.Where(c => c.To == c.From).ToListAsync();
+
         }
 
         public async Task<Transaction> SaveTransaction(Transaction saveTransaction)

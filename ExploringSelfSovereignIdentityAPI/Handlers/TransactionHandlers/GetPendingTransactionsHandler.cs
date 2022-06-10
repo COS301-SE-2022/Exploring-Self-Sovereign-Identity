@@ -12,7 +12,8 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.TransactionHandlers
 {
     public class GetPendingTransactionsHandler : 
         IRequestHandler<GetPendingTransactionQuery, List<GetTransactionResponse>>,
-        IRequestHandler<AddTransactionCommand, Transaction>
+        IRequestHandler<AddTransactionCommand, Transaction>,
+        IRequestHandler<GetPastTransactionQuery, List<Transaction>>
     {
 
         private readonly ITransactionService _service;
@@ -29,6 +30,11 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.TransactionHandlers
         public async Task<Transaction> Handle(AddTransactionCommand request, CancellationToken cancellationToken)
         {
             return await _service.AddPendingTransaction(request);
+        }
+
+        public async Task<List<Transaction>> Handle(GetPastTransactionQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.GetPastTransactions(request.Id);
         }
     }
 }
