@@ -5,6 +5,7 @@ export class PastTransactionResponse {
     public constructor(transactions: Transaction[]) {
         this.transactions = transactions;
     }
+    
 
-    private transactions : Transaction[];
+    public transactions : Transaction[];
 }
