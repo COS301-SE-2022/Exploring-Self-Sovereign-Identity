@@ -34,9 +34,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [HttpPost]
         [Route("register")]
 
-        public IActionResult Add(UserDataModel hash)
+        public IActionResult Add()
         {
-            var user = _context.Add(hash); 
+            var user = _context.Add(); 
             return (IActionResult) user;    
         }
 
@@ -45,8 +45,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         public IActionResult UpdateUserData(UserDataModel Id)
         {
+           
             var user = _context.UpdateUserData(Id);
-            return (IActionResult)user;
+            return (IActionResult) user;
         }
 
 

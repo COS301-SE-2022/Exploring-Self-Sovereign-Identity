@@ -13,9 +13,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.UserDataService
         {
             _repo = repository;
         }
-        public async Task<UserDataModel> Add(UserDataModel e)
+        public async Task<UserDataModel> Add()
         {
-            return await _repo.Add(e);
+            return await _repo.Add();
         }
 
         public async Task<UserDataModel> GetUser(UserDataModel e)

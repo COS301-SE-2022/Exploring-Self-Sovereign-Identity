@@ -13,11 +13,15 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         {
             this._context = context;
         }
-        public async Task<UserDataModel> Add(UserDataModel e)
+        public async Task<UserDataModel> Add()
         {
             //throw new System.NotImplementedException();
+            
+            UserDataModel usr1 = new();
+            
+            UserDataModel newUser = await _context.UserDataModels.AddAsync(usr1);
 
-            UserDataModel newUser = await _context.UserDataModels.AddAsync(e);
+            newUser = await _context.UserDataModels.FindAsync(newUser.Id);
 
             return newUser;
         }

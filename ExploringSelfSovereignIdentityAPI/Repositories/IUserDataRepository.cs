@@ -30,7 +30,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         /*
            To add user data to table
         */
-        Task<UserDataModel> Add(UserDataModel e);
+        Task<UserDataModel> Add();
 
         //! Get Function
         /*
