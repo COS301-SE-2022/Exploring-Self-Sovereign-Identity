@@ -50,7 +50,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <el-col :span="12">
       <!-- * Profile page -->
-      <el-card class="card" @click="go('profile')">
+      <el-card class="card" @click="go('profile')" data-testid="profile">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
