@@ -7,19 +7,23 @@ import { Contract } from "@/models/entity/Contract";
 import { TransactionService } from "@/services/TransactionService";
 import { UserDataStore } from "@/stores/UserDataStore";
 import { PastTransactionsRequest } from "@/models/requests/PastTransactionsRequest";
-import type { PastTransactionResponse } from "@/models/response/PastTransactionResponse";
 export default defineComponent({
   data() {
     return {
       contract: Contract,
+      transactions: [],
     };
   },
   created() {
     var transactionService: TransactionService = new TransactionService();
-    var transactions = transactionService.past(
-      new PastTransactionsRequest(this.getUserData.getId())
+    this.transactions = transactionService.mockPastTransactions(
+      this.getUserData.getId()
     );
-    console.log(transactions.then(result => {return result}));
+    // console.log(
+    // transactions.then((result) => {
+    // return result;
+    //})
+    //);
   },
   components: { BackNav },
   computed: {
@@ -45,7 +49,6 @@ export default defineComponent({
       <div>
         <el-tag
           @click="view(index)"
-          class="ml-2"
           type="info"
           v-for="a in t.getContract().getAttributes()"
           :key="a.getName()"
@@ -55,7 +58,7 @@ export default defineComponent({
     </el-card>
   </div>
 
-  <BackNav />
+  <BackNav page="Past Transactions" />
 </template>
 
 <style lang="scss">

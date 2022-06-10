@@ -53,7 +53,7 @@ export default defineComponent({
     </el-card>
   </div>
   <div class="submit">
-    <el-button @click="sendData" plain type="primary" round>Request</el-button>
+    <el-button plain type="primary" round>Request</el-button>
   </div>
 
   <BackNav page="Transaction" />
@@ -74,4 +74,5 @@ export default defineComponent({
     // color: whitesmoke;
     // background-color: black;
   }
+}
 </style>

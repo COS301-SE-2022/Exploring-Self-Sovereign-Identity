@@ -40,7 +40,6 @@ export default defineComponent({
           v-for="att in getAttributes"
           :key="att.getName()"
           :value="att.getValue()"
-          disabled
         >
           <template #prepend>{{ att.getName() }}</template>
         </el-input>
