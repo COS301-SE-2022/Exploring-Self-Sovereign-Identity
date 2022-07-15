@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity; 
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,13 +31,13 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository
         /*
            To add user data to table
         */
-        Task<UserDataModel> Add(UserDataModel e);
+        Task<UserDataModel> Add();
 
         //! Get Function
         /*
            To get string values 
         */
-        Task<UserDataModel> GetUser(UserDataModel e);
+        Task<UserDataModel> GetUser(Guid e);
 
         //! DeleteUserData Function
         /*

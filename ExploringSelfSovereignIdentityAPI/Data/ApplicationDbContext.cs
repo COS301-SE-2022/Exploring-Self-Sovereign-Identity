@@ -27,8 +27,9 @@ namespace ExploringSelfSovereignIdentityAPI.Data
             this._provider = new AesProvider(this._encryptionKey, this._encryptionIV);
         }
 
-        public DbSet<DefaultSessionModel> DefaultSessionModels { get; set; }
+        /*public DbSet<DefaultSessionModel> DefaultSessionModels { get; set; }
         public DbSet<DefaultIdentityModel> DefaultIdentityModels { get; set; }
+        */
 
         public DbSet<UserDataModel> UserDataModels { get; set; }
 
@@ -49,11 +50,11 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DefaultSessionModel>().ToTable("defaultSessionModel");
+            /*modelBuilder.Entity<DefaultSessionModel>().ToTable("defaultSessionModel");
             modelBuilder.Entity<DefaultSessionModel>().HasKey("Id");
 
             modelBuilder.Entity<DefaultIdentityModel>().ToTable("DefaultIdentityModel");
-            modelBuilder.Entity<DefaultIdentityModel>().HasKey("Id");
+            modelBuilder.Entity<DefaultIdentityModel>().HasKey("Id");*/
 
             modelBuilder.Entity<UserDataModel>().ToTable("userDataModel");
             modelBuilder.Entity<UserDataModel>().HasKey("Id");

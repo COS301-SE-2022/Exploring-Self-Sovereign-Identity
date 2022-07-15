@@ -1,0 +1,75 @@
+<mat-accordion class="example-headers-align" multi>
+  <!--name-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{user.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        First name
+        <!--<mat-icon>account_circle</mat-icon>-->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>First name</mat-label>
+      <input matInput value="{{user.name}}">
+    </mat-form-field>
+  </mat-expansion-panel>
+  <!--surname-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{user.surname}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Surname
+        <!--<mat-icon>account_circle</mat-icon>-->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input matInput value="{{user.surname}}">
+    </mat-form-field>
+  </mat-expansion-panel>
+
+  <!--Birthday-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{user.birthday.toString()}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Birthday
+        <!--<mat-icon>date_range</mat-icon>-->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <!--<mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+    </mat-form-field>
+    <mat-datepicker #picker></mat-datepicker>-->
+  </mat-expansion-panel>
+
+  <!--nationality-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{user.nationality}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Nationality
+        <!--<mat-icon>account_circle</mat-icon>-->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nationality</mat-label>
+      <input matInput value="{{user.nationality}}">
+    </mat-form-field>
+  </mat-expansion-panel>
+
+
+</mat-accordion>

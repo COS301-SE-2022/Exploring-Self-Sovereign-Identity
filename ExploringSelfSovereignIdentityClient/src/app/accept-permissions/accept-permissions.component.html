@@ -1,0 +1,14 @@
+<h1 color="warm">Google</h1>
+<mat-divider color="warm"></mat-divider>
+<mat-card *ngFor="let c of cardList">
+  <mat-card-title>{{c.title}}</mat-card-title>
+  <mat-card-subtitle>{{c.sub}}</mat-card-subtitle>
+  <mat-card-actions align="end">
+    <button mat-button>deny</button>
+    <button mat-button>approve</button>
+  </mat-card-actions>
+</mat-card>
+<div>
+  <button mat-raised-button color="accent">Deny all</button>
+  <button mat-raised-button color="primary">Approve all</button>
+</div>
