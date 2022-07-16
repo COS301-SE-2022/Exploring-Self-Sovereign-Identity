@@ -18,9 +18,5 @@ module.exports = {
       extends: ["plugin:cypress/recommended"],
     },
   ],
-  rules: [
-    {
-      "linebreak-style": 0,
-    },
-  ],
+  rules: {},
 };
