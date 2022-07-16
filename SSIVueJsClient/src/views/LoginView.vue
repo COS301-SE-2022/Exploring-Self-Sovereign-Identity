@@ -35,7 +35,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import "@material/button/styles";
+// @import "@material/button/styles";
 
 .heading {
   display: block;

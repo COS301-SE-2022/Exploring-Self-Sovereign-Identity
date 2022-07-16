@@ -11,7 +11,22 @@ describe("Home Page", () => {
   it("Should visit the home page", () => {
     cy.visit("/home");
   });
-  it("Should visit Profile page"),()=>{
-    
-  }
+  it("Should visit Profile page"),
+    () => {
+      cy.visit("/profile");
+    };
+});
+
+//code to visit the pending page
+describe("Pending Page", () => {
+  it("Should visit the pending page", () => {
+    cy.visit("/pending");
+  });
+});
+
+//code to visit the request page
+describe("Request Page", () => {
+  it("Should visit the request page", () => {
+    cy.visit("/request");
+  });
 });
