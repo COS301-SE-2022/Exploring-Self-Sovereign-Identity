@@ -1,5 +1,6 @@
 // import HomeView from "../../src/views/HomeView.vue";
 // import { mount } from "@cypress/vue";
+/// <reference types="Cypress" />
 
 describe("Root", () => {
   it("visits the app root url", () => {
