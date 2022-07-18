@@ -25,4 +25,19 @@ describe("Test elements on page", () => {
         .should("be.equal", "test");
     });
   });
+
+  it("Tests credintials", () => {
+    cy.get('[data-test-id="cred-header"]').click().should("be.visible");
+    cy.get('[data-test-id="cred-item"]').each(($el) => {
+      cy.wrap($el)
+        .click()
+        .should("be.visible")
+        .children()
+        .last()
+        .find("input")
+        .should("be.visible")
+        .invoke("val")
+        .should("not.be.empty");
+    });
+  });
 });

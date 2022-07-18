@@ -51,7 +51,7 @@ export default defineComponent({
       </el-collapse-item>
 
       <!-- * Credentials -->
-      <el-collapse-item title="Credentials" name="2">
+      <el-collapse-item title="Credentials" name="2" data-test-id="cred-header">
         <!-- * Inner collapsables -->
         <el-collapse accordion class="innerCollapse">
           <el-collapse-item
@@ -59,6 +59,7 @@ export default defineComponent({
             :key="cred.getId()"
             :title="cred.getId()"
             :name="cred.getId()"
+            data-test-id="cred-item"
           >
             <el-input
               :placeholder="att.getName()"
