@@ -4,15 +4,14 @@ export default {
   methods: {
     goback() {
       this.$router.back();
-      console.log(this.page);
     },
   },
 };
 </script>
 
 <template>
-  <div class="nav" data-testid="NavBack">
-    <el-page-header :content="page" @back="goback" />
+  <div class="nav">
+    <el-page-header :content="page" @back="goback" data-testid="NavBack" />
   </div>
 </template>
 

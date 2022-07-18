@@ -50,7 +50,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <el-col :span="12">
       <!-- * Profile page -->
-      <el-card class="card" @click="go('profile')" data-testid="profile">
+      <el-card class="card" @click="go('profile')" data-test-id="profile">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
@@ -64,7 +64,7 @@ export default defineComponent({
 
     <!-- * Pending transations -->
     <el-col :span="12">
-      <el-card class="card" @click="go('pending')">
+      <el-card class="card" @click="go('pending')" data-test-id="pending">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -81,7 +81,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <!-- *Past transactions -->
     <el-col :span="12">
-      <el-card class="card" @click="go('past')">
+      <el-card class="card" @click="go('past')" data-test-id="past">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -95,7 +95,7 @@ export default defineComponent({
 
     <!-- * Request data -->
     <el-col :span="12">
-      <el-card class="card" @click="go('request')">
+      <el-card class="card" @click="go('request')" data-test-id="request">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
