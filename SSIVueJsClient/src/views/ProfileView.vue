@@ -33,13 +33,18 @@ export default defineComponent({
 
     <!-- * Attributes -->
     <el-collapse accordion>
-      <el-collapse-item title="Attributes" name="1">
+      <el-collapse-item
+        title="Attributes"
+        name="1"
+        data-test-id="attribute-header"
+      >
         <!-- *! Need to make input editable -->
         <el-input
           :placeholder="att.getName()"
           v-for="att in getAttributes"
           :key="att.getName()"
           :value="att.getValue()"
+          data-test-id="attribute"
         >
           <template #prepend>{{ att.getName() }}</template>
         </el-input>
