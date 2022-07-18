@@ -24,7 +24,10 @@ describe("Checks that login works", () => {
   it("Submits form", () => {
     // cy.get('[data-test="continue-button"]').click();
     //cypress code to get data-test="continue-button" that is vivsble and click it
-    cy.get("[data-test='continue-button']").should("be.visible").click();
+    cy.get("[data-test='continue-button']")
+      .first()
+      .should("be.visible")
+      .click();
 
     // cy.get("button").should("have.data", "test", "continue-button").click();
     cy.contains("Email not recognized");
