@@ -25,7 +25,7 @@ export default defineComponent({
 <template>
   <div class="info">
     <!-- * User ID -->
-    <el-input v-model="id" placeholder="ID" disabled>
+    <el-input v-model="id" placeholder="ID" disabled data-test-id="Profile id">
       <template #prepend>ID</template>
     </el-input>
 
