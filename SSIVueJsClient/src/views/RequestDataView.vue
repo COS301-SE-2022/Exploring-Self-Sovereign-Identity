@@ -42,7 +42,12 @@ export default defineComponent({
   <el-form :inline="true" class="form" :model="data" style="padding-top: 2vh">
     <!-- * User ID  -->
     <el-form-item label="User ID">
-      <el-input v-model="data.id" placeholder="Please input"> </el-input>
+      <el-input
+        v-model="data.id"
+        placeholder="Please input"
+        data-test-id="userid"
+      >
+      </el-input>
     </el-form-item>
     <!-- * Attribute select -->
     <el-form-item label="Perms">
