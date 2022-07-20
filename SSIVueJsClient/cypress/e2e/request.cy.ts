@@ -8,8 +8,9 @@ describe("Visit request page", () => {
 
 describe("Test elements", () => {
   it("Test user id input", () => {
-    cy.get('[data-testid="userid"]')
-      .should("be.enabled")
+    cy.get('[data-test-id="userid"]')
+      .should("be.visible")
+      .and("be.enabled")
       .type("test")
       .invoke("val")
       .should("equal", "test");
