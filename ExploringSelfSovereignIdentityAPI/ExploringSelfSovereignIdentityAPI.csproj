@@ -29,6 +29,35 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Nethereum.ABI" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Accounts" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Autogen.ContractApi" Version="4.2.0" />
+    <PackageReference Include="Nethereum.BlockchainProcessing" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Contracts" Version="4.7.0" />
+    <PackageReference Include="Nethereum.ENS" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Generators" Version="4.3.0" />
+    <PackageReference Include="Nethereum.Geth" Version="4.7.0" />
+    <PackageReference Include="Nethereum.HdWallet" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Hex" Version="4.7.0" />
+    <PackageReference Include="Nethereum.JsonRpc.RpcClient" Version="4.7.0" />
+    <PackageReference Include="Nethereum.JsonRpc.WebSocketClient" Version="4.7.0" />
+    <PackageReference Include="Nethereum.KeyStore" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Model" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Pantheon" Version="3.8.0" />
+    <PackageReference Include="Nethereum.Parity" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Parity.Reactive" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Quorum" Version="4.7.0" />
+    <PackageReference Include="Nethereum.RLP" Version="4.7.0" />
+    <PackageReference Include="Nethereum.RPC" Version="4.7.0" />
+    <PackageReference Include="Nethereum.RPC.Reactive" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Signer" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Signer.AzureKeyVault" Version="4.7.0" />
+    <PackageReference Include="Nethereum.Signer.Trezor" Version="4.7.0" />
+    <PackageReference Include="Nethereum.StandardTokenEIP20" Version="4.7.0" />
+    <PackageReference Include="Nethereum.TestRPCRunner" Version="1.0.0" />
+    <PackageReference Include="Nethereum.TestRPCRunner.Net45" Version="1.0.0" />
+    <PackageReference Include="Nethereum.Uport" Version="0.0.20" />
+    <PackageReference Include="Nethereum.Web3" Version="4.7.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.*" />
   </ItemGroup>
 
