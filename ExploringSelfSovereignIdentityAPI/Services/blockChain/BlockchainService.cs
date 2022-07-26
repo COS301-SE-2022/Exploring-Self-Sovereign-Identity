@@ -45,12 +45,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.blockChain
             {
                 return "Failed on 1st call: " + e.Message;
             }
-            
-
-            
-
-          
-            
         }
     }
 }
