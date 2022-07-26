@@ -14,7 +14,13 @@
 * Demo 3 (29/07) <i> to be completed. </i>
 * Demo 4 (08/09) <i> to be completed. </i>
 
-## Functional Requirements
+## Documentation
+* [User Manual]
+* [Technical Installation Manual]
+* [Coding Standards Document]
+* [SRS Document] 
+* [Architectural Structural Design & Requirements Document]
+* [Quality Requirements Document]
 * [Functional Requirements Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/8683409/Functional.Requirements.pdf)
 
 
