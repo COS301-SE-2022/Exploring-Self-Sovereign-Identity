@@ -21,7 +21,6 @@
 * [SRS Document] 
 * [Architectural Structural Design & Requirements Document]
 * [Quality Requirements Document]
-* [Functional Requirements Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/8683409/Functional.Requirements.pdf)
 
 
 ## Github Project Board
