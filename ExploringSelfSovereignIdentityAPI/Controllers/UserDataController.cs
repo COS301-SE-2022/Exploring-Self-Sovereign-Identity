@@ -9,6 +9,8 @@ using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using System;
+using ExploringSelfSovereignIdentityAPI.Services.blockChain;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -16,103 +18,33 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     [ApiController]
     public class UserDataController : Controller
     {
-        private readonly IUserDataService _service;
 
-        public UserDataController(IUserDataService service)
+        private readonly IBlockchainService blockchainService;
+
+        public UserDataController(IBlockchainService blockchainService)
         {
-            this._service = service;
-        }
-
-        [HttpPost]
-        [Route("login")]
-        public async Task<UserDataModel> GetUser([FromBody] Guid Id)
-        {
-
-            return await _service.GetUser(Id);
-
+            this.blockchainService = blockchainService;
         }
 
         [HttpPost]
         [Route("register")]
-
-        public async Task<UserDataModel> Add()
+        public async Task<string> Register([FromBody] RegisterRequest request)
         {
-            return await _service.Add(); 
+            return await blockchainService.createUser(request.id);
         }
 
         [HttpPost]
-        [Route("update")]
-
-        public IActionResult UpdateUserData(UserDataModel Id)
+        [Route("getUserData")]
+        public async Task<string> GetUserData([FromBody] RegisterRequest request)
         {
-           
-            var user = _service.UpdateUserData(Id);
-            return (IActionResult) user;
+            return await blockchainService.getUserData(request.id);
         }
 
-
-
-
-
-        /*private readonly IMediator mediator;
-        private readonly IUserDataService _UserDataService; 
-
-        public UserDataController(IMediator med, UserdataService userDataService)
-        {
-            mediator = med;
-            _UserDataService = userDataService;
-
-        }
-
-
-
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        //Login Endpoint 
-        [HttpGet("{id, hash}")]
-        public IActionResult Get(UserDataModel Id, UserDataModel hash)
-        {
-
-            var user = _UserDataService.GetUser(Id, hash);
-            return (IActionResult)user; 
-
-        }
-
-
-        // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("updateAttributes")]
+        public async Task<string> UpdateAttributes([FromBody] AttributeRequestBC request)
         {
-
+            return await blockchainService.updateAttributes(request.id, request.attributes);
         }
-
-        // Register Endpoint 
-        [HttpPut("{id, hash}")]
-        public void Put(UserDataModel Id)
-        {
-            _UserDataService.Add(Id);
-
-        }
-
-        /* DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-
-        }*/
-
-
     }
 }
