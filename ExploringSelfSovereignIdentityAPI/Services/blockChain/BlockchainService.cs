@@ -9,6 +9,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.blockChain
 {
     public class BlockchainService : IBlockchainService
     {
+
         private readonly Web3 Web3Instance = new Web3("http://127.0.0.1:7545");
 
         private readonly string senderAddress = "0xD6059FB76172C8d7f4845c94a0D8b2F74620105b";
