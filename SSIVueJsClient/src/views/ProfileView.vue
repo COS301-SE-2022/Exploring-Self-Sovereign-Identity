@@ -2,15 +2,12 @@
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
-import { ref } from "vue";
-import type { FormInstance } from "element-plus";
 import { ElMessage, ElMessageBox } from "element-plus";
 export default defineComponent({
   setup() {
     const userData = userDataStore();
-    const formRef = ref<FormInstance>();
 
-    return { userData, formRef };
+    return { userData };
   },
   data() {
     return {
@@ -27,8 +24,8 @@ export default defineComponent({
           this.userData.user.attributes.push({
             name: value,
             value: "",
+            index: -1,
           });
-
           ElMessage({
             type: "success",
             message: `Attribute added`,
