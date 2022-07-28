@@ -17,7 +17,7 @@ export default {
 </template>
 
 <style lang="scss">
-@use "@material/card";
+// @use "@material/card";
 @include card.core-styles;
 .my-card-content {
   padding: 16px;

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "isolatedModules": true,
-    "strict": true
+    "strict": true,
+    "types": ["element-plus/global"]
   },
   "files": [],
   "references": [
