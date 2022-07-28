@@ -54,13 +54,13 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
       - name: Installing Truffle
-        working-directory: ./LocalBlockChain
+        working-directory: ./LocalBlockchain
         run: npm install truffle
       - name: Installing All
-        working-directory: ./LocalBlockChain
+        working-directory: ./LocalBlockchain
         run: npm install
       - name: Running Tests
-        working-directory: ./LocalBlockChain
+        working-directory: ./LocalBlockchain
         run: truffle test
         
   
