@@ -75,11 +75,16 @@ export default defineComponent({
       <el-divider />
       <el-main class="info-main">
         <!-- * Attributes -->
-        <el-collapse accordion class="collapse">
+        <el-collapse
+          accordion
+          class="collapse"
+          style="background-color: rgba(0, 0, 0, 0)"
+        >
           <el-collapse-item
             title="Attributes"
             name="1"
             data-test-id="attribute-header"
+            style="background-color: rgba(0, 0, 0, 0)"
           >
             <el-form ref="formRef" label-width="120px" class="demo-dynamic">
               <!-- <el-form-item
@@ -121,6 +126,7 @@ export default defineComponent({
             title="Credentials"
             name="2"
             data-test-id="cred-header"
+            style="padding-top: 0.3vh"
           >
             <!-- * Inner collapsables -->
             <el-collapse accordion class="innerCollapse">
@@ -171,7 +177,14 @@ export default defineComponent({
   padding: 0% !important;
 }
 .collapse {
+  // background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
+  border-width: thin;
+  div {
+    // background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    border-width: thin;
+  }
 }
 </style>
