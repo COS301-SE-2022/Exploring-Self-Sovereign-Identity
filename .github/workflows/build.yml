@@ -46,6 +46,24 @@ jobs:
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
   
+  SmartContract:
+  
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - name: Installing Truffle
+        working-directory: ./LocalBlockChain
+        run: npm install truffle
+      - name: Installing All
+        working-directory: ./LocalBlockChain
+        run: npm install
+      - name: Running Tests
+        working-directory: ./LocalBlockChain
+        run: truffle test
+        
+  
   CodeCov-API:
   
     runs-on: ubuntu-latest
