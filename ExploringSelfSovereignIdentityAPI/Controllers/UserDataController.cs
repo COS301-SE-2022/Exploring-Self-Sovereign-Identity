@@ -116,14 +116,14 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         }
 
         [HttpPost]
-        [Route("updateAttribute")]
+        [Route("updateCredential")]
         public /*async Task<UserDataResponse>*/ UserDataResponse UpdateCredentials([FromBody] CredentialRequestBC request)
         {
             
-            for (int i=0; i<request.credentials.Length; i++)
+            /*for (int i=0; i<request.credentials.Length; i++)
             {
                 for (int k=0; lock< request.credentials[i])
-            }
+            }*/
 
             return response;
         }
