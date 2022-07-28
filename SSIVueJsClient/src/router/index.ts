@@ -16,7 +16,7 @@ const routes = [
   {
     path: "/transaction",
     component: TransactionViewVue,
-    props: (route) => ({ index: route.query.c }),
+    props: (route: { query: { c: unknown } }) => ({ index: route.query.c }),
   },
   {
     path: "/past",

@@ -25,7 +25,7 @@ export default defineComponent({
 <template>
   <div class="info">
     <!-- * User ID -->
-    <el-input v-model="id" placeholder="ID" disabled>
+    <el-input v-model="id" placeholder="ID" disabled data-test-id="Profile id">
       <template #prepend>ID</template>
     </el-input>
 
@@ -33,20 +33,25 @@ export default defineComponent({
 
     <!-- * Attributes -->
     <el-collapse accordion>
-      <el-collapse-item title="Attributes" name="1">
+      <el-collapse-item
+        title="Attributes"
+        name="1"
+        data-test-id="attribute-header"
+      >
         <!-- *! Need to make input editable -->
         <el-input
           :placeholder="att.getName()"
           v-for="att in getAttributes"
           :key="att.getName()"
           :value="att.getValue()"
+          data-test-id="attribute"
         >
           <template #prepend>{{ att.getName() }}</template>
         </el-input>
       </el-collapse-item>
 
       <!-- * Credentials -->
-      <el-collapse-item title="Credentials" name="2">
+      <el-collapse-item title="Credentials" name="2" data-test-id="cred-header">
         <!-- * Inner collapsables -->
         <el-collapse accordion class="innerCollapse">
           <el-collapse-item
@@ -54,6 +59,7 @@ export default defineComponent({
             :key="cred.getId()"
             :title="cred.getId()"
             :name="cred.getId()"
+            data-test-id="cred-item"
           >
             <el-input
               :placeholder="att.getName()"

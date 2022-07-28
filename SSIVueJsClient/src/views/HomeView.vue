@@ -4,13 +4,15 @@ import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
-import { Passage, User } from "@passageidentity/passage-js";
-import { UserService } from "../services/UserService";
-import { RegisterRequest } from "../models/requests/RegisterRequest";
+import { Passage } from "@passageidentity/passage-js";
+import { getuserdata } from "@/services/UserDataService";
+// import { UserService } from "../services/UserService";
+// import { RegisterRequest } from "../models/requests/RegisterRequest";
 import { isNull } from "lodash";
 export default defineComponent({
   setup() {
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
+    getuserdata("orhfaoiuhosdhgosir");
     return { appid };
   },
   data() {
@@ -29,7 +31,7 @@ export default defineComponent({
     const passage = new Passage(this.appid);
     const user = passage.getCurrentUser();
     user.getMetadata().then((Response) => {
-      const userService = new UserService();
+      // const userService = new UserService();
       if (!isNull(Response)) {
         //userService.register(new RegisterRequest("sudfhsd"));
         console.log("Should not be here");
@@ -50,7 +52,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <el-col :span="12">
       <!-- * Profile page -->
-      <el-card class="card" @click="go('profile')">
+      <el-card class="card" @click="go('profile')" data-test-id="profile">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
@@ -64,7 +66,7 @@ export default defineComponent({
 
     <!-- * Pending transations -->
     <el-col :span="12">
-      <el-card class="card" @click="go('pending')">
+      <el-card class="card" @click="go('pending')" data-test-id="pending">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -81,7 +83,7 @@ export default defineComponent({
   <el-row :gutter="2" class="row">
     <!-- *Past transactions -->
     <el-col :span="12">
-      <el-card class="card" @click="go('past')">
+      <el-card class="card" @click="go('past')" data-test-id="past">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -95,7 +97,7 @@ export default defineComponent({
 
     <!-- * Request data -->
     <el-col :span="12">
-      <el-card class="card" @click="go('request')">
+      <el-card class="card" @click="go('request')" data-test-id="request">
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
@@ -110,6 +112,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+@import "@/assets/_variables.scss";
 .icon {
   background-color: white;
 }

@@ -6,7 +6,6 @@ import { defineComponent } from "vue";
 import { Contract } from "@/models/entity/Contract";
 import { TransactionService } from "@/services/TransactionService";
 import { UserDataStore } from "@/stores/UserDataStore";
-import { PastTransactionsRequest } from "@/models/requests/PastTransactionsRequest";
 export default defineComponent({
   data() {
     return {
