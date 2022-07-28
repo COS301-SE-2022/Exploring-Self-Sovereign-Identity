@@ -1,14 +1,13 @@
 import axios from "axios";
-import type { JsonObject } from "type-fest";
 
-export function getuserdata(userid: string): Promise<UserData> {
+export function getuserdata(userid: string) {
   //   const axios = require("axios");
   return axios
     .post(`/api/UserData/get`, {
       id: userid,
     })
     .then((response) => {
-      response.id = null;
+      console.log(response.data);
     });
 }
 

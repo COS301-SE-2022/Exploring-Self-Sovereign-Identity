@@ -5,12 +5,14 @@ import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
 import { Passage } from "@passageidentity/passage-js";
+import { getuserdata } from "@/services/UserDataService";
 // import { UserService } from "../services/UserService";
 // import { RegisterRequest } from "../models/requests/RegisterRequest";
 import { isNull } from "lodash";
 export default defineComponent({
   setup() {
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
+    getuserdata("orhfaoiuhosdhgosir");
     return { appid };
   },
   data() {
