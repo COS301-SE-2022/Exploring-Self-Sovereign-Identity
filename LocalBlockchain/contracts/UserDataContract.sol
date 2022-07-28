@@ -105,6 +105,7 @@ contract UserDataContract {
         
     }
 
+    /* Returns the desired attributes for requested data. */
     function getAttributesTransaction(string memory _id, Attribute[] memory attributes) public view returns (Attribute[] memory) {
 
         Attribute[] memory res = new Attribute[](attributes.length);
