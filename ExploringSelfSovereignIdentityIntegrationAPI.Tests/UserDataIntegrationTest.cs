@@ -55,7 +55,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             UserDataResponse res = await _userDataService.getUserData(userId);
             Assert.IsNotNull(res);
             Assert.IsInstanceOfType(res, typeof(UserDataResponse));
-            Assert.AreEqual(userId, _user.Id);
+            Assert.AreEqual(res.Id, userId);
 
         }
 
