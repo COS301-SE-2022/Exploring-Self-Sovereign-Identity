@@ -20,5 +20,6 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             Assert.IsNotNull(res);
             Assert.AreEqual(userId, res);
         }
+
     }
 }
