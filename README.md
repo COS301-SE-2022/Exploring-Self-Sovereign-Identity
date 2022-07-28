@@ -19,7 +19,7 @@
 * [Technical Installation Manual]
 * [Coding Standards Document]
 * [SRS Document] 
-* [Architectural Structural Design & Requirements.pdf](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
+* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
 
 
 ## Github Project Board
