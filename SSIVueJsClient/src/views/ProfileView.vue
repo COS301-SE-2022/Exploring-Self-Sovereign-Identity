@@ -2,16 +2,30 @@
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
+import { ref } from "vue";
+import type { FormInstance } from "element-plus";
 export default defineComponent({
   setup() {
     const userData = userDataStore();
+    const formRef = ref<FormInstance>();
 
-    return { userData };
+    return { userData, formRef };
   },
   data() {
     return {
       // id: ,
     };
+  },
+  methods: {
+    addAtt() {
+      this.userData.user.attributes.push({
+        name: "",
+        value: "",
+      });
+    },
+    submitForm() {
+      this.userData.setuserdata();
+    },
   },
   components: { BackNav },
 });
@@ -30,7 +44,6 @@ export default defineComponent({
     </el-input>
 
     <el-divider />
-
     <!-- * Attributes -->
     <el-collapse accordion>
       <el-collapse-item
@@ -38,16 +51,39 @@ export default defineComponent({
         name="1"
         data-test-id="attribute-header"
       >
-        <!-- *! Need to make input editable -->
-        <el-input
-          :placeholder="att.name"
-          v-for="att in userData.getAttributes"
-          :key="att.name"
-          :value="att.value"
-          data-test-id="attribute"
-        >
-          <template #prepend>{{ att.name }}</template>
-        </el-input>
+        <el-form ref="formRef" label-width="120px" class="demo-dynamic">
+          <!-- <el-form-item
+            prop="email"
+            label="Email"
+            :rules="[
+              {
+                required: true,
+                message: 'Please input email address',
+                trigger: 'blur',
+              },
+              {
+                type: 'email',
+                message: 'Please input correct email address',
+                trigger: ['blur', 'change'],
+              },
+            ]"
+          > -->
+          <el-input
+            :placeholder="att.name"
+            v-for="att in userData.getAttributes"
+            :key="att.name"
+            :value="att.value"
+            v-model="att.value"
+            data-test-id="attribute"
+          >
+            <template #prepend>{{ att.name }}</template>
+          </el-input>
+          <!-- </el-form-item> -->
+          <el-form-item>
+            <el-button @click="addAtt" plain>Add</el-button>
+            <el-button type="primary" @click="submitForm">Submit</el-button>
+          </el-form-item>
+        </el-form>
       </el-collapse-item>
 
       <!-- * Credentials -->

@@ -48,8 +48,18 @@ export const userDataStore = defineStore("userData", {
           id: userid,
         })
         .then((response) => {
-          console.log(response.data);
           this.user = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    setuserdata() {
+      this.api
+        .post(`/api/UserData/set`, {
+          id: this.user.id,
+          attributes: this.user.attributes,
+          credentials: this.user.credentials,
         })
         .catch((error) => {
           console.log(error);
