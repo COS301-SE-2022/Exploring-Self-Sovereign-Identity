@@ -123,6 +123,11 @@ contract UserDataContract {
         return res;
     }
 
+    /* Returns the desired Credential and its associated attributes. */
+    function getCredentialTransaction(string memory _id, string memory organization) public view returns (CredentialResponse memory) {
+        
+    }
+
     /* Add and Update UserData by id. */
     //function updateUser(string memory _id, AttributeUpdate[] memory attributes, CredentialUpdate[] memory credentials) public {
     function updateUser(Update memory update) public {
