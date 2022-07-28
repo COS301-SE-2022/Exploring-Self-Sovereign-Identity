@@ -40,4 +40,9 @@
     <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisible Include="$(AssemblyName).Test" />
+	</ItemGroup>
+	
+
 </Project>
