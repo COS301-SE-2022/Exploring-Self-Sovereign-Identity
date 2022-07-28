@@ -15,9 +15,9 @@
 * Demo 4 (08/09) <i> to be completed. </i>
 
 ## Documentation
-* [User Manual]
-* [Technical Installation Manual]
-* [Coding Standards Document]
+* [User Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9208791/User.Manual.pdf)
+* [Technical Installation Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9208974/Technical.Installation.Manual.pdf)
+* [Coding Standards Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9209052/Coding.Standards.Document.pdf)
 * [SRS Document] 
 * [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
 
