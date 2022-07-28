@@ -53,7 +53,7 @@ jobs:
         run: npm run test:e2e:ci &
       - name: Running Integration Tests
         working-directory: ./SSIVueJsClient
-        run: cypress run
+        run: npx cypress run
   
   SmartContract:
   
