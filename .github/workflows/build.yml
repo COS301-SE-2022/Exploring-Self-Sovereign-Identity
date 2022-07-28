@@ -48,6 +48,9 @@ jobs:
       - name: Running Unit Tests
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
+      - name: Running Server
+        working-directory: ./SSIVueJsClient
+        run: npm run dev
       - name: Running Integration Tests
         working-directory: ./SSIVueJsClient
         run: npm run test:e2e:ci
