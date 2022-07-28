@@ -122,7 +122,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             
             for (int i=0; i<request.credentials.Length; i++)
             {
-                
+                for (int k=0; lock< request.credentials[i])
             }
 
             return response;
