@@ -4,6 +4,7 @@ import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { ref } from "vue";
 import type { FormInstance } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 export default defineComponent({
   setup() {
     const userData = userDataStore();
@@ -18,10 +19,27 @@ export default defineComponent({
   },
   methods: {
     addAtt() {
-      this.userData.user.attributes.push({
-        name: "",
-        value: "",
-      });
+      ElMessageBox.prompt("Please enter attribute", "Tip", {
+        confirmButtonText: "Add",
+        cancelButtonText: "Cancel",
+      })
+        .then(({ value }) => {
+          this.userData.user.attributes.push({
+            name: value,
+            value: "",
+          });
+
+          ElMessage({
+            type: "success",
+            message: `Attribute added`,
+          });
+        })
+        .catch(() => {
+          ElMessage({
+            type: "info",
+            message: "Input canceled",
+          });
+        });
     },
     submitForm() {
       this.userData.setuserdata();
