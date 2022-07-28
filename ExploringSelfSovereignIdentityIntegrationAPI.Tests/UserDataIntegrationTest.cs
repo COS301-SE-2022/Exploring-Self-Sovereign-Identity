@@ -8,6 +8,11 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     {
         public UserdataService _userDataService;
 
+        public UserDataIntegrationTest()
+        {
+            //_userDataService = new UserdataService();
+        }
+
         [TestMethod]
         public async Task TestGetUserData()
         {
@@ -19,9 +24,9 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             string userId = "testString";
 
             UserDataModel res = await _userDataService.GetUserData(_user);
-            //Assert.IsNotNull(res);
-            Assert.AreEqual(userId, res);
-
+            Assert.IsNotNull(res);
+            Assert.AreEqual(res.Id, _user.Id);
+            Assert.AreEqual(res.Hash, _user.Hash);
         }
     }
 }

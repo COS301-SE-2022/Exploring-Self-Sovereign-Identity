@@ -1,5 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Repositories; 
+using ExploringSelfSovereignIdentityAPI.Repositories;
 using Microsoft.AspNetCore.Http;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -95,9 +95,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             //await uds.updateAttributes(request.id, request.attributes);
             //return await uds.getUserData(request.id);
 
-            for (int i=0; i<request.Attributes.Count; i++)
+            for (int i = 0; i < request.Attributes.Count; i++)
             {
-                
+
                 if (i < response.Attributes.Count)
                 {
                     response.Attributes[i].Name = request.Attributes[i].Name;
@@ -110,7 +110,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
                 a1.Value = request.Attributes[i].Value;
 
                 response.Attributes.Add(a1);
-                
+
             }
 
             return response;
@@ -120,7 +120,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("updateCredential")]
         public /*async Task<UserDataResponse>*/ UserDataResponse UpdateCredentials([FromBody] CredentialRequestBC request)
         {
-            
+
             /*for (int i=0; i<request.credentials.Length; i++)
             {
                 for (int k=0; lock< request.credentials[i])

@@ -10,13 +10,13 @@ namespace ExploringSelfSovereignIdentityIntegrationAPIController.Test
 
         {
 
-            var webAppFactory = new WebApplicationFactory<>();
+            /*var webAppFactory = new WebApplicationFactory<>();
             var httpClient = webAppFactory.CreateDefaultClient();
 
             var response = await httpClient.GetAsync(GetUserData);
             var userResult = await response.Content.ReadAsStringAsync();
 
-            Assert.AreEqual(, userResult); 
+            Assert.AreEqual(, userResult); */
 
         }
     }
