@@ -54,12 +54,14 @@ contract UserDataContract {
         Attribute[] attributes;
     }
 
+    /* Single functions for update to test integration methods */
     struct Update {
         string id;
         AttributeUpdate[] attributes;
         CredentialUpdate[] credentials;
     }
 
+    /* Single parameter to update an attribute */
     struct UpdateAttribute {
         string id;
         string name;
@@ -87,10 +89,10 @@ contract UserDataContract {
         allUserData[_id].attributes[index].value = value;
     }
 
-    function createAttribute(/*UpdateAttribute memory attribute*/) public {
-        //uint index = allUserData[attribute.id].attributeCount++;
-        //allUserData[attribute.id].attributes[index].name = attribute.name;
-        //allUserData[attribute.id].attributes[index].value = attribute.value;
+    function createAttribute(UpdateAttribute memory attribute) public {
+        uint index = allUserData[attribute.id].attributeCount++;
+        allUserData[attribute.id].attributes[index].name = attribute.name;
+        allUserData[attribute.id].attributes[index].value = attribute.value;
     }
 
     /* Add and Update UserData by id. */
