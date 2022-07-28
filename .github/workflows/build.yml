@@ -50,10 +50,10 @@ jobs:
         run: npm run test:unit
       - name: Running Server
         working-directory: ./SSIVueJsClient
-        run: npm run dev
+        run: npm start & wait-on http://localhost:3000
       - name: Running Integration Tests
         working-directory: ./SSIVueJsClient
-        run: npm run test:e2e:ci
+        run: cypress run
   
   SmartContract:
   
