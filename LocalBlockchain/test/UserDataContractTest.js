@@ -30,7 +30,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
         });
     });
 
-    describe("Transactions", async() => {
+    describe("UserData", async() => {
 
         it("Creates a User Successfully", async () => {
 
@@ -117,5 +117,33 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.credentials[2].attributes[1].value, "0102225184088");
         });
 
+    });
+
+    describe("Transactions", async() => {
+
+        it("Gets specified attributes successfully", async () => {
+            
+            let id = "xxyyzz";
+            await udc.createUser(id);
+            await udc.createAttribute([id, "name", "JohnJohn"]);
+
+            let result = await udc.getAttributesTransaction(id, [["name",""]]);
+
+            assert.equal(result[0].value, "JohnJohn");
+        });
+
+        it("Gets specified credential successfully", async () => {
+            let id = "zzyyxx";
+            await udc.createUser(id);
+
+            await udc.updateUser([id, [], [["Google",false,[["email","johans@gmail.com"]]]]]);
+
+            let result = await udc.getCredentialTransaction(id, "Google");
+
+            /* Test credentials. */
+            assert.equal(result.organization, "Google");
+            assert.equal(result.attributes[0].name, "email");
+            assert.equal(result.attributes[0].value, "johans@gmail.com");
+        });
     });
 });
