@@ -31,7 +31,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         public async Task TestGetUserData()
         {
             string userId = "aaa";
-            string res = await _blockChainService.getUserData(userId);
+            var res = await _blockChainService.getUserData(userId);
             Assert.IsNotNull(res);
             Assert.AreEqual("success", res);
         }
