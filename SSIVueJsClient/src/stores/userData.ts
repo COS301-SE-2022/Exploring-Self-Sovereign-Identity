@@ -56,10 +56,14 @@ export const userDataStore = defineStore("userData", {
     },
     setuserdata() {
       this.api
-        .post(`/api/UserData/set`, {
+        .post(`/api/UserData/updateAttribute`, {
           id: this.user.id,
           attributes: this.user.attributes,
           credentials: this.user.credentials,
+        })
+        .then((response) => {
+          // this.user = response.data;
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
