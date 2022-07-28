@@ -4,9 +4,9 @@ import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
-import { Passage, User } from "@passageidentity/passage-js";
-import { UserService } from "../services/UserService";
-import { RegisterRequest } from "../models/requests/RegisterRequest";
+import { Passage } from "@passageidentity/passage-js";
+// import { UserService } from "../services/UserService";
+// import { RegisterRequest } from "../models/requests/RegisterRequest";
 import { isNull } from "lodash";
 export default defineComponent({
   setup() {
@@ -29,7 +29,7 @@ export default defineComponent({
     const passage = new Passage(this.appid);
     const user = passage.getCurrentUser();
     user.getMetadata().then((Response) => {
-      const userService = new UserService();
+      // const userService = new UserService();
       if (!isNull(Response)) {
         //userService.register(new RegisterRequest("sudfhsd"));
         console.log("Should not be here");
@@ -110,6 +110,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+@import "@/assets/_variables.scss";
 .icon {
   background-color: white;
 }
