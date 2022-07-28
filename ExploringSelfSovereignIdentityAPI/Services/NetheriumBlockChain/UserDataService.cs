@@ -16,14 +16,18 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
     public class UserDataService : IUserDataService
     {
-        static string url = "http://127.0.0.1:7545";
+        static string url = "http://127.0.0.1:8545";
         //static string url = "http://testchain.nethereum.com:8545";
 
         static string privateKey = "a85d3db048ff6a6f43da358574ea30aef0f8fbea159f1e64a1b90f01894cadfa";
         //static string privateKey = "0x7580e7fb49df1c861f0050fae31c2224c6aba908e116b8da44ee8cd927b990b0";
 
-        static string contractAddress = "0x7dc420c360Fee6259A8b85D9cC2eb0eFB94a1e0c";
+        //static string contractAddress = "0x7dc420c360Fee6259A8b85D9cC2eb0eFB94a1e0c";
         //static string senderAddress = "0xD6059FB76172C8d7f4845c94a0D8b2F74620105b";
+
+        private readonly Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
+        private readonly string senderAddress = "0xeE07Cf444e5044295228083C652aA46F9fefA44A";
+        static string contractAddress = "0xf84F284bb25bE2Bae65908BD0b63c263EEFDa41D";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
