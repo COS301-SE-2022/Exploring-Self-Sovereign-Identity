@@ -54,8 +54,26 @@ contract UserDataContract {
         Attribute[] attributes;
     }
 
+    struct Update {
+        string id;
+        AttributeUpdate[] attributes;
+        CredentialUpdate[] credentials;
+    }
+
+    struct UpdateAttribute {
+        string id;
+        string name;
+        string value;
+    }
+
     /* All stored user's data can be accessed through the allUserData attribute. */
     mapping (string => UserData) allUserData;
+
+    constructor() {
+        allUserData["aaa"].attributes[0].name = "name";
+        allUserData["aaa"].attributes[0].value = "Johan";
+        allUserData["aaa"].attributeCount= 1;
+    }
 
     /* Create and return a new user's data. */
     function createUser(string memory _id) public {
@@ -69,20 +87,21 @@ contract UserDataContract {
         allUserData[_id].attributes[index].value = value;
     }
 
-    function createAttribute(string memory _id, string memory name, string memory value) public {
-        uint index = allUserData[_id].attributeCount++;
-        allUserData[_id].attributes[index].name = name;
-        allUserData[_id].attributes[index].value = value;
+    function createAttribute(/*UpdateAttribute memory attribute*/) public {
+        //uint index = allUserData[attribute.id].attributeCount++;
+        //allUserData[attribute.id].attributes[index].name = attribute.name;
+        //allUserData[attribute.id].attributes[index].value = attribute.value;
     }
 
     /* Add and Update UserData by id. */
-    function updateUser(string memory _id, AttributeUpdate[] memory attributes, CredentialUpdate[] memory credentials) public {
+    //function updateUser(string memory _id, AttributeUpdate[] memory attributes, CredentialUpdate[] memory credentials) public {
+    function updateUser(Update memory update) public {
         
         //add/update all new attributes
-        if (attributes.length > 0) updateAttributes(_id, attributes);
+        if (update.attributes.length > 0) updateAttributes(update.id, update.attributes);
 
         //add and update all new credentials
-        if (credentials.length > 0) updateCredentials(_id, credentials);
+        if (update.credentials.length > 0) updateCredentials(update.id, update.credentials);
 
     }
 

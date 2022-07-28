@@ -5,6 +5,7 @@ using ExploringSelfSovereignIdentityAPI.Repositories.Transactions;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using ExploringSelfSovereignIdentityAPI.Services.Example;
 using ExploringSelfSovereignIdentityAPI.Services.Transactions;
 using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
@@ -52,8 +53,9 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<IUserDataRepository, UserDataRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
-            services.AddTransient<IUserDataService, UserdataService>();
+            services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.UserDataService.IUserDataService, UserdataService>();
             services.AddTransient<IBlockchainService, BlockchainService>();
+            services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.IUserDataService, UserDataService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             //services.AddScoped(typeof(IUniversityRepository), typeof(UniversitySqlServerRepository));
 

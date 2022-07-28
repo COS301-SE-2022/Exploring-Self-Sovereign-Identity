@@ -46,12 +46,26 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
 
             assert.equal(result.id, id);
         });
+        
+        it("Updates a single Attribute", async () => {
+
+            let id = "aadd";
+            await udc.createUser(id);
+
+            await udc.createAttribute("aadd", "name", "Johan");
+
+            let result = await udc.getUserData(id);
+
+            assert.equal(result.attributes[0].name, "name");
+            assert.equal(result.attributes[0].value, "Johan");
+
+        });
 
         it("Inserts New Data Successfully", async () => {
 
             let id = "aaa";
-            await udc.updateUser(id, [[["name","Johan"],false],[["surname","Smit"],false],[["age","21"],false]], []);
-            await udc.updateUser(id, [], [["Google",false,[["email","johans@gmail.com"],["password","xxyyzz"]]],["UP",false,[["student_number","u20502126"],["id","0102225184088"]]]]);
+            await udc.updateUser([id, [[["name","Johan"],false],[["surname","Smit"],false],[["age","21"],false]], []]);
+            await udc.updateUser([id, [], [["Google",false,[["email","johans@gmail.com"],["password","xxyyzz"]]],["UP",false,[["student_number","u20502126"],["id","0102225184088"]]]]]);
             
             let result = await udc.getUserData(id);
 
@@ -74,8 +88,8 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
 
             let id = "aaa";
             
-            await udc.updateUser(id, [[["age","22"],true]], []);
-            await udc.updateUser(id, [], [["Google",true,[["email","newjohans@gmail.com"]]],["Wits",false,[["student_number","u20502126"],["id","0102225184088"]]]]);
+            await udc.updateUser([id, [[["age","22"],true]], []]);
+            await udc.updateUser([id, [], [["Google",true,[["email","newjohans@gmail.com"]]],["Wits",false,[["student_number","u20502126"],["id","0102225184088"]]]]]);
 
             let result = await udc.getUserData(id);
 
