@@ -54,12 +54,14 @@ contract UserDataContract {
         Attribute[] attributes;
     }
 
+    /* Single functions for update to test integration methods */
     struct Update {
         string id;
         AttributeUpdate[] attributes;
         CredentialUpdate[] credentials;
     }
 
+    /* Single parameter to update an attribute */
     struct UpdateAttribute {
         string id;
         string name;
