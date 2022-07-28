@@ -2,7 +2,9 @@
 
 describe("Profile", () => {
   it("Should visit profile page", () => {
-    cy.visit("/profile");
+    cy.visit("/home");
+    cy.get('[data-test-id="profile"').click();
+    cy.url().should("include", "/profile");
   });
 });
 

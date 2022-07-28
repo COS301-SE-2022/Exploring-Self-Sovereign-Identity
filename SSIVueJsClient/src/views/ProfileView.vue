@@ -126,7 +126,7 @@ export default defineComponent({
             title="Credentials"
             name="2"
             data-test-id="cred-header"
-            style="padding-top: 0.3vh"
+            style="padding-top: 0.2vh"
           >
             <!-- * Inner collapsables -->
             <el-collapse accordion class="innerCollapse">
