@@ -45,9 +45,12 @@ jobs:
       - name: Building the project
         working-directory: ./SSIVueJsClient
         run: npm run build
-      - name: Running Tests
+      - name: Running Unit Tests
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
+      - name: Running Integration Tests
+        working-directory: ./SSIVueJsClient
+        run: npm run test:e2e:ci
   
   SmartContract:
   
