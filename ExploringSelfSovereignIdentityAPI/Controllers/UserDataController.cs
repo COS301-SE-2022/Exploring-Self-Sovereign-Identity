@@ -68,6 +68,13 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             response.Credentials.Add(c1);
         }
 
+        [HttpGet]
+        [Route("test")]
+        public string TestEndpoint()
+        {
+            return "success";
+        }
+
         [HttpPost]
         [Route("create")]
         public /*async Task<string>*/ string Register([FromBody] RegisterRequest request)
