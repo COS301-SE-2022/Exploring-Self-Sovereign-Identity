@@ -1,32 +1,33 @@
+using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
+using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 
 namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 {
     [TestClass]
     public class UserDataIntegrationTest
     {
-        public UserdataService _userDataService;
+        public UserDataService _userDataService;
 
         public UserDataIntegrationTest()
         {
-            //_userDataService = new UserdataService();
+            _userDataService = new UserDataService();
         }
+
 
         [TestMethod]
-        public async Task TestGetUserData()
+        public async Task TestCreateUser()
         {
-            UserDataModel _user = new UserDataModel();
-            _user.Id = new Guid();
-            _user.Hash = "hashhashhash";
-            _user.Profile_version = 1;
-
-            string userId = "testString";
-
-            UserDataModel res = await _userDataService.GetUserData(_user);
+            string userId = "aaa";
+            string res = await _userDataService.createUser(userId);
             Assert.IsNotNull(res);
-            Assert.AreEqual(res.Id, _user.Id);
-            Assert.AreEqual(res.Hash, _user.Hash);
+            Assert.AreEqual("success", res);
         }
+
+
+
+
+
     }
 }
