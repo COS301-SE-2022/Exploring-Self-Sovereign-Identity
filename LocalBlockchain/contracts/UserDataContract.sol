@@ -87,10 +87,10 @@ contract UserDataContract {
         allUserData[_id].attributes[index].value = value;
     }
 
-    function createAttribute(/*UpdateAttribute memory attribute*/) public {
-        //uint index = allUserData[attribute.id].attributeCount++;
-        //allUserData[attribute.id].attributes[index].name = attribute.name;
-        //allUserData[attribute.id].attributes[index].value = attribute.value;
+    function createAttribute(UpdateAttribute memory attribute) public {
+        uint index = allUserData[attribute.id].attributeCount++;
+        allUserData[attribute.id].attributes[index].name = attribute.name;
+        allUserData[attribute.id].attributes[index].value = attribute.value;
     }
 
     /* Add and Update UserData by id. */

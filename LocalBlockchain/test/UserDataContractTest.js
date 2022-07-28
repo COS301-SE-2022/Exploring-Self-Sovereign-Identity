@@ -52,7 +52,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             let id = "aadd";
             await udc.createUser(id);
 
-            await udc.createAttribute("aadd", "name", "Johan");
+            await udc.createAttribute(["aadd", "name", "Johan"]);
 
             let result = await udc.getUserData(id);
 
