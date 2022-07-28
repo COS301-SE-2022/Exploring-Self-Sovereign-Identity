@@ -15,5 +15,7 @@ namespace exploring_self_sovereign_identity_api
             Host.CreateDefaultBuilder(args)
                 .AddConfigServer()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+               
     }
+
 }

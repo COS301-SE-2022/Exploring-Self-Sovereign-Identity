@@ -1,4 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models;
+using Nethereum.RPC.Eth.Transactions;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.blockChain

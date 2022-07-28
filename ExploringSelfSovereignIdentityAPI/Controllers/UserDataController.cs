@@ -1,5 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Repositories; 
+using ExploringSelfSovereignIdentityAPI.Repositories;
 using Microsoft.AspNetCore.Http;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -89,27 +89,28 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("updateAttribute")]
-        public /*async Task<UserDataResponse>*/ UserDataResponse UpdateAttributes([FromBody] AttributeRequestBC request)
+        public /*async Task<UserDataResponse>*/ UserDataResponse UpdateAttributes([FromBody] UserDataResponse request)
         {
             //return await blockchainService.updateAttributes(request.id, request.attributes);
             //await uds.updateAttributes(request.id, request.attributes);
             //return await uds.getUserData(request.id);
 
-            for (int i=0; i<request.attributes.Length; i++)
+            for (int i = 0; i < request.Attributes.Count; i++)
             {
-                if (request.attributes[i].index == -1)
+
+                if (i < response.Attributes.Count)
                 {
-                    Services.NetheriumBlockChain.Attribute attr = new Services.NetheriumBlockChain.Attribute();
-                    attr.Name = request.attributes[i].name;
-                    attr.Value = request.attributes[i].value;
-
-                    response.Attributes.Add(attr);
-
+                    response.Attributes[i].Name = request.Attributes[i].Name;
+                    response.Attributes[i].Value = request.Attributes[i].Value;
                     continue;
                 }
 
-                response.Attributes[request.attributes[i].index].Name = request.attributes[i].name;
-                response.Attributes[request.attributes[i].index].Value = request.attributes[i].value;
+                Services.NetheriumBlockChain.Attribute a1 = new Services.NetheriumBlockChain.Attribute();
+                a1.Name = request.Attributes[i].Name;
+                a1.Value = request.Attributes[i].Value;
+
+                response.Attributes.Add(a1);
+
             }
 
             return response;
@@ -119,7 +120,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("updateCredential")]
         public /*async Task<UserDataResponse>*/ UserDataResponse UpdateCredentials([FromBody] CredentialRequestBC request)
         {
-            
+
             /*for (int i=0; i<request.credentials.Length; i++)
             {
                 for (int k=0; lock< request.credentials[i])

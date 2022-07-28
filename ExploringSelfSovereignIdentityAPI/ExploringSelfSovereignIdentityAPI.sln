@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExploringSelfSovereignIdentityAPI", "ExploringSelfSovereignIdentityAPI.csproj", "{3FFDE190-3846-4F62-BF66-25645E08E125}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExploringSelfSovereignIdentityIntegrationAPI.Tests", "..\ExploringSelfSovereignIdentityIntegrationAPI.Tests\ExploringSelfSovereignIdentityIntegrationAPI.Tests.csproj", "{47602296-D486-441F-BFC7-1F60FA36C958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3FFDE190-3846-4F62-BF66-25645E08E125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FFDE190-3846-4F62-BF66-25645E08E125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FFDE190-3846-4F62-BF66-25645E08E125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47602296-D486-441F-BFC7-1F60FA36C958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47602296-D486-441F-BFC7-1F60FA36C958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47602296-D486-441F-BFC7-1F60FA36C958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47602296-D486-441F-BFC7-1F60FA36C958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
