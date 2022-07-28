@@ -25,7 +25,21 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             Assert.AreEqual("success", res);
         }
 
+        [TestMethod]
+        public async Task TestGetUserData()
+        {
+            UserDataModel _user = new UserDataModel();
+            _user.Id = new Guid();
+            _user.Hash = "hashhashhash";
+            _user.Profile_version = 1;
 
+            //string userId = "testString";
+
+            //UserDataModel res = await _userDataService.GetUserData(_user);
+            //Assert.IsNotNull(res);
+            //Assert.AreEqual(res.Id, _user.Id);
+            //Assert.AreEqual(res.Hash, _user.Hash);
+        }
 
 
 
