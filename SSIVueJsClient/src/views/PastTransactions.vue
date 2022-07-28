@@ -34,6 +34,7 @@ export default defineComponent({
       this.$router.push({
         path: "/transaction?c=" + value,
       });
+      
     },
   },
 });
