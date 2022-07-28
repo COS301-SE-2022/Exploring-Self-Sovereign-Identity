@@ -3,6 +3,8 @@ import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { ElMessage, ElMessageBox } from "element-plus";
+import { ElLoading } from "element-plus";
+
 export default defineComponent({
   setup() {
     const userData = userDataStore();
@@ -39,7 +41,16 @@ export default defineComponent({
         });
     },
     submitForm() {
+      const load = ElLoading.service({
+        fullscreen: true,
+        text: "Submitting...",
+      });
       this.userData.setuserdata();
+      load.close();
+      ElMessage({
+        type: "success",
+        message: `Profile updated`,
+      });
     },
   },
   components: { BackNav },
