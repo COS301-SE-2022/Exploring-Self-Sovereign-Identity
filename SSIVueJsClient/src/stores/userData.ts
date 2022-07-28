@@ -10,6 +10,9 @@ export const userDataStore = defineStore("userData", {
       },
     }),
     user: {},
+    id: "",
+    attributes: [],
+    credentials: [],
   }),
   actions: {
     getuserdata(userid: string) {
@@ -28,3 +31,45 @@ export const userDataStore = defineStore("userData", {
     },
   },
 });
+
+// post:
+// /api/UserData/get
+
+// Request:
+// {
+//      "id" : "aaa"
+// }
+
+// Response:
+// {
+//   "id": "aaa",
+//   "attributes": [
+//     {
+//       "name": "name",
+//       "value": "Johan"
+//     },
+//     {
+//       "name": "surname",
+//       "value": "Smit"
+//     },
+//     {
+//       "name": "age",
+//       "value": "21"
+//     }
+//   ],
+//   "credentials": [
+//     {
+//       "organization": "Google",
+//       "attributes": [
+//         {
+//           "name": "email",
+//           "value": "JohanSmit@gmail.com"
+//         },
+//         {
+//           "name": "number",
+//           "value": "0823255012"
+//         }
+//       ]
+//     }
+//   ]
+// }

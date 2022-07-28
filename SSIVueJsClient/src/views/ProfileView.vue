@@ -3,10 +3,16 @@ import { mapState } from "pinia";
 import { UserDataStore } from "@/stores/UserDataStore";
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
+import { userDataStore } from "@/stores/userData";
 export default defineComponent({
+  setup() {
+    const userData = userDataStore();
+
+    return { userData };
+  },
   data() {
     return {
-      id: "12gwbd83t823tdqwd",
+      // id: ,
     };
   },
   computed: {
