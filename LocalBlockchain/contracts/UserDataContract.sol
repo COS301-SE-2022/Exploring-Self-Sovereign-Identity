@@ -95,6 +95,34 @@ contract UserDataContract {
         allUserData[attribute.id].attributes[index].value = attribute.value;
     }
 
+    function createAttributeX() public {
+        //uint index = allUserData["test"].attributeCount++;
+        allUserData["test"].attributes[0].name = "testname";
+        allUserData["test"].attributes[0].value = "testvalue";
+    }
+
+    function createAttributeY() public {
+        
+    }
+
+    /* Returns the desired attributes for requested data. */
+    function getAttributesTransaction(string memory _id, Attribute[] memory attributes) public view returns (Attribute[] memory) {
+
+        Attribute[] memory res = new Attribute[](attributes.length);
+
+        for (uint i=0; i<attributes.length; i++) {
+            for (uint k=0; k<allUserData[_id].attributeCount; k++) {
+                if (stringCompare(allUserData[_id].attributes[k].name, attributes[i].name)) {
+                    res[i].name = allUserData[_id].attributes[k].name;
+                    res[i].value = allUserData[_id].attributes[k].value;
+                    continue;
+                }
+            }
+        }
+
+        return res;
+    }
+
     /* Add and Update UserData by id. */
     //function updateUser(string memory _id, AttributeUpdate[] memory attributes, CredentialUpdate[] memory credentials) public {
     function updateUser(Update memory update) public {
