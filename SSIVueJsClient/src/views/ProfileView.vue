@@ -1,6 +1,4 @@
 <script lang="ts">
-import { mapState } from "pinia";
-import { UserDataStore } from "@/stores/UserDataStore";
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
@@ -15,15 +13,6 @@ export default defineComponent({
       // id: ,
     };
   },
-  computed: {
-    ...mapState(UserDataStore, ["getUserData"]),
-    getAttributes() {
-      return this.getUserData.getAttributes();
-    },
-    getCredentials() {
-      return this.getUserData.getCredentials();
-    },
-  },
   components: { BackNav },
 });
 </script>
@@ -31,7 +20,12 @@ export default defineComponent({
 <template>
   <div class="info">
     <!-- * User ID -->
-    <el-input v-model="id" placeholder="ID" disabled data-test-id="Profile id">
+    <el-input
+      v-model="userData.getId"
+      placeholder="ID"
+      disabled
+      data-test-id="Profile id"
+    >
       <template #prepend>ID</template>
     </el-input>
 
@@ -46,13 +40,13 @@ export default defineComponent({
       >
         <!-- *! Need to make input editable -->
         <el-input
-          :placeholder="att.getName()"
-          v-for="att in getAttributes"
-          :key="att.getName()"
-          :value="att.getValue()"
+          :placeholder="att.name"
+          v-for="att in userData.getAttributes"
+          :key="att.name"
+          :value="att.value"
           data-test-id="attribute"
         >
-          <template #prepend>{{ att.getName() }}</template>
+          <template #prepend>{{ att.name }}</template>
         </el-input>
       </el-collapse-item>
 
@@ -61,20 +55,20 @@ export default defineComponent({
         <!-- * Inner collapsables -->
         <el-collapse accordion class="innerCollapse">
           <el-collapse-item
-            v-for="cred in getCredentials"
-            :key="cred.getId()"
-            :title="cred.getId()"
-            :name="cred.getId()"
+            v-for="cred in userData.getCredentials"
+            :key="cred.organization"
+            :title="cred.organization"
+            :name="cred.organization"
             data-test-id="cred-item"
           >
             <el-input
-              :placeholder="att.getName()"
-              v-for="att in cred.getCredentials()"
-              :key="att.getName()"
-              :value="att.getValue()"
+              :placeholder="att.name"
+              v-for="att in cred.attributes"
+              :key="att.name"
+              :value="att.value"
               disabled
             >
-              <template #prepend>{{ att.getName() }}</template>
+              <template #prepend>{{ att.name }}</template>
             </el-input>
           </el-collapse-item>
         </el-collapse>

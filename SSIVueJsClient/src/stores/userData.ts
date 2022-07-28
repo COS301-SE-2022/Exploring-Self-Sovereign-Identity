@@ -9,11 +9,37 @@ export const userDataStore = defineStore("userData", {
         "Content-Type": "application/json",
       },
     }),
-    user: {},
-    id: "",
-    attributes: [],
-    credentials: [],
+    user: {
+      id: "",
+      attributes: [{ name: "", value: "" }],
+      credentials: [
+        {
+          organization: "",
+          attributes: [
+            {
+              name: "",
+              value: "",
+            },
+            {
+              name: "",
+              value: "",
+            },
+          ],
+        },
+      ],
+    },
   }),
+  getters: {
+    getId: (state) => {
+      return state.user.id;
+    },
+    getAttributes: (state) => {
+      return state.user.attributes || [];
+    },
+    getCredentials: (state) => {
+      return state.user.credentials;
+    },
+  },
   actions: {
     getuserdata(userid: string) {
       //   const axios = require("axios");
@@ -23,7 +49,7 @@ export const userDataStore = defineStore("userData", {
         })
         .then((response) => {
           console.log(response.data);
-          this.user = response;
+          this.user = response.data;
         })
         .catch((error) => {
           console.log(error);
