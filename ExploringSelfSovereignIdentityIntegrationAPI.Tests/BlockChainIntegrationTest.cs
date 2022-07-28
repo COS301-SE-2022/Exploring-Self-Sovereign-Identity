@@ -13,6 +13,11 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     {
         public BlockchainService _blockChainService;
 
+        public BlockChainIntegrationTest()
+        {
+            _blockChainService = new BlockchainService();
+        }
+
         [TestMethod]
         public async Task TestCreateUser()
         {
