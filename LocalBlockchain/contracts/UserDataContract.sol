@@ -125,7 +125,21 @@ contract UserDataContract {
 
     /* Returns the desired Credential and its associated attributes. */
     function getCredentialTransaction(string memory _id, string memory organization) public view returns (CredentialResponse memory) {
-        
+
+        CredentialResponse memory cred;
+
+        for (uint i=0; i<allUserData[_id].credentialCount; i++) {
+            if (stringCompare(allUserData[_id].credentials[i].organization, organization)) {
+                cred.organization = organization;
+
+                for (uint k=0; k<allUserData[_id].credentials[i].attributeCount; k++) {
+                    cred.attributes[k].name = allUserData[_id].credentials[i].attributes[k].name;
+                    cred.attributes[k].value = allUserData[_id].credentials[i].attributes[k].value;
+                }
+            }
+        }
+
+        return cred;
     }
 
     /* Add and Update UserData by id. */
