@@ -19,7 +19,8 @@
 * [Technical Installation Manual]
 * [Coding Standards Document]
 * [SRS Document] 
-* [Architectural Structural Design & Requirements Document]
+* [Architectural Structural Design & Requirements - Code of Duty SSI.pdf](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207859/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
+
 * [Quality Requirements Document]
 
 
