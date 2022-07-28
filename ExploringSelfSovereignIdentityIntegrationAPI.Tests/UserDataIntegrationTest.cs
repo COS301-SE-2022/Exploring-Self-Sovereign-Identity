@@ -1,16 +1,28 @@
+using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
+using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 
 namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 {
     [TestClass]
     public class UserDataIntegrationTest
     {
-        public UserdataService _userDataService;
+        public UserDataService _userDataService;
 
         public UserDataIntegrationTest()
         {
-            //_userDataService = new UserdataService();
+            _userDataService = new UserDataService();
+        }
+
+
+        [TestMethod]
+        public async Task TestCreateUser()
+        {
+            string userId = "aaa";
+            string res = await _userDataService.createUser(userId);
+            Assert.IsNotNull(res);
+            Assert.AreEqual("success", res);
         }
 
         [TestMethod]
@@ -21,12 +33,36 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             _user.Hash = "hashhashhash";
             _user.Profile_version = 1;
 
-            string userId = "testString";
+            //string userId = "testString";
 
-            UserDataModel res = await _userDataService.GetUserData(_user);
-            Assert.IsNotNull(res);
-            Assert.AreEqual(res.Id, _user.Id);
-            Assert.AreEqual(res.Hash, _user.Hash);
+            //UserDataModel res = await _userDataService.GetUserData(_user);
+            //Assert.IsNotNull(res);
+            //Assert.AreEqual(res.Id, _user.Id);
+            //Assert.AreEqual(res.Hash, _user.Hash);
         }
+
+
+        [TestMethod]
+        public async Task TestGetUser()
+        {
+            string userId = "aaa";
+
+            try
+            {
+                UserDataResponse res = await _userDataService.getUserData(userId);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(UserDataResponse));
+                Assert.AreEqual(res.Id, userId);
+            }
+            catch(Exception e)
+            {
+                    
+            }
+            
+
+        }
+
+
+
     }
 }

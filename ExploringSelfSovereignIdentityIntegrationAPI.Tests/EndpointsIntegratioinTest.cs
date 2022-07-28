@@ -36,11 +36,12 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         public async Task TestGetUserData()
         {
 
-           /* var webAppFactory = new WebApplicationFactory<UserdataService>();
+            var webAppFactory = new WebApplicationFactory<Startup>();
+            string id = "aaa"; 
             var httpClient = webAppFactory.CreateDefaultClient();
-            var response = await httpClient.GetAsync("");
+            var response = await httpClient.GetAsync("api/UserData/get");
             var result = await response.Content.ReadAsStringAsync();
-            Assert.AreEqual( "aaa" , result );*/ 
+            Assert.AreEqual( "" , result );
             
 
         }
