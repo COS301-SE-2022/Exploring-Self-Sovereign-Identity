@@ -20,6 +20,7 @@
 * [Coding Standards Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9209052/Coding.Standards.Document.pdf)
 * [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9213050/SRS.Document.pdf)
 * [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
+* [Demo 3 Exploring Self-Sovereign Identities](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9216758/Demo.3.exploring.self-sovereign.identities.pdf)
 
 
 
