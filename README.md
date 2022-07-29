@@ -10,7 +10,8 @@
    * [video](https://drive.google.com/file/d/1pKJ4mAlvG20tGbMSPu2vF7haJ5zroUUv/view?usp=sharing)
 * [Demo 2 (10/06)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-2)
   * [video](https://drive.google.com/file/d/1FlYbD0541b8dLWB-AisRWcFs9j2SnRK0/view?usp=sharing)
-* Demo 3 (29/07) <i> to be completed. </i>
+* [Demo 3 (29/07)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-3)
+  *[video](https://drive.google.com/file/d/1UqejxSGpTyzGVpEmzNhl402VLjz9G6cL/view?usp=sharing)
 * Demo 4 (08/09) <i> to be completed. </i>
 
 ## Documentation
