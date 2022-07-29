@@ -50,7 +50,7 @@ jobs:
         run: npm run test:unit
       - name: Running API
         working-directory: ./ExploringSelfSovereignIdentityAPI
-        run: dotnet start
+        run: dotnet run
       - name: Running Server
         working-directory: ./SSIVueJsClient
         run: npm run test:e2e:ci &
