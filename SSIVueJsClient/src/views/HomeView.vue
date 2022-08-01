@@ -5,13 +5,18 @@ import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
 import { Passage } from "@passageidentity/passage-js";
+// import { getuserdata } from "@/services/UserDataService";
+import { userDataStore } from "@/stores/userData";
+
 // import { UserService } from "../services/UserService";
 // import { RegisterRequest } from "../models/requests/RegisterRequest";
 import { isNull } from "lodash";
 export default defineComponent({
   setup() {
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
-    return { appid };
+    // getuserdata("orhfaoiuhosdhgosir");
+    const userData = userDataStore();
+    return { appid, userData };
   },
   data() {
     return {};
@@ -26,6 +31,7 @@ export default defineComponent({
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
   mounted() {
+    //Passage store
     const passage = new Passage(this.appid);
     const user = passage.getCurrentUser();
     user.getMetadata().then((Response) => {
@@ -39,8 +45,10 @@ export default defineComponent({
           userid: "This is also a test",
         });
       }
-      console.log(Response);
+      // console.log(Response);
     });
+
+    console.log(this.userData.getuserdata("orhfaoiuhosdhgosir"));
   },
 });
 </script>
