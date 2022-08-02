@@ -26,6 +26,12 @@ contract UserDataContract {
 
         uint credentialCount;
         mapping (uint => Credential) credentials;
+
+        uint transactionRequestCount;
+        mapping (uint => TransactionRequest) transactionRequests;
+
+        uint credentialRequestCount;
+        mapping (uint => CredentialRequest) credentialRequests;
     }
 
     /* What will be returned in place of a Credential struct. */
@@ -68,6 +74,28 @@ contract UserDataContract {
         string value;
     }
 
+    /* Data to describe transaction information. */
+    struct TransactionStamp {
+        string fromID;
+        string date;
+        string message;
+    }
+
+    /* Request to get data from a user. */
+    struct TransactionRequest {
+        string[] attributes;
+        TransactionStamp stamp;
+    }
+
+    struct CredentialRequest {
+        string organization;
+        TransactionStamp stamp;
+    }
+
+    // struct TransactionSent {
+        
+    // }
+
     /* All stored user's data can be accessed through the allUserData attribute. */
     mapping (string => UserData) allUserData;
 
@@ -84,26 +112,12 @@ contract UserDataContract {
         allUserData[_id].credentialCount = 0;
     }
 
+    /* Function to update a single attribute. */
     function updateAttribute(string memory _id, uint index, string memory name, string memory value) public {
         allUserData[_id].attributes[index].name = name;
         allUserData[_id].attributes[index].value = value;
     }
 
-    function createAttribute(UpdateAttribute memory attribute) public {
-        uint index = allUserData[attribute.id].attributeCount++;
-        allUserData[attribute.id].attributes[index].name = attribute.name;
-        allUserData[attribute.id].attributes[index].value = attribute.value;
-    }
-
-    function createAttributeX() public {
-        //uint index = allUserData["test"].attributeCount++;
-        allUserData["test"].attributes[0].name = "testname";
-        allUserData["test"].attributes[0].value = "testvalue";
-    }
-
-    function createAttributeY() public {
-        
-    }
 
     /* Returns the desired attributes for requested data. */
     function getAttributesTransaction(string memory _id, Attribute[] memory attributes) public view returns (Attribute[] memory) {
