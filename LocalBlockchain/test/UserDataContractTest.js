@@ -89,5 +89,17 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
 
     describe("Transactions", async() => {
         
+        it("Adds new TransactionRequests successfully.", async () => {
+
+            await udc.newTransactionRequest([["name"], ["from",id,"2022/08/03","Please give me your name!"]]);
+            result = await udc.getUserData(id);
+
+            //console.log(result.transactionRequests);
+
+            assert.equal(result.id, id);
+            assert.equal(result.transactionRequests[0].stamp.toID, id);
+            assert.equal(result.transactionRequests[0].stamp.fromID, "from");
+            assert.equal(result.transactionRequests[0].attributes[0], "name");
+        });
     });
 });

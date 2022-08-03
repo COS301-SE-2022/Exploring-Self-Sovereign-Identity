@@ -49,6 +49,7 @@ contract UserDataContract {
         string id;
         Attribute[] attributes;
         CredentialResponse[] credentials;
+        TransactionRequest[] transactionRequests;
     }
 
     /* Received in paramets to update attributes, this improves gas usage by knowing when to insert and when to update. */
@@ -121,11 +122,31 @@ contract UserDataContract {
             }
         }
 
+        //create TransactionRequest array
+        size = allUserData[_id].transactionRequestCount;
+        TransactionRequest[] memory transactionRequests = new TransactionRequest[](allUserData[_id].transactionRequestCount);
+
+        for (uint i=0; i<size; i++) {
+
+            transactionRequests[i].stamp.toID = allUserData[_id].transactionRequests[i].stamp.toID;
+            transactionRequests[i].stamp.fromID = allUserData[_id].transactionRequests[i].stamp.fromID;
+            transactionRequests[i].stamp.message = allUserData[_id].transactionRequests[i].stamp.message;
+            transactionRequests[i].stamp.date = allUserData[_id].transactionRequests[i].stamp.date;
+
+            uint attrSize = allUserData[_id].transactionRequests[i].attributes.length;
+            transactionRequests[i].attributes = new string[](attrSize);
+
+            for (uint k=0; k<attrSize; k++) {
+                transactionRequests[i].attributes[k] = allUserData[_id].transactionRequests[i].attributes[k];
+            }
+        }
+
         //Create UserDataResponse
         return (UserDataResponse({
             id: _id,
             attributes: attrs,
-            credentials: creds
+            credentials: creds,
+            transactionRequests: transactionRequests
         }));
     }
 
@@ -194,6 +215,7 @@ contract UserDataContract {
     /* Data to describe transaction information. */
     struct TransactionStamp {
         string fromID;
+        string toID;
         string date;
         string message;
     }
@@ -208,6 +230,26 @@ contract UserDataContract {
     struct CredentialRequest {
         string organization;
         TransactionStamp stamp;
+    }
+
+    function newTransactionRequest(TransactionRequest memory request) public {
+        addTransactionRequest(request);
+    }
+
+    function addTransactionRequest(TransactionRequest memory request) private {
+        string memory id = request.stamp.toID;
+        uint index = allUserData[id].transactionRequestCount++;
+        allUserData[id].transactionRequests[index].stamp.fromID = request.stamp.fromID;
+        allUserData[id].transactionRequests[index].stamp.toID = request.stamp.toID;
+        allUserData[id].transactionRequests[index].stamp.date = request.stamp.date;
+        allUserData[id].transactionRequests[index].stamp.message = request.stamp.message;
+
+        allUserData[id].transactionRequests[index].attributes = new string[](request.attributes.length);
+
+        for (uint i=0; i<request.attributes.length; i++) {
+
+            allUserData[id].transactionRequests[index].attributes[i] = request.attributes[i];
+        }
     }
 
     /* Returns the desired attributes for requested data. */
