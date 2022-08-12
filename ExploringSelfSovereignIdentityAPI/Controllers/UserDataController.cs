@@ -77,21 +77,21 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("create")]
-        public /*async Task<string>*/ string Register([FromBody] RegisterRequest request)
+        public async Task<string> Register([FromBody] RegisterRequest request)
         {
             //return await blockchainService.createUser(request.id);
-            //return await uds.createUser(request.id);
-            response.Id = request.id;
-            return "success";
+            return await uds.createUser(request.id);
+            //response.Id = request.id;
+            //return "success";
         }
 
         [HttpPost]
         [Route("get")]
-        public UserDataResponse GetUserData([FromBody] RegisterRequest request)
+        public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
         {
             //await blockchainService.getUserData(request.id);
-            //return await uds.getUserData(request.id);
-            return response;
+            return await uds.getUserData(request.id);
+            //return response;
         }
 
         [HttpPost]

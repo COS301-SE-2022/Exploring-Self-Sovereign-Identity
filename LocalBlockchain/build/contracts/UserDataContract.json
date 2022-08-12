@@ -206,7 +206,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -301,7 +302,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -349,7 +351,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"}],\"name\":\"createUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"name\":\"getAttributesTransaction\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"}],\"name\":\"getCredentialTransaction\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"}],\"name\":\"getUserData\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialResponse[]\",\"name\":\"credentials\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string[]\",\"name\":\"attributes\",\"type\":\"string[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionRequest[]\",\"name\":\"transactionRequests\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.UserDataResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string[]\",\"name\":\"attributes\",\"type\":\"string[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"newTransactionRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute\",\"name\":\"attribute\",\"type\":\"tuple\"},{\"internalType\":\"int256\",\"name\":\"index\",\"type\":\"int256\"}],\"internalType\":\"struct UserDataContract.AttributeUpdate[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"int256\",\"name\":\"index\",\"type\":\"int256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialUpdate[]\",\"name\":\"credentials\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.Update\",\"name\":\"update\",\"type\":\"tuple\"}],\"name\":\"updateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/UserDataContract.sol\":\"UserDataContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/UserDataContract.sol\":{\"keccak256\":\"0xc54b8193db3576a79858d93b978b363c84cca790587282f28b7ba89e41ea57b3\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://3f9b23639d8be14bf742cf34f6b715f7c1c06695db1210674ef98b7dc97f02a3\",\"dweb:/ipfs/QmdwnNVXBjhVkKqqEDxb3DTmqr4tjTuu4yaFJLdZhA5Qqi\"]}},\"version\":1}",
@@ -37046,12 +37049,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xac3f2e6784812b98b8fbb6FD8230EbAd65488b8A",
-      "transactionHash": "0x10da7d5254139483850dd4780cb6877c46a57d3e09c0c86949a4f4a479256e0a"
+      "address": "0x1ae28035472153eA94cCCeFb196DF8C21a9819a1",
+      "transactionHash": "0x1e2e7a1aa084c1ced0554615b977e9c22c2cffec1af973b03b7bab534e256b7c"
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-12T12:39:47.204Z",
+  "updatedAt": "2022-08-12T12:59:23.029Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
