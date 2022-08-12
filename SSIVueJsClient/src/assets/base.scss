@@ -14,7 +14,7 @@ body {
   margin: 0%;
   color: var(--color-text);
   // background: var(--color-background);
-  background: linear-gradient(to bottom left, #000000 0%, #3dcdcd 100%);
+  background: linear-gradient(to bottom left, #000000 0%, #131717 100%);
   // background-color: black;
   // background-color: rebeccapurple;
   transition: color 0.5s, background-color 0.5s;
@@ -33,5 +33,5 @@ body {
   --passage-onprimary-color: black;
   --passage-primary-color: #fff;
   --passage-body-text-color: #fff;
-  --passage-header-text-color: #fff;
+  --passage-header-text-color: #fff;  
 }
