@@ -14,7 +14,8 @@ body {
   margin: 0%;
   color: var(--color-text);
   // background: var(--color-background);
-  background: linear-gradient(to bottom left, #0099ff 0%, #00ffff 100%);
+  background: linear-gradient(to bottom left, #000000 0%, #3dcdcd 100%);
+  // background-color: black;
   // background-color: rebeccapurple;
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
@@ -26,4 +27,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+}
+
+:root {
+  --passage-onprimary-color: black;
+  --passage-primary-color: #fff;
+  --passage-body-text-color: #fff;
+  --passage-header-text-color: #fff;
 }
