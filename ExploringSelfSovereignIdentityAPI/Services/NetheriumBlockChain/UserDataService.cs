@@ -18,12 +18,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         static string url = "http://127.0.0.1:8545";
 
-        static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
+        static string privateKey = "f1f4620e618b7f9e46193dd3a027d03deba06d9c12f548c10213d81de0f7505e";
 
         private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
 
-        private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
-        private static string contractAddress = "0x1ae28035472153eA94cCCeFb196DF8C21a9819a1";
+        private readonly string senderAddress = "0x8C59b7CB68c7DC5B87864821f46B40Ded400009f";
+        private static string contractAddress = "0x835679d44e64De6aB10D9369862967233A0F8c84";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
@@ -49,12 +49,59 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
-        public async Task<GetUserDataOutputDTO> updateUserData(string id,Update update)
+        public async Task<GetUserDataOutputDTO> updateUserData(UpdateGen2 update)
         {
+            Update u = new Update();
+            u.Id = update.Id;
+
+            List<AttributeUpdate> au = new List<AttributeUpdate>();
+
+            for(int i=0;i < update.Attributes.Count;i++)
+            {
+                AttributeUpdate item = new AttributeUpdate();
+                item.Attribute = new Attribute();
+                item.Attribute.Name = update.Attributes[i].Attribute.Name;
+                item.Attribute.Value = update.Attributes[i].Attribute.Value;
+
+                item.Index = new BigInteger(update.Attributes[i].Index);
+
+                au.Add(item);
+                
+            }
+
+
+            List<CredentialUpdate> cu = new List<CredentialUpdate>();
+            for (int i = 0; i < update.Credentials.Count; i++)
+            {
+                
+                CredentialUpdate item2 = new CredentialUpdate();
+
+                List<Attribute> ca = new List<Attribute>();
+                for (int j = 0; j < update.Credentials[i].Attributes.Count; j++)
+                {
+                    Attribute item3 = new Attribute();
+                    item3.Name = update.Credentials[i].Attributes[j].Name; 
+                    item3.Value = update.Credentials[i].Attributes[j].Value;
+
+                    ca.Add(item3);
+                }
+                item2.Attributes = ca;
+
+                item2.Organization = update.Credentials[i].Organization;
+
+                item2.Index = new BigInteger(update.Credentials[i].Index);
+
+                cu.Add(item2);
+
+            }
+
+            u.Attributes = au;
+            u.Credentials = cu;
+
             var updateUserFunction = new UpdateUserFunction();
-            updateUserFunction.Update = update;
+            updateUserFunction.Update = u;
             var updateUserFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(updateUserFunction);
-            return await getUserData(id);
+            return await getUserData(update.Id);
         }
 
         public async Task<GetUserDataOutputDTO> getUserData(string id)
@@ -192,6 +239,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual BigInteger Index { get; set; }
     }
 
+
+
+
     public partial class CredentialUpdate : CredentialUpdateBase { }
 
     public class CredentialUpdateBase
@@ -204,6 +254,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual List<Attribute> Attributes { get; set; }
     }
 
+
+
     public partial class Update : UpdateBase { }
 
     public class UpdateBase
@@ -215,6 +267,10 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         [Parameter("tuple[]", "credentials", 3)]
         public virtual List<CredentialUpdate> Credentials { get; set; }
     }
+
+
+
+
 
     public partial class CredentialResponse : CredentialResponseBase { }
 
