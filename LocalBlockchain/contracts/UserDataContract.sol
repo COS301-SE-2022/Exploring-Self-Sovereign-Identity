@@ -34,6 +34,9 @@ contract UserDataContract {
         uint transactionRequestCount;
         mapping (uint => TransactionRequest) transactionRequests;
 
+        uint approvedTransactions;
+        mapping (uint => TransactionRequest) approvedTransaction;
+
         uint credentialRequestCount;
         mapping (uint => CredentialRequest) credentialRequests;
     }
@@ -81,6 +84,7 @@ contract UserDataContract {
         allUserData[_id].attributeCount = 0;
         allUserData[_id].credentialCount = 0;
         allUserData[_id].transactionRequestCount = 0;
+        allUserData[_id].approvedTransactions = 0;
         allUserData[_id].credentialRequestCount = 0;
     }
 
@@ -218,11 +222,17 @@ contract UserDataContract {
         string toID;
         string date;
         string message;
+        string status;
     }
 
     /* Request to get Attribute data from a user. */
     struct TransactionRequest {
         string[] attributes;
+        TransactionStamp stamp;
+    }
+
+    struct TransactionResponse {
+        Attribute[] attributes;
         TransactionStamp stamp;
     }
 
@@ -251,6 +261,41 @@ contract UserDataContract {
         for (uint i=0; i<request.attributes.length; i++) {
             allUserData[id].transactionRequests[index].attributes[i] = request.attributes[i];
         }
+    }
+
+    /* Approves the pending transaction by returning the data to the API for decryption. */
+    function approveTransactionStageB(string memory _id, uint index) public view returns (TransactionResponse memory) {
+        TransactionResponse memory ret;
+        
+        ret.stamp.toID = allUserData[_id].transactionRequests[index].stamp.toID;
+        ret.stamp.fromID = allUserData[_id].transactionRequests[index].stamp.fromID;
+        ret.stamp.message = allUserData[_id].transactionRequests[index].stamp.message;
+        ret.stamp.date = allUserData[_id].transactionRequests[index].stamp.date;
+        ret.stamp.status = allUserData[_id].transactionRequests[index].stamp.status;
+
+        uint attrSize = allUserData[_id].transactionRequests[index].attributes.length;
+        ret.attributes = new Attribute[](attrSize);
+
+        for (uint k=0; k<attrSize; k++) {
+            ret.attributes[k].name = allUserData[_id].transactionRequests[index].attributes[k];
+            ret.attributes[k].value = findAttribute(_id, ret.attributes[k].name);
+        }
+
+        return ret;
+    }
+
+    function approveTransactionStageA(string memory _id, uint index) public {
+        allUserData[_id].transactionRequests[index].stamp.status = "approved";
+    }
+
+    function findAttribute(string memory id, string memory name) private view returns (string memory) {
+
+        for (uint i=0; i<allUserData[id].attributeCount; i++) {
+            if (stringCompare(allUserData[id].attributes[i].name, name))
+                return allUserData[id].attributes[i].value;
+        }
+
+        return "N/A";
     }
 
     /* Returns the desired attributes for requested data. */
