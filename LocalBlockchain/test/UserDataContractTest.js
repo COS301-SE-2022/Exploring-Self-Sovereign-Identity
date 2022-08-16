@@ -91,6 +91,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
         
         it("Adds new TransactionRequests successfully.", async () => {
 
+            await udc.createUser("from");
             await udc.newTransactionRequest([["alias"], ["from",id,"2022/08/03","Please give me your name!", "pending"]]);
             result = await udc.getUserData(id);
 
@@ -102,10 +103,11 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.transactionRequests[0].attributes[0], "alias");
         });
 
-        it("Approves stage 1 and 2 Transactions.", async () => {
+        it("Approves stage 1, 2 and 3 Transactions.", async () => {
 
             await udc.approveTransactionStageA(id, 0);
             result = await udc.approveTransactionStageB(id, 0);
+            await udc.approveTransactionStageC("from", [[["alias","Johan"]], ["from",id,"2022/08/03","Please give me your name!", "approved"]]);
 
             //console.log(result);
 
@@ -113,6 +115,12 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.attributes[0].name, "alias");
             assert.equal(result.attributes[0].value, "Johan");
             
+            result = await udc.getUserData("from");
+
+            //console.log(result);
+
+            assert.equal(result.approvedTransactions[0].stamp.status, "approved");
+            assert.equal(result.approvedTransactions[0].attributes[0].value, "Johan");
         });
     });
 });

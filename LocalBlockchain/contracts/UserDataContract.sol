@@ -34,8 +34,8 @@ contract UserDataContract {
         uint transactionRequestCount;
         mapping (uint => TransactionRequest) transactionRequests;
 
-        uint approvedTransactions;
-        mapping (uint => TransactionRequest) approvedTransaction;
+        uint approvedTransactionCount;
+        mapping (uint => TransactionApprovedStorage) approvedTransactions;
 
         uint credentialRequestCount;
         mapping (uint => CredentialRequest) credentialRequests;
@@ -53,6 +53,7 @@ contract UserDataContract {
         Attribute[] attributes;
         CredentialResponse[] credentials;
         TransactionRequest[] transactionRequests;
+        TransactionResponse[] approvedTransactions;
     }
 
     /* Received in paramets to update attributes, this improves gas usage by knowing when to insert and when to update. */
@@ -84,7 +85,7 @@ contract UserDataContract {
         allUserData[_id].attributeCount = 0;
         allUserData[_id].credentialCount = 0;
         allUserData[_id].transactionRequestCount = 0;
-        allUserData[_id].approvedTransactions = 0;
+        allUserData[_id].approvedTransactionCount = 0;
         allUserData[_id].credentialRequestCount = 0;
     }
 
@@ -136,6 +137,7 @@ contract UserDataContract {
             transactionRequests[i].stamp.fromID = allUserData[_id].transactionRequests[i].stamp.fromID;
             transactionRequests[i].stamp.message = allUserData[_id].transactionRequests[i].stamp.message;
             transactionRequests[i].stamp.date = allUserData[_id].transactionRequests[i].stamp.date;
+            transactionRequests[i].stamp.status = allUserData[_id].transactionRequests[i].stamp.status;
 
             uint attrSize = allUserData[_id].transactionRequests[i].attributes.length;
             transactionRequests[i].attributes = new string[](attrSize);
@@ -145,12 +147,34 @@ contract UserDataContract {
             }
         }
 
+        //create Approved Transaction array
+        size = allUserData[_id].approvedTransactionCount;
+        TransactionResponse[] memory approvedTransactions = new TransactionResponse[](size);
+
+        for (uint i=0; i<size; i++) {
+
+            approvedTransactions[i].stamp.toID = allUserData[_id].approvedTransactions[i].stamp.toID;
+            approvedTransactions[i].stamp.fromID = allUserData[_id].approvedTransactions[i].stamp.fromID;
+            approvedTransactions[i].stamp.message = allUserData[_id].approvedTransactions[i].stamp.message;
+            approvedTransactions[i].stamp.date = allUserData[_id].approvedTransactions[i].stamp.date;
+            approvedTransactions[i].stamp.status = allUserData[_id].approvedTransactions[i].stamp.status;
+
+            uint attrSize = allUserData[_id].approvedTransactions[i].attributeCount;
+            approvedTransactions[i].attributes = new Attribute[](attrSize);
+
+            for (uint k=0; k<attrSize; k++) {
+                approvedTransactions[i].attributes[k].name = allUserData[_id].approvedTransactions[i].attributes[k].name;
+                approvedTransactions[i].attributes[k].value = allUserData[_id].approvedTransactions[i].attributes[k].value;
+            }
+        }
+
         //Create UserDataResponse
         return (UserDataResponse({
             id: _id,
             attributes: attrs,
             credentials: creds,
-            transactionRequests: transactionRequests
+            transactionRequests: transactionRequests,
+            approvedTransactions: approvedTransactions
         }));
     }
 
@@ -236,6 +260,12 @@ contract UserDataContract {
         TransactionStamp stamp;
     }
 
+    struct TransactionApprovedStorage {
+        uint attributeCount;
+        mapping (uint => Attribute) attributes;
+        TransactionStamp stamp;
+    }
+
     /* Request to get Credential data from a user. */
     struct CredentialRequest {
         string organization;
@@ -263,6 +293,10 @@ contract UserDataContract {
         }
     }
 
+    function approveTransactionStageA(string memory _id, uint index) public {
+        allUserData[_id].transactionRequests[index].stamp.status = "approved";
+    }
+
     /* Approves the pending transaction by returning the data to the API for decryption. */
     function approveTransactionStageB(string memory _id, uint index) public view returns (TransactionResponse memory) {
         TransactionResponse memory ret;
@@ -284,8 +318,24 @@ contract UserDataContract {
         return ret;
     }
 
-    function approveTransactionStageA(string memory _id, uint index) public {
-        allUserData[_id].transactionRequests[index].stamp.status = "approved";
+    function approveTransactionStageC(string memory _id, TransactionResponse memory transaction) public {
+
+        uint index = allUserData[_id].approvedTransactionCount++;
+        uint size = transaction.attributes.length;
+
+        allUserData[_id].approvedTransactions[index].stamp.fromID = transaction.stamp.fromID;
+        allUserData[_id].approvedTransactions[index].stamp.toID = transaction.stamp.toID;
+        allUserData[_id].approvedTransactions[index].stamp.date = transaction.stamp.date;
+        allUserData[_id].approvedTransactions[index].stamp.message = transaction.stamp.message;
+        allUserData[_id].approvedTransactions[index].stamp.status = transaction.stamp.status;
+
+        //allUserData[_id].approvedTransactions[index].attributes = new Attribute[](size);
+        allUserData[_id].approvedTransactions[index].attributeCount = size;
+
+        for (uint i=0; i<size; i++) {
+            allUserData[_id].approvedTransactions[index].attributes[i].name = transaction.attributes[i].name;
+            allUserData[_id].approvedTransactions[index].attributes[i].value = transaction.attributes[i].value;
+        }
     }
 
     function findAttribute(string memory id, string memory name) private view returns (string memory) {
