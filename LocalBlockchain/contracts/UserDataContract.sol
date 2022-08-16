@@ -232,10 +232,12 @@ contract UserDataContract {
         TransactionStamp stamp;
     }
 
+    /* Stores the pending transaction with the appropriate user. */
     function newTransactionRequest(TransactionRequest memory request) public {
         addTransactionRequest(request);
     }
 
+    /* Adds a new transaction as pending to the user's data. */
     function addTransactionRequest(TransactionRequest memory request) private {
         string memory id = request.stamp.toID;
         uint index = allUserData[id].transactionRequestCount++;
@@ -247,7 +249,6 @@ contract UserDataContract {
         allUserData[id].transactionRequests[index].attributes = new string[](request.attributes.length);
 
         for (uint i=0; i<request.attributes.length; i++) {
-
             allUserData[id].transactionRequests[index].attributes[i] = request.attributes[i];
         }
     }
