@@ -103,7 +103,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.transactionRequests[0].attributes[0], "alias");
         });
 
-        it("Approves stage 1, 2 and 3 Transactions.", async () => {
+        it("Approves stage A, B and C Transactions.", async () => {
 
             await udc.approveTransactionStageA(id, 0);
             result = await udc.approveTransactionStageB(id, 0);
