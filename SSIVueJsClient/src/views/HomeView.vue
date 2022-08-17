@@ -62,7 +62,7 @@ export default defineComponent({
         <template #header>
           <div>
             <el-avatar :size="100" shape="square"
-              ><IconAvatar class="icon"
+              ><IconAvatar class="icon card"
             /></el-avatar>
           </div>
         </template>
@@ -76,7 +76,7 @@ export default defineComponent({
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
-              <IconPending class="icon"
+              <IconPending class="icon card"
             /></el-avatar>
           </div>
         </template>
@@ -93,7 +93,7 @@ export default defineComponent({
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
-              <IconPast class="icon"
+              <IconPast class="icon card"
             /></el-avatar>
           </div>
         </template>
@@ -107,7 +107,7 @@ export default defineComponent({
         <template #header>
           <div>
             <el-avatar :size="100" shape="square">
-              <IconFile class="icon"
+              <IconFile class="icon card"
             /></el-avatar>
           </div>
         </template>
@@ -118,13 +118,18 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import "@/assets/_variables.scss";
 .icon {
   background-color: white;
 }
-.card {
+.el-card {
   // width: fit-content;
   text-align: center;
+
+  background: rgba(255, 255, 255, 0.53);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.7px);
+  -webkit-backdrop-filter: blur(12.7px);
 }
 .row {
   margin-bottom: 1vw;

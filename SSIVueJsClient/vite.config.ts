@@ -20,7 +20,7 @@ export default defineConfig({
       },
     }),
     ElementPlus({
-      useSource: false,
+      useSource: true,
     }),
     vueJsx(),
     AutoImport({
