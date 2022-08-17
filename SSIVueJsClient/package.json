@@ -53,6 +53,7 @@
     "unplugin-auto-import": "^0.8.8",
     "unplugin-element-plus": "^0.4.1",
     "unplugin-vue-components": "^0.19.9",
+    "vfonts": "^0.0.3",
     "vite": "^2.9.5",
     "vitest": "^0.9.4",
     "vue-tsc": "^0.34.7",
