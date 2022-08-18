@@ -38,6 +38,12 @@ declare module '@vue/runtime-core' {
     IconPast: typeof import('./src/components/icons/IconPast.vue')['default']
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
+    NAvatar: typeof import('naive-ui')['NAvatar']
+    NCard: typeof import('naive-ui')['NCard']
+    NGi: typeof import('naive-ui')['NGi']
+    NGrid: typeof import('naive-ui')['NGrid']
+    NIcon: typeof import('naive-ui')['NIcon']
+    NPageHeader: typeof import('naive-ui')['NPageHeader']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

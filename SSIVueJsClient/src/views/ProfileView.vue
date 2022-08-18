@@ -4,6 +4,7 @@ import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { ElLoading } from "element-plus";
+import IconAvatar from "../components/icons/IconAvatar.vue";
 
 export default defineComponent({
   setup() {
@@ -53,7 +54,7 @@ export default defineComponent({
       });
     },
   },
-  components: { BackNav },
+  components: { BackNav, IconAvatar },
 });
 </script>
 
@@ -154,10 +155,29 @@ export default defineComponent({
     </el-container>
   </div>
 
+  <!-- *Header -->
+  <n-page-header title="Profile" subtitle="A podcast to improve designs">
+    <template #avatar>
+      <n-avatar>
+        <n-icon>
+          <IconAvatar style="background-color: rgba(0, 0, 0, 0)" />
+        </n-icon>
+      </n-avatar>
+    </template>
+  </n-page-header>
+  <!-- * -->
+
   <BackNav page="Profile" />
 </template>
 
 <style lang="scss">
+.icon {
+  background-color: rgba(255, 255, 255, 0);
+  height: auto;
+  width: auto;
+  max-width: 25vw;
+}
+
 .info {
   width: 98vw;
   margin-left: auto;
