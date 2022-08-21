@@ -85,8 +85,46 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
 
 
+
             return "success";
         }
+
+
+        public async Task<string> approveTransactionStageC(string id, TransactionResponse transaction)
+        {
+            
+            TransactionResponse tr = new TransactionResponse();
+
+            tr.Attributes = transaction.Attributes;
+            tr.Stamp = transaction.Stamp;
+            
+            /*TransactionStamp stamp = new TransactionStamp();
+            stamp.ToID = transaction.Stamp.ToID;
+            stamp.FromID = transaction.Stamp.FromID;
+            stamp.Message = transaction.Stamp.Message;
+            stamp.Date = transaction.Stamp.Date;
+            stamp.Status = transaction.Stamp.Status;
+
+            List<string> attrs = new List<string>();
+
+            for (int i = 0; i < transaction.Attributes.Count; i++)
+            {
+                attrs.Add(transaction.Attributes[i].Value);
+            }
+            */
+            //tr.Attributes = 
+            //tr.Stamp = stamp;
+
+            var approveTransactionStageCFunction = new ApproveTransactionStageCFunction();
+            approveTransactionStageCFunction.Id = id;
+            approveTransactionStageCFunction.Transaction = tr;
+            var approveTransactionStageCFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageCFunction);
+
+            return "success";
+        }
+
+
+
 
         public async Task<string> updateAttributes(string id, AttributeBC[] attributes)
         {
