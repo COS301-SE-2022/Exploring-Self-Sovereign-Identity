@@ -11,6 +11,7 @@ using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using System;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
+using Nethereum.RPC.Eth.DTOs;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -128,6 +129,18 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         public async Task<GetUserDataOutputDTO> UpdateCredentials([FromBody] UpdateGen2 request )
         {
             return await uds.updateUserData(request);
+        }
+
+
+        //Transactions
+
+        [HttpPost]
+        [Route("newTransaction")]
+        public async Task<String> newTransaction([FromBody] TransactionRequest request)
+        {
+            //await blockchainService.getUserData(request.id);
+            return await uds.newTransactionRequest(request);
+            //return response;
         }
     }
 }

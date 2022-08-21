@@ -18,12 +18,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         static string url = "http://127.0.0.1:8545";
 
-        static string privateKey = "f1f4620e618b7f9e46193dd3a027d03deba06d9c12f548c10213d81de0f7505e";
+        static string privateKey = "57dac1c6a6f92872594081ba7a0f0aaec4ead5c492476e31f7f337c2e8589282";
 
         private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
 
-        private readonly string senderAddress = "0x8C59b7CB68c7DC5B87864821f46B40Ded400009f";
-        private static string contractAddress = "0x835679d44e64De6aB10D9369862967233A0F8c84";
+        private readonly string senderAddress = "0xeE07Cf444e5044295228083C652aA46F9fefA44A";
+        private static string contractAddress = "0x424F1A24D873F7Eb222EE2734894baa840F184fc";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
@@ -41,6 +41,15 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             var createUserFunction = new CreateUserFunction();
             createUserFunction.Id = id;
             var createUserFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(createUserFunction);
+            return "success";
+        }
+
+        public async Task<String> newTransactionRequest(TransactionRequest request)
+        {
+            var newTransactionRequestFunction = new NewTransactionRequestFunction();
+            newTransactionRequestFunction.Request = request;
+            var newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
+
             return "success";
         }
 
