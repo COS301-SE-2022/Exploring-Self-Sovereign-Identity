@@ -18,12 +18,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         static string url = "http://127.0.0.1:8545";
 
-        static string privateKey = "57dac1c6a6f92872594081ba7a0f0aaec4ead5c492476e31f7f337c2e8589282";
+        static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
 
-        private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
+        //private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
 
-        private readonly string senderAddress = "0xeE07Cf444e5044295228083C652aA46F9fefA44A";
-        private static string contractAddress = "0x424F1A24D873F7Eb222EE2734894baa840F184fc";
+        private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
+        private static string contractAddress = "0x6e7aAB627FD8676B1233d177a6D4bF07a5Cb9141";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
@@ -46,15 +46,29 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public async Task<String> newTransactionRequest(TransactionRequest request)
         {
+            TransactionRequest tr = new TransactionRequest();
+
+            TransactionStamp stamp = new TransactionStamp();
+            stamp.ToID = request.Stamp.ToID;
+            stamp.FromID = request.Stamp.FromID;
+            stamp.Message = request.Stamp.Message;
+            stamp.Date = request.Stamp.Date;
+            stamp.Status = request.Stamp.Status;
+
+            List<string> attrs = new List<string>();
+
+            for (int i=0; i<request.Attributes.Count; i++) 
+            {
+                attrs.Add(request.Attributes[i]);
+            }
+
+            tr.Attributes = attrs;
+            tr.Stamp = stamp;
+
             var newTransactionRequestFunction = new NewTransactionRequestFunction();
-            newTransactionRequestFunction.Request = request;
+            newTransactionRequestFunction.Request = tr;
             var newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
 
-            return "success";
-        }
-
-        public async Task<string> updateAttributes(string id, AttributeBC[] attributes)
-        {
             return "success";
         }
 
@@ -333,6 +347,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual string Date { get; set; }
         [Parameter("string", "message", 4)]
         public virtual string Message { get; set; }
+        [Parameter("string", "status", 4)]
+        public virtual string Status { get; set; }
     }
 
     public partial class TransactionRequest : TransactionRequestBase { }

@@ -32,7 +32,7 @@ contract UserDataContract {
         mapping (uint => Credential) credentials;
 
         uint transactionRequestCount;
-        mapping (uint => TransactionRequest) transactionRequests;
+        mapping (uint => TransactionRequestStringMapping) transactionRequests;
 
         uint approvedTransactionCount;
         mapping (uint => TransactionApprovedStorage) approvedTransactions;
@@ -139,7 +139,7 @@ contract UserDataContract {
             transactionRequests[i].stamp.date = allUserData[_id].transactionRequests[i].stamp.date;
             transactionRequests[i].stamp.status = allUserData[_id].transactionRequests[i].stamp.status;
 
-            uint attrSize = allUserData[_id].transactionRequests[i].attributes.length;
+            uint attrSize = allUserData[_id].transactionRequests[i].attributeCount;
             transactionRequests[i].attributes = new string[](attrSize);
 
             for (uint k=0; k<attrSize; k++) {
@@ -255,6 +255,12 @@ contract UserDataContract {
         TransactionStamp stamp;
     }
 
+    struct TransactionRequestStringMapping {
+        uint attributeCount;
+        mapping (uint => string) attributes;
+        TransactionStamp stamp;
+    }
+
     struct TransactionResponse {
         Attribute[] attributes;
         TransactionStamp stamp;
@@ -286,7 +292,9 @@ contract UserDataContract {
         allUserData[id].transactionRequests[index].stamp.date = request.stamp.date;
         allUserData[id].transactionRequests[index].stamp.message = request.stamp.message;
 
-        allUserData[id].transactionRequests[index].attributes = new string[](request.attributes.length);
+        //allUserData[id].transactionRequests[index].attributes = new string[](request.attributes.length);
+        allUserData[id].transactionRequests[index].attributeCount = request.attributes.length;
+
 
         for (uint i=0; i<request.attributes.length; i++) {
             allUserData[id].transactionRequests[index].attributes[i] = request.attributes[i];
@@ -307,7 +315,7 @@ contract UserDataContract {
         ret.stamp.date = allUserData[_id].transactionRequests[index].stamp.date;
         ret.stamp.status = allUserData[_id].transactionRequests[index].stamp.status;
 
-        uint attrSize = allUserData[_id].transactionRequests[index].attributes.length;
+        uint attrSize = allUserData[_id].transactionRequests[index].attributeCount;
         ret.attributes = new Attribute[](attrSize);
 
         for (uint k=0; k<attrSize; k++) {
