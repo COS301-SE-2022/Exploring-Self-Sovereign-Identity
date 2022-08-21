@@ -18,12 +18,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         static string url = "http://127.0.0.1:8545";
 
-        static string privateKey = "ee49b634579e90d7b24209e84b408caab291249010b7867ee71bc7a5c424fdf6";
+        static string privateKey = "57dac1c6a6f92872594081ba7a0f0aaec4ead5c492476e31f7f337c2e8589282";
 
         //private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
 
-        private readonly string senderAddress = "0xa9F30646E86A9DBC9E57ab6ec51375911E284fa8";
-        private static string contractAddress = "0x6e7aAB627FD8676B1233d177a6D4bF07a5Cb9141";
+        private readonly string senderAddress = "0xeE07Cf444e5044295228083C652aA46F9fefA44A";
+        private static string contractAddress = "0xDAd7a7BC751b61c8297715E37447EeC7c0F0fCB1";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
@@ -68,6 +68,22 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             var newTransactionRequestFunction = new NewTransactionRequestFunction();
             newTransactionRequestFunction.Request = tr;
             var newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
+
+            return "success";
+        }
+
+        public async Task<string> approveTransaction(string id, int index)
+        {
+            var approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
+            approveTransactionStageAFunction.Id = id;
+            approveTransactionStageAFunction.Index = index;
+            var approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
+
+            //var approveBFunction = new ApproveTransactionStageBFunction();
+            //approveBFunction.Id = id;
+            //approveBFunction.Index = index;
+            //var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBFunctionBase>(approveBFunction);
+
 
             return "success";
         }
