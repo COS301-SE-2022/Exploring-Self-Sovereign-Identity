@@ -58,6 +58,16 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
+        public async Task<GetAttributesTransactionOutputDTO> getAttributesForTransaction(String id, List<Attribute> attributes)
+        {
+            var getAttributesTransaction = new GetAttributesTransactionFunction();
+            getAttributesTransaction.Id = id;
+            getAttributesTransaction.Attributes = attributes;
+            var getTransactionATtributesOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetAttributesTransactionFunction, GetAttributesTransactionOutputDTO>(getAttributesTransaction);
+
+            return getTransactionATtributesOutputDTO;
+        }
+
         public async Task<GetUserDataOutputDTO> updateUserData(UpdateGen2 update)
         {
             Update u = new Update();
