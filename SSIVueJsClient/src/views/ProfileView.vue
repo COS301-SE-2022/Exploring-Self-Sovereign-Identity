@@ -5,6 +5,7 @@ import { userDataStore } from "@/stores/userData";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { ElLoading } from "element-plus";
 import IconAvatar from "../components/icons/IconAvatar.vue";
+import { MenuOutline } from "@vicons/ionicons5";
 
 export default defineComponent({
   setup() {
@@ -163,6 +164,11 @@ export default defineComponent({
           <IconAvatar style="background-color: rgba(0, 0, 0, 0)" />
         </n-icon>
       </n-avatar>
+    </template>
+    <template #extra>
+      <n-icon>
+        <MenuOutline />
+      </n-icon>
     </template>
   </n-page-header>
   <!-- * -->
