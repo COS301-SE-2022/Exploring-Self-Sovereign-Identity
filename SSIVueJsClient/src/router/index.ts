@@ -7,6 +7,7 @@ import PendingTransactionsViewVue from "@/views/PendingTransactionsView.vue";
 import RequestDataViewVue from "@/views/RequestDataView.vue";
 import TransactionViewVue from "@/views/TransactionView.vue";
 import PastTransactionsVue from "@/views/PastTransactions.vue";
+import AvatarviewVue from "@/views/Avatarview.vue";
 const routes = [
   { path: "/", component: LoginView },
   { path: "/home", component: HomeView },
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/past",
     component: PastTransactionsVue,
+  },
+  {
+    path: "/avatar",
+    component: AvatarviewVue,
   },
 ];
 const router = createRouter({
