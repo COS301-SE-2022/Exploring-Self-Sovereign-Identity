@@ -2,6 +2,8 @@
 
 <div class="mn">
 
+ 
+
   <div @click="showVomit()">
     <svg viewBox="0 0 100 100">
      <g id="m_vomit">
@@ -106,7 +108,7 @@
 
 
 </div>
-
+ 
 </template>
 
 
