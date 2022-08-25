@@ -5,6 +5,7 @@ import "@vue/runtime-core";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
+ 
     ActionBar: typeof import("./src/components/elements/ActionBar.vue")["default"];
     Background: typeof import("./src/components/scenes/Background.vue")["default"];
     BackNav: typeof import("./src/components/Nav/BackNav.vue")["default"];

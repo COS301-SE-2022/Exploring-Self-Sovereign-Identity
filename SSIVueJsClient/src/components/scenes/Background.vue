@@ -4,6 +4,8 @@
 </template>
 
 <script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { type AvatarOption } from "@/types";
 
 export interface BackgroundProps {

@@ -1,7 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { type NONE } from "@/utils/constant";
 
 export type None = typeof NONE;
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import {
   type BeardShape,
   type ClothesShape,
