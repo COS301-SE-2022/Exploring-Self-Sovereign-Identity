@@ -16,36 +16,36 @@
 
 <script lang="ts">
 export interface VueColorAvatarRef {
-  avatarRef: HTMLDivElement
+  avatarRef: HTMLDivElement;
 }
 </script>
 
 <script lang="ts" setup>
-import { ref, toRefs, watchEffect } from 'vue'
+import { ref, toRefs, watchEffect } from "vue";
 
-import { WrapperShape } from '@/enums'
-import type { AvatarOption } from '@/types'
-import { getRandomAvatarOption } from '@/utils'
-import { AVATAR_LAYER, NONE } from '@/utils/constant'
-import { widgetData } from '@/utils/dynamic-data'
+import { WrapperShape } from "@/enums";
+//import type { AvatarOption } from "@/types/index";
+import { getRandomAvatarOption } from "@/utils";
+import { AVATAR_LAYER, NONE } from "@/utils/constant";
+import { widgetData } from "@/utils/dynamic-data";
 
-import Background from './widgets/Background.vue'
+import Background from "@/components/scenes/Background.vue";
 
-interface VueColorAvatarProps {
-  option: AvatarOption
-  size?: number
+export interface VueColorAvatarProps {
+  option: AvatarOption;
+  size?: number;
 }
 
 const props = withDefaults(defineProps<VueColorAvatarProps>(), {
   option: () => getRandomAvatarOption(),
   size: 280,
-})
+});
 
-const { option: avatarOption, size: avatarSize } = toRefs(props)
+const { option: avatarOption, size: avatarSize } = toRefs(props);
 
-const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
+const avatarRef = ref<VueColorAvatarRef["avatarRef"]>();
 
-defineExpose({ avatarRef })
+defineExpose({ avatarRef });
 
 function getWrapperShapeClassName() {
   return {
@@ -55,19 +55,19 @@ function getWrapperShapeClassName() {
       avatarOption.value.wrapperShape === WrapperShape.Square,
     [WrapperShape.Squircle]:
       avatarOption.value.wrapperShape === WrapperShape.Squircle,
-  }
+  };
 }
 
-const svgContent = ref('')
+const svgContent = ref("");
 
 watchEffect(async () => {
   const sortedList = Object.entries(avatarOption.value.widgets).sort(
     ([prevShape, prev], [nextShape, next]) => {
-      const ix = prev.zIndex ?? AVATAR_LAYER[prevShape]?.zIndex ?? 0
-      const iix = next.zIndex ?? AVATAR_LAYER[nextShape]?.zIndex ?? 0
-      return ix - iix
+      const ix = prev.zIndex ?? AVATAR_LAYER[prevShape]?.zIndex ?? 0;
+      const iix = next.zIndex ?? AVATAR_LAYER[nextShape]?.zIndex ?? 0;
+      return ix - iix;
     }
-  )
+  );
 
   // const promises: Promise<string>[] = sortedList.map(async ([widgetType, opt]) => {
   //   return (
@@ -78,28 +78,28 @@ watchEffect(async () => {
   const promises: Promise<string>[] = sortedList.map(
     async ([widgetType, opt]) => {
       if (opt.shape !== NONE && widgetData?.[widgetType]?.[opt.shape]) {
-        return (await widgetData[widgetType][opt.shape]()).default
+        return (await widgetData[widgetType][opt.shape]()).default;
       }
-      return ''
+      return "";
     }
-  )
+  );
 
   const svgRawList = await Promise.all(promises).then((raw) => {
     return raw.map((svgRaw, i) => {
-      const widgetFillColor = sortedList[i][1].fillColor
+      const widgetFillColor = sortedList[i][1].fillColor;
 
       const content = svgRaw
-        .slice(svgRaw.indexOf('>', svgRaw.indexOf('<svg')) + 1)
-        .replace('</svg>', '')
-        .replaceAll('$fillColor', widgetFillColor || 'transparent')
+        .slice(svgRaw.indexOf(">", svgRaw.indexOf("<svg")) + 1)
+        .replace("</svg>", "")
+        .replaceAll("$fillColor", widgetFillColor || "transparent");
 
       return `
         <g id="vue-color-avatar-${sortedList[i][0]}">
           ${content}
         </g>
-      `
-    })
-  })
+      `;
+    });
+  });
 
   svgContent.value = `
     <svg
@@ -111,11 +111,11 @@ watchEffect(async () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g transform="translate(100, 65)">
-        ${svgRawList.join('')}
+        ${svgRawList.join("")}
       </g>
     </svg>
-  `
-})
+  `;
+});
 </script>
 
 <style lang="scss" scoped>
