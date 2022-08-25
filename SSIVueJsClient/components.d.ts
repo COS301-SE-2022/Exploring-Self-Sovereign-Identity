@@ -5,7 +5,10 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActionBar: typeof import('./src/components/elements/ActionBar.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
+    ConfettiCanvas: typeof import('./src/components/elements/ConfettiCanvas.vue')['default']
+    Configurator: typeof import('./src/components/elements/Configurator.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -37,8 +40,12 @@ declare module '@vue/runtime-core' {
     IconPast: typeof import('./src/components/icons/IconPast.vue')['default']
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
+    Logo: typeof import('./src/components/elements/Logo.vue')['default']
+    PerfectScrollbar: typeof import('./src/components/elements/PerfectScrollbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SectionWrapper: typeof import('./src/components/elements/SectionWrapper.vue')['default']
+    VueColorAvatar: typeof import('./src/components/elements/VueColorAvatar.vue')['default']
   }
 }
 
