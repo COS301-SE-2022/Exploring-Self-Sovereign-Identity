@@ -217,7 +217,7 @@ function getWidgetColor(type: string) {
 </script>
 
 <style lang="scss" scoped>
-@use "src/styles/var";
+@use "src/assets/var";
 
 .configurator-scroll {
   width: var.$layout-sider-width;
