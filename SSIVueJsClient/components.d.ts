@@ -7,8 +7,10 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ActionBar: typeof import('./src/components/elements/ActionBar.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
+    BatchDownloadModal: typeof import('./src/components/Modal/BatchDownloadModal.vue')['default']
     ConfettiCanvas: typeof import('./src/components/elements/ConfettiCanvas.vue')['default']
     Configurator: typeof import('./src/components/elements/Configurator.vue')['default']
+    DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -41,6 +43,7 @@ declare module '@vue/runtime-core' {
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
     Logo: typeof import('./src/components/elements/Logo.vue')['default']
+    ModalWrapper: typeof import('./src/components/Modal/ModalWrapper.vue')['default']
     PerfectScrollbar: typeof import('./src/components/elements/PerfectScrollbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

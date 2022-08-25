@@ -14,49 +14,46 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { computed } from "vue";
 
-import IconBack from '@/assets/icons/icon-back.svg'
-import IconFlip from '@/assets/icons/icon-flip.svg'
-import IconNext from '@/assets/icons/icon-next.svg'
-import { ActionType } from '@/enums'
-import { useStore } from '@/store'
+import IconBack from "@/assets/icons/icon-back.svg";
+import IconFlip from "@/assets/icons/icon-flip.svg";
+import IconNext from "@/assets/icons/icon-next.svg";
+import { ActionType } from "@/enums";
+import { useStore } from "@/stores";
 
 const emit = defineEmits<{
-  (e: 'action', actionType: ActionType): void
-}>()
+  (e: "action", actionType: ActionType): void;
+}>();
 
-const { t } = useI18n()
+const store = useStore();
 
-const store = useStore()
-
-const canUndo = computed(() => store.state.history.past.length > 0)
-const canRedo = computed(() => store.state.history.future.length > 0)
+const canUndo = computed(() => store.state.history.past.length > 0);
+const canRedo = computed(() => store.state.history.future.length > 0);
 
 const actions = computed(() => [
   {
     type: ActionType.Undo,
     icon: IconBack,
-    tip: t('action.undo'),
+    tip: "action.undo",
     disabled: !canUndo.value,
   },
   {
     type: ActionType.Redo,
     icon: IconNext,
-    tip: t('action.redo'),
+    tip: "action.redo",
     disabled: !canRedo.value,
   },
   {
     type: ActionType.Flip,
     icon: IconFlip,
-    tip: t('action.flip'),
+    tip: "action.flip",
   },
-])
+]);
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/assets/var";
 
 .action-menu {
   display: flex;

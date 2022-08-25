@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <img
     style="width: 40px; height: 40px"
@@ -8,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import LogoSvg from '@/assets/COD6.png'
+import LogoSvg from "@/assets/COD6.png";
 
 const props = withDefaults(defineProps<{ size?: number }>(), {
   size: 6.5,
-})
+});
 </script>

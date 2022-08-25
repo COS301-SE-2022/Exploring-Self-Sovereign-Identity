@@ -1,13 +1,14 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <PerfectScrollbar class="configurator-scroll">
     <div class="configurator">
-      <SectionWrapper :title="t('label.wrapperShape')">
+      <SectionWrapper :title="'label.wrapperShape'">
         <ul class="wrapper-shape">
           <li
             v-for="wrapperShape in SETTINGS.wrapperShape"
             :key="wrapperShape"
             class="wrapper-shape__item"
-            :title="t(`wrapperShape.${wrapperShape}`)"
+            :title="`wrapperShape.${wrapperShape}`"
             @click="switchWrapperShape(wrapperShape)"
           >
             <div
@@ -21,7 +22,7 @@
         </ul>
       </SectionWrapper>
 
-      <SectionWrapper :title="t('label.backgroundColor')">
+      <SectionWrapper :title="'label.backgroundColor'">
         <ul class="color-list">
           <li
             v-for="bgColor in SETTINGS.backgroundColor"
@@ -44,7 +45,7 @@
       <SectionWrapper
         v-for="s in sections"
         :key="s.widgetType"
-        :title="t(`widgetType.${s.widgetType}`)"
+        :title="`widgetType.${s.widgetType}`"
       >
         <details
           v-if="
@@ -53,7 +54,7 @@
           "
           class="color-picker"
         >
-          <summary class="color">{{ t('label.colors') }}</summary>
+          <summary class="color">{{ "label.colors" }}</summary>
           <ul class="color-list">
             <li
               v-for="fillColor in SETTINGS.commonColors"
@@ -91,81 +92,78 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { onMounted, reactive, ref } from "vue";
 
-import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
-import SectionWrapper from '@/components/SectionWrapper.vue'
+import PerfectScrollbar from "@/components/elements/PerfectScrollbar.vue";
+import SectionWrapper from "@/components/elements/SectionWrapper.vue";
 import {
   type WidgetShape,
   type WrapperShape,
   BeardShape,
   WidgetType,
-} from '@/enums'
-import { useAvatarOption } from '@/hooks'
-import { AVATAR_LAYER, SETTINGS } from '@/utils/constant'
-import { previewData } from '@/utils/dynamic-data'
+} from "@/enums";
+import { useAvatarOption } from "@/hooks";
+import { AVATAR_LAYER, SETTINGS } from "@/utils/constant";
+import { previewData } from "@/utils/dynamic-data";
 
-const { t } = useI18n()
+const [avatarOption, setAvatarOption] = useAvatarOption();
 
-const [avatarOption, setAvatarOption] = useAvatarOption()
-
-const sectionList = reactive(Object.values(WidgetType))
+const sectionList = reactive(Object.values(WidgetType));
 const sections = ref<
   {
-    widgetType: WidgetType
+    widgetType: WidgetType;
     widgetList: {
-      widgetType: WidgetType
-      widgetShape: WidgetShape
-      svgRaw: string
-    }[]
+      widgetType: WidgetType;
+      widgetShape: WidgetShape;
+      svgRaw: string;
+    }[];
   }[]
->([])
+>([]);
 
 onMounted(() => {
   void (async () => {
     const a = await Promise.all(
       sectionList.map((section) => {
-        return getWidgets(section)
+        return getWidgets(section);
       })
-    )
+    );
 
     sections.value = sectionList.map((li, i) => {
       return {
         widgetType: li,
         widgetList: a[i],
-      }
-    })
-  })()
-})
+      };
+    });
+  })();
+});
 
 async function getWidgets(widgetType: WidgetType) {
-  const list = SETTINGS[`${widgetType}Shape`]
+  const list = SETTINGS[`${widgetType}Shape`];
   // const promises: Promise<string>[] = list.map(async (widget: string) => {
   //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
   //     .default
   // })
   const promises: Promise<string>[] = list.map(async (widget: string) => {
-    if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
-      return (await previewData[widgetType][widget]()).default
+    if (widget !== "none" && previewData?.[widgetType]?.[widget]) {
+      return (await previewData[widgetType][widget]()).default;
     }
-    return 'X'
-  })
+    return "X";
+  });
   const svgRawList = await Promise.all(promises).then((raw) => {
     return raw.map((svgRaw, i) => {
       return {
         widgetType,
         widgetShape: list[i],
         svgRaw,
-      }
-    })
-  })
-  return svgRawList
+      };
+    });
+  });
+  return svgRawList;
 }
 
 function switchWrapperShape(wrapperShape: WrapperShape) {
   if (wrapperShape !== avatarOption.value.wrapperShape) {
-    setAvatarOption({ ...avatarOption.value, wrapperShape })
+    setAvatarOption({ ...avatarOption.value, wrapperShape });
   }
 }
 
@@ -174,7 +172,7 @@ function switchBgColor(bgColor: string) {
     setAvatarOption({
       ...avatarOption.value,
       background: { ...avatarOption.value.background, color: bgColor },
-    })
+    });
   }
 }
 
@@ -188,11 +186,11 @@ function switchWidget(widgetType: WidgetType, widgetShape: WidgetShape) {
           ...avatarOption.value.widgets?.[widgetType],
           shape: widgetShape,
           ...(widgetShape === BeardShape.Scruff
-            ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
+            ? { zIndex: AVATAR_LAYER["mouth"].zIndex - 1 }
             : undefined),
         },
       },
-    })
+    });
   }
 }
 
@@ -207,19 +205,19 @@ function setWidgetColor(widgetType: WidgetType, fillColor: string) {
           fillColor,
         },
       },
-    })
+    });
   }
 }
 
 function getWidgetColor(type: string) {
   if (type === WidgetType.Tops || type === WidgetType.Clothes) {
-    return avatarOption.value.widgets[type]?.fillColor
-  } else return ''
+    return avatarOption.value.widgets[type]?.fillColor;
+  } else return "";
 }
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .configurator-scroll {
   width: var.$layout-sider-width;
@@ -311,7 +309,7 @@ function getWidgetColor(type: string) {
             font-size: 1.8rem;
             transform: translate(-50%, -50%) scale(0.5);
             opacity: 1;
-            content: '\\';
+            content: "\\";
           }
         }
 
@@ -327,7 +325,7 @@ function getWidgetColor(type: string) {
           transform: translate(-50%, -50%);
           opacity: 0.5;
           transition: width 0.15s, height 0.15s;
-          content: '';
+          content: "";
         }
 
         &::after {
@@ -340,7 +338,7 @@ function getWidgetColor(type: string) {
           transform: translate(-50%, -50%) scale(0.5);
           opacity: 0;
           transition: opacity 0.15s;
-          content: '\2714';
+          content: "\2714";
         }
 
         &.active::before {

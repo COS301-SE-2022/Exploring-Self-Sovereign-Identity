@@ -27,8 +27,11 @@
     "html2canvas": "^1.4.1",
     "jszip": "^3.10.1",
     "pinia": "^2.0.13",
+    "postcss": "^8.4.16",
     "vue": "^3.2.33",
+    "vue-perfect-scrollbar": "^0.2.1",
     "vue-router": "^4.0.15",
+    "vue3-perfect-scrollbar": "^1.6.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
