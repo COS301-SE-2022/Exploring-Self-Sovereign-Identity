@@ -2,24 +2,22 @@
   <ModalWrapper :visible="props.visible" @close="emit('close')">
     <div class="container">
       <div class="top-bar">
-        <div>{{ t("text.downloadMultipleTip") }}</div>
+        <div>{{ "text.downloadMultipleTip" }}</div>
         <div class="right">
           <button
             type="button"
             class="regenerate-btn"
             :disabled="making"
             @click="emit('regenerate')"
-          >
-            {{ t(`text.regenerate`) }}
-          </button>
+          ></button>
 
           <button type="button" class="download-btn" @click="make">
             {{
               making
-                ? `${t("text.downloadingMultiple")}(${madeCount}/${
+                ? `${"text.downloadingMultiple"}(${madeCount}/${
                     avatarList?.length
                   })`
-                : t(`text.downloadMultiple`)
+                : `text.downloadMultiple`
             }}
           </button>
         </div>
@@ -39,7 +37,7 @@
                 <VueColorAvatar :id="`avatar-${i}`" :option="opt" :size="280" />
 
                 <button class="download-single" @click="handleDownload(i)">
-                  {{ t("action.download") }}
+                  {{ "action.download" }}
                 </button>
               </div>
             </template>
@@ -136,7 +134,7 @@ async function make() {
 </script>
 
 <style lang="scss" scoped>
-@use "src/styles/var";
+@use "src/assets/var";
 
 .container {
   position: absolute;
