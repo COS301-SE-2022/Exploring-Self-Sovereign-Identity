@@ -48,9 +48,7 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-const { t } = useI18n()
 
-const [avatarOption] = useAvatarOption()
 
 const codeJSON = computed(() => JSON.stringify(avatarOption.value, null, 4))
 
