@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <header class="header">
     <Logo />
@@ -26,13 +27,13 @@
 </template>
 
 <script lang="ts" setup>
-import IconGitHub from '@/assets/icons/icon-github.svg'
-import Logo from '@/components/Logo.vue'
-import { recordEvent } from '@/utils/ga'
+import IconGitHub from "@/assets/icons/icon-github.svg";
+import Logo from "@/components/elements/Logo.vue";
+import { recordEvent } from "@/utils/ga";
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/assets/var";
 
 .header {
   display: flex;

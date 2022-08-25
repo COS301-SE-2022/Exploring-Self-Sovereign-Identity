@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <aside class="sider" :class="{ collapsed: isCollapsed }">
     <slot />
@@ -9,14 +10,14 @@
 </template>
 
 <script lang="ts" setup>
-import IconRight from '@/assets/icons/icon-right.svg'
-import { useSider } from '@/hooks'
+import IconRight from "@/assets/icons/icon-right.svg";
+import { useSider } from "@/hooks";
 
-const { isCollapsed, openSider, closeSider } = useSider()
+const { isCollapsed, openSider, closeSider } = useSider();
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/assets/var";
 
 .sider {
   position: fixed;

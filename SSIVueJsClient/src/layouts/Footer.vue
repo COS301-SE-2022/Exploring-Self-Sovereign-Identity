@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <footer class="footer">
     <div>
@@ -13,15 +14,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-
-import { Locale } from '@/enums'
-
-
+import { Locale } from "@/enums";
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/assets/var";
 
 .footer {
   display: flex;
