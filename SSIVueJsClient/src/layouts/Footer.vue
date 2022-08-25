@@ -17,11 +17,7 @@ import { useI18n } from 'vue-i18n'
 
 import { Locale } from '@/enums'
 
-const { locale } = useI18n()
 
-function switchLocale() {
-  locale.value = locale.value === Locale.EN ? Locale.ZH : Locale.EN
-}
 </script>
 
 <style lang="scss" scoped>

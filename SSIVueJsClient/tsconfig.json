@@ -2,6 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "isolatedModules": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
     "strict": true,
     "types": ["element-plus/global"]
   },
