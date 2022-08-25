@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{ visible?: boolean }>()
+const props = defineProps<{ visible?: boolean }>();
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 </script>
 
 <style lang="scss" scoped>

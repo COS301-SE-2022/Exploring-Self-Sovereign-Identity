@@ -51,7 +51,7 @@ export default defineComponent({
                 class="action-btn action-randomize"
                 @click="handleGenerate"
               >
-                {{ t("action.randomize") }}
+                {{ "action.randomize" }}
               </button>
 
               <button
@@ -61,9 +61,7 @@ export default defineComponent({
                 @click="handleDownload"
               >
                 {{
-                  downloading
-                    ? `${t("action.downloading")}...`
-                    : t("action.download")
+                  downloading ? `${"action.downloading"}...` : "action.download"
                 }}
               </button>
             </div>
@@ -71,7 +69,6 @@ export default defineComponent({
 
           <Footer />
 
-          <CodeModal :visible="codeVisible" @close="codeVisible = false" />
 
           <DownloadModal
             :visible="downloadModalVisible"
@@ -196,7 +193,7 @@ async function handleDownload() {
 }
 
 const flipped = ref(false);
-const codeVisible = ref(false);
+
 
 function handleAction(actionType: ActionType) {
   switch (actionType) {

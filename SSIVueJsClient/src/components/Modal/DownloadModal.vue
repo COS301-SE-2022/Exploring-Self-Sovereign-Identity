@@ -14,30 +14,26 @@
           />
         </div>
 
-        <p class="tip">{{ t('text.downloadTip') }} 🥳</p>
+        <p class="tip">{{ "text.downloadTip" }} 🥳</p>
       </div>
 
       <button type="button" class="close-btn" @click="emit('close')">
-        {{ t('action.close') }}
+        {{ "action.close" }}
       </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-
-const props = defineProps<{ visible?: boolean; imageUrl: string }>()
+const props = defineProps<{ visible?: boolean; imageUrl: string }>();
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
-
-const { t } = useI18n()
+  (e: "close"): void;
+}>();
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/assets/var";
 
 .download-modal-wrapper {
   position: fixed;
