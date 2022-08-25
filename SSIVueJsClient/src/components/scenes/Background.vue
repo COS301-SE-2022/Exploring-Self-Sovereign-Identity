@@ -1,4 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+
+
 <template>
   <div class="avatar-background" :style="{ background: props.color }"></div>
 </template>
