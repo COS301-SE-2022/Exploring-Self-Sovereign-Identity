@@ -68,7 +68,6 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-
 const making = ref(false);
 const madeCount = ref(0);
 
