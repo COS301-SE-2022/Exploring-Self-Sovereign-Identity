@@ -31,8 +31,8 @@
     "vue": "^3.2.33",
     "vue-perfect-scrollbar": "^0.2.1",
     "vue-router": "^4.0.15",
-    "vue3-perfect-scrollbar": "^1.6.0",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "object-hash": "^3.0.0"
   },
   "devDependencies": {
     "@cypress/vue": "^3.1.2",
@@ -63,6 +63,13 @@
     "vite": "^2.9.5",
     "vitest": "^0.9.4",
     "vue-tsc": "^0.34.7",
-    "webpack-dev-server": "^4.9.0"
+    "webpack-dev-server": "^4.9.0", 
+    "@types/canvas-confetti": "^1.4.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "rollup-plugin-visualizer": "^5.5.2"
+    
+   
+    
   }
 }
