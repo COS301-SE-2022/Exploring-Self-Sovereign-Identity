@@ -7,12 +7,15 @@ import PendingTransactionsViewVue from "@/views/PendingTransactionsView.vue";
 import RequestDataViewVue from "@/views/RequestDataView.vue";
 import TransactionViewVue from "@/views/TransactionView.vue";
 import PastTransactionsVue from "@/views/PastTransactions.vue";
+import AvatarViewVue from "@/views/AvatarView.vue"; 
+
 const routes = [
   { path: "/", component: LoginView },
   { path: "/home", component: HomeView },
   { path: "/profile", component: ProfileView },
   { path: "/pending", component: PendingTransactionsViewVue },
   { path: "/request", component: RequestDataViewVue },
+  { path: "/avatars", component: AvatarViewVue },
   {
     path: "/transaction",
     component: TransactionViewVue,
