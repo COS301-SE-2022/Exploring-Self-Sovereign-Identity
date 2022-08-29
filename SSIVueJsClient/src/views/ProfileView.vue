@@ -18,6 +18,11 @@ export default defineComponent({
       // id: ,
     };
   },
+  components: {
+    BackNav,
+    IconAvatar,
+    MenuOutline,
+  },
   methods: {
     addAtt() {
       ElMessageBox.prompt("Please enter attribute", "Tip", {
@@ -55,7 +60,6 @@ export default defineComponent({
       });
     },
   },
-  components: { BackNav, IconAvatar },
 });
 </script>
 
@@ -160,9 +164,7 @@ export default defineComponent({
   <n-page-header title="Profile" subtitle="A podcast to improve designs">
     <template #avatar>
       <n-avatar>
-        <n-icon>
-          <IconAvatar style="background-color: rgba(0, 0, 0, 0)" />
-        </n-icon>
+        <n-icon> </n-icon>
       </n-avatar>
     </template>
     <template #extra>
@@ -171,8 +173,8 @@ export default defineComponent({
       </n-icon>
     </template>
   </n-page-header>
-  <!-- * -->
 
+  <!-- * -->
   <BackNav page="Profile" />
 </template>
 
