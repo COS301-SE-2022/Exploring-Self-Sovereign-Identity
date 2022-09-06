@@ -5,7 +5,14 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Accesories: typeof import('./src/components/options/accesories.vue')['default']
+    ActionBar: typeof import('./src/components/elements/ActionBar.vue')['default']
+    Background: typeof import('./src/components/scenes/Background.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
+    Clothes: typeof import('./src/components/options/clothes.vue')['default']
+    ConfettiCanvas: typeof import('./src/components/elements/ConfettiCanvas.vue')['default']
+    Configurator: typeof import('./src/components/elements/Configurator.vue')['default']
+    DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -25,6 +32,12 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
+    Eyebrows: typeof import('./src/components/options/eyebrows.vue')['default']
+    Eyes: typeof import('./src/components/options/eyes.vue')['default']
+    Facialhair: typeof import('./src/components/options/facialhair.vue')['default']
+    Footer: typeof import('./src/components/footer.vue')['default']
+    Glasses: typeof import('./src/components/options/glasses.vue')['default']
+    Hair: typeof import('./src/components/options/hair.vue')['default']
     IconAvatar: typeof import('./src/components/icons/IconAvatar.vue')['default']
     IconBiometric: typeof import('./src/components/icons/IconBiometric.vue')['default']
     IconButton: typeof import('./src/components/Buttons/IconButton.vue')['default']
@@ -37,8 +50,20 @@ declare module '@vue/runtime-core' {
     IconPast: typeof import('./src/components/icons/IconPast.vue')['default']
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
+    Logo: typeof import('./src/components/elements/Logo.vue')['default']
+    ModalWrapper: typeof import('./src/components/Modal/ModalWrapper.vue')['default']
+    Mouths: typeof import('./src/components/options/mouths.vue')['default']
+    Options: typeof import('./src/components/options.vue')['default']
+    OptionsColor: typeof import('./src/components/optionsColor.vue')['default']
+    PerfectScrollbar: typeof import('./src/components/elements/PerfectScrollbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Save_image: typeof import('./src/components/save_image.vue')['default']
+    SectionWrapper: typeof import('./src/components/elements/SectionWrapper.vue')['default']
+    SkinColor: typeof import('./src/components/options/SkinColor.vue')['default']
+    SSIicon: typeof import('./src/components/layout/SSIicon.vue')['default']
+    Tattoos: typeof import('./src/components/options/tattoos.vue')['default']
+    VueColorAvatar: typeof import('./src/components/elements/VueColorAvatar.vue')['default']
   }
 }
 
