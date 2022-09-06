@@ -66,39 +66,39 @@ export default defineComponent({
   <!-- * Naive tabs -->
   <n-tabs type="bar" size="large" justify-content="space-evenly">
     <n-tab-pane name="Attributes">
-      <el-collapse
-        accordion
-        class="collapse"
-        style="background-color: rgba(0, 0, 0, 0)"
+      <n-input-group
+        v-for="att in userData.getAttributes"
+        :key="att.name"
+        data-test-id="attribute"
       >
-        <el-collapse-item
-          title="Attributes"
-          name="1"
-          data-test-id="attribute-header"
-          style="background-color: rgba(0, 0, 0, 0)"
-        >
-          <el-form ref="formRef" label-width="120px" class="demo-dynamic">
-            <el-input
-              :placeholder="att.name"
-              v-for="att in userData.getAttributes"
-              :key="att.name"
-              :value="att.value"
-              v-model="att.value"
-              data-test-id="attribute"
-            >
-              <template #prepend>{{ att.name }}</template>
-            </el-input>
-            <!-- </el-form-item> -->
-            <el-form-item>
-              <el-button @click="addAtt" plain>Add</el-button>
-              <el-button type="primary" @click="submitForm">Submit</el-button>
-            </el-form-item>
-          </el-form>
-        </el-collapse-item>
-      </el-collapse>
+        <n-input-group-label>{{ att.name }}</n-input-group-label>
+        <n-input :value="att.value" v-model="att.value"></n-input>
+      </n-input-group>
     </n-tab-pane>
 
     <n-tab-pane name="Credentials">
+      <n-collapse accordion>
+        <n-collapse-item
+          v-for="cred in userData.getCredentials"
+          :key="cred.organization"
+          :title="cred.organization"
+        >
+          <n-input-group
+            v-for="att in cred.attributes"
+            :key="att.name"
+            data-test-id="attribute"
+          >
+            <n-input-group-label>{{ att.name }}</n-input-group-label>
+            <n-input :value="att.value" v-model="att.value"></n-input>
+          </n-input-group>
+        </n-collapse-item>
+      </n-collapse>
+    </n-tab-pane>
+  </n-tabs>
+
+  <div class="info">
+    <!-- * User ID -->
+    <el-container>
       <el-collapse
         accordion
         class="collapse"
@@ -132,24 +132,6 @@ export default defineComponent({
           </el-collapse>
         </el-collapse-item>
       </el-collapse>
-    </n-tab-pane>
-  </n-tabs>
-
-  <div class="info">
-    <!-- * User ID -->
-    <el-container>
-      <!-- <el-header>
-        <el-input
-          v-model="userData.getId"
-          placeholder="ID"
-          disabled
-          data-test-id="Profile id"
-        >
-          <template #prepend>ID</template>
-        </el-input>
-      </el-header>
-
-      <el-divider /> -->
     </el-container>
   </div>
 

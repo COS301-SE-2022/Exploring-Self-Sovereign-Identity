@@ -44,12 +44,12 @@ export default {
 .nav-component {
   // css to make nav-bar stay at the bottom of the screen
   position: fixed;
-  // bottom: 0vh;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   z-index: 1;
-  display: grid;
+  // display: grid;
 
   // width: 100vw;
   // position: ;
