@@ -36,7 +36,7 @@ onUnmounted(() => {
 .ps--active-y .ps__rail-y {
   &:hover,
   &.ps--clicking {
-    background-color: #14a333;
+    background-color: #2c323a;
   }
 }
 </style>
