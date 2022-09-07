@@ -1,4 +1,28 @@
-import { defineComponent } from "vue";
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {
+    // route() {
+    //   this.$router.push({ path: "/home" });
+    // },
+  },
+  setup() {
+    const appid = 'Q17Gza9k49k1ieI15r73xaQf'
+    return { appid }
+  },
+})
+</script>
+<template>
+  <h1>"Avatars"</h1>
+
+</template>
+
+<!-- import { defineComponent } from "vue";
 <template>
   <main class="main">
     <Container>
@@ -100,7 +124,7 @@ import {
 } from '../utils/constant'
 import { recordEvent } from '../utils/ga'
 
-import ConfettiCanvas from "../components/ConfettiCanvas.vue";
+
 import type { AvatarOption } from '../types'
 
 const store = useStore()
@@ -121,7 +145,6 @@ function handleGenerate() {
     }
     colorfulOption.wrapperShape = avatarOption.value.wrapperShape
     setAvatarOption(colorfulOption)
-    showConfetti()
   } else {
     const randomOption = getRandomAvatarOption(avatarOption.value)
     setAvatarOption(randomOption)
@@ -342,3 +365,4 @@ watchEffect(() => {
   }
 }
 </style>
+ -->
