@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 export default defineComponent({
   data() {
     return {}
@@ -99,13 +100,9 @@ import { ActionType } from '@/enums'
 import { useAvatarOption } from '@/hooks'
 import Container from '@/layouts/Container.vue'
 import Sider from '@/layouts/Sider.vue'
-import { useStore } from "@/stores";
+import { useStore } from '@/stores'
 import { REDO, UNDO } from '@/stores/mutation-type'
-import {
-  getRandomAvatarOption,
-  getSpecialAvatarOption,
-  showConfetti,
-} from '../utils'
+import { getRandomAvatarOption, getSpecialAvatarOption } from '../utils'
 import {
   DOWNLOAD_DELAY,
   NOT_COMPATIBLE_AGENTS,
@@ -158,7 +155,7 @@ async function handleDownload() {
     )
 
     if (avatarEle) {
-      const html2canvas = (await import("html2canvas")).default;
+      const html2canvas = (await import('html2canvas')).default
       const canvas = await html2canvas(avatarEle, {
         backgroundColor: null,
       })
