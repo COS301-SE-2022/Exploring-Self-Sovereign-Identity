@@ -30,33 +30,31 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
             return streamReader.ReadToEnd();
         }
 
-        public static string EncryptString(string key, string plainText)
+        public  string EncryptString(string key, string plainText)
         {
             byte[] iv = new byte[16];
             byte[] array;
 
-                using (Aes aes = Aes.Create())
-                {
-                    aes.Key = Encoding.UTF8.GetBytes(key);
-                    aes.IV = iv;
+            Aes aes = Aes.Create();
 
-                    ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = iv;
 
-                    using (MemoryStream memoryStream = new MemoryStream())
-                    {
-                        using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
-                        {
-                            using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
-                            {
-                                streamWriter.Write(plainText);
-                            }
+            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-                            array = memoryStream.ToArray();
-                        }
-                    }
-                }
+            MemoryStream memoryStream = new MemoryStream();
 
-                return Convert.ToBase64String(array);
+            CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write);
+
+            using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
+            {
+                streamWriter.Write(plainText);
+            }
+
+            array = memoryStream.ToArray();
+
+
+            return Convert.ToBase64String(array);
 
         }
 
