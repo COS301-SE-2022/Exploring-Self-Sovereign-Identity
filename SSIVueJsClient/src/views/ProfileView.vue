@@ -96,45 +96,6 @@ export default defineComponent({
     </n-tab-pane>
   </n-tabs>
 
-  <div class="info">
-    <!-- * User ID -->
-    <el-container>
-      <el-collapse
-        accordion
-        class="collapse"
-        style="background-color: rgba(0, 0, 0, 0)"
-      >
-        <el-collapse-item
-          title="Credentials"
-          name="2"
-          data-test-id="cred-header"
-          style="padding-top: 0.2vh"
-        >
-          <!-- * Inner collapsables -->
-          <el-collapse accordion class="innerCollapse">
-            <el-collapse-item
-              v-for="cred in userData.getCredentials"
-              :key="cred.organization"
-              :title="cred.organization"
-              :name="cred.organization"
-              data-test-id="cred-item"
-            >
-              <el-input
-                :placeholder="att.name"
-                v-for="att in cred.attributes"
-                :key="att.name"
-                :value="att.value"
-                disabled
-              >
-                <template #prepend>{{ att.name }}</template>
-              </el-input>
-            </el-collapse-item>
-          </el-collapse>
-        </el-collapse-item>
-      </el-collapse>
-    </el-container>
-  </div>
-
   <!-- * -->
   <BackNav page="Profile" />
 </template>
