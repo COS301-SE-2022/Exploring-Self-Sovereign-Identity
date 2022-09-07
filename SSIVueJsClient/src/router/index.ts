@@ -24,7 +24,11 @@ const routes = [
     path: "/past",
     component: PastTransactionsVue,
   },
-  { path: "/avatar", component: AvatarViewVue },
+ { 
+  path: "/avatar", 
+ component: AvatarViewVue
+},
+
 ];
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

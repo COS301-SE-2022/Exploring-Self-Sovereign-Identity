@@ -5,30 +5,17 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ActionBar: typeof import('./src/components/ActionBar.vue')['default']
-    Background: typeof import('./src/components/widgets/Background.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
-    BatchDownloadModal: typeof import('./src/components/Modal/BatchDownloadModal.vue')['default']
-    CodeModal: typeof import('./src/components/Modal/CodeModal.vue')['default']
-    ConfettiCanvas: typeof import('./src/components/ConfettiCanvas.vue')['default']
     Configurator: typeof import('./src/components/Configurator.vue')['default']
-    DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
-    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
-    ElCol: typeof import('element-plus/es')['ElCol']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElDivider: typeof import('element-plus/es')['ElDivider']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
-    ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
-    ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
@@ -44,12 +31,6 @@ declare module '@vue/runtime-core' {
     IconPast: typeof import('./src/components/icons/IconPast.vue')['default']
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
-<<<<<<< HEAD
-    Logo: typeof import('./src/components/Logo.vue')['default']
-    ModalWrapper: typeof import('./src/components/Modal/ModalWrapper.vue')['default']
-    PerfectScrollbar: typeof import('./src/components/PerfectScrollbar.vue')['default']
-=======
-    NAvatar: typeof import('naive-ui')['NAvatar']
     NCard: typeof import('naive-ui')['NCard']
     NCollapse: typeof import('naive-ui')['NCollapse']
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
@@ -60,15 +41,12 @@ declare module '@vue/runtime-core' {
     NInputGroup: typeof import('naive-ui')['NInputGroup']
     NInputGroupLabel: typeof import('naive-ui')['NInputGroupLabel']
     NPageHeader: typeof import('naive-ui')['NPageHeader']
-    NTab: typeof import('naive-ui')['NTab']
-    'NTab-': typeof import('naive-ui')['NTab-']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
->>>>>>> d902ca3bc6b150713c9259d809fab9d3b196ae59
+    PerfectScrollbar: typeof import('./src/components/PerfectScrollbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SectionWrapper: typeof import('./src/components/SectionWrapper.vue')['default']
-    VueColorAvatar: typeof import('./src/components/VueColorAvatar.vue')['default']
   }
 }
 
