@@ -54,79 +54,85 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- * Row 1 -->
-  <el-row :gutter="2" class="row">
-    <el-col :span="12">
-      <!-- * Profile page -->
-      <el-card class="card" @click="go('profile')" data-test-id="profile">
-        <template #header>
-          <div>
-            <el-avatar :size="100" shape="square"
-              ><IconAvatar class="icon"
-            /></el-avatar>
-          </div>
+  <!-- *Row 1 -->
+  <n-grid
+    cols="2"
+    responsive="screen"
+    x-gap="5"
+    y-gap="5"
+    :item-responsive="true"
+  >
+    <n-gi>
+      <n-card
+        title="Profile"
+        @click="go('profile')"
+        data-test-id="profile"
+        :bordered="false"
+      >
+        <template #cover>
+          <IconAvatar class="icon card" />
         </template>
-        <h3>Profile</h3>
-      </el-card>
-    </el-col>
-
-    <!-- * Pending transations -->
-    <el-col :span="12">
-      <el-card class="card" @click="go('pending')" data-test-id="pending">
-        <template #header>
-          <div>
-            <el-avatar :size="100" shape="square">
-              <IconPending class="icon"
-            /></el-avatar>
-          </div>
+      </n-card>
+    </n-gi>
+    <n-gi>
+      <n-card
+        title="Pending"
+        @click="go('pending')"
+        data-test-id="pending"
+        :bordered="false"
+      >
+        <template #cover>
+          <IconPending class="icon card" />
         </template>
-        <h3>Pending</h3>
-      </el-card>
-    </el-col>
-  </el-row>
-
-  <!-- *Row 2 -->
-  <el-row :gutter="2" class="row">
-    <!-- *Past transactions -->
-    <el-col :span="12">
-      <el-card class="card" @click="go('past')" data-test-id="past">
-        <template #header>
-          <div>
-            <el-avatar :size="100" shape="square">
-              <IconPast class="icon"
-            /></el-avatar>
-          </div>
+      </n-card>
+    </n-gi>
+    <!-- </n-grid> -->
+    <!-- *Row 2 -->
+    <!-- <n-grid cols="2" responsive="screen"> -->
+    <n-gi>
+      <n-card
+        title="Past"
+        @click="go('past')"
+        data-test-id="past"
+        :bordered="false"
+      >
+        <template #cover>
+          <IconPast class="icon card" />
         </template>
-        <h3>Past</h3>
-      </el-card>
-    </el-col>
-
-    <!-- * Request data -->
-    <el-col :span="12">
-      <el-card class="card" @click="go('request')" data-test-id="request">
-        <template #header>
-          <div>
-            <el-avatar :size="100" shape="square">
-              <IconFile class="icon"
-            /></el-avatar>
-          </div>
+      </n-card>
+    </n-gi>
+    <n-gi>
+      <n-card
+        title="Request data"
+        @click="go('request')"
+        data-test-id="request"
+        :bordered="false"
+      >
+        <template #cover>
+          <IconFile class="icon card" />
         </template>
-        <h3>Request data</h3>
-      </el-card>
-    </el-col>
-  </el-row>
+      </n-card>
+    </n-gi>
+  </n-grid>
 </template>
 
 <style lang="scss">
-@import "@/assets/_variables.scss";
 .icon {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
+  height: auto;
+  width: auto;
+  max-width: 25vw;
 }
-.card {
+.n-card {
   // width: fit-content;
   text-align: center;
+  background: rgba(255, 255, 255, 0.53);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.7px);
+  -webkit-backdrop-filter: blur(12.7px);
 }
-.row {
-  margin-bottom: 1vw;
+.n-grid {
+  margin-top: 1vh;
 }
 </style>

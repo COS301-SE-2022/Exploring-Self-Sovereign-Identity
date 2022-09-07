@@ -9,25 +9,7 @@ export const userDataStore = defineStore("userData", {
         "Content-Type": "application/json",
       },
     }),
-    user: {
-      id: "",
-      attributes: [{ name: "", value: "", index: 0 }],
-      credentials: [
-        {
-          organization: "",
-          attributes: [
-            {
-              name: "",
-              value: "",
-            },
-            {
-              name: "",
-              value: "",
-            },
-          ],
-        },
-      ],
-    },
+    user: {} as User,
   }),
   getters: {
     getId: (state) => {
@@ -70,47 +52,32 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
         });
     },
+    createUser() {
+      this.api
+        .post("api/create", "ahweihowehfowh")
+        .then((response) => {
+          const suc = "success";
+          if ((response.data = suc)) this.user.id = "opxhdhposdhf";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 });
 
-// post:
-// /api/UserData/get
-
-// Request:
-// {
-//      "id" : "aaa"
-// }
-
-// Response:
-// {
-//   "id": "aaa",
-//   "attributes": [
-//     {
-//       "name": "name",
-//       "value": "Johan"
-//     },
-//     {
-//       "name": "surname",
-//       "value": "Smit"
-//     },
-//     {
-//       "name": "age",
-//       "value": "21"
-//     }
-//   ],
-//   "credentials": [
-//     {
-//       "organization": "Google",
-//       "attributes": [
-//         {
-//           "name": "email",
-//           "value": "JohanSmit@gmail.com"
-//         },
-//         {
-//           "name": "number",
-//           "value": "0823255012"
-//         }
-//       ]
-//     }
-//   ]
-// }
+export interface User {
+  id: string;
+  attributes: [{ name: string; value: string; index: number }];
+  credentials: [
+    {
+      organization: string;
+      attributes: [
+        {
+          name: string;
+          value: string;
+        }
+      ];
+    }
+  ];
+}
