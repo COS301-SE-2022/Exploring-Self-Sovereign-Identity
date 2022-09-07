@@ -1,19 +1,19 @@
 <script lang="ts">
-import { MenuOutline } from "@vicons/ionicons5";
-import { ArrowBackOutline } from "@vicons/ionicons5";
+import { MenuOutline } from '@vicons/ionicons5'
+import { ArrowBackOutline } from '@vicons/ionicons5'
 
 export default {
-  props: ["page"],
+  props: ['page'],
   components: {
     MenuOutline,
     ArrowBackOutline,
   },
   methods: {
     goback() {
-      this.$router.back();
+      //this.$router.back()
     },
   },
-};
+}
 </script>
 
 <template>
