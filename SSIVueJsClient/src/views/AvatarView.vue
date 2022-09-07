@@ -11,18 +11,9 @@ export default defineComponent({
     //   this.$router.push({ path: "/home" });
     // },
   },
-  setup() {
-    const appid = 'Q17Gza9k49k1ieI15r73xaQf'
-    return { appid }
-  },
 })
 </script>
-<template>
-  <h1>"Avatars"</h1>
 
-</template>
-
-<!-- import { defineComponent } from "vue";
 <template>
   <main class="main">
     <Container>
@@ -107,8 +98,6 @@ import VueColorAvatar, {
 import { ActionType } from '@/enums'
 import { useAvatarOption } from '@/hooks'
 import Container from '@/layouts/Container.vue'
-import Footer from '@/layouts/Footer.vue'
-import Header from '@/layouts/Header.vue'
 import Sider from '@/layouts/Sider.vue'
 import { useStore } from "@/stores";
 import { REDO, UNDO } from '@/stores/mutation-type'
@@ -123,7 +112,6 @@ import {
   TRIGGER_PROBABILITY,
 } from '../utils/constant'
 import { recordEvent } from '../utils/ga'
-
 
 import type { AvatarOption } from '../types'
 
@@ -365,4 +353,3 @@ watchEffect(() => {
   }
 }
 </style>
- -->
