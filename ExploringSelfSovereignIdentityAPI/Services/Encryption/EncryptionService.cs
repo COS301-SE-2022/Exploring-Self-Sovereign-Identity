@@ -8,5 +8,18 @@
         {
             return "";
         }
+
+        public static string EncryptString(string key, string plainText)
+        {
+            byte[] iv = new byte[16];
+            byte[] array;
+
+
+
+            return "";
+
+        }
+
+
     }
 }
