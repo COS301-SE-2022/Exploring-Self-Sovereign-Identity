@@ -16,6 +16,9 @@ export default defineComponent({
       // id: ,
     };
   },
+  components: {
+    BackNav,
+  },
   methods: {
     addAtt() {
       ElMessageBox.prompt("Please enter attribute", "Tip", {
@@ -52,112 +55,98 @@ export default defineComponent({
         message: `Profile updated`,
       });
     },
+    goBack() {
+      this.$router.back();
+    },
   },
-  components: { BackNav },
 });
 </script>
 
 <template>
+  <!-- * Naive tabs -->
+  <n-tabs type="bar" size="large" justify-content="space-evenly">
+    <n-tab-pane name="Attributes">
+      <n-input-group
+        v-for="att in userData.getAttributes"
+        :key="att.name"
+        data-test-id="attribute"
+      >
+        <n-input-group-label>{{ att.name }}</n-input-group-label>
+        <n-input :value="att.value" v-model="att.value"></n-input>
+      </n-input-group>
+    </n-tab-pane>
+
+    <n-tab-pane name="Credentials">
+      <n-collapse accordion>
+        <n-collapse-item
+          v-for="cred in userData.getCredentials"
+          :key="cred.organization"
+          :title="cred.organization"
+        >
+          <n-input-group
+            v-for="att in cred.attributes"
+            :key="att.name"
+            data-test-id="attribute"
+          >
+            <n-input-group-label>{{ att.name }}</n-input-group-label>
+            <n-input :value="att.value" v-model="att.value"></n-input>
+          </n-input-group>
+        </n-collapse-item>
+      </n-collapse>
+    </n-tab-pane>
+  </n-tabs>
+
   <div class="info">
     <!-- * User ID -->
     <el-container>
-      <el-header>
-        <el-input
-          v-model="userData.getId"
-          placeholder="ID"
-          disabled
-          data-test-id="Profile id"
+      <el-collapse
+        accordion
+        class="collapse"
+        style="background-color: rgba(0, 0, 0, 0)"
+      >
+        <el-collapse-item
+          title="Credentials"
+          name="2"
+          data-test-id="cred-header"
+          style="padding-top: 0.2vh"
         >
-          <template #prepend>ID</template>
-        </el-input>
-      </el-header>
-
-      <el-divider />
-      <el-main class="info-main">
-        <!-- * Attributes -->
-        <el-collapse
-          accordion
-          class="collapse"
-          style="background-color: rgba(0, 0, 0, 0)"
-        >
-          <el-collapse-item
-            title="Attributes"
-            name="1"
-            data-test-id="attribute-header"
-            style="background-color: rgba(0, 0, 0, 0)"
-          >
-            <el-form ref="formRef" label-width="120px" class="demo-dynamic">
-              <!-- <el-form-item
-            prop="email"
-            label="Email"
-            :rules="[
-              {
-                required: true,
-                message: 'Please input email address',
-                trigger: 'blur',
-              },
-              {
-                type: 'email',
-                message: 'Please input correct email address',
-                trigger: ['blur', 'change'],
-              },
-            ]"
-          > -->
+          <!-- * Inner collapsables -->
+          <el-collapse accordion class="innerCollapse">
+            <el-collapse-item
+              v-for="cred in userData.getCredentials"
+              :key="cred.organization"
+              :title="cred.organization"
+              :name="cred.organization"
+              data-test-id="cred-item"
+            >
               <el-input
                 :placeholder="att.name"
-                v-for="att in userData.getAttributes"
+                v-for="att in cred.attributes"
                 :key="att.name"
                 :value="att.value"
-                v-model="att.value"
-                data-test-id="attribute"
+                disabled
               >
                 <template #prepend>{{ att.name }}</template>
               </el-input>
-              <!-- </el-form-item> -->
-              <el-form-item>
-                <el-button @click="addAtt" plain>Add</el-button>
-                <el-button type="primary" @click="submitForm">Submit</el-button>
-              </el-form-item>
-            </el-form>
-          </el-collapse-item>
-
-          <!-- * Credentials -->
-          <el-collapse-item
-            title="Credentials"
-            name="2"
-            data-test-id="cred-header"
-            style="padding-top: 0.2vh"
-          >
-            <!-- * Inner collapsables -->
-            <el-collapse accordion class="innerCollapse">
-              <el-collapse-item
-                v-for="cred in userData.getCredentials"
-                :key="cred.organization"
-                :title="cred.organization"
-                :name="cred.organization"
-                data-test-id="cred-item"
-              >
-                <el-input
-                  :placeholder="att.name"
-                  v-for="att in cred.attributes"
-                  :key="att.name"
-                  :value="att.value"
-                  disabled
-                >
-                  <template #prepend>{{ att.name }}</template>
-                </el-input>
-              </el-collapse-item>
-            </el-collapse>
-          </el-collapse-item>
-        </el-collapse>
-      </el-main>
+            </el-collapse-item>
+          </el-collapse>
+        </el-collapse-item>
+      </el-collapse>
     </el-container>
   </div>
 
+  <!-- * -->
   <BackNav page="Profile" />
 </template>
 
 <style lang="scss">
+.icon {
+  background-color: rgba(255, 255, 255, 0);
+  height: auto;
+  width: auto;
+  max-width: 25vw;
+}
+
 .info {
   width: 98vw;
   margin-left: auto;
