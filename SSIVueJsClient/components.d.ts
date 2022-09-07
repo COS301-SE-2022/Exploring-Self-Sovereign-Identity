@@ -5,8 +5,15 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActionBar: typeof import('./src/components/ActionBar.vue')['default']
+    Background: typeof import('./src/components/Background.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
+    BatchDownloadModal: typeof import('./src/components/Modal/BatchDownloadModal.vue')['default']
+    CodeModal: typeof import('./src/components/Modal/CodeModal.vue')['default']
+    ConfettiCanvas: typeof import('./src/components/ConfettiCanvas.vue')['default']
     Configurator: typeof import('./src/components/Configurator.vue')['default']
+    Container: typeof import('./src/components/Container.vue')['default']
+    DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
@@ -19,6 +26,8 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
+    Footer: typeof import('./src/components/Footer.vue')['default']
+    Header: typeof import('./src/components/Header.vue')['default']
     IconAvatar: typeof import('./src/components/icons/IconAvatar.vue')['default']
     IconBiometric: typeof import('./src/components/icons/IconBiometric.vue')['default']
     IconButton: typeof import('./src/components/Buttons/IconButton.vue')['default']
@@ -31,6 +40,7 @@ declare module '@vue/runtime-core' {
     IconPast: typeof import('./src/components/icons/IconPast.vue')['default']
     IconPending: typeof import('./src/components/icons/IconPending.vue')['default']
     ImageCard: typeof import('./src/components/cards/ImageCard.vue')['default']
+    ModalWrapper: typeof import('./src/components/Modal/ModalWrapper.vue')['default']
     NCard: typeof import('naive-ui')['NCard']
     NCollapse: typeof import('naive-ui')['NCollapse']
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
@@ -47,6 +57,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SectionWrapper: typeof import('./src/components/SectionWrapper.vue')['default']
+    Sider: typeof import('./src/components/Sider.vue')['default']
+    VueColorAvatar: typeof import('./src/components/VueColorAvatar.vue')['default']
   }
 }
 
