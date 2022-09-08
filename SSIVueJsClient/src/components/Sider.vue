@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <aside class="sider" :class="{ collapsed: isCollapsed }">
     <slot />
@@ -7,7 +8,16 @@
     </div>
   </aside>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup>
 import IconRight from '@/assets/icons/icon-right.svg'
 import { useSider } from '@/hooks'

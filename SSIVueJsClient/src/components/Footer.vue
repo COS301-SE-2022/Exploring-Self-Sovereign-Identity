@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <footer class="footer">
     <div>
@@ -17,7 +18,16 @@
     </div>
   </footer>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup></script>
 
 <style lang="scss" scoped>

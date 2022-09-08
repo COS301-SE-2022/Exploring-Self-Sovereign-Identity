@@ -1,13 +1,14 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <PerfectScrollbar class="configurator-scroll">
     <div class="configurator">
-      <SectionWrapper :title="t('label.wrapperShape')">
+      <SectionWrapper :title="'label.wrapperShape'">
         <ul class="wrapper-shape">
           <li
             v-for="wrapperShape in SETTINGS.wrapperShape"
             :key="wrapperShape"
             class="wrapper-shape__item"
-            :title="t(`wrapperShape.${wrapperShape}`)"
+            :title="`wrapperShape.${wrapperShape}`"
             @click="switchWrapperShape(wrapperShape)"
           >
             <div
@@ -21,7 +22,7 @@
         </ul>
       </SectionWrapper>
 
-      <SectionWrapper :title="t('label.backgroundColor')">
+      <SectionWrapper :title="'label.backgroundColor'">
         <ul class="color-list">
           <li
             v-for="bgColor in SETTINGS.backgroundColor"
@@ -44,7 +45,7 @@
       <SectionWrapper
         v-for="s in sections"
         :key="s.widgetType"
-        :title="t(`widgetType.${s.widgetType}`)"
+        :title="`widgetType.${s.widgetType}`"
       >
         <details
           v-if="
@@ -53,7 +54,7 @@
           "
           class="color-picker"
         >
-          <summary class="color">{{ t('label.colors') }}</summary>
+          <summary class="color">{{ 'label.colors' }}</summary>
           <ul class="color-list">
             <li
               v-for="fillColor in SETTINGS.commonColors"
@@ -89,10 +90,18 @@
     </div>
   </PerfectScrollbar>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
 import SectionWrapper from '@/components/SectionWrapper.vue'
@@ -105,8 +114,6 @@ import {
 import { useAvatarOption } from '@/hooks'
 import { AVATAR_LAYER, SETTINGS } from '@/utils/constant'
 import { previewData } from '@/utils/dynamic-data'
-
-const { t } = useI18n()
 
 const [avatarOption, setAvatarOption] = useAvatarOption()
 

@@ -19,16 +19,10 @@ export default defineComponent({
     return {}
   },
   components: {},
-  methods: {
-    // route() {
-    //   this.$router.push({ path: "/home" });
-    // },
-  },
+  methods: {},
 })
 </script>
 <script lang="ts" setup>
-  
-
 import { computed } from 'vue'
 
 import IconBack from '@/assets/icons/icon-back.svg'

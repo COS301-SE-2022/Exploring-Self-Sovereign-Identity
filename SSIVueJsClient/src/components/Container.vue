@@ -1,9 +1,19 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <section class="container" :class="{ full: isCollapsed }">
     <slot />
   </section>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from 'vue'
 

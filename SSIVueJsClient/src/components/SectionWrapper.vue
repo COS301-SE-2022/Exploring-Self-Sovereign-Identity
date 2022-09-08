@@ -6,7 +6,16 @@
     </div>
   </div>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup>
 const props = defineProps<{
   title?: string

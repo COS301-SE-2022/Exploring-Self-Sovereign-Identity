@@ -3,7 +3,16 @@
     <slot />
   </div>
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  data() {
+    return {}
+  },
+  components: {},
+  methods: {},
+})
+</script>
 <script lang="ts" setup>
 import PerfectScrollbar from 'perfect-scrollbar'
 import { onMounted, onUnmounted, ref } from 'vue'
