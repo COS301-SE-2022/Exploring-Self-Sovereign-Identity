@@ -58,6 +58,7 @@ export const userDataStore = defineStore("userData", {
         .then((response) => {
           const suc = "success";
           if ((response.data = suc)) this.user.id = "opxhdhposdhf";
+          console.log(this.user.id);
         })
         .catch((error) => {
           console.log(error);
@@ -68,7 +69,13 @@ export const userDataStore = defineStore("userData", {
 
 export interface User {
   id: string;
-  attributes: [{ name: string; value: string; index: number }];
+  attributes: [
+    {
+      name: string;
+      value: string;
+      index: number;
+    }
+  ];
   credentials: [
     {
       organization: string;
@@ -78,6 +85,35 @@ export interface User {
           value: string;
         }
       ];
+    }
+  ];
+  transactionRequests: [
+    {
+      attributes: string;
+      stamp: {
+        fromID: string;
+        toID: string;
+        date: string;
+        message: string;
+        status: string;
+      };
+    }
+  ];
+  approvedTransactions: [
+    {
+      attributes: [
+        {
+          name: string;
+          value: string;
+        }
+      ];
+      stamp: {
+        fromID: string;
+        toID: string;
+        date: string;
+        message: string;
+        status: string;
+      };
     }
   ];
 }
