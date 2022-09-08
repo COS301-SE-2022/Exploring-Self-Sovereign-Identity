@@ -47,8 +47,6 @@ export default defineComponent({
       }
       // console.log(Response);
     });
-
-    console.log(this.userData.getuserdata("orhfaoiuhosdhgosir"));
   },
 });
 </script>
