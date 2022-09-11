@@ -1,56 +1,56 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import IconAvatar from "../components/icons/IconAvatar.vue";
-import IconPending from "../components/icons/IconPending.vue";
-import IconPast from "../components/icons/IconPast.vue";
-import IconFile from "../components/icons/IconFile.vue";
-import { Passage } from "@passageidentity/passage-js";
+import { defineComponent } from 'vue'
+import IconAvatar from '../components/icons/IconAvatar.vue'
+import IconPending from '../components/icons/IconPending.vue'
+import IconPast from '../components/icons/IconPast.vue'
+import IconFile from '../components/icons/IconFile.vue'
+import { Passage } from '@passageidentity/passage-js'
 // import { getuserdata } from "@/services/UserDataService";
-import { userDataStore } from "@/stores/userData";
+import { userDataStore } from '@/stores/userData'
 
 // import { UserService } from "../services/UserService";
 // import { RegisterRequest } from "../models/requests/RegisterRequest";
-import { isNull } from "lodash";
+import { isNull } from 'lodash'
 export default defineComponent({
   setup() {
-    const appid = "Q17Gza9k49k1ieI15r73xaQf";
+    const appid = 'Q17Gza9k49k1ieI15r73xaQf'
     // getuserdata("orhfaoiuhosdhgosir");
-    const userData = userDataStore();
-    return { appid, userData };
+    const userData = userDataStore()
+    return { appid, userData }
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
     goProfile() {
-      this.$router.push({ path: "/profile" });
+      this.$router.push({ path: '/profile' })
     },
     go(p: string) {
-      this.$router.push({ path: p });
+      this.$router.push({ path: p })
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
   mounted() {
     //Passage store
-    const passage = new Passage(this.appid);
-    const user = passage.getCurrentUser();
+    const passage = new Passage(this.appid)
+    const user = passage.getCurrentUser()
     user.getMetadata().then((Response) => {
       // const userService = new UserService();
       if (!isNull(Response)) {
         //userService.register(new RegisterRequest("sudfhsd"));
-        console.log("Should not be here");
+        console.log('Should not be here')
       } else {
         user.updateMetadata({
-          key: "This is a test",
-          userid: "This is also a test",
-        });
+          key: 'This is a test',
+          userid: 'This is also a test',
+        })
       }
       // console.log(Response);
-    });
+    })
 
-    console.log(this.userData.getuserdata("orhfaoiuhosdhgosir"));
+    console.log(this.userData.getuserdata('orhfaoiuhosdhgosir'))
   },
-});
+})
 </script>
 
 <template>
