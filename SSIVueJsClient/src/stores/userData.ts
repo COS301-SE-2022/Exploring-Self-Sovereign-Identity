@@ -10,6 +10,7 @@ export const userDataStore = defineStore("userData", {
       },
     }),
     user: {} as User,
+    attributes: {} as Attributes,
   }),
   getters: {
     getId: (state) => {
@@ -66,7 +67,6 @@ export const userDataStore = defineStore("userData", {
     },
   },
 });
-
 export interface User {
   id: string;
   attributes: [
@@ -114,6 +114,17 @@ export interface User {
         message: string;
         status: string;
       };
+    }
+  ];
+}
+export interface Attributes {
+  attributes: [
+    {
+      attribute: {
+        name: string;
+        value: string;
+      };
+      index: number;
     }
   ];
 }
