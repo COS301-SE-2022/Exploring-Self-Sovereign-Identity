@@ -26,13 +26,14 @@ export default defineComponent({
   methods: {
     addAtt() {
       console.log("addAtt");
-      this.userData.attributes.attributes.push({
-        attribute: {
-          name: this.name,
-          value: this.value,
-        },
-        index: -1,
-      });
+      // *! Fix ref error here
+      // this.userData.attributes.attributes.push({
+      //   attribute: {
+      //     name: this.name,
+      //     value: this.value,
+      //   },
+      //   index: -1,
+      // });
       console.log("done");
     },
     showMod() {
