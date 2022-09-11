@@ -17,7 +17,7 @@ export const userDataStore = defineStore("userData", {
       return state.user.id;
     },
     getAttributes: (state) => {
-      return state.user.attributes || [];
+      return state.attributes.attributes || [];
     },
     getCredentials: (state) => {
       return state.user.credentials;

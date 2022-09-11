@@ -68,11 +68,14 @@ export default defineComponent({
     <n-tab-pane name="Attributes">
       <n-input-group
         v-for="att in userData.getAttributes"
-        :key="att.name"
+        :key="att.attribute.name"
         data-test-id="attribute"
       >
-        <n-input-group-label>{{ att.name }}</n-input-group-label>
-        <n-input :value="att.value" v-model="att.value"></n-input>
+        <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
+        <n-input
+          :value="att.attribute.value"
+          v-model="att.attribute.value"
+        ></n-input>
       </n-input-group>
     </n-tab-pane>
 
