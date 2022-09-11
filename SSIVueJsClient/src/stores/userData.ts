@@ -32,6 +32,7 @@ export const userDataStore = defineStore("userData", {
         })
         .then((response) => {
           this.user = response.data;
+          this.sync();
         })
         .catch((error) => {
           console.log(error);
@@ -40,10 +41,8 @@ export const userDataStore = defineStore("userData", {
     setuserdata() {
       console.log(this.user);
       this.api
-        .post(`/api/UserData/updateAttribute`, {
-          id: this.user.id,
+        .post(`/api/UserData/update`, {
           attributes: this.user.attributes,
-          credentials: this.user.credentials,
         })
         .then((response) => {
           console.log(response.data);
@@ -64,6 +63,12 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
+    },
+    sync() {
+      for (let i = 0; i < this.user.attributes.length; i++) {
+        this.attributes.attributes[i].attribute = this.user.attributes[i];
+        this.attributes.attributes[i].index = i;
+      }
     },
   },
 });
