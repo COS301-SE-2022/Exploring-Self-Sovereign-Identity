@@ -6,6 +6,7 @@ contract UserDataContract {
 
     /*
     * ============================================== USER DATA SUBSECTION ==============================================
+    * Functions concerned with anything and everything to do with a User's data.
     */ 
 
     /* Attributes stored in UserData and Credential. */
