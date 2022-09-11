@@ -238,6 +238,7 @@ contract UserDataContract {
 
     /*
     * ============================================== TRANSACTION SUBSECTION ==============================================
+    * This is where all transactions between users have operations capable of carrying out the needed functions.
     */ 
 
     /* Data to describe transaction information. */
