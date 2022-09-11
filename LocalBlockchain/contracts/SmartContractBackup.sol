@@ -376,3 +376,38 @@ contract UserDataContract {
 
         return res;
     }
+
+
+    /* Returns the desired Credential and its associated attributes. */
+    function getCredentialTransaction(string memory _id, string memory organization) public view returns (CredentialResponse memory) {
+
+        CredentialResponse[] memory cred = new CredentialResponse[](1);
+
+        for (uint i=0; i<allUserData[_id].credentialCount; i++) {
+            if (stringCompare(allUserData[_id].credentials[i].organization, organization)) {
+                cred[0].organization = organization;
+
+                cred[0].attributes = new Attribute[](allUserData[_id].credentials[i].attributeCount);
+
+                for (uint k=0; k<allUserData[_id].credentials[i].attributeCount; k++) {
+                    cred[0].attributes[k].name = allUserData[_id].credentials[i].attributes[k].name;
+                    cred[0].attributes[k].value = allUserData[_id].credentials[i].attributes[k].value;
+                }
+            }
+        }
+
+        return cred[0];
+    }
+
+    /*
+    * ============================================== GENERAL SUBSECTION ==============================================
+    */ 
+
+    /* Compares two strings to see if they're equal or not. */
+    function stringCompare(string memory a, string memory b) private pure returns (bool) {
+        if (keccak256(bytes(a)) == keccak256(bytes(b)))
+            return true;
+        return false;
+    }
+
+}
