@@ -1,9 +1,9 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import "@passageidentity/passage-elements/passage-auth";
+import { defineComponent } from 'vue'
+import '@passageidentity/passage-elements/passage-auth'
 export default defineComponent({
   data() {
-    return {};
+    return {}
   },
   components: {},
   methods: {
@@ -12,10 +12,10 @@ export default defineComponent({
     // },
   },
   setup() {
-    const appid = "Q17Gza9k49k1ieI15r73xaQf";
-    return { appid };
+    const appid = 'Q17Gza9k49k1ieI15r73xaQf'
+    return { appid }
   },
-});
+})
 </script>
 
 <template>
