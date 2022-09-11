@@ -1,9 +1,10 @@
 <script lang="ts">
 import BackNav from "../components/Nav/BackNav.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { ElLoading } from "element-plus";
+import { Add } from "@vicons/ionicons5";
 
 export default defineComponent({
   setup() {
@@ -13,36 +14,53 @@ export default defineComponent({
   },
   data() {
     return {
-      // id: ,
+      name: "",
+      value: "",
+      showModal: false,
     };
   },
   components: {
     BackNav,
+    Add,
   },
   methods: {
     addAtt() {
-      ElMessageBox.prompt("Please enter attribute", "Tip", {
-        confirmButtonText: "Add",
-        cancelButtonText: "Cancel",
-      })
-        .then(({ value }) => {
-          this.userData.user.attributes.push({
-            name: value,
-            value: "",
-            index: -1,
-          });
-          ElMessage({
-            type: "success",
-            message: `Attribute added`,
-          });
-        })
-        .catch(() => {
-          ElMessage({
-            type: "info",
-            message: "Input canceled",
-          });
-        });
+      console.log("addAtt");
+      this.userData.attributes.attributes.push({
+        attribute: {
+          name: this.name,
+          value: this.value,
+        },
+        index: -1,
+      });
+      console.log("done");
     },
+    showMod() {
+      this.showModal = true;
+    },
+
+    // ElMessageBox.prompt("Please enter attribute", "Tip", {
+    //   confirmButtonText: "Add",
+    //   cancelButtonText: "Cancel",
+    // })
+    //   .then(({ value }) => {
+    //     this.userData.user.attributes.push({
+    //       name: value,
+    //       value: "",
+    //       index: -1,
+    //     });
+    //     ElMessage({
+    //       type: "success",
+    //       message: `Attribute added`,
+    //     });
+    //   })
+    //   .catch(() => {
+    //     ElMessage({
+    //       type: "info",
+    //       message: "Input canceled",
+    //     });
+    //   });
+
     submitForm() {
       const load = ElLoading.service({
         fullscreen: true,
@@ -77,6 +95,21 @@ export default defineComponent({
           v-model="att.attribute.value"
         ></n-input>
       </n-input-group>
+
+      <n-button
+        strong
+        secondary
+        circle
+        type="primary"
+        size="large"
+        style="width: fit-content; padding: 3px"
+        @click="showMod"
+      >
+        Add Attribute
+        <template #icon>
+          <n-icon><Add /></n-icon>
+        </template>
+      </n-button>
     </n-tab-pane>
 
     <n-tab-pane name="Credentials">
@@ -99,6 +132,24 @@ export default defineComponent({
     </n-tab-pane>
   </n-tabs>
 
+  <!-- *Modal -->
+  <n-modal
+    v-model:show="showModal"
+    preset="dialog"
+    title="Add attribute"
+    positive-text="Add"
+    negative-text="Cancel"
+    @positive-click="addAtt"
+  >
+    <n-space vertical>
+      <n-input v-model:value="name" type="text" placeholder="Attribute name" />
+      <n-input
+        v-model:value="value"
+        type="text"
+        placeholder="Attribute value"
+      />
+    </n-space>
+  </n-modal>
   <!-- * -->
   <BackNav page="Profile" />
 </template>
