@@ -116,7 +116,6 @@ const store = useStore()
 
 const [avatarOption, setAvatarOption] = useAvatarOption()
 
-const { t } = useI18n()
 
 const colorAvatarRef = ref<VueColorAvatarRef>()
 
