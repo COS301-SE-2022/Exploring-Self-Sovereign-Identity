@@ -1,79 +1,168 @@
 <script lang="ts">
-import { mapState } from "pinia";
-import { UserDataStore } from "@/stores/UserDataStore";
 import BackNav from "../components/Nav/BackNav.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { userDataStore } from "@/stores/userData";
+import { ElMessage, ElMessageBox } from "element-plus";
+import { ElLoading } from "element-plus";
+import { Add } from "@vicons/ionicons5";
+
 export default defineComponent({
+  setup() {
+    const userData = userDataStore();
+
+    return { userData };
+  },
   data() {
     return {
-      id: "12gwbd83t823tdqwd",
+      name: "",
+      value: "",
+      showModal: false,
     };
   },
-  computed: {
-    ...mapState(UserDataStore, ["getUserData"]),
-    getAttributes() {
-      return this.getUserData.getAttributes();
+  components: {
+    BackNav,
+    Add,
+  },
+  methods: {
+    addAtt() {
+      console.log("addAtt");
+      // *! Fix ref error here
+      // this.userData.attributes.attributes.push({
+      //   attribute: {
+      //     name: this.name,
+      //     value: this.value,
+      //   },
+      //   index: -1,
+      // });
+      console.log("done");
     },
-    getCredentials() {
-      return this.getUserData.getCredentials();
+    showMod() {
+      this.showModal = true;
+    },
+
+    // ElMessageBox.prompt("Please enter attribute", "Tip", {
+    //   confirmButtonText: "Add",
+    //   cancelButtonText: "Cancel",
+    // })
+    //   .then(({ value }) => {
+    //     this.userData.user.attributes.push({
+    //       name: value,
+    //       value: "",
+    //       index: -1,
+    //     });
+    //     ElMessage({
+    //       type: "success",
+    //       message: `Attribute added`,
+    //     });
+    //   })
+    //   .catch(() => {
+    //     ElMessage({
+    //       type: "info",
+    //       message: "Input canceled",
+    //     });
+    //   });
+
+    submitForm() {
+      const load = ElLoading.service({
+        fullscreen: true,
+        text: "Submitting...",
+      });
+      this.userData.setuserdata();
+      load.close();
+      ElMessage({
+        type: "success",
+        message: `Profile updated`,
+      });
+    },
+    goBack() {
+      this.$router.back();
     },
   },
-  components: { BackNav },
 });
 </script>
 
 <template>
-  <div class="info">
-    <!-- * User ID -->
-    <el-input v-model="id" placeholder="ID" disabled>
-      <template #prepend>ID</template>
-    </el-input>
+  <!-- * Naive tabs -->
+  <n-tabs type="bar" size="large" justify-content="space-evenly">
+    <n-tab-pane name="Attributes">
+      <n-input-group
+        v-for="att in userData.getAttributes"
+        :key="att.attribute.name"
+        data-test-id="attribute"
+      >
+        <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
+        <n-input
+          :value="att.attribute.value"
+          v-model="att.attribute.value"
+        ></n-input>
+      </n-input-group>
 
-    <el-divider />
+      <n-button
+        strong
+        secondary
+        circle
+        type="primary"
+        size="large"
+        style="width: fit-content; padding: 3px"
+        @click="showMod"
+      >
+        Add Attribute
+        <template #icon>
+          <n-icon><Add /></n-icon>
+        </template>
+      </n-button>
+    </n-tab-pane>
 
-    <!-- * Attributes -->
-    <el-collapse accordion>
-      <el-collapse-item title="Attributes" name="1">
-        <!-- *! Need to make input editable -->
-        <el-input
-          :placeholder="att.getName()"
-          v-for="att in getAttributes"
-          :key="att.getName()"
-          :value="att.getValue()"
+    <n-tab-pane name="Credentials">
+      <n-collapse accordion>
+        <n-collapse-item
+          v-for="cred in userData.getCredentials"
+          :key="cred.organization"
+          :title="cred.organization"
         >
-          <template #prepend>{{ att.getName() }}</template>
-        </el-input>
-      </el-collapse-item>
-
-      <!-- * Credentials -->
-      <el-collapse-item title="Credentials" name="2">
-        <!-- * Inner collapsables -->
-        <el-collapse accordion class="innerCollapse">
-          <el-collapse-item
-            v-for="cred in getCredentials"
-            :key="cred.getId()"
-            :title="cred.getId()"
-            :name="cred.getId()"
+          <n-input-group
+            v-for="att in cred.attributes"
+            :key="att.name"
+            data-test-id="attribute"
           >
-            <el-input
-              :placeholder="att.getName()"
-              v-for="att in cred.getCredentials()"
-              :key="att.getName()"
-              :value="att.getValue()"
-              disabled
-            >
-              <template #prepend>{{ att.getName() }}</template>
-            </el-input>
-          </el-collapse-item>
-        </el-collapse>
-      </el-collapse-item>
-    </el-collapse>
-  </div>
+            <n-input-group-label>{{ att.name }}</n-input-group-label>
+            <n-input :value="att.value" v-model="att.value"></n-input>
+          </n-input-group>
+        </n-collapse-item>
+      </n-collapse>
+    </n-tab-pane>
+  </n-tabs>
 
+  <!-- *Modal -->
+  <n-modal
+    v-model:show="showModal"
+    preset="dialog"
+    title="Add attribute"
+    positive-text="Add"
+    negative-text="Cancel"
+    @positive-click="addAtt"
+  >
+    <n-space vertical>
+      <n-input v-model:value="name" type="text" placeholder="Attribute name" />
+      <n-input
+        v-model:value="value"
+        type="text"
+        placeholder="Attribute value"
+      />
+    </n-space>
+  </n-modal>
+  <!-- * -->
   <BackNav page="Profile" />
 </template>
 
 <style lang="scss">
+.icon {
+  background-color: rgba(255, 255, 255, 0);
+  height: auto;
+  width: auto;
+  max-width: 25vw;
+}
+
 .info {
   width: 98vw;
   margin-left: auto;
@@ -87,5 +176,20 @@ export default defineComponent({
 }
 .innerCollapse {
   padding-left: 5vw;
+}
+.info-main {
+  width: 100%;
+  padding: 0% !important;
+}
+.collapse {
+  // background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  border-radius: 5px;
+  border-width: thin;
+  div {
+    // background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    border-width: thin;
+  }
 }
 </style>

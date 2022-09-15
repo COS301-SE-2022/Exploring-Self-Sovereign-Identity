@@ -4,9 +4,8 @@ import { mapState } from "pinia";
 import { PendingTransactionsStore } from "@/stores/PendingTransactionStore";
 import { defineComponent } from "vue";
 import { Contract } from "@/models/entity/Contract";
-import { TransactionService } from "@/services/TransactionService";
+// import { TransactionService } from "@/services/TransactionService";
 import { UserDataStore } from "@/stores/UserDataStore";
-import { PastTransactionsRequest } from "@/models/requests/PastTransactionsRequest";
 export default defineComponent({
   data() {
     return {
@@ -15,10 +14,10 @@ export default defineComponent({
     };
   },
   created() {
-    var transactionService: TransactionService = new TransactionService();
-    this.transactions = transactionService.mockPastTransactions(
-      this.getUserData.getId()
-    );
+    // var transactionService: TransactionService = new TransactionService();
+    // this.transactions = transactionService.mockPastTransactions(
+    // this.getUserData.getId()
+    // );
     // console.log(
     // transactions.then((result) => {
     // return result;

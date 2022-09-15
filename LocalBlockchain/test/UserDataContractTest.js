@@ -11,6 +11,8 @@ require("chai")
 contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
 
     let udc;
+    let id = "AAA-BBB-CCC";
+    var result;
 
     /* Attach deployed smart contract to udc variable. */
     before(async () => {
@@ -30,78 +32,95 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
         });
     });
 
-    describe("Transactions", async() => {
+    describe("UserData", async() => {
 
-        it("Creates a User Successfully", async () => {
-
-            let id = "aaa";
-            await udc.createUser(id);
-            let result = await udc.getUserData(id);
-
-            assert.equal(result.id, id);
-
-            id = "bbb";
+        it("Creates a user successfully.", async () => {
+            
             await udc.createUser(id);
             result = await udc.getUserData(id);
 
             assert.equal(result.id, id);
+            assert.equal(result.attributes.length, 0);
+
         });
 
-        it("Inserts New Data Successfully", async () => {
+        it("Inserts new Attributes and Credentials successfully.", async () => {
 
-            let id = "aaa";
-            await udc.updateUser(id, [[["name","Johan"],false],[["surname","Smit"],false],[["age","21"],false]], []);
-            await udc.updateUser(id, [], [["Google",false,[["email","johans@gmail.com"],["password","xxyyzz"]]],["UP",false,[["student_number","u20502126"],["id","0102225184088"]]]]);
-            
-            let result = await udc.getUserData(id);
+            await udc.updateUser([id,[ [["name","Johan"],-1], [["surname","Smit"],-1] ], [ ["UP",-1,[ ["student_number","u20502126"],["password","oopsiedaisy"] ]] ]]);
+            result = await udc.getUserData(id);
 
-            /* Test id. */
-            assert.equal(result.id, id);
-            
-            /* Test attributes. */
+            /* Attributes */
+            assert.equal(result.attributes.length, 2);
             assert.equal(result.attributes[0].name, "name");
-            assert.equal(result.attributes[0].value, "Johan");
+            assert.equal(result.attributes[1].value, "Smit");
 
-            /* Test credentials. */
-            assert.equal(result.credentials[0].organization, "Google");
-            assert.equal(result.credentials[0].attributes[0].name, "email");
-            assert.equal(result.credentials[0].attributes[0].value, "johans@gmail.com");
-            assert.equal(result.credentials[1].attributes[1].name, "id");
-            assert.equal(result.credentials[1].attributes[1].value, "0102225184088");
+            /* Credentials */
+            assert.equal(result.credentials.length, 1);
+            assert.equal(result.credentials[0].attributes.length, 2);
+            assert.equal(result.credentials[0].organization, "UP");
+            assert.equal(result.credentials[0].attributes[0].value, "u20502126");
+            assert.equal(result.credentials[0].attributes[1].name, "password");
         });
 
-        it("Updates Existing Data and Inserts New Data Successfully", async () => {
+        it("Updates existing Attributes and Credentials successfully.", async () => {
 
-            let id = "aaa";
-            
-            await udc.updateUser(id, [[["age","22"],true]], []);
-            await udc.updateUser(id, [], [["Google",true,[["email","newjohans@gmail.com"]]],["Wits",false,[["student_number","u20502126"],["id","0102225184088"]]]]);
+            await udc.updateUser([id,[ [["alias","Johan"],0], [["age","22"],-1] ], [ ["UP",0,[ ["password","oowoo"] ]] ]]);
+            result = await udc.getUserData(id);
 
-            let result = await udc.getUserData(id);
-
-            /* Test id. */
-            assert.equal(result.id, id);
-            
-            /* Test attributes. */
+            /* Attributes */
+            assert.equal(result.attributes.length, 3);
+            assert.equal(result.attributes[0].name, "alias");
+            assert.equal(result.attributes[0].value, "Johan");
+            assert.equal(result.attributes[1].name, "surname");
+            assert.equal(result.attributes[1].value, "Smit");
             assert.equal(result.attributes[2].name, "age");
             assert.equal(result.attributes[2].value, "22");
 
-            /* Test credentials. */
-            assert.equal(result.credentials[0].organization, "Google");
-            assert.equal(result.credentials[0].attributes[0].name, "email");
-            assert.equal(result.credentials[0].attributes[0].value, "newjohans@gmail.com");
+            /* Credentials */
+            assert.equal(result.credentials.length, 1);
+            assert.equal(result.credentials[0].attributes.length, 2);
+            assert.equal(result.credentials[0].organization, "UP");
+            assert.equal(result.credentials[0].attributes[0].value, "u20502126");
             assert.equal(result.credentials[0].attributes[1].name, "password");
-            assert.equal(result.credentials[0].attributes[1].value, "xxyyzz");
-
-            assert.equal(result.credentials[1].attributes[1].name, "id");
-            assert.equal(result.credentials[1].attributes[1].value, "0102225184088");
-
-            assert.equal(result.credentials[2].organization, "Wits");
-            assert.equal(result.credentials[2].attributes[0].name, "student_number");
-            assert.equal(result.credentials[2].attributes[0].value, "u20502126");
-            assert.equal(result.credentials[2].attributes[1].name, "id");
-            assert.equal(result.credentials[2].attributes[1].value, "0102225184088");
+            assert.equal(result.credentials[0].attributes[1].value, "oowoo");
         });
 
+    });
+
+    describe("Transactions", async() => {
+        
+        it("Adds new TransactionRequests successfully.", async () => {
+
+            await udc.createUser("from");
+            await udc.newTransactionRequest([["alias"], ["from",id,"2022/08/03","Please give me your name!", "pending"]]);
+            result = await udc.getUserData(id);
+
+            //console.log(result.transactionRequests);
+
+            assert.equal(result.id, id);
+            assert.equal(result.transactionRequests[0].stamp.toID, id);
+            assert.equal(result.transactionRequests[0].stamp.fromID, "from");
+            assert.equal(result.transactionRequests[0].attributes[0], "alias");
+        });
+
+        it("Approves stage A, B and C Transactions.", async () => {
+
+            await udc.approveTransactionStageA(id, 0);
+            result = await udc.approveTransactionStageB(id, 0);
+            await udc.approveTransactionStageC("from", [[["alias","Johan"]], ["from",id,"2022/08/03","Please give me your name!", "approved"]]);
+
+            //console.log(result);
+
+            assert.equal(result.stamp.status, "approved");
+            assert.equal(result.attributes[0].name, "alias");
+            assert.equal(result.attributes[0].value, "Johan");
+            
+            result = await udc.getUserData("from");
+
+            //console.log(result);
+
+            assert.equal(result.approvedTransactions[0].stamp.status, "approved");
+            assert.equal(result.approvedTransactions[0].attributes[0].value, "Johan");
+        });
     });
 });

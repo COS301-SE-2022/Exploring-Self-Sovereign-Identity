@@ -1,14 +1,9 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Repositories; 
-using Microsoft.AspNetCore.Http;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using ExploringSelfSovereignIdentityAPI.Services;
-using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
-using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using System;
+using ExploringSelfSovereignIdentityAPI.Services.blockChain;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -16,103 +11,70 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     [ApiController]
     public class UserDataController : Controller
     {
-        private readonly IUserDataService _service;
 
-        public UserDataController(IUserDataService service)
+        private readonly IUserDataService uds;
+
+        private UserDataResponse response = new UserDataResponse();
+
+        public UserDataController(IBlockchainService blockchainService, IUserDataService uds)
         {
-            this._service = service;
+            this.uds = uds;
         }
 
         [HttpPost]
-        [Route("login")]
-        public async Task<UserDataModel> GetUser([FromBody] Guid Id)
+        [Route("create")]
+        public async Task<string> Register([FromBody] RegisterRequest request)
         {
-
-            return await _service.GetUser(Id);
-
+            return await uds.createUser(request.id);
         }
 
         [HttpPost]
-        [Route("register")]
-
-        public async Task<UserDataModel> Add()
+        [Route("get")]
+        public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
         {
-            return await _service.Add(); 
+            return await uds.getUserData(request.id);
+        }
+
+        [HttpPost]
+        [Route("updateAttribute")]
+        public UserDataResponse UpdateAttributes([FromBody] UserDataResponse request)
+        {
+
+            for (int i = 0; i < request.Attributes.Count; i++)
+            {
+
+                if (i < response.Attributes.Count)
+                {
+                    response.Attributes[i].Name = request.Attributes[i].Name;
+                    response.Attributes[i].Value = request.Attributes[i].Value;
+                    continue;
+                }
+
+                Services.NetheriumBlockChain.Attribute a1 = new Services.NetheriumBlockChain.Attribute();
+                a1.Name = request.Attributes[i].Name;
+                a1.Value = request.Attributes[i].Value;
+
+                response.Attributes.Add(a1);
+
+            }
+
+            return response;
         }
 
         [HttpPost]
         [Route("update")]
-
-        public IActionResult UpdateUserData(UserDataModel Id)
+        public async Task<GetUserDataOutputDTO> UpdateCredentials([FromBody] UpdateGen2 request )
         {
-           
-            var user = _service.UpdateUserData(Id);
-            return (IActionResult) user;
+            return await uds.updateUserData(request);
         }
 
+        //Transactions
 
-
-
-
-        /*private readonly IMediator mediator;
-        private readonly IUserDataService _UserDataService; 
-
-        public UserDataController(IMediator med, UserdataService userDataService)
-        {
-            mediator = med;
-            _UserDataService = userDataService;
-
-        }
-
-
-
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        //Login Endpoint 
-        [HttpGet("{id, hash}")]
-        public IActionResult Get(UserDataModel Id, UserDataModel hash)
-        {
-
-            var user = _UserDataService.GetUser(Id, hash);
-            return (IActionResult)user; 
-
-        }
-
-
-        // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("newTransaction")]
+        public async Task<String> newTransaction([FromBody] TransactionRequest request)
         {
-
+            return await uds.newTransactionRequest(request);
         }
-
-        // Register Endpoint 
-        [HttpPut("{id, hash}")]
-        public void Put(UserDataModel Id)
-        {
-            _UserDataService.Add(Id);
-
-        }
-
-        /* DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-
-        }*/
-
-
     }
 }

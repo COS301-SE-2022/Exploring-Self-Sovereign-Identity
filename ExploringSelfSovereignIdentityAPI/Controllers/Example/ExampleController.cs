@@ -1,6 +1,7 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Example;
 using ExploringSelfSovereignIdentityAPI.Models.Example;
 using ExploringSelfSovereignIdentityAPI.Queries.Example;
+using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -14,9 +15,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Example
     {
         private readonly IMediator mediator;
 
-        public ExampleController(IMediator med)
+        private readonly IBlockchainService blockchainService;
+
+        public ExampleController(IMediator med, IBlockchainService blockchainService)
         {
             mediator = med;
+            this.blockchainService = blockchainService;
         }
 
         [HttpGet("getExamples")]
@@ -29,6 +33,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Example
         public async Task<ExampleModel> AddExample([FromBody] ExampleAddCommand command)
         {
             return await mediator.Send(command);
+        }
+
+        [HttpGet("testBlockchainCreateUser")]
+        public async Task<string>  crceateUser()
+        {
+            return await blockchainService.createUser("");
         }
     }
 }

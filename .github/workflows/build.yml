@@ -25,8 +25,11 @@ jobs:
     - name: BuildAPI
       working-directory: ./ExploringSelfSovereignIdentityAPI
       run: dotnet build --no-restore
-    - name: TestAPI
+    - name: TestAPIUnit
       working-directory: ./ExploringSelfSovereignIdentityAPIUnitTests
+      run: dotnet test
+    - name: TestAPIIntegration
+      working-directory: ./ExploringSelfSovereignIdentityIntegrationAPI.Tests
       run: dotnet test
   
   Frontend:
@@ -42,9 +45,30 @@ jobs:
       - name: Building the project
         working-directory: ./SSIVueJsClient
         run: npm run build
-      - name: Running Tests
+      - name: Running Unit Tests
         working-directory: ./SSIVueJsClient
         run: npm run test:unit
+      - name: Running Server
+        working-directory: ./SSIVueJsClient
+        run: npm run test:e2e:ci &
+      - name: Running Integration Tests
+        working-directory: ./SSIVueJsClient
+        run: npx cypress run
+  
+  SmartContract:
+  
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - name: Installing Truffle
+        working-directory: ./LocalBlockchain
+        run: npm install truffle
+      - name: Installing All
+        working-directory: ./LocalBlockchain
+        run: npm install
+        
   
   CodeCov-API:
   
