@@ -35,6 +35,7 @@ export default defineComponent({
         },
         index: -1,
       });
+      console.log("here");
     },
     // ElMessageBox.prompt("Please enter attribute", "Tip", {
     //   confirmButtonText: "Add",
@@ -187,5 +188,9 @@ export default defineComponent({
     border-radius: 5px;
     border-width: thin;
   }
+}
+
+.button {
+  position: fixed;
 }
 </style>
