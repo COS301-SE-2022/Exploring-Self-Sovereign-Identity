@@ -349,7 +349,7 @@ contract UserDataContract {
 
         for (uint k=0; k<attrSize; k++) {
             ret.attributes[k].name = allUserData[_id].transactionRequests[index].attributes[k];
-            ret.attributes[k].value = findAttribute(_id, ret.attributes[k].name);
+            ret.attributes[k].value = findAttribute(_id, allUserData[_id].transactionRequests[index].attributes[k]);
         }
 
         return ret;

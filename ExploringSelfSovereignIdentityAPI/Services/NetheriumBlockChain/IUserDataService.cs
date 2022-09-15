@@ -11,7 +11,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public Task<string> createUser(string id);
         public Task<GetUserDataOutputDTO> getUserData(string id);
         public Task<GetUserDataOutputDTO> updateUserData( UpdateGen2 update);
-
         Task<string> newTransactionRequest(TransactionRequest request);
+        Task<string> approveTransaction(string id, int index);
     }
 }
