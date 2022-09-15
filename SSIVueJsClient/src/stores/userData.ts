@@ -123,13 +123,14 @@ export interface User {
   ];
 }
 export interface Attributes {
-  attributes: [
-    {
-      attribute: {
-        name: string;
-        value: string;
-      };
-      index: number;
-    }
-  ];
+  attributes:
+    | [
+        {
+          attribute: {
+            name: string;
+            value: string;
+          };
+          index: number;
+        }
+      ];
 }

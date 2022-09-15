@@ -107,6 +107,7 @@ export default defineComponent({
   left: 0;
   // background: #ffffff;
   overflow: hidden;
+  z-index: -1;
 }
 
 .background span {
@@ -122,7 +123,7 @@ export default defineComponent({
 }
 
 .background span:nth-child(0) {
-  color: #e45a84;
+  color: #c197d2;
   top: 12%;
   left: 38%;
   animation-duration: 39s;
@@ -131,7 +132,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.641906387991167vmin currentColor;
 }
 .background span:nth-child(1) {
-  color: #ffacac;
+  color: #d3b1c2;
   top: 61%;
   left: 16%;
   animation-duration: 24s;
@@ -140,7 +141,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.21768313481472vmin currentColor;
 }
 .background span:nth-child(2) {
-  color: #e45a84;
+  color: #c197d2;
   top: 43%;
   left: 10%;
   animation-duration: 45s;
@@ -149,7 +150,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.860883208486514vmin currentColor;
 }
 .background span:nth-child(3) {
-  color: #583c87;
+  color: #613659;
   top: 65%;
   left: 69%;
   animation-duration: 10s;
@@ -158,7 +159,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.255696744502337vmin currentColor;
 }
 .background span:nth-child(4) {
-  color: #e45a84;
+  color: #c197d2;
   top: 43%;
   left: 55%;
   animation-duration: 18s;
@@ -167,7 +168,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.427797587782514vmin currentColor;
 }
 .background span:nth-child(5) {
-  color: #583c87;
+  color: #613659;
   top: 68%;
   left: 56%;
   animation-duration: 47s;
@@ -176,7 +177,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.889174563699299vmin currentColor;
 }
 .background span:nth-child(6) {
-  color: #ffacac;
+  color: #d3b1c2;
   top: 97%;
   left: 58%;
   animation-duration: 7s;
@@ -185,7 +186,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.400666124036952vmin currentColor;
 }
 .background span:nth-child(7) {
-  color: #583c87;
+  color: #613659;
   top: 30%;
   left: 86%;
   animation-duration: 14s;
@@ -194,7 +195,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.048694697289397vmin currentColor;
 }
 .background span:nth-child(8) {
-  color: #e45a84;
+  color: #c197d2;
   top: 8%;
   left: 53%;
   animation-duration: 21s;
@@ -203,7 +204,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.687982806691891vmin currentColor;
 }
 .background span:nth-child(9) {
-  color: #e45a84;
+  color: #c197d2;
   top: 56%;
   left: 76%;
   animation-duration: 25s;
@@ -212,7 +213,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.292837684293237vmin currentColor;
 }
 .background span:nth-child(10) {
-  color: #ffacac;
+  color: #d3b1c2;
   top: 30%;
   left: 82%;
   animation-duration: 23s;
@@ -221,7 +222,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.629809962367889vmin currentColor;
 }
 .background span:nth-child(11) {
-  color: #e45a84;
+  color: #c197d2;
   top: 97%;
   left: 94%;
   animation-duration: 43s;
@@ -230,7 +231,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.414017515907672vmin currentColor;
 }
 .background span:nth-child(12) {
-  color: #e45a84;
+  color: #c197d2;
   top: 5%;
   left: 83%;
   animation-duration: 37s;
@@ -239,7 +240,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.587261935904543vmin currentColor;
 }
 .background span:nth-child(13) {
-  color: #ffacac;
+  color: #d3b1c2;
   top: 85%;
   left: 94%;
   animation-duration: 53s;
@@ -248,7 +249,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.184845749122784vmin currentColor;
 }
 .background span:nth-child(14) {
-  color: #e45a84;
+  color: #c197d2;
   top: 81%;
   left: 74%;
   animation-duration: 26s;
@@ -257,7 +258,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.48934739379526vmin currentColor;
 }
 .background span:nth-child(15) {
-  color: #e45a84;
+  color: #c197d2;
   top: 41%;
   left: 70%;
   animation-duration: 19s;
@@ -266,7 +267,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.494332920914466vmin currentColor;
 }
 .background span:nth-child(16) {
-  color: #ffacac;
+  color: #d3b1c2;
   top: 10%;
   left: 13%;
   animation-duration: 32s;
@@ -275,7 +276,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.305543035740362vmin currentColor;
 }
 .background span:nth-child(17) {
-  color: #e45a84;
+  color: #c197d2;
   top: 17%;
   left: 41%;
   animation-duration: 25s;
@@ -284,7 +285,7 @@ export default defineComponent({
   box-shadow: 40vmin 0 5.807916465481354vmin currentColor;
 }
 .background span:nth-child(18) {
-  color: #e45a84;
+  color: #c197d2;
   top: 4%;
   left: 4%;
   animation-duration: 17s;
@@ -293,7 +294,7 @@ export default defineComponent({
   box-shadow: -40vmin 0 5.578044457602442vmin currentColor;
 }
 .background span:nth-child(19) {
-  color: #583c87;
+  color: #613659;
   top: 84%;
   left: 88%;
   animation-duration: 16s;
