@@ -27,7 +27,15 @@ export default defineComponent({
     showMod() {
       this.showModal = true;
     },
-
+    addAtt() {
+      this.userData.attributes.attributes.push({
+        attribute: {
+          name: this.name,
+          value: this.value,
+        },
+        index: -1,
+      });
+    },
     // ElMessageBox.prompt("Please enter attribute", "Tip", {
     //   confirmButtonText: "Add",
     //   cancelButtonText: "Cancel",
