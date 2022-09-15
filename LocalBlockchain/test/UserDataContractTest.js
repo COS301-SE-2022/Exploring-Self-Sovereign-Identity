@@ -123,4 +123,12 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.approvedTransactions[0].attributes[0].value, "Johan");
         });
     });
+
+    describe("Session Credentials", async () => {
+        it ("Gets a credential", async () => {
+            console.log(await udc.getUserData(id));
+            result = await udc.getCredential(id, "UP");
+            console.log(result);
+        })
+    });
 });
