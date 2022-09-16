@@ -1,13 +1,14 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
-using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-using ExploringSelfSovereignIdentityAPI.Models.Response;
-using System.Collections.Generic;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public interface ISessionService
     {
-        
+        public OtpResponse initializeSession(string organization);
+        public OtpConnectResponse connect(string otp, CredentialResponseBase credential);
+        public CredentialResponseBase finish(string otp);
+
     }
 }
