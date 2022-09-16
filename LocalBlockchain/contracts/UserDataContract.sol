@@ -237,6 +237,33 @@ contract UserDataContract {
 
     }
 
+    function getCredential(string memory id, string memory organization) public view returns (CredentialResponse memory) {
+        
+        CredentialResponse memory cr;
+        
+        for (uint i=0; i<allUserData[id].credentialCount; i++) {
+            if (stringCompare(allUserData[id].credentials[i].organization, organization)) {
+
+                cr.organization = organization;
+                uint size = allUserData[id].credentials[i].attributeCount;
+
+                Attribute[] memory attrs = new Attribute[](size);
+
+                for (uint k=0; k<size; k++) {
+                    attrs[k].name = allUserData[id].credentials[i].attributes[k].name;
+                    attrs[k].value = allUserData[id].credentials[i].attributes[k].value;
+                }
+
+                cr.attributes = attrs;
+
+                return cr;
+            }
+        }
+
+        return cr;
+
+    }
+
     /*
     * ============================================== TRANSACTION SUBSECTION ==============================================
     * This is where all transactions between users have operations capable of carrying out the needed functions.
@@ -322,7 +349,7 @@ contract UserDataContract {
 
         for (uint k=0; k<attrSize; k++) {
             ret.attributes[k].name = allUserData[_id].transactionRequests[index].attributes[k];
-            ret.attributes[k].value = findAttribute(_id, ret.attributes[k].name);
+            ret.attributes[k].value = findAttribute(_id, allUserData[_id].transactionRequests[index].attributes[k]);
         }
 
         return ret;
