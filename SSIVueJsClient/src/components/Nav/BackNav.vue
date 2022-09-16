@@ -20,7 +20,7 @@ export default {
   <n-page-header
     :title="page"
     @back="goback"
-    class="nav-component"
+    class="nav-component bar"
     data-testid="NavBack"
   >
     <template #back>
@@ -29,7 +29,7 @@ export default {
       </n-icon>
     </template>
     <template #extra>
-      <n-icon size="30">
+      <n-icon size="30" color="white">
         <MenuOutline />
       </n-icon>
     </template>
@@ -47,6 +47,8 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
   // height: 100%;
   z-index: 1;
   // display: grid;
@@ -56,5 +58,16 @@ export default {
   // bottom: 0vh;
   // backdrop-filter: hue-rotate(10deg);
   // border-radius: 5px;
+}
+
+.bar {
+  // width: fit-content;
+  text-align: center;
+  background: #c197d2;
+  opacity: 0.8;
+  border-radius: 2px;
+  box-shadow: 0 4px 30px rgba(158, 158, 158, 0.1);
+  backdrop-filter: blur(12.7px);
+  -webkit-backdrop-filter: blur(12.7px);
 }
 </style>

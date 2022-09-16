@@ -16,6 +16,7 @@ export default defineComponent({
     const appid = "Q17Gza9k49k1ieI15r73xaQf";
     // getuserdata("orhfaoiuhosdhgosir");
     const userData = userDataStore();
+    userData.getuserdata("osdfhooihoer");
     return { appid, userData };
   },
   data() {

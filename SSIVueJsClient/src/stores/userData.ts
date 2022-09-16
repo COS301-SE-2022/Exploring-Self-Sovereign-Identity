@@ -39,10 +39,10 @@ export const userDataStore = defineStore("userData", {
         });
     },
     setuserdata() {
-      console.log(this.user);
+      // console.log(this.user);
       this.api
         .post(`/api/UserData/update`, {
-          attributes: this.user.attributes,
+          attributes: this.attributes.attributes,
         })
         .then((response) => {
           console.log(response.data);

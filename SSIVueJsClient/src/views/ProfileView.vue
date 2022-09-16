@@ -100,8 +100,8 @@ export default defineComponent({
         circle
         type="primary"
         size="large"
-        style="width: fit-content; padding: 3px"
         @click="showMod"
+        class="button"
       >
         Add Attribute
         <template #icon>
@@ -191,6 +191,13 @@ export default defineComponent({
 }
 
 .button {
+  width: fit-content;
+  padding: 4vw;
   position: fixed;
+  bottom: 6.5vh;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 </style>
