@@ -36,7 +36,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
             return ret;
         }
 
-        public OtpResponse initializeSession(string organization)
+        public OtpResponse initializeSession()
         {
             long temp;
 
