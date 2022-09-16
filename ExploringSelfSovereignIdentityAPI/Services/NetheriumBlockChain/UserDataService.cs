@@ -18,12 +18,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         static string url = "http://127.0.0.1:8545";
 
-        static string privateKey = "57dac1c6a6f92872594081ba7a0f0aaec4ead5c492476e31f7f337c2e8589282";
+        static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
 
         //private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
 
-        private readonly string senderAddress = "0xeE07Cf444e5044295228083C652aA46F9fefA44A";
-        private static string contractAddress = "0xDAd7a7BC751b61c8297715E37447EeC7c0F0fCB1";
+        private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
+        private static string contractAddress = "0xB60B0D980d23FB07952eEa6f2BC028188c15322C";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
@@ -74,23 +74,30 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public async Task<string> approveTransaction(string id, int index)
         {
+
+            /* Stage A */
             var approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
             approveTransactionStageAFunction.Id = id;
             approveTransactionStageAFunction.Index = index;
             var approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
 
+            /* Stage B */
             var approveBFunction = new ApproveTransactionStageBFunction();
             approveBFunction.Id = id;
             approveBFunction.Index = index;
             var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
 
-
+            /* Stage C */
+            var approveTransactionStageCFunction = new ApproveTransactionStageCFunction();
+            approveTransactionStageCFunction.Id = approveBFunctionTxnReceipDTO.ReturnValue1.Stamp.FromID;
+            approveTransactionStageCFunction.Transaction = approveBFunctionTxnReceipDTO.ReturnValue1;
+            var approveTransactionStageCFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageCFunction);
 
             return "success";
         }
 
 
-        public async Task<string> approveTransactionStageC(string id, TransactionResponse transaction)
+        /*public async Task<string> approveTransactionStageC(string id, TransactionResponse transaction)
         {
             
             TransactionResponse tr = new TransactionResponse();
@@ -104,7 +111,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             var approveTransactionStageCFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageCFunction);
 
             return "success";
-        }
+        }*/
 
 
 
