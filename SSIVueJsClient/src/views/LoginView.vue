@@ -12,7 +12,7 @@ export default defineComponent({
     // },
   },
   setup() {
-    const appid = "Q17Gza9k49k1ieI15r73xaQf";
+    const appid = import.meta.env.VITE_APP_ID;
     return { appid };
   },
 });
