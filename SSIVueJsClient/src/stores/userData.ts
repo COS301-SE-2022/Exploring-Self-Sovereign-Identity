@@ -31,8 +31,11 @@ export const userDataStore = defineStore("userData", {
           id: userid,
         })
         .then((response) => {
-          this.user = response.data;
-          this.sync();
+          console.log(response.data);
+          if (response.data) {
+            this.user = response.data;
+            this.sync();
+          }
         })
         .catch((error) => {
           console.log(error);
