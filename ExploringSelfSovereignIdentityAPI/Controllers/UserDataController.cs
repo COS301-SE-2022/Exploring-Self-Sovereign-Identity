@@ -14,8 +14,6 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         private readonly IUserDataService uds;
 
-        private UserDataResponse response = new UserDataResponse();
-
         public UserDataController(IBlockchainService blockchainService, IUserDataService uds)
         {
             this.uds = uds;
