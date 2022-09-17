@@ -2,6 +2,6 @@
 {
     public class FinishRequest
     {
-        public string otp { get; set; }
+        public long otp { get; set; }
     }
 }

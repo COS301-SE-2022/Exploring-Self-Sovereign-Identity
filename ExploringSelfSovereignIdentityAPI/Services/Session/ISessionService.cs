@@ -7,8 +7,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services
     public interface ISessionService
     {
         public OtpResponse initializeSession();
-        public OtpConnectResponse connect(string otp, CredentialResponseBase credential);
-        public CredentialResponseBase finish(string otp);
+        public OtpConnectResponse connect(long otp, CredentialResponseBase credential);
+        public CredentialResponseBase finish(long otp);
 
     }
 }

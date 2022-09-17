@@ -46,6 +46,7 @@ namespace exploring_self_sovereign_identity_api
 
 
             //Adding my service
+            //services.AddScoped<ISessionService, SessionService>();
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();

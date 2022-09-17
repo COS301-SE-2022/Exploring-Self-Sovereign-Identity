@@ -2,6 +2,6 @@
 {
     public class OtpResponse
     {
-        public string otp { get; set; }
+        public long otp { get; set; }
     }
 }
