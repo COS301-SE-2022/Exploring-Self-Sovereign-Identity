@@ -1,19 +1,21 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import "@passageidentity/passage-elements/passage-auth";
+import { userDataStore } from "@/stores/userData";
 export default defineComponent({
   data() {
     return {};
   },
   components: {},
   methods: {
-    // route() {
-    //   this.$router.push({ path: "/home" });
-    // },
+    success() {
+      console.log("Success");
+    },
   },
   setup() {
     const appid = import.meta.env.VITE_APP_ID;
-    return { appid };
+    const userData = userDataStore();
+    return { appid, userData };
   },
 });
 </script>
@@ -23,7 +25,7 @@ export default defineComponent({
 
   <!-- *Passage component -->
   <div class="authContainer">
-    <passage-auth :app-id="appid"></passage-auth>
+    <passage-auth :app-id="appid" @onSuccess="success"></passage-auth>
   </div>
 
   <!-- *! will need to replace this biometric with passage once it is setup -->

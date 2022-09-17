@@ -69,6 +69,11 @@ body {
 :root {
   --passage-onprimary-color: black;
   --passage-primary-color: #fff;
-  --passage-body-text-color: #fff;
+  --passage-body-text-color: rgb(255, 255, 255);
   --passage-header-text-color: #fff;
+  --passage-onactive-color: rgb(0, 0, 0);
+}
+
+passage-auth::part(input){
+  color: #000;
 }
