@@ -74,15 +74,19 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
         public async Task<OtpConnectResponse> issue(string id, CredentialResponseBase credential)
         {
-            UpdateBaseGen2 u = new UpdateBaseGen2();
+            UpdateGen2 u = new UpdateGen2();
             u.Id = id;
             u.Credentials = new List<CredentialUpdateGen2>();
 
             CredentialUpdateGen2 c = new CredentialUpdateGen2();
+
             c.Organization = credential.Organization;
             c.Attributes = credential.Attributes;
+            c.Index = -1;
 
             u.Credentials.Add(c);
+
+            u.Attributes = new List<AttributeUpdateGen2>();
 
             await userData.updateUserData(u);
 
