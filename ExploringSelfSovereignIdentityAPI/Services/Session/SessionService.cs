@@ -1,28 +1,34 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+﻿using ExploringSelfSovereignIdentityAPI.Controllers.UserData;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
+using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
+using IUserDataService = ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.IUserDataService;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public class SessionService : ISessionService
     {
+        private IUserDataService userData;
+
         private Random random;
         private static Dictionary<long, CredentialResponseBase> activeSesions = new Dictionary<long, CredentialResponseBase>();
 
         private CredentialResponseBase defaultCred;
 
-        public SessionService()
+        public SessionService(IUserDataService userData)
         {
             random = new Random();
 
             if (activeSesions == null) activeSesions = new Dictionary<long, CredentialResponseBase>();
 
             defaultCred = new CredentialResponseBase();
-            //activeSesions.Add(0000, defaultCred);
+
+            this.userData = userData;
         }
 
         public OtpResponse initializeSession()
@@ -63,6 +69,25 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
             CredentialResponseBase ret = (CredentialResponseBase) activeSesions[otp];
             activeSesions.Remove(otp);
+            return ret;
+        }
+
+        public async Task<OtpConnectResponse> issue(string id, CredentialResponseBase credential)
+        {
+            UpdateBaseGen2 u = new UpdateBaseGen2();
+            u.Id = id;
+            u.Credentials = new List<CredentialUpdateGen2>();
+
+            CredentialUpdateGen2 c = new CredentialUpdateGen2();
+            c.Organization = credential.Organization;
+            c.Attributes = credential.Attributes;
+
+            u.Credentials.Add(c);
+
+            await userData.updateUserData(u);
+
+            OtpConnectResponse ret = new OtpConnectResponse();
+            ret.status = "success";
             return ret;
         }
 
