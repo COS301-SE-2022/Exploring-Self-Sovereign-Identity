@@ -1,7 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Commands.SessionCommand;
-using ExploringSelfSovereignIdentityAPI.Models.Default;
-using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-using ExploringSelfSovereignIdentityAPI.Models.Request;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
@@ -20,6 +17,13 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
         public SessionController(ISessionService service)
         {
             this.sessionService = service;
+        }
+
+        [HttpPost]
+        [Route("issue")]
+        public async Task<OtpConnectResponse> issue([FromBody] IssueCredentialRequest request)
+        {
+            return await sessionService.issue(request.id, request.credential);
         }
 
         [HttpPost]

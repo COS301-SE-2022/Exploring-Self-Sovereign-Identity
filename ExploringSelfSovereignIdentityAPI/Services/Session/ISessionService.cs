@@ -9,6 +9,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         public OtpResponse initializeSession();
         public OtpConnectResponse connect(long otp, CredentialResponseBase credential);
         public CredentialResponseBase finish(long otp);
+        public Task<OtpConnectResponse> issue(string id, CredentialResponseBase credential);
 
     }
 }
