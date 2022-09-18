@@ -15,6 +15,7 @@ export default defineComponent({
   setup() {
     const appid = import.meta.env.VITE_APP_ID;
     const userData = userDataStore();
+
     return { appid, userData };
   },
 });
@@ -25,7 +26,7 @@ export default defineComponent({
 
   <!-- *Passage component -->
   <div class="authContainer">
-    <passage-auth :app-id="appid" @onSuccess="success"></passage-auth>
+    <passage-auth :app-id="appid"></passage-auth>
   </div>
 
   <!-- *! will need to replace this biometric with passage once it is setup -->
