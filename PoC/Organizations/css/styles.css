@@ -1,0 +1,16 @@
+.navBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 8vh;
+
+    background-color: blue;
+}
+
+.auth {
+    margin: auto;
+    width: 30vw;
+    height: 40vh;
+}
