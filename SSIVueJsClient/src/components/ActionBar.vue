@@ -1,3 +1,58 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { computed } from 'vue'
+
+import IconBack from '@/assets/icons/icon-back.svg'
+import IconCode from '@/assets/icons/icon-code.svg'
+import IconFlip from '@/assets/icons/icon-flip.svg'
+import IconNext from '@/assets/icons/icon-next.svg'
+import { ActionType } from '@/enums'
+import { useStore } from '@/stores'
+export default defineComponent({
+  //components: { IconBack, IconCode, IconFlip, IconNext },
+  setup() {
+    const emit = defineEmits<{
+      (e: 'action', actionType: ActionType): void
+    }>()
+
+    const store = useStore()
+
+    const canUndo = computed(() => store.state.history.past.length > 0)
+    const canRedo = computed(() => store.state.history.future.length > 0)
+
+    const actions = computed(() => [
+      {
+        type: ActionType.Undo,
+        icon: IconBack,
+        tip: 'action.undo',
+        disabled: !canUndo.value,
+      },
+      {
+        type: ActionType.Redo,
+        icon: IconNext,
+        tip: 'action.redo',
+        disabled: !canRedo.value,
+      },
+      {
+        type: ActionType.Flip,
+        icon: IconFlip,
+        tip: 'action.flip',
+      },
+      {
+        type: ActionType.Code,
+        icon: IconCode,
+        tip: 'action.code',
+      },
+    ])
+
+    return {
+      actions,
+      emit,
+    }
+  },
+})
+</script>
+
 <template>
   <div class="action-menu">
     <div
@@ -12,60 +67,6 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  data() {
-    return {}
-  },
-  components: {},
-  methods: {},
-})
-</script>
-<script lang="ts" setup>
-import { computed } from 'vue'
-
-import IconBack from '@/assets/icons/icon-back.svg'
-import IconCode from '@/assets/icons/icon-code.svg'
-import IconFlip from '@/assets/icons/icon-flip.svg'
-import IconNext from '@/assets/icons/icon-next.svg'
-import { ActionType } from '@/enums'
-import { useStore } from '@/stores'
-
-const emit = defineEmits<{
-  (e: 'action', actionType: ActionType): void
-}>()
-
-const store = useStore()
-
-const canUndo = computed(() => store.state.history.past.length > 0)
-const canRedo = computed(() => store.state.history.future.length > 0)
-
-const actions = computed(() => [
-  {
-    type: ActionType.Undo,
-    icon: IconBack,
-    tip: 'action.undo',
-    disabled: !canUndo.value,
-  },
-  {
-    type: ActionType.Redo,
-    icon: IconNext,
-    tip: 'action.redo',
-    disabled: !canRedo.value,
-  },
-  {
-    type: ActionType.Flip,
-    icon: IconFlip,
-    tip: 'action.flip',
-  },
-  {
-    type: ActionType.Code,
-    icon: IconCode,
-    tip: 'action.code',
-  },
-])
-</script>
 
 <style lang="scss" scoped>
 @use 'src/styles/var';
