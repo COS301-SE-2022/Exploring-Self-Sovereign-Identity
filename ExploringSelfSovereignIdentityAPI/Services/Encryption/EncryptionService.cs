@@ -59,7 +59,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
         }
 
 
-        public string generateKey(string userId)
+        private string generateKey(string userId)
         {
             string key = "";
 
