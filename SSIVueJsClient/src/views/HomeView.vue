@@ -4,24 +4,20 @@ import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
-import { Passage } from "@passageidentity/passage-js";
 // import { getuserdata } from "@/services/UserDataService";
 import { userDataStore } from "@/stores/userData";
 
 // import { UserService } from "../services/UserService";
 // import { RegisterRequest } from "../models/requests/RegisterRequest";
-import { isNull } from "lodash";
 export default defineComponent({
   setup() {
-    const appid = "Q17Gza9k49k1ieI15r73xaQf";
-    // getuserdata("orhfaoiuhosdhgosir");
     const userData = userDataStore();
     userData.getuserdata("osdfhooihoer");
-    return { appid, userData };
+    return { userData };
   },
-  data() {
-    return {};
-  },
+  // data() {
+  //   return {};
+  // },
   methods: {
     goProfile() {
       this.$router.push({ path: "/profile" });
@@ -31,26 +27,8 @@ export default defineComponent({
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
-  mounted() {
-    this.userData.getuserdata("aaa");
-  },
   // mounted() {
-  //   //Passage store
-  //   const passage = new Passage(this.appid);
-  //   const user = passage.getCurrentUser();
-  //   user.getMetadata().then((Response) => {
-  //     // const userService = new UserService();
-  //     if (!isNull(Response)) {
-  //       //userService.register(new RegisterRequest("sudfhsd"));
-  //       console.log("Should not be here");
-  //     } else {
-  //       user.updateMetadata({
-  //         key: "This is a test",
-  //         userid: "This is also a test",
-  //       });
-  //     }
-  //     // console.log(Response);
-  //   });
+  //   this.userData.getuserdata("aaa");
   // },
 });
 </script>
