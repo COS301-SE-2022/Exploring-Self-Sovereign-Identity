@@ -11,6 +11,7 @@ using Nethereum.Contracts;
 using System.Threading;
 using Nethereum.Contracts.ContractHandlers;
 using ExploringSelfSovereignIdentityAPI.Models;
+using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -154,6 +155,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
                 item.Attribute = new Attribute();
                 item.Attribute.Name = update.Attributes[i].Attribute.Name;
                 item.Attribute.Value = update.Attributes[i].Attribute.Value;
+
+                //I'm encrypting the value, just waiting for the generated key which uses userID
+                //item.Attribute.Value = EncryptionService.EncryptString(userID, update.Attributes[i].Attribute.Value);
 
                 item.Index = new BigInteger(update.Attributes[i].Index);
 
