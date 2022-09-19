@@ -16,7 +16,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 
             Aes aes = Aes.Create();
 
-            aes.Key = Encoding.UTF8.GetBytes(userID);
+            aes.Key = Encoding.UTF8.GetBytes(generateKey(userID));
             aes.IV = iv;
 
             ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
@@ -37,7 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 
             Aes aes = Aes.Create();
 
-            aes.Key = Encoding.UTF8.GetBytes(userID);
+            aes.Key = Encoding.UTF8.GetBytes(generateKey(userID));
             aes.IV = iv;
 
             ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
