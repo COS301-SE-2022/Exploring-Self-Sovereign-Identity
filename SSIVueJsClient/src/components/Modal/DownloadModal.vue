@@ -24,12 +24,17 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-const props = defineProps<{ visible?: boolean; imageUrl: string }>()
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  setup() {
+    const props = defineProps<{ visible?: boolean; imageUrl: string }>()
 
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+    const emit = defineEmits<{
+      (e: 'close'): void
+    }>()
+  },
+})
 </script>
 
 <style lang="scss" scoped>
