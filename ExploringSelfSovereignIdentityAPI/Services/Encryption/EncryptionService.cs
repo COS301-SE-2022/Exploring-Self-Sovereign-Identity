@@ -61,7 +61,44 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 
         public string generateKey(string userId)
         {
-            return null;
+            string key = "";
+
+            for (int i = 0; i < 32; i++)
+            {
+                key += userId[(userId.Length + i) % 32];
+            }
+
+            byte[] iv = new byte[16];
+            byte[] array;
+
+            Aes aes = Aes.Create();
+
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = iv;
+
+            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+            MemoryStream memoryStream = new MemoryStream();
+
+            CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write);
+
+            using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
+            {
+                streamWriter.Write(userId);
+            }
+
+            array = memoryStream.ToArray();
+
+            string enc = Convert.ToBase64String(array);
+
+            string res = "";
+
+            for (int i = 0; i < 32; i++)
+            {
+                res += enc[(enc.Length + i) % 32];
+            }
+
+            return res;
         }
 
 
