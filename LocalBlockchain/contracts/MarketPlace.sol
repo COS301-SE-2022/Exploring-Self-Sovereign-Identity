@@ -17,7 +17,7 @@ contract MarketPlace {
         string id;
         string hashedPassword;
 
-        //uint balance;
+        int balance;
 
         uint packCount;
         mapping (uint => DataPack) packs;
@@ -25,7 +25,7 @@ contract MarketPlace {
 
     struct OrganizationResponse {
         string id;
-        //uint balance;
+        int balance;
 
         string status;
 
@@ -86,7 +86,7 @@ contract MarketPlace {
         allOrganizations[request.id].id = request.id;
         allOrganizations[request.id].hashedPassword = request.password;
         allOrganizations[request.id].packCount = 0;
-        //allOrganizations[request.id].balance = 100;
+        allOrganizations[request.id].balance = 100;
     }
 
     function getOrganization(CreateOrgRequest memory request) public view returns (OrganizationResponse memory) {
@@ -99,7 +99,7 @@ contract MarketPlace {
 
         ret.id = request.id;
         ret.status = "success";
-        //ret.balance = allOrganizations[request.id].balance;
+        ret.balance = allOrganizations[request.id].balance;
 
         uint size = allOrganizations[request.id].packCount;
 

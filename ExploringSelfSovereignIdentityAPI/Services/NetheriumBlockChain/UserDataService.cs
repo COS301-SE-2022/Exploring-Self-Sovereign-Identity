@@ -19,7 +19,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         static string url = "http://127.0.0.1:8545";
         static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
         private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
-        private static string contractAddress = "0xB60B0D980d23FB07952eEa6f2BC028188c15322C";
+        private static string contractAddress = "0xA52dD18FF4b5C5E84502C09f31068BAB7aD01C00";
 
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
 
