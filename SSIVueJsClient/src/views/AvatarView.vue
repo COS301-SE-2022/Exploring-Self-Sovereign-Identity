@@ -1,12 +1,15 @@
-<script lang="ts" setup>
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 import { ref, watchEffect } from 'vue'
 import ActionBar from '@/components/ActionBar.vue'
 import Configurator from '@/components/Configurator.vue'
 import CodeModal from '@/components/Modal/CodeModal.vue'
 import DownloadModal from '@/components/Modal/DownloadModal.vue'
-import VueColorAvatar, {
-  type VueColorAvatarRef,
-} from '../components/VueColorAvatar.vue'
+import type VueColorAvatar from '../components/VueColorAvatar.vue'
+import type { VueColorAvatarRef } from '../components/VueColorAvatar.vue'
 import { ActionType } from '@/enums'
 import { useAvatarOption } from '@/hooks'
 import Container from '@/components/Container.vue'
@@ -23,135 +26,125 @@ import { recordEvent } from '../utils/ga'
 
 import type { AvatarOption } from '../types'
 
-const store = useStore()
+export default defineComponent({
+  setup() {
+    const store = useStore()
 
-const [avatarOption, setAvatarOption] = useAvatarOption()
+    const [avatarOption, setAvatarOption] = useAvatarOption()
 
-const colorAvatarRef = ref<VueColorAvatarRef>()
+    const colorAvatarRef = ref<VueColorAvatarRef>()
 
-function handleGenerate() {
-  if (Math.random() <= TRIGGER_PROBABILITY) {
-    let colorfulOption = getSpecialAvatarOption()
-    while (
-      JSON.stringify(colorfulOption) === JSON.stringify(avatarOption.value)
-    ) {
-      colorfulOption = getSpecialAvatarOption()
-    }
-    colorfulOption.wrapperShape = avatarOption.value.wrapperShape
-    setAvatarOption(colorfulOption)
-  } else {
-    const randomOption = getRandomAvatarOption(avatarOption.value)
-    setAvatarOption(randomOption)
-  }
-
-  recordEvent('click_randomize', {
-    event_category: 'click',
-  })
-}
-
-const downloadModalVisible = ref(false)
-const downloading = ref(false)
-const imageDataURL = ref('')
-
-async function handleDownload() {
-  try {
-    downloading.value = true
-    const avatarEle = colorAvatarRef.value?.avatarRef
-
-    const userAgent = window.navigator.userAgent.toLowerCase()
-    const notCompatible = NOT_COMPATIBLE_AGENTS.some(
-      (agent) => userAgent.indexOf(agent) !== -1
-    )
-
-    if (avatarEle) {
-      const html2canvas = (await import('html2canvas')).default
-      const canvas = await html2canvas(avatarEle, {
-        backgroundColor: null,
-      })
-      const dataURL = canvas.toDataURL()
-
-      if (notCompatible) {
-        imageDataURL.value = dataURL
-        downloadModalVisible.value = true
+    function handleGenerate() {
+      if (Math.random() <= TRIGGER_PROBABILITY) {
+        let colorfulOption = getSpecialAvatarOption()
+        while (
+          JSON.stringify(colorfulOption) === JSON.stringify(avatarOption.value)
+        ) {
+          colorfulOption = getSpecialAvatarOption()
+        }
+        colorfulOption.wrapperShape = avatarOption.value.wrapperShape
+        setAvatarOption(colorfulOption)
       } else {
-        const trigger = document.createElement('a')
-        trigger.href = dataURL
-        //trigger.download = `${appName}.png`
-        trigger.click()
+        const randomOption = getRandomAvatarOption(avatarOption.value)
+        setAvatarOption(randomOption)
+      }
+
+      recordEvent('click_randomize', {
+        event_category: 'click',
+      })
+    }
+
+    const downloadModalVisible = ref(false)
+    const downloading = ref(false)
+    const imageDataURL = ref('')
+
+    async function handleDownload() {
+      try {
+        downloading.value = true
+        const avatarEle = colorAvatarRef.value?.avatarRef
+
+        const userAgent = window.navigator.userAgent.toLowerCase()
+        const notCompatible = NOT_COMPATIBLE_AGENTS.some(
+          (agent) => userAgent.indexOf(agent) !== -1
+        )
+
+        if (avatarEle) {
+          const html2canvas = (await import('html2canvas')).default
+          const canvas = await html2canvas(avatarEle, {
+            backgroundColor: null,
+          })
+          const dataURL = canvas.toDataURL()
+
+          if (notCompatible) {
+            imageDataURL.value = dataURL
+            downloadModalVisible.value = true
+          } else {
+            const trigger = document.createElement('a')
+            trigger.href = dataURL
+            //trigger.download = `${appName}.png`
+            trigger.click()
+          }
+        }
+
+        recordEvent('click_download', {
+          event_category: 'click',
+        })
+      } finally {
+        setTimeout(() => {
+          downloading.value = false
+        }, DOWNLOAD_DELAY)
       }
     }
 
-    recordEvent('click_download', {
-      event_category: 'click',
+    const flipped = ref(false)
+    //const codeVisible = ref(false)
+
+    function handleAction(actionType: ActionType) {
+      switch (actionType) {
+        case ActionType.Undo:
+          store.commit(UNDO)
+          recordEvent('action_undo', {
+            event_category: 'action',
+            event_label: 'Undo',
+          })
+          break
+
+        case ActionType.Redo:
+          store.commit(REDO)
+          recordEvent('action_redo', {
+            event_category: 'action',
+            event_label: 'Redo',
+          })
+          break
+
+        case ActionType.Flip:
+          flipped.value = !flipped.value
+          recordEvent('action_flip_avatar', {
+            event_category: 'action',
+            event_label: 'Flip Avatar',
+          })
+          break
+      }
+    }
+
+    const avatarListVisible = ref(false)
+    const avatarList = ref<AvatarOption[]>([])
+
+    watchEffect(() => {
+      avatarListVisible.value =
+        Array.isArray(avatarList.value) && avatarList.value.length > 0
     })
-  } finally {
-    setTimeout(() => {
-      downloading.value = false
-    }, DOWNLOAD_DELAY)
-  }
-}
 
-const flipped = ref(false)
-const codeVisible = ref(false)
-
-function handleAction(actionType: ActionType) {
-  switch (actionType) {
-    case ActionType.Undo:
-      store.commit(UNDO)
-      recordEvent('action_undo', {
-        event_category: 'action',
-        event_label: 'Undo',
-      })
-      break
-
-    case ActionType.Redo:
-      store.commit(REDO)
-      recordEvent('action_redo', {
-        event_category: 'action',
-        event_label: 'Redo',
-      })
-      break
-
-    case ActionType.Flip:
-      flipped.value = !flipped.value
-      recordEvent('action_flip_avatar', {
-        event_category: 'action',
-        event_label: 'Flip Avatar',
-      })
-      break
-  }
-}
-
-const avatarListVisible = ref(false)
-const avatarList = ref<AvatarOption[]>([])
-
-watchEffect(() => {
-  avatarListVisible.value =
-    Array.isArray(avatarList.value) && avatarList.value.length > 0
-})
-</script>
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
-export default defineComponent({
-  data() {
-    return {}
-  },
-  components: {
-    Header,
-    Footer,
-    ActionBar,
-    Configurator,
-    Container,
-    CodeModal,
-    Sider,
-    VueColorAvatar,
-  },
-  methods: {
-    // route() {
-    //   this.$router.push({ path: "/home" });
-    // },
+    return {
+      handleGenerate,
+      handleDownload,
+      handleAction,
+      avatarOption,
+      flipped,
+      downloading,
+      downloadModalVisible,
+      imageDataURL,
+    }
   },
 })
 </script>
@@ -200,8 +193,6 @@ export default defineComponent({
           </div>
 
           <Footer />
-
-          <CodeModal :visible="codeVisible" @close="codeVisible = false" />
 
           <DownloadModal
             :visible="downloadModalVisible"
