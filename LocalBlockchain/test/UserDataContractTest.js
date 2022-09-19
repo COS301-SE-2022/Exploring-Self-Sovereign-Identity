@@ -1,6 +1,7 @@
-const { assert } = require("chai");
+const { assert, use } = require("chai");
 
 const UserDataContract = artifacts.require("./UserDataContract.sol");
+const MarketPlace = artifacts.require("./MarketPlace.sol");
 
 require("chai")
     .use(require("chai-as-promised"))
@@ -11,19 +12,21 @@ require("chai")
 contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
 
     let udc;
+    // let mkp;
     let id = "AAA-BBB-CCC";
     var result;
 
     /* Attach deployed smart contract to udc variable. */
     before(async () => {
         udc = await UserDataContract.deployed();
+        // mkp = await MarketPlace.deployed();
     });
 
     /* Test to see if deployement is successful. */
     describe("Deployment", () => {
 
-            it("Deploys Successfully", async () => {
-            const address = await udc.address
+        it("Deploys Successfully", async () => {
+            var address = await udc.address
 
             assert.notEqual(address, '');
             assert.notEqual(address, undefined);
@@ -35,7 +38,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
     describe("UserData", async() => {
 
         it("Creates a user successfully.", async () => {
-            
+
             await udc.createUser(id);
             result = await udc.getUserData(id);
 
@@ -88,7 +91,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
     });
 
     describe("Transactions", async() => {
-        
+
         it("Adds new TransactionRequests successfully.", async () => {
 
             await udc.createUser("from");
@@ -114,7 +117,7 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             assert.equal(result.stamp.status, "approved");
             assert.equal(result.attributes[0].name, "alias");
             assert.equal(result.attributes[0].value, "Johan");
-            
+
             result = await udc.getUserData("from");
 
             console.log(result.approvedTransactions[0].attributes);
@@ -130,5 +133,81 @@ contract('UserDataContract', ([contractOwner, secondAddress, thirdAddress]) => {
             result = await udc.getCredential(id, "UP");
             //console.log(result);
         })
+    });
+
+
+});
+
+contract("MarketPlace", ([contractOwner, secondAddress, thirdAddress]) => {
+    let mkp;
+    var result;
+
+    /* Attach deployed smart contract to udc variable. */
+    before(async () => {
+        mkp = await MarketPlace.deployed();
+    });
+
+    /* Test to see if deployement is successful. */
+    describe("Deployment", () => {
+
+        it("Deploys Successfully", async () => {
+            var address = await mkp.address
+
+            assert.notEqual(address, '');
+            assert.notEqual(address, undefined);
+            assert.notEqual(address, null);
+            assert.notEqual(address, 0x0);
+        });
+
+        var username = "Google";
+        var password = "12345";
+
+        describe("Market Place", async () => {
+            it("Creates an organization", async () => {
+
+                await mkp.createOrganization([username, password]);
+                result = await mkp.getOrganization([username, password]);
+
+                //console.log(result);
+                assert.equal(result.id, "Google");
+            });
+            
+            it("Adds Data Packs", async () => {
+                await mkp.addDataPack([
+                    username,
+                    username+"1",
+                    1,
+                    [
+                        "name",
+                        "surname"
+                    ]
+                ]);
+
+                result = await mkp.getOrganization([username, password]);
+
+                //console.log(result);
+            });
+
+            it("Buys data", async () => {
+                await mkp.buyData([
+                    "aaa",
+                    username,
+                    username+"1",
+                    [
+                        [
+                            "name",
+                            "johan"
+                        ],
+                        [
+                            "surname",
+                            "smit"
+                        ]
+                    ]
+                ]);
+
+                result = await mkp.getOrganization([username, password]);
+                console.log(result.packs[0].received[0]);
+            });
+        });
     });
 });

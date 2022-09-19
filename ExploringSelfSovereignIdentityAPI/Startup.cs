@@ -53,6 +53,7 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<ISessionService, SessionService>();     
             services.AddTransient<IUserDataRepository, UserDataRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<IMarketPlaceService, MarketPlaceService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.UserDataService.IUserDataService, UserdataService>();
             services.AddTransient<IBlockchainService, BlockchainService>();
