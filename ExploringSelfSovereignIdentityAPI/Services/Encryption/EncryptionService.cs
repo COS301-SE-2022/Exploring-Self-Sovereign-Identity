@@ -5,10 +5,10 @@ using System.Text;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 {
-    public class EncryptionService:IEncryptionService
+    public class EncryptionService: IEncryptionService
     {
 
-        private static string staticKey = "StaticKey";
+        private static string salt = "lkofnrenirnvierjnfoisoeofm3234434**^^%&sfwe4*&*^&$@@";
         public string DecryptString(string userID, string cipherText)
         {
             byte[] iv = new byte[16];
@@ -56,6 +56,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 
             return Convert.ToBase64String(array);
 
+        }
+
+
+        public string generateKey(string userId)
+        {
+            return null;
         }
 
 
