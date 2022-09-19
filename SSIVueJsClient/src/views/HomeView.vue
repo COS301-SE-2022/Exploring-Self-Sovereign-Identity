@@ -27,26 +27,8 @@ export default defineComponent({
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
-  mounted() {
-    this.userData.getuserdata("aaa");
-  },
   // mounted() {
-  //   //Passage store
-  //   const passage = new Passage(this.appid);
-  //   const user = passage.getCurrentUser();
-  //   user.getMetadata().then((Response) => {
-  //     // const userService = new UserService();
-  //     if (!isNull(Response)) {
-  //       //userService.register(new RegisterRequest("sudfhsd"));
-  //       console.log("Should not be here");
-  //     } else {
-  //       user.updateMetadata({
-  //         key: "This is a test",
-  //         userid: "This is also a test",
-  //       });
-  //     }
-  //     // console.log(Response);
-  //   });
+  //   this.userData.getuserdata("aaa");
   // },
 });
 </script>
