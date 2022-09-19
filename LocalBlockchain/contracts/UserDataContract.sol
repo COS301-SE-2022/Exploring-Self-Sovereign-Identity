@@ -5,6 +5,28 @@ pragma solidity >=0.8.9;
 contract UserDataContract {
 
     /*
+    * ============================================== MARKET PLACE SUBSECTION ==============================================
+    */
+
+    struct Organization {
+        string id;
+        uint256 balance;
+
+        uint packCount;
+        mapping (uint => DataPack) packs;
+    }
+
+    struct DataPack {
+        string id;
+
+        uint requestedAttributeCount;
+        mapping (uint => string) requestedAttributes;
+
+        uint receivedAttributeCount;
+        mapping (uint => Attribute) receivedAttributes;
+    }
+
+    /*
     * ============================================== USER DATA SUBSECTION ==============================================
     * Functions concerned with anything and everything to do with a User's data.
     */ 
