@@ -79,12 +79,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Transactions
 
             foreach (ContractAttribute contractAttribute in contractAttributes)
             {
-                Attribute attribute = await _transactionRepository.GetAttribute(contractAttribute.AttributeId);
+                /*Attribute attribute = await _transactionRepository.GetAttribute(contractAttribute.AttributeId);
                 AddAttributeRequest attObject = new AddAttributeRequest();
                 attObject.value = attribute.Value;
                 attObject.name = attribute.Name;
 
-                contractResponse.Attributes.AddLast(attObject);
+                contractResponse.Attributes.AddLast(attObject);*/
             }
 
             response.contract = contractResponse;

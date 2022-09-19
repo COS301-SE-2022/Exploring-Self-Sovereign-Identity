@@ -17,11 +17,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     public class UserDataService : IUserDataService
     {
         static string url = "http://127.0.0.1:8545";
-
         static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
-
-        //private Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
-
         private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
         private static string contractAddress = "0xB60B0D980d23FB07952eEa6f2BC028188c15322C";
 
