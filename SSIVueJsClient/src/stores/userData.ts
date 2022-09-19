@@ -34,18 +34,7 @@ export const userDataStore = defineStore("userData", {
         })
         .then((response) => {
           if (response.data) {
-            console.log("response");
-            this.user.id = response.data.returnValue1.id;
-            this.user.attributes = response.data.returnValue1.attributes;
-            this.user.credentials = response.data.returnValue1.credentials;
-            this.user.transactionRequests =
-              response.data.returnValue1.transactionRequests;
-            this.user.approvedTransactions =
-              response.data.returnValue1.approvedTransactions;
-            console.log("get user data", userid);
-            console.log("getuserdata", response.data);
-            console.log("getuserdata", this.user);
-
+            this.user = response.data.returnValue1;
             this.sync();
           }
         })
@@ -69,7 +58,6 @@ export const userDataStore = defineStore("userData", {
       return response;
     },
     createUser(id: string) {
-      console.log("createUser", id);
       const response = this.api
         .post("/api/UserData/create", {
           id: id,
@@ -78,7 +66,6 @@ export const userDataStore = defineStore("userData", {
           const suc = "success";
           if ((response.data = suc)) {
             getuserdata(id);
-            console.log("User", this.user);
           } else console.log("User not created");
         })
         .catch((error) => {

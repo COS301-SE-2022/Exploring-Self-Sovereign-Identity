@@ -15,9 +15,8 @@ export default defineComponent({
       await userData.getuserdata(info?.email || "");
       console.log("User data fetched", userData);
       if (!userData.exists()) {
-        console.log("here");
-        // userData.createUser(info?.email || "");
-        // console.log("User created");
+        userData.createUser(info?.email || "");
+        console.log("User created");
       }
     });
 
