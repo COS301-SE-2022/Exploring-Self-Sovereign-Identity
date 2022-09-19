@@ -1,4 +1,22 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<script lang="ts">
+import { defineComponent } from 'vue'
+import IconRight from '@/assets/icons/icon-right.svg'
+import { useSider } from '@/hooks'
+export default defineComponent({
+  setup() {
+    const { isCollapsed, openSider, closeSider } = useSider()
+
+    return {
+      isCollapsed,
+      openSider,
+      closeSider,
+      IconRight,
+    }
+  },
+})
+</script>
+
 <template>
   <aside class="sider" :class="{ collapsed: isCollapsed }">
     <slot />
@@ -8,22 +26,6 @@
     </div>
   </aside>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  data() {
-    return {}
-  },
-  components: {},
-  methods: {},
-})
-</script>
-<script lang="ts" setup>
-import IconRight from '@/assets/icons/icon-right.svg'
-import { useSider } from '@/hooks'
-
-const { isCollapsed, openSider, closeSider } = useSider()
-</script>
 
 <style lang="scss" scoped>
 @use 'src/styles/var';
