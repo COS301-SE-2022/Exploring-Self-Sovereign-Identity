@@ -1,11 +1,11 @@
-<template>
+<!-- <template>
   <ModalWrapper :visible="props.visible" @close="emit('close')">
     <div class="code-box">
       <div class="code-header">
-        <div class="title">{{ t('text.codeModalTitle') }}</div>
+        <div class="title">{{ 'text.codeModalTitle' }}</div>
 
         <div class="close-btn" @click="emit('close')">
-          <img :src="IconClose" class="icon-close" :alt="t('action.close')" />
+          <img :src="IconClose" class="icon-close" :alt="'action.close'" />
         </div>
       </div>
 
@@ -30,59 +30,67 @@
   </ModalWrapper>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import type ClipboardJS from 'clipboard'
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
-import { useI18n } from 'vue-i18n'
-
+import { defineComponent } from 'vue'
 import IconClose from '@/assets/icons/icon-close.svg'
 import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
 import { useAvatarOption } from '@/hooks'
 import { highlightJSON } from '@/utils'
-
 import ModalWrapper from './ModalWrapper.vue'
 
-const props = defineProps<{ visible?: boolean }>()
+export default defineComponent({
+  setup() {
+    const props = defineProps<{ visible?: boolean }>()
 
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+    const emit = defineEmits<{
+      (e: 'close'): void
+    }>()
 
-const { t } = useI18n()
+    const [avatarOption] = useAvatarOption()
 
-const [avatarOption] = useAvatarOption()
+    const codeJSON = computed(() => JSON.stringify(avatarOption.value, null, 4))
 
-const codeJSON = computed(() => JSON.stringify(avatarOption.value, null, 4))
+    const highlightedCode = ref('')
 
-const highlightedCode = ref('')
+    watchEffect(() => {
+      if (codeJSON.value) {
+        highlightedCode.value = highlightJSON(codeJSON.value)
+      }
+    })
 
-watchEffect(() => {
-  if (codeJSON.value) {
-    highlightedCode.value = highlightJSON(codeJSON.value)
-  }
-})
+    const copied = ref(false)
 
-const copied = ref(false)
+    let clipboard: ClipboardJS
 
-let clipboard: ClipboardJS
+    onMounted(async () => {
+      const { default: ClipboardJS } = await import('clipboard')
+      clipboard = new ClipboardJS('#copy-code-btn')
 
-onMounted(async () => {
-  const { default: ClipboardJS } = await import('clipboard')
-  clipboard = new ClipboardJS('#copy-code-btn')
+      clipboard.on('success', (e) => {
+        copied.value = true
 
-  clipboard.on('success', (e) => {
-    copied.value = true
+        setTimeout(() => {
+          copied.value = false
+        }, 800)
 
-    setTimeout(() => {
-      copied.value = false
-    }, 800)
+        e.clearSelection()
+      })
+    })
 
-    e.clearSelection()
-  })
-})
+    onUnmounted(() => {
+      clipboard.destroy()
+    })
 
-onUnmounted(() => {
-  clipboard.destroy()
+    return {
+      props,
+      emit,
+      IconClose,
+     
+
+    }
+  },
 })
 </script>
 
@@ -231,3 +239,4 @@ onUnmounted(() => {
   }
 }
 </style>
+ -->
