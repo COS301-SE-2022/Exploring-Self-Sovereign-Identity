@@ -1,4 +1,166 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
+import SectionWrapper from '@/components/SectionWrapper.vue'
+import { type WidgetShape, WrapperShape, BeardShape, WidgetType } from '@/enums'
+import { useAvatarOption } from '@/hooks'
+import { AVATAR_LAYER, SETTINGS } from '@/utils/constant'
+import { previewData } from '@/utils/dynamic-data'
+
+export default defineComponent({
+  setup() {
+    const [avatarOption, setAvatarOption] = useAvatarOption()
+
+    const sectionList = reactive(Object.values(WidgetType))
+    const sections = ref<
+      {
+        widgetType: WidgetType
+        widgetList: {
+          widgetType: WidgetType
+          widgetShape: WidgetShape
+          svgRaw: string
+        }[]
+      }[]
+    >([])
+
+    onMounted(() => {
+      void (async () => {
+        const a = await Promise.all(
+          sectionList.map((section) => {
+            return getWidgets(section)
+          })
+        )
+
+        sections.value = sectionList.map((li, i) => {
+          return {
+            widgetType: li,
+            widgetList: a[i],
+          }
+        })
+      })()
+    })
+
+    async function getWidgets(widgetType: WidgetType) {
+      const list = SETTINGS[`${widgetType}Shape`]
+      // const promises: Promise<string>[] = list.map(async (widget: string) => {
+      //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
+      //     .default
+      // })
+      const promises: Promise<string>[] = list.map(async (widget: string) => {
+        if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
+          return (await previewData[widgetType][widget]()).default
+        }
+        return 'X'
+      })
+      const svgRawList = await Promise.all(promises).then((raw) => {
+        return raw.map((svgRaw, i) => {
+          return {
+            widgetType,
+            widgetShape: list[i],
+            svgRaw,
+          }
+        })
+      })
+      return svgRawList
+    }
+
+    function switchWrapperShape(wrapperShape: WrapperShape) {
+      if (wrapperShape !== avatarOption.value.wrapperShape) {
+        setAvatarOption({ ...avatarOption.value, wrapperShape })
+      }
+    }
+
+    function switchBgColor(bgColor: string) {
+      if (bgColor !== avatarOption.value.background.color) {
+        setAvatarOption({
+          ...avatarOption.value,
+          background: { ...avatarOption.value.background, color: bgColor },
+        })
+      }
+    }
+
+    function switchWidget(widgetType: WidgetType, widgetShape: WidgetShape) {
+      if (widgetShape && avatarOption.value.widgets?.[widgetType]) {
+        setAvatarOption({
+          ...avatarOption.value,
+          widgets: {
+            ...avatarOption.value.widgets,
+            [widgetType]: {
+              ...avatarOption.value.widgets?.[widgetType],
+              shape: widgetShape,
+              ...(widgetShape === BeardShape.Scruff
+                ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
+                : undefined),
+            },
+          },
+        })
+      }
+    }
+
+    function setWidgetColor(widgetType: WidgetType, fillColor: string) {
+      if (avatarOption.value.widgets?.[widgetType]) {
+        setAvatarOption({
+          ...avatarOption.value,
+          widgets: {
+            ...avatarOption.value.widgets,
+            [widgetType]: {
+              ...avatarOption.value.widgets?.[widgetType],
+              fillColor,
+            },
+          },
+        })
+      }
+    }
+
+    function getWidgetColor(type: string) {
+      if (type === WidgetType.Tops || type === WidgetType.Clothes) {
+        return avatarOption.value.widgets[type]?.fillColor
+      } else return ''
+    }
+
+    return {
+      getWidgetColor,
+      setWidgetColor,
+      switchWrapperShape,
+      switchWidget,
+      switchBgColor,
+      getWidgets,
+      SETTINGS,
+      avatarOption,
+      sections,
+      WidgetType,
+    }
+  },
+
+  /*methods:{
+
+    switchWrapperShape(wrapperShape: WrapperShape) {
+      if (wrapperShape !== avatarOption.value.wrapperShape) {
+        setAvatarOption({ ...avatarOption.value, wrapperShape })
+      }
+    },
+
+    setWidgetColor(widgetType: WidgetType, fillColor: string) {
+      if (avatarOption.value.widgets?.[widgetType]) {
+        setAvatarOption({
+          ...avatarOption.value,
+          widgets: {
+            ...avatarOption.value.widgets,
+            [widgetType]: {
+              ...avatarOption.value.widgets?.[widgetType],
+              fillColor,
+            },
+          },
+        })
+      }
+    }
+
+
+  },*/
+})
+</script>
 <template>
   <PerfectScrollbar class="configurator-scroll">
     <div class="configurator">
@@ -90,140 +252,6 @@
     </div>
   </PerfectScrollbar>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  data() {
-    return {}
-  },
-  components: {},
-  methods: {},
-})
-</script>
-<script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
-
-import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
-import SectionWrapper from '@/components/SectionWrapper.vue'
-import {
-  type WidgetShape,
-  type WrapperShape,
-  BeardShape,
-  WidgetType,
-} from '@/enums'
-import { useAvatarOption } from '@/hooks'
-import { AVATAR_LAYER, SETTINGS } from '@/utils/constant'
-import { previewData } from '@/utils/dynamic-data'
-
-const [avatarOption, setAvatarOption] = useAvatarOption()
-
-const sectionList = reactive(Object.values(WidgetType))
-const sections = ref<
-  {
-    widgetType: WidgetType
-    widgetList: {
-      widgetType: WidgetType
-      widgetShape: WidgetShape
-      svgRaw: string
-    }[]
-  }[]
->([])
-
-onMounted(() => {
-  void (async () => {
-    const a = await Promise.all(
-      sectionList.map((section) => {
-        return getWidgets(section)
-      })
-    )
-
-    sections.value = sectionList.map((li, i) => {
-      return {
-        widgetType: li,
-        widgetList: a[i],
-      }
-    })
-  })()
-})
-
-async function getWidgets(widgetType: WidgetType) {
-  const list = SETTINGS[`${widgetType}Shape`]
-  // const promises: Promise<string>[] = list.map(async (widget: string) => {
-  //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
-  //     .default
-  // })
-  const promises: Promise<string>[] = list.map(async (widget: string) => {
-    if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
-      return (await previewData[widgetType][widget]()).default
-    }
-    return 'X'
-  })
-  const svgRawList = await Promise.all(promises).then((raw) => {
-    return raw.map((svgRaw, i) => {
-      return {
-        widgetType,
-        widgetShape: list[i],
-        svgRaw,
-      }
-    })
-  })
-  return svgRawList
-}
-
-function switchWrapperShape(wrapperShape: WrapperShape) {
-  if (wrapperShape !== avatarOption.value.wrapperShape) {
-    setAvatarOption({ ...avatarOption.value, wrapperShape })
-  }
-}
-
-function switchBgColor(bgColor: string) {
-  if (bgColor !== avatarOption.value.background.color) {
-    setAvatarOption({
-      ...avatarOption.value,
-      background: { ...avatarOption.value.background, color: bgColor },
-    })
-  }
-}
-
-function switchWidget(widgetType: WidgetType, widgetShape: WidgetShape) {
-  if (widgetShape && avatarOption.value.widgets?.[widgetType]) {
-    setAvatarOption({
-      ...avatarOption.value,
-      widgets: {
-        ...avatarOption.value.widgets,
-        [widgetType]: {
-          ...avatarOption.value.widgets?.[widgetType],
-          shape: widgetShape,
-          ...(widgetShape === BeardShape.Scruff
-            ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
-            : undefined),
-        },
-      },
-    })
-  }
-}
-
-function setWidgetColor(widgetType: WidgetType, fillColor: string) {
-  if (avatarOption.value.widgets?.[widgetType]) {
-    setAvatarOption({
-      ...avatarOption.value,
-      widgets: {
-        ...avatarOption.value.widgets,
-        [widgetType]: {
-          ...avatarOption.value.widgets?.[widgetType],
-          fillColor,
-        },
-      },
-    })
-  }
-}
-
-function getWidgetColor(type: string) {
-  if (type === WidgetType.Tops || type === WidgetType.Clothes) {
-    return avatarOption.value.widgets[type]?.fillColor
-  } else return ''
-}
-</script>
 
 <style lang="scss" scoped>
 @use 'src/styles/var';
