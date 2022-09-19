@@ -1,3 +1,18 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  setup() {
+    const props = defineProps<{
+      title?: string
+    }>()
+
+    return {
+      props,
+    }
+  },
+})
+</script>
+
 <template>
   <div class="setting-section">
     <div class="section-title">{{ props.title }}</div>
@@ -6,21 +21,6 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  data() {
-    return {}
-  },
-  components: {},
-  methods: {},
-})
-</script>
-<script lang="ts" setup>
-const props = defineProps<{
-  title?: string
-}>()
-</script>
 
 <style lang="scss" scoped>
 .setting-section {
