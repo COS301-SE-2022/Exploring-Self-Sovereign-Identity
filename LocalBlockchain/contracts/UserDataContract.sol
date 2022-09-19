@@ -10,14 +10,27 @@ contract UserDataContract {
 
     struct Organization {
         string id;
+        string hashedPassword;
+
         uint256 balance;
 
         uint packCount;
         mapping (uint => DataPack) packs;
     }
 
+    struct OrganizationResponse {
+        string id;
+        uint256 balance;
+
+        string status;
+
+        DataPackResponse[] packs;
+    }
+
     struct DataPack {
         string id;
+
+        uint pricePerUnit;
 
         uint requestedAttributeCount;
         mapping (uint => string) requestedAttributes;
@@ -25,6 +38,55 @@ contract UserDataContract {
         uint receivedAttributeCount;
         mapping (uint => Attribute) receivedAttributes;
     }
+
+    struct DataPackResponse {
+        string id;
+        uint pricePerUnit;
+        Attribute[] received;
+    }
+
+    struct CreateOrgRequest {
+        string id;
+        string password;
+    }
+
+    mapping (string => Organization) allOrganizations;
+
+    function createOrganization(CreateOrgRequest memory request) public {
+        allOrganizations[request.id].id = request.id;
+        allOrganizations[request.id].hashedPassword = request.password;
+        allOrganizations[request.id].packCount = 0;
+    }
+
+    function getOrganization(CreateOrgRequest memory request) public view returns (OrganizationResponse memory) {
+        OrganizationResponse memory ret;
+        
+        if (!stringCompare(request.password, allOrganizations[request.id].hashedPassword)) {
+            ret.status = "failed";
+            return ret;
+        }
+
+        ret.id = request.id;
+        ret.status = "success";
+        ret.balance = allOrganizations[request.id].balance;
+
+        uint size = allOrganizations[request.id].packCount;
+
+        ret.packs = new DataPackResponse[](size);
+
+        for (uint i=0; i < size; i++) {
+            ret.packs[i].id = allOrganizations[request.id].packs[i].id;
+            ret.packs[i].pricePerUnit = allOrganizations[request.id].packs[i].pricePerUnit;
+            ret.packs[i].received = new Attribute[](allOrganizations[request.id].packs[i].receivedAttributeCount);
+
+            for (uint k=0; k<allOrganizations[request.id].packs[i].receivedAttributeCount; k++) {
+                ret.packs[i].received[k].name = allOrganizations[request.id].packs[i].receivedAttributes[k].name;
+                ret.packs[i].received[k].value = allOrganizations[request.id].packs[i].receivedAttributes[k].value;
+            }
+        }
+
+    }
+
 
     /*
     * ============================================== USER DATA SUBSECTION ==============================================
