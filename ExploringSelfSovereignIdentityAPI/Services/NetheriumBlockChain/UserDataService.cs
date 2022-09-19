@@ -178,7 +178,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
                 {
                     Attribute item3 = new Attribute();
                     item3.Name = update.Credentials[i].Attributes[j].Name; 
-                    item3.Value = update.Credentials[i].Attributes[j].Value;
+                    item3.Value = encryptservice.EncryptString(u.Id, update.Credentials[i].Attributes[j].Value);
 
                     ca.Add(item3);
                 }
@@ -205,7 +205,11 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         {
             var getUserDataFunction = new GetUserDataFunction(); 
             getUserDataFunction.Id = id;
-            var getUserDataOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetUserDataFunction, GetUserDataOutputDTO>(getUserDataFunction);
+            GetUserDataOutputDTO getUserDataOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetUserDataFunction, GetUserDataOutputDTO>(getUserDataFunction);
+
+            getUserDataOutputDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id, attribute.Value));
+
+            getUserDataOutputDTO.ReturnValue1.Credentials.ForEach(credential => credential.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id,attribute.Value)));
 
             return getUserDataOutputDTO;
         }
