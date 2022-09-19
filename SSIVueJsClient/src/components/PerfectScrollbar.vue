@@ -5,39 +5,38 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import PerfectScrollbar from 'perfect-scrollbar'
+import { onMounted, onUnmounted, ref } from 'vue'
 export default defineComponent({
+  setup() {
+    const props = defineProps<{ options?: PerfectScrollbar.Options }>()
+
+    const scrollWrapper = ref<HTMLDivElement>()
+
+    let ps: PerfectScrollbar
+
+    onMounted(() => {
+      if (!scrollWrapper.value) {
+        console.warn(`No valid 'PerfectScrollbar' container found`)
+        return
+      }
+
+      ps = new PerfectScrollbar(scrollWrapper.value, {
+        minScrollbarLength: 20,
+        maxScrollbarLength: 160,
+        ...props.options,
+      })
+    })
+
+    onUnmounted(() => {
+      ps.destroy()
+    })
+  },
   data() {
     return {}
   },
   components: {},
   methods: {},
-})
-</script>
-<script lang="ts" setup>
-import PerfectScrollbar from 'perfect-scrollbar'
-import { onMounted, onUnmounted, ref } from 'vue'
-
-const props = defineProps<{ options?: PerfectScrollbar.Options }>()
-
-const scrollWrapper = ref<HTMLDivElement>()
-
-let ps: PerfectScrollbar
-
-onMounted(() => {
-  if (!scrollWrapper.value) {
-    console.warn(`No valid 'PerfectScrollbar' container found`)
-    return
-  }
-
-  ps = new PerfectScrollbar(scrollWrapper.value, {
-    minScrollbarLength: 20,
-    maxScrollbarLength: 160,
-    ...props.options,
-  })
-})
-
-onUnmounted(() => {
-  ps.destroy()
 })
 </script>
 
