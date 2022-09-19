@@ -9,14 +9,14 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
     {
 
         private static string staticKey = "StaticKey";
-        public string DecryptString(string key, string cipherText)
+        public string DecryptString(string userID, string cipherText)
         {
             byte[] iv = new byte[16];
             byte[] buffer = Convert.FromBase64String(cipherText);
 
             Aes aes = Aes.Create();
 
-            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.Key = Encoding.UTF8.GetBytes(userID);
             aes.IV = iv;
 
             ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
@@ -30,14 +30,14 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
             return streamReader.ReadToEnd();
         }
 
-        public  string EncryptString(string key, string plainText)
+        public  string EncryptString(string userID, string plainText)
         {
             byte[] iv = new byte[16];
             byte[] array;
 
             Aes aes = Aes.Create();
 
-            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.Key = Encoding.UTF8.GetBytes(userID);
             aes.IV = iv;
 
             ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
