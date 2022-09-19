@@ -29,12 +29,6 @@ export default defineComponent({
     <passage-auth :app-id="appid"></passage-auth>
   </div>
 
-  <!-- *! will need to replace this biometric with passage once it is setup -->
-  <!-- <div class="Biometric">
-    <div @click="route">
-      <IconButtonNoBG><IconBiometric /></IconButtonNoBG>
-    </div>
-  </div> -->
   <div class="background">
     <span></span>
     <span></span>

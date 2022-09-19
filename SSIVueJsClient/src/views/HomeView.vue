@@ -4,15 +4,22 @@ import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
 import IconFile from "../components/icons/IconFile.vue";
-// import { getuserdata } from "@/services/UserDataService";
 import { userDataStore } from "@/stores/userData";
+import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 
-// import { UserService } from "../services/UserService";
-// import { RegisterRequest } from "../models/requests/RegisterRequest";
 export default defineComponent({
   setup() {
     const userData = userDataStore();
-    userData.getuserdata("osdfhooihoer");
+    const user = new PassageUser();
+    user.userInfo().then((info) => {
+      userData.getuserdata(info?.email || "");
+      console.log("User data fetched", userData.getId);
+      if (!userData.exists()) {
+        userData.createUser(info?.email || "");
+        console.log("User created");
+      }
+    });
+
     return { userData };
   },
   // data() {

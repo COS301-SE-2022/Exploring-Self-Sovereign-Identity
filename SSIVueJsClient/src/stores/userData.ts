@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { getuserdata } from "@/services/UserDataService";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
@@ -26,12 +27,12 @@ export const userDataStore = defineStore("userData", {
   actions: {
     getuserdata(userid: string) {
       //   const axios = require("axios");
+      console.log("getuserdata", userid);
       return this.api
         .post(`/api/UserData/get`, {
           id: userid,
         })
         .then((response) => {
-          console.log(response.data);
           if (response.data) {
             this.user = response.data;
             this.sync();
@@ -48,30 +49,36 @@ export const userDataStore = defineStore("userData", {
           attributes: this.attributes.attributes,
         })
         .then((response) => {
-          console.log(response.data);
           this.user = response.data;
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    createUser() {
+    createUser(id: string) {
+      console.log("createUser", id);
       this.api
-        .post("api/create", "ahweihowehfowh")
+        .post("/api/UserData/create", {
+          id: id,
+        })
         .then((response) => {
           const suc = "success";
-          if ((response.data = suc)) this.user.id = "opxhdhposdhf";
-          console.log(this.user.id);
+          if ((response.data = suc)) getuserdata(id);
+          console.log("User", this.user);
         })
         .catch((error) => {
           console.log(error);
         });
     },
     sync() {
+      if (!this.user.attributes) return;
       for (let i = 0; i < this.user.attributes.length; i++) {
         this.attributes.attributes[i].attribute = this.user.attributes[i];
         this.attributes.attributes[i].index = i;
       }
+    },
+    exists() {
+      return this.user.id != null;
     },
   },
 });
