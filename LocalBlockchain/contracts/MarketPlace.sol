@@ -146,6 +146,13 @@ contract MarketPlace {
 
     function buyData(BuyDataRequest memory request) public {
         
+        for (uint i=0; i<allOrganizations[request.organization].packCount;i++) {
+            for (uint k=0; k<allOrganizations[request.organization].packs[i].receivedAttributeCount; k++) {
+                if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID))
+                    return;
+            }
+        }
+
         for (uint i=0; i<allOrganizations[request.organization].packCount; i++) {
             
             if (stringCompare(allOrganizations[request.organization].packs[i].id, request.dataPackID)) {
