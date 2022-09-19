@@ -30,9 +30,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         private ContractHandler contractHandler = web3.Eth.GetContractHandler(contractAddress);
 
+        private readonly IEncryptionService encryptservice;
+
         public UserDataService()
         {
             web3.TransactionManager.UseLegacyAsDefault = true;
+            encryptservice = new EncryptionService();
         }
 
         
@@ -154,10 +157,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
                 AttributeUpdate item = new AttributeUpdate();
                 item.Attribute = new Attribute();
                 item.Attribute.Name = update.Attributes[i].Attribute.Name;
-                item.Attribute.Value = update.Attributes[i].Attribute.Value;
-
-                //I'm encrypting the value, just waiting for the generated key which uses userID
-                //item.Attribute.Value = EncryptionService.EncryptString(userID, update.Attributes[i].Attribute.Value);
+                //item.Attribute.Value = update.Attributes[i].Attribute.Value;
+                item.Attribute.Value = encryptservice.EncryptString(u.Id, update.Attributes[i].Attribute.Value);
 
                 item.Index = new BigInteger(update.Attributes[i].Index);
 

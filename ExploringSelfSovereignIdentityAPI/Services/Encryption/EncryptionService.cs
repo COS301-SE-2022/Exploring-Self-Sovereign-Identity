@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 {
-    public class EncryptionService
+    public class EncryptionService:IEncryptionService
     {
 
         private static string staticKey = "StaticKey";
