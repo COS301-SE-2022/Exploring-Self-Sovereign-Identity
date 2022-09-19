@@ -6,12 +6,18 @@
   </transition>
 </template>
 
-<script lang="ts" setup>
-const props = defineProps<{ visible?: boolean }>()
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+export default defineComponent({
+  setup() {
+    const props = defineProps<{ visible?: boolean }>()
+
+    const emit = defineEmits<{
+      (e: 'close'): void
+    }>()
+  },
+})
 </script>
 
 <style lang="scss" scoped>
