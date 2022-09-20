@@ -17,6 +17,7 @@ export default defineComponent({
       name: "",
       value: "",
       showModal: false,
+      change: false,
     };
   },
   components: {
@@ -35,29 +36,8 @@ export default defineComponent({
         },
         index: -1,
       });
-      console.log("here");
+      this.change = true;
     },
-    // ElMessageBox.prompt("Please enter attribute", "Tip", {
-    //   confirmButtonText: "Add",
-    //   cancelButtonText: "Cancel",
-    // })
-    //   .then(({ value }) => {
-    //     this.userData.user.attributes.push({
-    //       name: value,
-    //       value: "",
-    //       index: -1,
-    //     });
-    //     ElMessage({
-    //       type: "success",
-    //       message: `Attribute added`,
-    //     });
-    //   })
-    //   .catch(() => {
-    //     ElMessage({
-    //       type: "info",
-    //       message: "Input canceled",
-    //     });
-    //   });
 
     submitForm() {
       const load = ElLoading.service({
@@ -70,9 +50,13 @@ export default defineComponent({
         type: "success",
         message: `Profile updated`,
       });
+      this.change = false;
     },
     goBack() {
       this.$router.back();
+    },
+    changeVar() {
+      this.change = true;
     },
   },
 });
@@ -91,23 +75,39 @@ export default defineComponent({
         <n-input
           :value="att.attribute.value"
           v-model="att.attribute.value"
+          @on-change="changeVar"
         ></n-input>
       </n-input-group>
 
-      <n-button
-        strong
-        secondary
-        circle
-        type="primary"
-        size="large"
-        @click="showMod"
-        class="button"
-      >
-        Add Attribute
-        <template #icon>
-          <n-icon><Add /></n-icon>
-        </template>
-      </n-button>
+      <n-space justify="center" size="small" class="space" item-style="object">
+        <n-button
+          strong
+          secondary
+          circle
+          type="primary"
+          size="large"
+          @click="showMod"
+          class="button"
+        >
+          Add Attribute
+          <template #icon>
+            <n-icon><Add /></n-icon>
+          </template>
+        </n-button>
+        <n-collapse-transition :show="change" appear="true">
+          <n-button
+            strong
+            secondary
+            circle
+            type="primary"
+            size="large"
+            @click="changeVar"
+            class="button"
+          >
+            Save
+          </n-button>
+        </n-collapse-transition>
+      </n-space>
     </n-tab-pane>
 
     <n-tab-pane name="Credentials">
@@ -193,11 +193,14 @@ export default defineComponent({
 .button {
   width: fit-content;
   padding: 4vw;
-  position: fixed;
-  bottom: 6.5vh;
+}
+.space {
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
+  position: fixed;
+  bottom: 6.5vh;
+  text-align: center;
 }
 </style>
