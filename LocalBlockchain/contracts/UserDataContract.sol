@@ -172,9 +172,10 @@ contract UserDataContract {
             }
         }
 
+
         //Create UserDataResponse
         return (UserDataResponse({
-            id: _id,
+            id: allUserData[_id].id,
             balance: allUserData[_id].balance,
             attributes: attrs,
             credentials: creds,
