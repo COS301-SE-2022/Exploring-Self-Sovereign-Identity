@@ -77,7 +77,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             stamp.ToID = request.Stamp.ToID;
             stamp.FromID = request.Stamp.FromID;
             stamp.Message = request.Stamp.Message;
-            stamp.Date = request.Stamp.Date;
+            stamp.Date = DateTime.Now.ToString();
             stamp.Status = "pending";
 
             List<string> attrs = new List<string>();
