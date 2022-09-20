@@ -62,10 +62,16 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
         private string generateKey(string userId)
         {
             string key = "";
+            string tempUserId = userId;
+
+            for (int i=0; i<=(32 - userId.Length); i++)
+            {
+                tempUserId += (i%10).ToString();
+            }
 
             for (int i = 0; i < 32; i++)
             {
-                key += userId[(userId.Length + i) % 32];
+                key += tempUserId[(userId.Length + i) % 32];
             }
 
             byte[] iv = new byte[16];
@@ -91,11 +97,18 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Encryption
 
             string enc = Convert.ToBase64String(array);
 
+            string tempEnc = enc;
+
+            for (int i = 0; i <= (32 - enc.Length); i++)
+            {
+                tempEnc += (i % 10).ToString();
+            }
+
             string res = "";
 
             for (int i = 0; i < 32; i++)
             {
-                res += enc[(enc.Length + i) % 32];
+                res += tempEnc[(enc.Length + i) % 32];
             }
 
             return res;
