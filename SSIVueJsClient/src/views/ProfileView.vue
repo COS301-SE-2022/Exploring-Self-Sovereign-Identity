@@ -2,15 +2,15 @@
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent, ref } from "vue";
 import { userDataStore } from "@/stores/userData";
-import { ElMessage, ElMessageBox } from "element-plus";
-import { ElLoading } from "element-plus";
 import { Add } from "@vicons/ionicons5";
+import { useMessage } from "naive-ui";
 
 export default defineComponent({
   setup() {
     const userData = userDataStore();
+    const message = useMessage();
 
-    return { userData };
+    return { userData, message };
   },
   data() {
     return {
@@ -40,16 +40,7 @@ export default defineComponent({
     },
 
     submitForm() {
-      const load = ElLoading.service({
-        fullscreen: true,
-        text: "Submitting...",
-      });
       this.userData.setuserdata();
-      load.close();
-      ElMessage({
-        type: "success",
-        message: `Profile updated`,
-      });
       this.change = false;
     },
     goBack() {
@@ -73,8 +64,8 @@ export default defineComponent({
       >
         <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
         <n-input
-          :value="att.attribute.value"
-          v-model="att.attribute.value"
+          :default-value="att.attribute.value"
+          v-model.trim="att.attribute.value"
           @on-change="changeVar"
         ></n-input>
       </n-input-group>
@@ -101,7 +92,7 @@ export default defineComponent({
             circle
             type="primary"
             size="large"
-            @click="changeVar"
+            @click="submitForm"
             class="button"
           >
             Save

@@ -21,6 +21,8 @@ const themeOverrides = {
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="darkTheme">
-    <RouterView />
+    <n-message-provider>
+      <RouterView />
+    </n-message-provider>
   </n-config-provider>
 </template>
