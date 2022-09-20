@@ -5,7 +5,7 @@ export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
       baseURL: "http://localhost:5000",
-      timeout: 10000,
+      timeout: 20000,
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,6 +54,7 @@ export const userDataStore = defineStore("userData", {
         })
         .catch((error) => {
           console.log(error);
+          throw error;
         });
       return response;
     },

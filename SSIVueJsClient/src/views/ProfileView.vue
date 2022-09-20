@@ -39,8 +39,18 @@ export default defineComponent({
       this.change = true;
     },
 
-    submitForm() {
-      this.userData.setuserdata();
+    async submitForm() {
+      this.saving;
+      await this.userData
+        .setuserdata()
+        .then(() => {
+          this.message.destroyAll();
+          this.message.success("saved");
+        })
+        .catch(() => {
+          this.message.destroyAll();
+          this.message.error("could not save information");
+        });
       this.change = false;
     },
     goBack() {
@@ -48,6 +58,11 @@ export default defineComponent({
     },
     changeVar() {
       this.change = true;
+    },
+    saving() {
+      this.message.loading("saving...", {
+        duration: 20000,
+      });
     },
   },
 });
