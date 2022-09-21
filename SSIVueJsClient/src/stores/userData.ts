@@ -80,8 +80,13 @@ export const userDataStore = defineStore("userData", {
       if (!this.user.attributes) return;
       this.attributes.attributes.splice(0);
       for (let i = 0; i < this.user.attributes.length; i++) {
-        this.attributes.attributes[i].attribute = this.user.attributes[i];
-        this.attributes.attributes[i].index = i;
+        this.attributes.attributes.push({
+          attribute: {
+            name: this.user.attributes[i].name,
+            value: this.user.attributes[i].value,
+          },
+          index: i,
+        });
       }
     },
     exists() {
