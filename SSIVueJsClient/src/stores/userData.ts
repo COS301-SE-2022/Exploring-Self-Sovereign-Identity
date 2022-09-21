@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { getuserdata } from "@/services/UserDataService";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
@@ -69,7 +68,7 @@ export const userDataStore = defineStore("userData", {
         .then((response) => {
           const suc = "success";
           if ((response.data = suc)) {
-            getuserdata(id);
+            this.getuserdata(id);
           } else console.log("User not created");
         })
         .catch((error) => {
