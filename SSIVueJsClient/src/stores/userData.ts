@@ -44,13 +44,16 @@ export const userDataStore = defineStore("userData", {
       return repsonse;
     },
     setuserdata() {
-      // console.log(this.user);
+      console.log(this.attributes.attributes);
       const response = this.api
         .post(`/api/UserData/update`, {
+          id: this.user.id,
           attributes: this.attributes.attributes,
+          credentials: [],
         })
         .then((response) => {
-          this.user = response.data;
+          console.log(response.data);
+          this.user = response.data.returnValue1;
         })
         .catch((error) => {
           console.log(error);

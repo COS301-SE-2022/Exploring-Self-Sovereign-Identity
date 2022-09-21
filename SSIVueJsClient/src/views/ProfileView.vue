@@ -100,7 +100,7 @@ export default defineComponent({
             <n-icon><Add /></n-icon>
           </template>
         </n-button>
-        <n-collapse-transition :show="change" appear="true">
+        <n-collapse-transition :show="change" :appear="true">
           <n-button
             strong
             secondary
