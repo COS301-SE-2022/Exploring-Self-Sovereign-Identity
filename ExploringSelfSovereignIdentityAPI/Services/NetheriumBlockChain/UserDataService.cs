@@ -237,6 +237,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public async Task<GetUserDataOutputDTO> getUserData(string id)
         {
+
+            Console.WriteLine("ID called: " + id);
+
             if (contractHandler == null) contractHandler = await deploy();
 
             var getUserDataFunction = new GetUserDataFunction(); 
