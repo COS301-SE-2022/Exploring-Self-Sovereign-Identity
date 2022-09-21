@@ -1,3 +1,11 @@
+var attrs = [];
+
+function addAttr() {
+    attrs.push(document.getElementById("inputAttr").value);
+    console.log(attrs);
+}
+
+
 function loginNav() {
     window.location.href = "./login.html";
 }

@@ -175,9 +175,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public async Task<GetUserDataOutputDTO> updateUserData(UpdateGen2 update)
         {
 
-            Console.WriteLine(update);
-            Console.WriteLine(update.Attributes);
-            Console.WriteLine(update.Attributes[0]);
+            
 
             if (contractHandler == null) contractHandler = await deploy();
 
@@ -188,6 +186,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
             for(int i=0;i < update.Attributes.Count;i++)
             {
+                Console.WriteLine(update.Attributes[i].Attribute.Name);
+                Console.WriteLine(update.Attributes[i].Attribute.Value);
                 AttributeUpdate item = new AttributeUpdate();
                 item.Attribute = new Attribute();
                 item.Attribute.Name = update.Attributes[i].Attribute.Name;
