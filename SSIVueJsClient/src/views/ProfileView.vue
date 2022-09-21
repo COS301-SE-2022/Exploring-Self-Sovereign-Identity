@@ -81,7 +81,7 @@ export default defineComponent({
         <n-input
           :default-value="att.attribute.value"
           v-model.trim="att.attribute.value"
-          @on-change="changeVar"
+          @update="changeVar"
         ></n-input>
       </n-input-group>
 

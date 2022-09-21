@@ -43,7 +43,7 @@ export const userDataStore = defineStore("userData", {
       return repsonse;
     },
     setuserdata() {
-      console.log(this.attributes.attributes);
+      console.log(this.attributes);
       const response = this.api
         .post(`/api/UserData/update`, {
           id: this.user.id,
@@ -78,23 +78,25 @@ export const userDataStore = defineStore("userData", {
     },
     sync() {
       if (!this.user.attributes) return;
+      this.attributes.attributes.splice(0);
       for (let i = 0; i < this.user.attributes.length; i++) {
         this.attributes.attributes[i].attribute = this.user.attributes[i];
         this.attributes.attributes[i].index = i;
       }
     },
     exists() {
-      return this.user.id != undefined;
+      return this.user.id != "undefined";
     },
   },
 });
+
 export interface User {
   id: string;
   attributes: [
     {
       name: string;
       value: string;
-      index: number;
+      // index: number;
     }
   ];
   credentials: [
@@ -138,14 +140,24 @@ export interface User {
     }
   ];
 }
-export interface Attributes {
-  attributes: Array<Attribute>;
-}
 
-export interface Attribute {
-  attribute: {
-    name: string;
-    value: string;
-  };
-  index: number;
+export interface Attributes {
+  attributes: {
+    attribute: {
+      name: string;
+      value: string;
+    };
+    index: number;
+  }[];
 }
+// export interface Attributes {
+//   attributes: Array<Attribute>;
+// }
+
+// export interface Attribute {
+//   attribute: {
+//     name: string;
+//     value: string;
+//   };
+//   index: number;
+// }
