@@ -1,3 +1,35 @@
+.mainContent {
+    
+    margin: auto;
+    margin-top: 18vh;
+
+    display: flex;
+
+}
+
+.data {
+    border: 2px inset rgb(36, 59, 59);
+
+    margin: auto;
+    margin-right: 2%;
+
+    width: 55vw;
+    height: 70vh;
+
+}
+
+.add {
+    border: 2px outset rgb(36, 59, 59);
+
+    margin: auto;
+    margin-left: 0;
+
+    width: 25vw;
+    height: 70vh;
+
+}
+
+
 Body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

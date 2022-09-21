@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> SSI Marketplace Manager </title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="navBar">
+            <h1> Marketplace Manager </h1>
+        </div>
+        <div class="auth">
+            <div class="authWelcome">
+                <h2> Welcome to the SSI Marketplace Manager! </h2>
+            </div>
+            <div class="authMethod">
+                <h3> Login: </h3>
+                <label for="inputUN"> Organization ID </label>
+                <input type="text" id="inputUN"><br>
+                <label for="inputPW"> Password </label>
+                <input type="text" id="inputPW"><br>
+                <button onclick="login()"> Login </button>
+            </div>
+            <div class="authAlt">
+                <div style="display: inline;" id="alt"> No account yet?</div>
+                <div style="display: inline;" id="altLink" onclick="registerNav()"> Signup here</div>
+            </div>
+        </div>
+
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

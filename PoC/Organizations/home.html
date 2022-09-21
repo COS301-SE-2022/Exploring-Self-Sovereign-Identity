@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> SSI Marketplace Manager </title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="navBar">
+        <h1> Marketplace Manager </h1>
+    </div>
+
+    <div class="mainContent">
+        <div class="data" id="orgData">
+
+        </div>
+        <div class="add" id="newData">
+            <div id="newDataInput" style="margin-left: 15%;">
+                <label for="inputNewID"> Pack ID </label>
+                <input type="text" id="inputNewID"><br>
+                <label for="inputAttr"> Attribute </label>
+                <input type="text" id="inputAttr">
+
+                <button> add </button>
+                <button> undo </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/scripts.js">
+    </script>
+    <script>
+        function fetch() {
+            //document.getElementById("orgData").innerHTML
+
+            console.log("fetching...");
+
+            const Http = new XMLHttpRequest();
+            const url = 'http://localhost:5000/api/MarketPlace/getOrg';
+
+            Http.open("Post", url);
+            Http.setRequestHeader("Content-Type", "application/json");
+            Http.send(JSON.stringify({
+                "id": localStorage.getItem("username"),
+                "password": localStorage.getItem("password")
+            }));
+
+            Http.onreadystatechange = (e) => {
+                if (Http.readyState == 4 && Http.status == 200) {
+                    result = JSON.parse(Http.response);
+                    console.log(result);
+                    if (result.returnValue1.status == "success") {
+                        document.getElementById("orgData").innerHTML = result.returnValue1;
+                        //console.log(result);
+                    }
+                    else {
+                        //console.log(result);
+                    }
+                }
+            }
+        }
+
+       // window.onload = fetch();
+    </script>
+</body>
+
+</html>

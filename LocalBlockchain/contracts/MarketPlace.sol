@@ -17,7 +17,7 @@ contract MarketPlace {
         string id;
         string hashedPassword;
 
-        int balance;
+        uint balance;
 
         uint packCount;
         mapping (uint => DataPack) packs;
@@ -25,7 +25,7 @@ contract MarketPlace {
 
     struct OrganizationResponse {
         string id;
-        int balance;
+        uint balance;
 
         string status;
 
@@ -46,7 +46,7 @@ contract MarketPlace {
     struct DataPack {
         string id;
 
-        int pricePerUnit;
+        uint pricePerUnit;
 
         uint requestedAttributeCount;
         mapping (uint => string) requestedAttributes;
@@ -57,7 +57,7 @@ contract MarketPlace {
 
     struct DataPackResponse {
         string id;
-        int pricePerUnit;
+        uint pricePerUnit;
         DataPackReceivedRequest[] received;
     }
 
@@ -69,7 +69,7 @@ contract MarketPlace {
     struct AddDataPackRequest {
         string organization;
         string id;
-        int pricePerUnit;
+        uint pricePerUnit;
         string[] requestedAttributes;
     }
 

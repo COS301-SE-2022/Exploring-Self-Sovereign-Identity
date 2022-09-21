@@ -26,7 +26,7 @@ contract UserDataContract {
     struct UserData {
         string id;
 
-        int balance;
+        uint balance;
 
         uint attributeCount;
         mapping (uint => Attribute) attributes;
@@ -53,7 +53,7 @@ contract UserDataContract {
     /* What will be returned in place of a UserData struct. */
     struct UserDataResponse{
         string id;
-        int balance;
+        uint balance;
         Attribute[] attributes;
         CredentialResponse[] credentials;
         TransactionRequest[] transactionRequests;
@@ -276,7 +276,7 @@ contract UserDataContract {
 
     }
 
-    function updateBalance(string memory _id, int amount) public {
+    function updateBalance(string memory _id, uint amount) public {
 
         auth();
 
