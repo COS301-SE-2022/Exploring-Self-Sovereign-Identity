@@ -46,7 +46,7 @@ contract MarketPlace {
     struct DataPack {
         string id;
 
-        uint pricePerUnit;
+        int pricePerUnit;
 
         uint requestedAttributeCount;
         mapping (uint => string) requestedAttributes;
@@ -57,7 +57,7 @@ contract MarketPlace {
 
     struct DataPackResponse {
         string id;
-        uint pricePerUnit;
+        int pricePerUnit;
         DataPackReceivedRequest[] received;
     }
 
@@ -69,7 +69,7 @@ contract MarketPlace {
     struct AddDataPackRequest {
         string organization;
         string id;
-        uint256 pricePerUnit;
+        int pricePerUnit;
         string[] requestedAttributes;
     }
 

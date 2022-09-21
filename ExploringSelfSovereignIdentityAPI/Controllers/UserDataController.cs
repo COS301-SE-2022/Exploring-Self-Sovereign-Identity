@@ -55,5 +55,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         {
             return await uds.approveTransaction(request.id, request.index);
         }
+
+        [HttpPost]
+        [Route("declineTransaction")]
+        public async Task<String> declineTransaction([FromBody] ApproveTransactionRequest request)
+        {
+            return await uds.declineTransaction(request.id, request.index);
+        }
     }
 }

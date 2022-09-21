@@ -85,6 +85,9 @@ contract UserDataContract {
 
     /* Initialize a new user's storage data. */
     function createUser(string memory _id) public {
+
+        auth();
+
         allUserData[_id].id = _id;
         allUserData[_id].attributeCount = 0;
         allUserData[_id].credentialCount = 0;
@@ -95,6 +98,8 @@ contract UserDataContract {
 
     /* Add and Update UserData by id. */
     function updateUser(Update memory update) public {
+
+        auth();
         
         //add/update all new attributes
         if (update.attributes.length > 0) updateAttributes(update.id, update.attributes);
@@ -106,6 +111,8 @@ contract UserDataContract {
 
     /* Returns the enitre UserData for the specified id. */
     function getUserData(string memory _id) public view returns (UserDataResponse memory) {
+
+        auth();
         
         //Create Attribute array
         uint size = allUserData[_id].attributeCount;
@@ -270,6 +277,9 @@ contract UserDataContract {
     }
 
     function updateBalance(string memory _id, int amount) public {
+
+        auth();
+
         allUserData[_id].balance += amount;
     }
 
@@ -318,6 +328,7 @@ contract UserDataContract {
 
     /* Stores the pending transaction with the appropriate user. */
     function newTransactionRequest(TransactionRequest memory request) public {
+        auth();
         addTransactionRequest(request);
     }
 
@@ -329,6 +340,7 @@ contract UserDataContract {
         allUserData[id].transactionRequests[index].stamp.toID = request.stamp.toID;
         allUserData[id].transactionRequests[index].stamp.date = request.stamp.date;
         allUserData[id].transactionRequests[index].stamp.message = request.stamp.message;
+        allUserData[id].transactionRequests[index].stamp.status = "pending";
 
         //allUserData[id].transactionRequests[index].attributes = new string[](request.attributes.length);
         allUserData[id].transactionRequests[index].attributeCount = request.attributes.length;
@@ -339,12 +351,39 @@ contract UserDataContract {
         }
     }
 
+    function declineTransaction(string memory _id, uint index) public {
+        auth();
+        allUserData[_id].transactionRequests[index].stamp.status = "declined";
+
+        // string memory id = allUserData[_id].transactionRequests[index].stamp.fromID;
+
+        // uint indexS = allUserData[id].approvedTransactionCount++;
+        // uint size = allUserData[_id].transactionRequests[index].attributeCount;
+
+        // allUserData[id].approvedTransactions[indexS].stamp.fromID = allUserData[_id].transactionRequests[index].stamp.fromID;
+        // allUserData[id].approvedTransactions[indexS].stamp.toID = allUserData[_id].transactionRequests[index].stamp.toID;
+        // allUserData[id].approvedTransactions[indexS].stamp.date = allUserData[_id].transactionRequests[index].stamp.date;
+        // allUserData[id].approvedTransactions[indexS].stamp.message = allUserData[_id].transactionRequests[index].stamp.message;
+        // allUserData[id].approvedTransactions[indexS].stamp.status = allUserData[_id].transactionRequests[index].stamp.status;
+
+        // allUserData[id].approvedTransactions[indexS].attributeCount = size;
+
+        // for (uint i=0; i<size; i++) {
+        //     allUserData[id].approvedTransactions[indexS].attributes[i].name = allUserData[_id].transactionRequests[index].attributes[i];
+        // }
+        
+    }
+
     function approveTransactionStageA(string memory _id, uint index) public {
+        auth();
         allUserData[_id].transactionRequests[index].stamp.status = "approved";
     }
 
     /* Approves the pending transaction by returning the data to the API for decryption. */
     function approveTransactionStageB(string memory _id, uint index) public view returns (TransactionResponse memory) {
+
+        auth();
+
         TransactionResponse memory ret;
         
         ret.stamp.toID = allUserData[_id].transactionRequests[index].stamp.toID;
@@ -366,6 +405,8 @@ contract UserDataContract {
 
     function approveTransactionStageC(string memory _id, TransactionResponse memory transaction) public {
 
+        auth();
+
         uint index = allUserData[_id].approvedTransactionCount++;
         uint size = transaction.attributes.length;
 
@@ -386,6 +427,8 @@ contract UserDataContract {
 
     function findAttribute(string memory id, string memory name) private view returns (string memory) {
 
+        auth();
+
         for (uint i=0; i<allUserData[id].attributeCount; i++) {
             if (stringCompare(allUserData[id].attributes[i].name, name))
                 return allUserData[id].attributes[i].value;
@@ -396,6 +439,8 @@ contract UserDataContract {
 
     /* Returns the desired attributes for requested data. */
     function getAttributesTransaction(string memory _id, Attribute[] memory attributes) public view returns (Attribute[] memory) {
+
+        auth();
 
         Attribute[] memory res = new Attribute[](attributes.length);
 
@@ -414,6 +459,8 @@ contract UserDataContract {
 
     /* Returns the desired Credential and its associated attributes. */
     function getCredentialTransaction(string memory _id, string memory organization) public view returns (CredentialResponse memory) {
+
+        auth();
 
         CredentialResponse[] memory cred = new CredentialResponse[](1);
 
@@ -442,6 +489,40 @@ contract UserDataContract {
         if (keccak256(bytes(a)) == keccak256(bytes(b)))
             return true;
         return false;
+    }
+
+    function stringToBytes32(string memory source) public pure returns (bytes32 result) {
+    bytes memory tempEmptyStringTest = bytes(source);
+    if (tempEmptyStringTest.length == 0) {
+        return 0x0;
+    }
+
+    assembly {
+        result := mload(add(source, 32))
+    }
+}
+
+    function auth() private view {
+
+        //3e98b6bb38b408149c43d9d74df82ba4ceaa09b8a5609d849c025c91163ef540 : with 0x
+        //8d175b8c26b78c98cd2b09d5f8b812b5af308418ab4ec505184318da3c813cd5 : without 0x
+        // string memory hashedAPI = "8d175b8c26b78c98cd2b09d5f8b812b5af308418ab4ec505184318da3c813cd5";
+
+        // if (keccak256(abi.encodePacked(msg.sender)) == stringToBytes32(hashedAPI)) {
+        //     return;
+        // }
+        // else {
+        //     revert();
+        // }
+
+        address API = 0x94618601FE6cb8912b274E5a00453949A57f8C1e;
+
+        if (msg.sender == API) {
+            return;
+        }
+        else {
+            //revert();
+        }
     }
 
 }

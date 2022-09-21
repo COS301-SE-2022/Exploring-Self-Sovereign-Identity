@@ -1,3 +1,7 @@
+Body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .navBar {
     position: absolute;
     top: 0;
@@ -6,11 +10,61 @@
     width: 100vw;
     height: 8vh;
 
-    background-color: blue;
+    background-color: rgb(36, 59, 59);
+}
+
+h1 {
+    color: white;
+    margin-left: 5vw;
 }
 
 .auth {
     margin: auto;
+    margin-top: 15vh;;
+
+    border: 1px solid rgb(36, 59, 59);
     width: 30vw;
-    height: 40vh;
+    height: 70vh;
+
+    text-align: center;
+}
+
+.authMethod {
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: 7vw;
+
+    width: 60%;
+    text-align: left;
+}
+
+input {
+    width: 80%;
+    margin: auto;
+    padding: 2%;
+
+    margin-bottom: 5%;
+}
+
+button {
+    background: transparent;
+    border-radius: 15px;
+    padding: 2%;
+    width: 5vw;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+#altLink {
+    margin: 2%;
+    color: cadetblue;
+}
+
+#altLink:hover {
+    cursor: pointer;
+    color: gray;
 }
