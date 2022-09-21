@@ -43,7 +43,7 @@ export const userDataStore = defineStore("userData", {
       return repsonse;
     },
     setuserdata() {
-      console.log(this.attributes);
+      console.log(this.attributes.attributes[0].attribute.value);
       const response = this.api
         .post(`/api/UserData/update`, {
           id: this.user.id,
@@ -91,6 +91,9 @@ export const userDataStore = defineStore("userData", {
     },
     exists() {
       return this.user.id != "undefined";
+    },
+    updateAttribute(index: number, value: string) {
+      this.attributes.attributes[index].attribute.value = value;
     },
   },
 });

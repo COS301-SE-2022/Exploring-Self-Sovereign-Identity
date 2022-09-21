@@ -1,6 +1,6 @@
 <script lang="ts">
 import BackNav from "../components/Nav/BackNav.vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { Add } from "@vicons/ionicons5";
 import { useMessage } from "naive-ui";
@@ -36,11 +36,13 @@ export default defineComponent({
         },
         index: -1,
       });
+      this.clear();
       this.change = true;
     },
 
     async submitForm() {
       this.saving;
+
       await this.userData
         .setuserdata()
         .then(() => {
@@ -57,13 +59,20 @@ export default defineComponent({
       this.$router.back();
     },
     changeVar() {
-      console.log("change", this.change);
       this.change = true;
     },
     saving() {
       this.message.loading("saving...", {
         duration: 20000,
       });
+    },
+    changeAtt(index: number, value: string) {
+      this.userData.updateAttribute(index, value);
+      this.change = true;
+    },
+    clear() {
+      this.name = "";
+      this.value = "";
     },
   },
 });
@@ -74,15 +83,15 @@ export default defineComponent({
   <n-tabs type="bar" size="large" justify-content="space-evenly">
     <n-tab-pane name="Attributes">
       <n-input-group
-        v-for="att in userData.getAttributes"
+        v-for="(att, index) in userData.$state.attributes.attributes"
         :key="att.attribute.name"
         data-test-id="attribute"
       >
         <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
         <n-input
+          :key="att.attribute.name"
           :default-value="att.attribute.value"
-          v-model.trim="att.attribute.value"
-          @change="changeVar"
+          @change="changeAtt(index, $event)"
         ></n-input>
       </n-input-group>
 
