@@ -57,6 +57,7 @@ export default defineComponent({
       this.$router.back();
     },
     changeVar() {
+      console.log("change", this.change);
       this.change = true;
     },
     saving() {
@@ -81,7 +82,7 @@ export default defineComponent({
         <n-input
           :default-value="att.attribute.value"
           v-model.trim="att.attribute.value"
-          @on-change="changeVar"
+          @change="changeVar"
         ></n-input>
       </n-input-group>
 

@@ -13,10 +13,12 @@ export default defineComponent({
     const user = new PassageUser();
     user.userInfo().then(async (info) => {
       await userData.getuserdata(info?.email || "");
-      console.log("User data fetched", userData);
+      console.log("here", userData.getId);
       if (!userData.exists()) {
-        userData.createUser(info?.email || "");
+        await userData.createUser(info?.email || "");
         console.log("User created");
+      } else {
+        console.log("User data fetched", userData);
       }
     });
 
