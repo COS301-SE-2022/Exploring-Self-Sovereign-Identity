@@ -243,6 +243,11 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             getUserDataFunction.Id = id;
             GetUserDataOutputDTO getUserDataOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetUserDataFunction, GetUserDataOutputDTO>(getUserDataFunction);
 
+            if (getUserDataOutputDTO == null)
+            {
+                return getUserDataOutputDTO;
+            }
+
             getUserDataOutputDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id, attribute.Value));
 
             getUserDataOutputDTO.ReturnValue1.Credentials.ForEach(credential => credential.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id,attribute.Value)));
