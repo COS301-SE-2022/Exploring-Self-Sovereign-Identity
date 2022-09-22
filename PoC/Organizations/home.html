@@ -42,53 +42,6 @@
     <script src="js/scripts.js">
     </script>
     <script>
-        function fetch() {
-            //document.getElementById("orgData").innerHTML
-
-            console.log("fetching...");
-
-            const Http = new XMLHttpRequest();
-            const url = 'http://localhost:5000/api/MarketPlace/getOrg';
-
-            Http.open("Post", url);
-            Http.setRequestHeader("Content-Type", "application/json");
-            Http.send(JSON.stringify({
-                "id": localStorage.getItem("username"),
-                "password": localStorage.getItem("password")
-            }));
-
-            Http.onreadystatechange = (e) => {
-                if (Http.readyState == 4 && Http.status == 200) {
-                    result = JSON.parse(Http.response);
-                    console.log(result);
-                    if (result.returnValue1.status == "success") {
-                        var size = document.getElementById("orgData").innerHTML = result.returnValue1.packs.length;
-
-                        let el = document.getElementById("orgData");
-
-                        for (let i=0; i<size; i++) {
-                            el.innerHTML += result.returnValue1.packs[i].id + "<br>";
-                            let ss = result.returnValue1.packs[i].received.length;
-
-                            for (let k=0; k<ss; k++) {
-                                el.innerHTML += result.returnValue1.packs[i].received[k].userID + "<br>";
-                                let sss = result.returnValue1.packs[i].received[k].attributes.length;
-
-                                for (let n=0; n<sss; n++) {
-                                    el.innerHTML += result.returnValue1.packs[i].received[k].attributes[n].name + ": ";
-                                    el.innerHTML += result.returnValue1.packs[i].received[k].attributes[n].value + "<br>";
-                                }
-                            }
-                        }
-                        //console.log(result);
-                    }
-                    else {
-                        //console.log(result);
-                    }
-                }
-            }
-        }
-
         window.onload = fetch();
     </script>
 </body>

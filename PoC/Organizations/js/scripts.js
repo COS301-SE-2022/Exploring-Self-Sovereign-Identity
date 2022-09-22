@@ -97,3 +97,51 @@ function login() {
         }
     }
 }
+
+function fetch() {
+    //document.getElementById("orgData").innerHTML
+
+    console.log("fetching...");
+
+    const Http = new XMLHttpRequest();
+    const url = 'http://localhost:5000/api/MarketPlace/getOrg';
+
+    Http.open("Post", url);
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.send(JSON.stringify({
+        "id": localStorage.getItem("username"),
+        "password": localStorage.getItem("password")
+    }));
+
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState == 4 && Http.status == 200) {
+            result = JSON.parse(Http.response);
+            console.log(result);
+            if (result.returnValue1.status == "success") {
+                var size =  result.returnValue1.packs.length;
+
+                let el = document.getElementById("orgData");
+
+                for (let i=0; i<size; i++) {
+                    el.innerHTML += "<h2 style=\"margin-left:2%;\">" + result.returnValue1.packs[i].id + "</h2><br>";
+                    let ss = result.returnValue1.packs[i].received.length;
+
+                    for (let k=0; k<ss; k++) {
+                        el.innerHTML += "<b style=\"margin-left:5%;\">" + result.returnValue1.packs[i].received[k].userID + "</b><br>";
+                        let sss = result.returnValue1.packs[i].received[k].attributes.length;
+
+                        for (let n=0; n<sss; n++) {
+                            el.innerHTML += "<p style=\"margin-left:10%;\">" + result.returnValue1.packs[i].received[k].attributes[n].name + ": " + result.returnValue1.packs[i].received[k].attributes[n].value + "</p>";
+                        }
+
+                    }
+                }
+                //console.log(result);
+            }
+            else {
+                //console.log(result);
+            }
+        }
+    }
+}
+
