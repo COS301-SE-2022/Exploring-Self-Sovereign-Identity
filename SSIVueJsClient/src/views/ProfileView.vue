@@ -2,162 +2,180 @@
 import BackNav from "../components/Nav/BackNav.vue";
 import { defineComponent } from "vue";
 import { userDataStore } from "@/stores/userData";
-import { ElMessage, ElMessageBox } from "element-plus";
-import { ElLoading } from "element-plus";
+import { Add } from "@vicons/ionicons5";
+import { useMessage } from "naive-ui";
 
 export default defineComponent({
   setup() {
     const userData = userDataStore();
+    const message = useMessage();
 
-    return { userData };
+    return { userData, message };
   },
   data() {
     return {
-      // id: ,
+      name: "",
+      value: "",
+      showModal: false,
+      change: false,
     };
   },
+  components: {
+    BackNav,
+    Add,
+  },
   methods: {
+    showMod() {
+      this.showModal = true;
+    },
     addAtt() {
-      ElMessageBox.prompt("Please enter attribute", "Tip", {
-        confirmButtonText: "Add",
-        cancelButtonText: "Cancel",
-      })
-        .then(({ value }) => {
-          this.userData.user.attributes.push({
-            name: value,
-            value: "",
-            index: -1,
-          });
-          ElMessage({
-            type: "success",
-            message: `Attribute added`,
-          });
+      this.userData.attributes.attributes.push({
+        attribute: {
+          name: this.name,
+          value: this.value,
+        },
+        index: -1,
+      });
+      this.clear();
+      this.change = true;
+    },
+
+    async submitForm() {
+      this.saving;
+
+      await this.userData
+        .setuserdata()
+        .then(() => {
+          this.message.destroyAll();
+          this.message.success("saved");
         })
         .catch(() => {
-          ElMessage({
-            type: "info",
-            message: "Input canceled",
-          });
+          this.message.destroyAll();
+          this.message.error("could not save information");
         });
+      this.change = false;
     },
-    submitForm() {
-      const load = ElLoading.service({
-        fullscreen: true,
-        text: "Submitting...",
+    goBack() {
+      this.$router.back();
+    },
+    changeVar() {
+      this.change = true;
+    },
+    saving() {
+      this.message.loading("saving...", {
+        duration: 20000,
       });
-      this.userData.setuserdata();
-      load.close();
-      ElMessage({
-        type: "success",
-        message: `Profile updated`,
-      });
+    },
+    changeAtt(index: number, value: string) {
+      this.userData.updateAttribute(index, value);
+      this.change = true;
+    },
+    clear() {
+      this.name = "";
+      this.value = "";
     },
   },
-  components: { BackNav },
 });
 </script>
 
 <template>
-  <div class="info">
-    <!-- * User ID -->
-    <el-container>
-      <el-header>
-        <el-input
-          v-model="userData.getId"
-          placeholder="ID"
-          disabled
-          data-test-id="Profile id"
+  <!-- * Naive tabs -->
+  <n-tabs type="bar" size="large" justify-content="space-evenly">
+    <n-tab-pane name="Attributes">
+      <n-input-group
+        v-for="(att, index) in userData.$state.attributes.attributes"
+        :key="att.attribute.name"
+        data-test-id="attribute"
+      >
+        <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
+        <n-input
+          :key="att.attribute.name"
+          :default-value="att.attribute.value"
+          @change="changeAtt(index, $event)"
+        ></n-input>
+      </n-input-group>
+
+      <n-space justify="center" size="small" class="space" item-style="object">
+        <n-button
+          strong
+          secondary
+          circle
+          type="primary"
+          size="large"
+          @click="showMod"
+          class="button"
         >
-          <template #prepend>ID</template>
-        </el-input>
-      </el-header>
+          Add Attribute
+          <template #icon>
+            <n-icon><Add /></n-icon>
+          </template>
+        </n-button>
+        <n-collapse-transition :show="change" :appear="true">
+          <n-button
+            strong
+            secondary
+            circle
+            type="primary"
+            size="large"
+            @click="submitForm"
+            class="button"
+          >
+            Save
+          </n-button>
+        </n-collapse-transition>
+      </n-space>
+    </n-tab-pane>
 
-      <el-divider />
-      <el-main class="info-main">
-        <!-- * Attributes -->
-        <el-collapse
-          accordion
-          class="collapse"
-          style="background-color: rgba(0, 0, 0, 0)"
+    <n-tab-pane name="Credentials">
+      <n-collapse accordion>
+        <n-collapse-item
+          v-for="cred in userData.getCredentials"
+          :key="cred.organization"
+          :title="cred.organization"
         >
-          <el-collapse-item
-            title="Attributes"
-            name="1"
-            data-test-id="attribute-header"
-            style="background-color: rgba(0, 0, 0, 0)"
+          <n-input-group
+            v-for="att in cred.attributes"
+            :key="att.name"
+            data-test-id="attribute"
           >
-            <el-form ref="formRef" label-width="120px" class="demo-dynamic">
-              <!-- <el-form-item
-            prop="email"
-            label="Email"
-            :rules="[
-              {
-                required: true,
-                message: 'Please input email address',
-                trigger: 'blur',
-              },
-              {
-                type: 'email',
-                message: 'Please input correct email address',
-                trigger: ['blur', 'change'],
-              },
-            ]"
-          > -->
-              <el-input
-                :placeholder="att.name"
-                v-for="att in userData.getAttributes"
-                :key="att.name"
-                :value="att.value"
-                v-model="att.value"
-                data-test-id="attribute"
-              >
-                <template #prepend>{{ att.name }}</template>
-              </el-input>
-              <!-- </el-form-item> -->
-              <el-form-item>
-                <el-button @click="addAtt" plain>Add</el-button>
-                <el-button type="primary" @click="submitForm">Submit</el-button>
-              </el-form-item>
-            </el-form>
-          </el-collapse-item>
+            <n-input-group-label>{{ att.name }}</n-input-group-label>
+            <n-input :value="att.value" v-model="att.value"></n-input>
+          </n-input-group>
+        </n-collapse-item>
+      </n-collapse>
+    </n-tab-pane>
+  </n-tabs>
 
-          <!-- * Credentials -->
-          <el-collapse-item
-            title="Credentials"
-            name="2"
-            data-test-id="cred-header"
-            style="padding-top: 0.2vh"
-          >
-            <!-- * Inner collapsables -->
-            <el-collapse accordion class="innerCollapse">
-              <el-collapse-item
-                v-for="cred in userData.getCredentials"
-                :key="cred.organization"
-                :title="cred.organization"
-                :name="cred.organization"
-                data-test-id="cred-item"
-              >
-                <el-input
-                  :placeholder="att.name"
-                  v-for="att in cred.attributes"
-                  :key="att.name"
-                  :value="att.value"
-                  disabled
-                >
-                  <template #prepend>{{ att.name }}</template>
-                </el-input>
-              </el-collapse-item>
-            </el-collapse>
-          </el-collapse-item>
-        </el-collapse>
-      </el-main>
-    </el-container>
-  </div>
-
+  <!-- *Modal -->
+  <n-modal
+    v-model:show="showModal"
+    preset="dialog"
+    title="Add attribute"
+    positive-text="Add"
+    negative-text="Cancel"
+    @positive-click="addAtt"
+  >
+    <n-space vertical>
+      <n-input v-model:value="name" type="text" placeholder="Attribute name" />
+      <n-input
+        v-model:value="value"
+        type="text"
+        placeholder="Attribute value"
+      />
+    </n-space>
+  </n-modal>
+  <!-- * -->
   <BackNav page="Profile" />
 </template>
 
 <style lang="scss">
+.icon {
+  background-color: rgba(255, 255, 255, 0);
+  height: auto;
+  width: auto;
+  max-width: 25vw;
+}
+
 .info {
   width: 98vw;
   margin-left: auto;
@@ -186,5 +204,19 @@ export default defineComponent({
     border-radius: 5px;
     border-width: thin;
   }
+}
+
+.button {
+  width: fit-content;
+  padding: 4vw;
+}
+.space {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: fixed;
+  bottom: 6.5vh;
+  text-align: center;
 }
 </style>

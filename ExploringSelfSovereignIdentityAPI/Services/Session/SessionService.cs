@@ -1,39 +1,99 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
+﻿using ExploringSelfSovereignIdentityAPI.Controllers.UserData;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
-﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
-using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
-using System.Threading.Tasks;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
+using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
+using IUserDataService = ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.IUserDataService;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public class SessionService : ISessionService
     {
-        private readonly ISessionRepository _sessionRepository;
+        private IUserDataService userData;
 
-        public SessionService(ISessionRepository repository)
-        {
-            _sessionRepository = repository;
-        }
-        public async Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e)
-        {
-            return await _sessionRepository.GetMockDefaultIdentity(e);
-        }
+        private Random random;
+        private static Dictionary<long, CredentialResponseBase> activeSesions = new Dictionary<long, CredentialResponseBase>();
 
-        public async Task<DefaultIdentityResponse> confirmIdentity(LinkedList<string> fields)
-        {
-            return await _sessionRepository.confirmIdentity(fields);
-        }
+        private CredentialResponseBase defaultCred;
 
-        public async Task<DefaultSessionModel> GetMockDefaultSession(DefaultSessionModel e)
+        public SessionService(IUserDataService userData)
         {
-            return await _sessionRepository.GetMockSession(e);
+            random = new Random();
+
+            if (activeSesions == null) activeSesions = new Dictionary<long, CredentialResponseBase>();
+
+            defaultCred = new CredentialResponseBase();
+
+            this.userData = userData;
         }
 
-        public async Task<OtpResponse> GetOtpResponse(OtpResponse e)
+        public OtpResponse initializeSession()
         {
-            return await _sessionRepository.GetOtpResponse(e);
+            long temp;
+
+            do
+            {
+                temp = random.NextInt64(0, 10000);
+            }
+            while (activeSesions.ContainsKey(temp));
+
+            OtpResponse resp = new OtpResponse();
+            resp.otp = temp;
+
+            activeSesions.Add(temp, defaultCred);
+
+            return resp;
         }
+
+        public OtpConnectResponse connect(long otp, CredentialResponseBase credential)
+        {
+            OtpConnectResponse ret = new OtpConnectResponse();
+            ret.status = "success";
+
+            if (activeSesions.ContainsKey(otp)) {
+                activeSesions[otp] = credential;
+                return ret; 
+            }
+
+            ret.status = "failed";
+            return ret;
+        }
+
+        public CredentialResponseBase finish(long otp)
+        {
+            if (!activeSesions.ContainsKey(otp)) return null;
+
+            CredentialResponseBase ret = (CredentialResponseBase) activeSesions[otp];
+            activeSesions.Remove(otp);
+            return ret;
+        }
+
+        public async Task<OtpConnectResponse> issue(string id, CredentialResponseBase credential)
+        {
+            UpdateGen2 u = new UpdateGen2();
+            u.Id = id;
+            u.Credentials = new List<CredentialUpdateGen2>();
+
+            CredentialUpdateGen2 c = new CredentialUpdateGen2();
+
+            c.Organization = credential.Organization;
+            c.Attributes = credential.Attributes;
+            c.Index = -1;
+
+            u.Credentials.Add(c);
+
+            u.Attributes = new List<AttributeUpdateGen2>();
+
+            await userData.updateUserData(u);
+
+            OtpConnectResponse ret = new OtpConnectResponse();
+            ret.status = "success";
+            return ret;
+        }
+
     }
 }

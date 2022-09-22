@@ -8,18 +8,9 @@ using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Handlers.Session
 {
-    public class ConfirmIdentityHandler : IRequestHandler<ConfirmIdentityCommand, DefaultIdentityResponse>
+    public class ConfirmIdentityHandler
     {
-        private readonly ISessionService _service;
-        public ConfirmIdentityHandler(ISessionService service)
-        {
-            _service = service;
-        }
-
-        public async Task<DefaultIdentityResponse> Handle(ConfirmIdentityCommand request, CancellationToken cancellationToken)
-        {
-            return await _service.confirmIdentity(request.requiredFields);
-        }
+        
 
     }
 }

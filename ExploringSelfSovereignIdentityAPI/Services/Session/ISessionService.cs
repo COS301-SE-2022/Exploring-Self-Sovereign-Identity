@@ -1,20 +1,15 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Default;
-using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-﻿using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-using ExploringSelfSovereignIdentityAPI.Models.Response;
-using System.Collections.Generic;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services
 {
     public interface ISessionService
     {
-        Task<DefaultIdentityModel> GetMockDefaultIdentity(DefaultIdentityModel e);
+        public OtpResponse initializeSession();
+        public OtpConnectResponse connect(long otp, CredentialResponseBase credential);
+        public CredentialResponseBase finish(long otp);
+        public Task<OtpConnectResponse> issue(string id, CredentialResponseBase credential);
 
-        Task<DefaultSessionModel> GetMockDefaultSession(DefaultSessionModel e);
-
-        Task<DefaultIdentityResponse> confirmIdentity(LinkedList<string> fields);
-
-        Task<OtpResponse> GetOtpResponse(OtpResponse e);
     }
 }

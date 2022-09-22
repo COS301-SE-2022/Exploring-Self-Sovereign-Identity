@@ -61,7 +61,7 @@ namespace ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository
             //OtpResponse response = new OtpResponse();
             //response.otp = "123456";
 
-            e.otp = "654321";
+           // e.otp = "654321";
 
             //return await Task.FromResult(response);
             return await Task.FromResult(e);

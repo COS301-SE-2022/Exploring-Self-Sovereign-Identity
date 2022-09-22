@@ -12,4 +12,3 @@ export function getuserdata(userid: string) {
   //       console.log(response.data);
   //     });
 }
-
