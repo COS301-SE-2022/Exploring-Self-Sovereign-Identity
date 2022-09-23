@@ -222,53 +222,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual Update Update { get; set; }
     }
 
-    public partial class GetCredentialTransactionOutputDTO : GetCredentialTransactionOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetCredentialTransactionOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual CredentialResponse ReturnValue1 { get; set; }
-    }
-
-    public partial class GetUserDataOutputDTO : GetUserDataOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetUserDataOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual UserDataResponse ReturnValue1 { get; set; }
-    }
-
-
-
-    public partial class CredentialResponse : CredentialResponseBase { }
-
-    public class CredentialResponseBase
-    {
-        [Parameter("string", "organization", 1)]
-        public virtual string Organization { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Models.Entity.Attribute> Attributes { get; set; }
-    }
-
-    
-
-    public partial class UserDataResponse : UserDataResponseBase { }
-
-    public class UserDataResponseBase
-    {
-        [Parameter("string", "id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Models.Entity.Attribute> Attributes { get; set; }
-        [Parameter("tuple[]", "credentials", 3)]
-        public virtual List<CredentialResponse> Credentials { get; set; }
-        [Parameter("tuple[]", "transactionRequests", 4)]
-        public virtual List<TransactionRequest> TransactionRequests { get; set; }
-        [Parameter("tuple[]", "approvedTransactions", 5)]
-        public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
-    }
 
     public partial class CredentialUpdate : CredentialUpdateBase { }
 
