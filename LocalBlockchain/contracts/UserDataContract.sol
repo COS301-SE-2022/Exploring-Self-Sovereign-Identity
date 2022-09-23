@@ -86,7 +86,9 @@ contract UserDataContract {
     /* Initialize a new user's storage data. */
     function createUser(string memory _id) public {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         allUserData[_id].id = _id;
         allUserData[_id].attributeCount = 0;
@@ -99,7 +101,9 @@ contract UserDataContract {
     /* Add and Update UserData by id. */
     function updateUser(Update memory update) public {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
         
         //add/update all new attributes
         if (update.attributes.length > 0) updateAttributes(update.id, update.attributes);
@@ -112,7 +116,9 @@ contract UserDataContract {
     /* Returns the enitre UserData for the specified id. */
     function getUserData(string memory _id) public view returns (UserDataResponse memory) {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
         
         //Create Attribute array
         uint size = allUserData[_id].attributeCount;
@@ -278,7 +284,9 @@ contract UserDataContract {
 
     function updateBalance(string memory _id, uint amount) public {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         allUserData[_id].balance += amount;
     }
@@ -328,7 +336,9 @@ contract UserDataContract {
 
     /* Stores the pending transaction with the appropriate user. */
     function newTransactionRequest(TransactionRequest memory request) public {
-        auth();
+        if (!auth()) {
+            revert();
+        }
         addTransactionRequest(request);
     }
 
@@ -352,7 +362,9 @@ contract UserDataContract {
     }
 
     function declineTransaction(string memory _id, uint index) public {
-        auth();
+        if (!auth()) {
+            revert();
+        }
         allUserData[_id].transactionRequests[index].stamp.status = "declined";
 
         // string memory id = allUserData[_id].transactionRequests[index].stamp.fromID;
@@ -375,14 +387,18 @@ contract UserDataContract {
     }
 
     function approveTransactionStageA(string memory _id, uint index) public {
-        auth();
+        if (!auth()) {
+            revert();
+        }
         allUserData[_id].transactionRequests[index].stamp.status = "approved";
     }
 
     /* Approves the pending transaction by returning the data to the API for decryption. */
     function approveTransactionStageB(string memory _id, uint index) public view returns (TransactionResponse memory) {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         TransactionResponse memory ret;
         
@@ -405,7 +421,9 @@ contract UserDataContract {
 
     function approveTransactionStageC(string memory _id, TransactionResponse memory transaction) public {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         uint index = allUserData[_id].approvedTransactionCount++;
         uint size = transaction.attributes.length;
@@ -427,7 +445,9 @@ contract UserDataContract {
 
     function findAttribute(string memory id, string memory name) private view returns (string memory) {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         for (uint i=0; i<allUserData[id].attributeCount; i++) {
             if (stringCompare(allUserData[id].attributes[i].name, name))
@@ -440,7 +460,9 @@ contract UserDataContract {
     /* Returns the desired attributes for requested data. */
     function getAttributesTransaction(string memory _id, Attribute[] memory attributes) public view returns (Attribute[] memory) {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         Attribute[] memory res = new Attribute[](attributes.length);
 
@@ -460,7 +482,9 @@ contract UserDataContract {
     /* Returns the desired Credential and its associated attributes. */
     function getCredentialTransaction(string memory _id, string memory organization) public view returns (CredentialResponse memory) {
 
-        auth();
+        if (!auth()) {
+            revert();
+        }
 
         CredentialResponse[] memory cred = new CredentialResponse[](1);
 
@@ -491,38 +515,35 @@ contract UserDataContract {
         return false;
     }
 
-    function stringToBytes32(string memory source) public pure returns (bytes32 result) {
-    bytes memory tempEmptyStringTest = bytes(source);
-    if (tempEmptyStringTest.length == 0) {
-        return 0x0;
-    }
+    // function stringToBytes32(string memory source) public pure returns (bytes32 result) {
+    // bytes memory tempEmptyStringTest = bytes(source);
+    // if (tempEmptyStringTest.length == 0) {
+    //     return 0x0;
+    // }
 
-    assembly {
-        result := mload(add(source, 32))
-    }
-}
+    // assembly {
+    //     result := mload(add(source, 32))
+    // }
+// }
 
-    function auth() private view {
+    function auth() private view returns (bool) {
 
         //3e98b6bb38b408149c43d9d74df82ba4ceaa09b8a5609d849c025c91163ef540 : with 0x
         //8d175b8c26b78c98cd2b09d5f8b812b5af308418ab4ec505184318da3c813cd5 : without 0x
-        // string memory hashedAPI = "8d175b8c26b78c98cd2b09d5f8b812b5af308418ab4ec505184318da3c813cd5";
+        // string memory hashedAPI = "3e98b6bb38b408149c43d9d74df82ba4ceaa09b8a5609d849c025c91163ef540";
 
         // if (keccak256(abi.encodePacked(msg.sender)) == stringToBytes32(hashedAPI)) {
-        //     return;
+        //     return true;
         // }
-        // else {
-        //     revert();
-        // }
+        // return false;
 
         address API = 0x94618601FE6cb8912b274E5a00453949A57f8C1e;
 
         if (msg.sender == API) {
-            return;
+            return true;
         }
-        else {
-            //revert();
-        }
+        return false;
+
     }
 
 }
