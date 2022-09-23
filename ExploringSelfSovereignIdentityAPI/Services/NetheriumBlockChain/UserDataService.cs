@@ -1,14 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Numerics;
-using Nethereum.Hex.HexTypes;
-using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.Web3;
 using Nethereum.RPC.Eth.DTOs;
-using Nethereum.Contracts.CQS;
-using Nethereum.Contracts;
-using System.Threading;
 using Nethereum.Contracts.ContractHandlers;
 using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
@@ -48,7 +42,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
-        public async Task<String> newTransactionRequest(TransactionRequest request)
+        public async Task<string> newTransactionRequest(TransactionRequest request)
         {
             TransactionRequest tr = new TransactionRequest();
 
@@ -118,7 +112,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
-        public async Task<GetAttributesTransactionOutputDTO> getAttributesForTransaction(String id, List<Attribute> attributes)
+        public async Task<GetAttributesTransactionOutputDTO> getAttributesForTransaction(string id, List<Attribute> attributes)
         {
             var getAttributesTransaction = new GetAttributesTransactionFunction();
             getAttributesTransaction.Id = id;

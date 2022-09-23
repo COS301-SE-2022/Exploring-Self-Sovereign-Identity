@@ -1,18 +1,12 @@
-using ExploringSelfSovereignIdentityAPI.Data;
 using ExploringSelfSovereignIdentityAPI.Repositories.Example;
 using ExploringSelfSovereignIdentityAPI.Repositories.SessionRepository;
-using ExploringSelfSovereignIdentityAPI.Repositories.Transactions;
-using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using ExploringSelfSovereignIdentityAPI.Services.Example;
-using ExploringSelfSovereignIdentityAPI.Services.Transactions;
-using ExploringSelfSovereignIdentityAPI.Services.UserDataService;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,7 +36,7 @@ namespace exploring_self_sovereign_identity_api
             });
 
 
-            services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            //services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
 
             //Adding my service
@@ -50,12 +44,12 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<ISessionService, SessionService>();     
-            services.AddTransient<IUserDataRepository, UserDataRepository>();
-            services.AddTransient<ITransactionService, TransactionService>();
-            services.AddTransient<ITransactionRepository, TransactionRepository>();
-            services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.UserDataService.IUserDataService, UserdataService>();
+            //services.AddTransient<IUserDataRepository, UserDataRepository>();
+            //services.AddTransient<ITransactionService, TransactionService>();
+            //services.AddTransient<ITransactionRepository, TransactionRepository>();
+            //services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IBlockchainService, BlockchainService>();
-            services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.IUserDataService, UserDataService>();
+            services.AddTransient<IUserDataService, UserDataService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             //services.AddScoped(typeof(IUniversityRepository), typeof(UniversitySqlServerRepository));
 

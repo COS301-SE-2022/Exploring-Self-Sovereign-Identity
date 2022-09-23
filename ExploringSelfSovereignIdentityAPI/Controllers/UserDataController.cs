@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
-using System;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -50,7 +51,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
                     continue;
                 }
 
-                Services.NetheriumBlockChain.Attribute a1 = new Services.NetheriumBlockChain.Attribute();
+                Attribute a1 = new Attribute();
                 a1.Name = request.Attributes[i].Name;
                 a1.Value = request.Attributes[i].Value;
 
@@ -72,7 +73,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("newTransaction")]
-        public async Task<String> newTransaction([FromBody] TransactionRequest request)
+        public async Task<string> newTransaction([FromBody] TransactionRequest request)
         {
             return await uds.newTransactionRequest(request);
         }

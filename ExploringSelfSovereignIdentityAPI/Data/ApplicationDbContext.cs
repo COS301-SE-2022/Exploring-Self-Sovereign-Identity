@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.DataEncryption.Providers;
 
 namespace ExploringSelfSovereignIdentityAPI.Data
 {
-    public class ApplicationDbContext:DbContext
+    /*public class ApplicationDbContext:DbContext
     {
 
         //private readonly string _encryptionKey = "FxovdyhwSVdNT9nJYQNW";
@@ -27,10 +27,6 @@ namespace ExploringSelfSovereignIdentityAPI.Data
             this._provider = new AesProvider(this._encryptionKey, this._encryptionIV);
         }
 
-        /*public DbSet<DefaultSessionModel> DefaultSessionModels { get; set; }
-        public DbSet<DefaultIdentityModel> DefaultIdentityModels { get; set; }
-        */
-
         public DbSet<UserDataModel> UserDataModels { get; set; }
 
         public DbSet<Attribute> Attributes { get; set; }
@@ -41,7 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
         public DbSet<Contract> Contracts { get; set; }
 
-        public DbSet<Transaction> Transactions { get; set; }
+        //public DbSet<Transaction> Transactions { get; set; }
 
         public DbSet<UserAttribute> UserAttributes { get; set; }
 
@@ -50,12 +46,7 @@ namespace ExploringSelfSovereignIdentityAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<DefaultSessionModel>().ToTable("defaultSessionModel");
-            modelBuilder.Entity<DefaultSessionModel>().HasKey("Id");
-
-            modelBuilder.Entity<DefaultIdentityModel>().ToTable("DefaultIdentityModel");
-            modelBuilder.Entity<DefaultIdentityModel>().HasKey("Id");*/
-
+         
             modelBuilder.Entity<UserDataModel>().ToTable("userDataModel");
             modelBuilder.Entity<UserDataModel>().HasKey("Id");
 
@@ -74,17 +65,14 @@ namespace ExploringSelfSovereignIdentityAPI.Data
             modelBuilder.Entity<ContractAttribute>().ToTable("ContractAttribute");
             modelBuilder.Entity<ContractAttribute>().HasKey("Id");
 
-            modelBuilder.Entity<Transaction>().ToTable("Transaction");
-            modelBuilder.Entity<Transaction>().HasKey("Id");
+            //modelBuilder.Entity<Transaction>().ToTable("Transaction");
+            //modelBuilder.Entity<Transaction>().HasKey("Id");
 
             modelBuilder.Entity<UserAttribute>().ToTable("UserAttribute");
             modelBuilder.Entity<UserAttribute>().HasKey("Id");
 
 
             modelBuilder.UseEncryption(this._provider);
-
-
-
         }
-    }
+    }*/
 }

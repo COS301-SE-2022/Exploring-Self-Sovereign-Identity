@@ -19,5 +19,13 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
         public virtual List<TransactionRequest> TransactionRequests { get; set; }
         [Parameter("tuple[]", "approvedTransactions", 5)]
         public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
+
+        public UserDataResponseBase()
+        {
+            Attributes = new List<Attribute>();
+            Credentials = new List<CredentialResponse>();
+            TransactionRequests = new List<TransactionRequest>();
+            ApprovedTransactions = new List<TransactionResponse>();
+        }
     }
 }
