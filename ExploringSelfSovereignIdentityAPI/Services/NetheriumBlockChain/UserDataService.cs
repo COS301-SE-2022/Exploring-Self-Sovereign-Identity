@@ -176,7 +176,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return getTransactionATtributesOutputDTO;
         }
 
-        public async Task<GetUserDataOutputDTO> updateUserData(UpdateGen2 update)
+        public async Task<GetUserDataOutputDTO2> updateUserData(UpdateGen2 update)
         {
 
             
@@ -239,7 +239,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return await getUserData(update.Id);
         }
 
-        public async Task<GetUserDataOutputDTO> getUserData(string id)
+        public async Task<GetUserDataOutputDTO2> getUserData(string id)
         {
 
             Console.WriteLine("ID called: " + id);
@@ -252,7 +252,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
             if (getUserDataOutputDTO == null)
             {
-                return getUserDataOutputDTO;
+                return new GetUserDataOutputDTO2();
             }
 
             getUserDataOutputDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id, attribute.Value));
@@ -262,7 +262,17 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             if (getUserDataOutputDTO.ReturnValue1.Id == "")
                 getUserDataOutputDTO.ReturnValue1.Id = "undefined";
 
-            return getUserDataOutputDTO;
+            var ret = new GetUserDataOutputDTO2();
+            ret.ReturnValue1 = new UserDataResponse2();
+
+            ret.ReturnValue1.Id = getUserDataOutputDTO.ReturnValue1.Id;
+            ret.ReturnValue1.Balance = (int) getUserDataOutputDTO.ReturnValue1.Balance;
+            ret.ReturnValue1.Attributes = getUserDataOutputDTO.ReturnValue1.Attributes;
+            ret.ReturnValue1.Credentials = getUserDataOutputDTO.ReturnValue1.Credentials;
+            ret.ReturnValue1.TransactionRequests = getUserDataOutputDTO.ReturnValue1.TransactionRequests;
+            ret.ReturnValue1.ApprovedTransactions = getUserDataOutputDTO.ReturnValue1.ApprovedTransactions;
+
+            return ret;
         }
     }
 
@@ -557,6 +567,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
     }
 
+    
+
     public partial class AttributeUpdate : AttributeUpdateBase { }
 
     public class AttributeUpdateBase
@@ -628,6 +640,33 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual List<AttributeUpdateGen2> Attributes { get; set; }
         [Parameter("tuple[]", "credentials", 3)]
         public virtual List<CredentialUpdateGen2> Credentials { get; set; }
+    }
+
+    public partial class UserDataResponse2 : UserDataResponseBase2 { }
+
+    public class UserDataResponseBase2
+    {
+        [Parameter("string", "id", 1)]
+        public virtual string Id { get; set; }
+        [Parameter("uint256", "balance", 2)]
+        public virtual int Balance { get; set; }
+        [Parameter("tuple[]", "attributes", 3)]
+        public virtual List<Attribute> Attributes { get; set; }
+        [Parameter("tuple[]", "credentials", 4)]
+        public virtual List<CredentialResponse> Credentials { get; set; }
+        [Parameter("tuple[]", "transactionRequests", 5)]
+        public virtual List<TransactionRequest> TransactionRequests { get; set; }
+        [Parameter("tuple[]", "approvedTransactions", 6)]
+        public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
+    }
+
+    public partial class GetUserDataOutputDTO2 : GetUserDataOutputDTOBase2 { }
+
+    [FunctionOutput]
+    public class GetUserDataOutputDTOBase2 : IFunctionOutputDTO
+    {
+        [Parameter("tuple", "", 1)]
+        public virtual UserDataResponse2 ReturnValue1 { get; set; }
     }
 
 

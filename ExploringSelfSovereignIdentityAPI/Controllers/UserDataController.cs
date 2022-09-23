@@ -28,14 +28,14 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("get")]
-        public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
+        public async Task<GetUserDataOutputDTO2> GetUserData([FromBody] RegisterRequest request)
         {
             return await uds.getUserData(request.id);
         }
 
         [HttpPost]
         [Route("update")]
-        public async Task<GetUserDataOutputDTO> UpdateCredentials([FromBody] UpdateGen2 request )
+        public async Task<GetUserDataOutputDTO2> UpdateCredentials([FromBody] UpdateGen2 request )
         {
             return await uds.updateUserData(request);
         }
