@@ -117,9 +117,13 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             approveBFunction.Index = index;
             var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
 
+            approveBFunctionTxnReceipDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(approveBFunctionTxnReceipDTO.ReturnValue1.Stamp.ToID, attribute.Value));
+            //approveBFunctionTxnReceipDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.EncryptString(approveBFunctionTxnReceipDTO.ReturnValue1.Stamp.FromID, attribute.Value));
+
             /* Stage C */
             var approveTransactionStageCFunction = new ApproveTransactionStageCFunction();
             approveTransactionStageCFunction.Id = approveBFunctionTxnReceipDTO.ReturnValue1.Stamp.FromID;
+
             approveTransactionStageCFunction.Transaction = approveBFunctionTxnReceipDTO.ReturnValue1;
             var approveTransactionStageCFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageCFunction);
 
