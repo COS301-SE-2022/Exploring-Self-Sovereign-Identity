@@ -118,35 +118,29 @@ export interface User {
       ];
     }
   ];
-  transactionRequests: [
-    {
-      attributes: string;
-      stamp: {
-        fromID: string;
-        toID: string;
-        date: string;
-        message: string;
-        status: string;
-      };
-    }
-  ];
-  approvedTransactions: [
-    {
-      attributes: [
-        {
-          name: string;
-          value: string;
-        }
-      ];
-      stamp: {
-        fromID: string;
-        toID: string;
-        date: string;
-        message: string;
-        status: string;
-      };
-    }
-  ];
+  transactionRequests: {
+    attributes: string;
+    stamp: {
+      fromID: string;
+      toID: string;
+      date: string;
+      message: string;
+      status: string;
+    };
+  }[];
+  approvedTransactions: {
+    attributes: {
+      name: string;
+      value: string;
+    }[];
+    stamp: {
+      fromID: string;
+      toID: string;
+      date: string;
+      message: string;
+      status: string;
+    };
+  }[];
 }
 
 export interface Attributes {

@@ -1,95 +1,43 @@
 <script lang="ts">
-import { values } from "lodash";
-import { defineComponent, isReactive, isRef, reactive, ref } from "vue";
+import { defineComponent } from "vue";
 import BackNav from "../components/Nav/BackNav.vue";
+import { transactionsStore } from "@/stores/transactions";
 
 export default defineComponent({
   setup() {
-    const options = [
-      {
-        value: "Name",
-        label: "Name",
-      },
-      {
-        value: "Surname",
-        label: "Surname",
-      },
-      {
-        value: "Number",
-        label: "Number",
-      },
-    ];
-    return { options };
+    const transactions = transactionsStore();
+    return { transactions };
   },
-  data() {
-    return {
-      data: {
-        id: "",
-        attributes: Array<string>(),
-      },
-    };
-  },
-  methods: {
-    sendData() {
-      console.log;
-    },
-  },
+  data() {},
+  methods: {},
   components: { BackNav },
 });
 </script>
 
 <template>
-  <el-form :inline="true" class="form" :model="data" style="padding-top: 2vh">
-    <!-- * User ID  -->
-    <el-form-item label="User ID">
-      <el-input
-        v-model="data.id"
-        placeholder="Please input"
-        data-test-id="userid"
+  <n-collapse accordion arrow-placement="right">
+    <n-collapse-item
+      v-for="t in transactions.requests"
+      :key="t.stamp.fromID"
+      :name="t.stamp.fromID"
+      :title="t.stamp.fromID"
+    >
+      <template #header-extra>{{ t.stamp.date }}</template>
+      <n-input-group
+        v-for="att in t.attributes"
+        :key="att"
+        data-test-id="attribute"
       >
-      </el-input>
-    </el-form-item>
-    <!-- * Attribute select -->
-    <el-form-item label="Perms">
-      <el-select
-        v-model="data.attributes"
-        multiple
-        placeholder="Attributes"
-        style="width: 100%"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item>
-      <div class="submit">
-        <el-button @click="sendData" plain type="primary" round
-          >Request</el-button
-        >
-      </div>
-    </el-form-item>
-  </el-form>
-
+        <n-input-group-label>{{ att }}</n-input-group-label>
+        <n-input
+          :key="att"
+          :default-value="transactions.exists(att)"
+          :disabled="!transactions.exists(att)"
+        ></n-input>
+      </n-input-group>
+    </n-collapse-item>
+  </n-collapse>
   <BackNav page="Request Data" />
 </template>
 
-<style lang="scss">
-.form {
-  backdrop-filter: hue-rotate(10deg);
-}
-.submit {
-  margin-top: 15vh;
-  width: 100vw;
-  text-align: center;
-  button {
-    margin-right: auto;
-    margin-left: auto;
-    // color: whitesmoke;
-    // background-color: black;
-  }
-}
-</style>
+<style lang="scss"></style>
