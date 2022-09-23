@@ -1,12 +1,16 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using Nethereum.ABI.FunctionEncoding.Attributes;
+using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Models.Response
 {
-    public class TransactionResponse
-    {
-        public string From { get; set; }
-        public string To { get; set; }
+    public partial class TransactionResponse : TransactionResponseBase { }
 
-        public GetContractResponse contract { get; set; }
+    public class TransactionResponseBase
+    {
+        [Parameter("tuple[]", "attributes", 1)]
+        public virtual List<Attribute> Attributes { get; set; }
+        [Parameter("tuple", "stamp", 2)]
+        public virtual TransactionStamp Stamp { get; set; }
     }
 }

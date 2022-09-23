@@ -14,6 +14,7 @@ using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Function;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -68,24 +69,24 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             tr.Attributes = attrs;
             tr.Stamp = stamp;
 
-            var newTransactionRequestFunction = new NewTransactionRequestFunction();
+            NewTransactionRequestFunction newTransactionRequestFunction = new NewTransactionRequestFunction();
             newTransactionRequestFunction.Request = tr;
-            var newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
+            TransactionReceipt newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
 
             return "success";
         }
 
         public async Task<string> approveTransaction(string id, int index)
         {
-            var approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
+            ApproveTransactionStageAFunction approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
             approveTransactionStageAFunction.Id = id;
             approveTransactionStageAFunction.Index = index;
-            var approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
+            TransactionReceipt approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
 
-            var approveBFunction = new ApproveTransactionStageBFunction();
+            ApproveTransactionStageBFunction approveBFunction = new ApproveTransactionStageBFunction();
             approveBFunction.Id = id;
             approveBFunction.Index = index;
-            var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
+            ApproveTransactionStageBOutputDTO approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
 
 
 
@@ -192,41 +193,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         }
     }
 
-
-
-    public partial class ApproveTransactionStageAFunction : ApproveTransactionStageAFunctionBase { }
-
-    [Function("approveTransactionStageA")]
-    public class ApproveTransactionStageAFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("uint256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-    }
-
-    public partial class ApproveTransactionStageBFunction : ApproveTransactionStageBFunctionBase { }
-
-    [Function("approveTransactionStageB", typeof(ApproveTransactionStageBOutputDTO))]
-    public class ApproveTransactionStageBFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("uint256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-    }
-
-    public partial class ApproveTransactionStageCFunction : ApproveTransactionStageCFunctionBase { }
-
-    [Function("approveTransactionStageC")]
-    public class ApproveTransactionStageCFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple", "transaction", 2)]
-        public virtual TransactionResponse Transaction { get; set; }
-    }
-
     public partial class GetAttributesTransactionFunction : GetAttributesTransactionFunctionBase { }
 
     [Function("getAttributesTransaction", typeof(GetAttributesTransactionOutputDTO))]
@@ -269,18 +235,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
 
 
-    public partial class ApproveTransactionStageBOutputDTO : ApproveTransactionStageBOutputDTOBase { }
-
-    [FunctionOutput]
-    public class ApproveTransactionStageBOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual TransactionResponse ReturnValue1 { get; set; }
-    }
-
-
-
-
 
     public partial class GetAttributesTransactionOutputDTO : GetAttributesTransactionOutputDTOBase { }
 
@@ -311,28 +265,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
 
 
-
-
-    public partial class Attribute : AttributeBase { }
-
-    public class AttributeBase
-    {
-        [Parameter("string", "name", 1)]
-        public virtual string Name { get; set; }
-        [Parameter("string", "value", 2)]
-        public virtual string Value { get; set; }
-    }
-
-    public partial class TransactionResponse : TransactionResponseBase { }
-
-    public class TransactionResponseBase
-    {
-        [Parameter("tuple[]", "attributes", 1)]
-        public virtual List<Attribute> Attributes { get; set; }
-        [Parameter("tuple", "stamp", 2)]
-        public virtual TransactionStamp Stamp { get; set; }
-    }
-
     public partial class CredentialResponse : CredentialResponseBase { }
 
     public class CredentialResponseBase
@@ -340,7 +272,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         [Parameter("string", "organization", 1)]
         public virtual string Organization { get; set; }
         [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
+        public virtual List<Models.Entity.Attribute> Attributes { get; set; }
     }
 
     
@@ -352,23 +284,13 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         [Parameter("string", "id", 1)]
         public virtual string Id { get; set; }
         [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
+        public virtual List<Models.Entity.Attribute> Attributes { get; set; }
         [Parameter("tuple[]", "credentials", 3)]
         public virtual List<CredentialResponse> Credentials { get; set; }
         [Parameter("tuple[]", "transactionRequests", 4)]
         public virtual List<TransactionRequest> TransactionRequests { get; set; }
         [Parameter("tuple[]", "approvedTransactions", 5)]
         public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
-    }
-
-    public partial class AttributeUpdate : AttributeUpdateBase { }
-
-    public class AttributeUpdateBase
-    {
-        [Parameter("tuple", "attribute", 1)]
-        public virtual Attribute Attribute { get; set; }
-        [Parameter("int256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
     }
 
     public partial class CredentialUpdate : CredentialUpdateBase { }
@@ -380,7 +302,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         [Parameter("int256", "index", 2)]
         public virtual BigInteger Index { get; set; }
         [Parameter("tuple[]", "attributes", 3)]
-        public virtual List<Attribute> Attributes { get; set; }
+        public virtual List<Models.Entity.Attribute> Attributes { get; set; }
     }
 
     public partial class Update : UpdateBase { }
