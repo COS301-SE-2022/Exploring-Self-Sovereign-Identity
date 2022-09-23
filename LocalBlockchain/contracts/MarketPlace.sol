@@ -144,15 +144,23 @@ contract MarketPlace {
         
     }
 
-    function buyData(BuyDataRequest memory request) public {
+    struct BuyDataResponse {
+        string status;
+        uint amount;
+    }
+
+    function buyData(BuyDataRequest memory request) public returns (BuyDataResponse memory) {
+
+        BuyDataResponse memory ret;
 
         for (uint i=0; i<allOrganizations[request.organization].packCount; i++) {
             
             if (stringCompare(allOrganizations[request.organization].packs[i].id, request.dataPackID)) {
 
             for (uint k=0; k<allOrganizations[request.organization].packs[i].receivedAttributeCount; k++) {
-                if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID))
-                    return;
+                if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID)){
+                    ret.status = "failed";
+                    return ret;}
             }
 
                uint index = allOrganizations[request.organization].packs[i].receivedAttributeCount++;
@@ -165,9 +173,16 @@ contract MarketPlace {
                     allOrganizations[request.organization].packs[i].receivedAttributes[index].attributes[k].value = request.attributes[k].value;
                     //allOrganizations[request.organization].packs[i].receivedAttributes[index].attributeCount++;
                }
-               break;
+
+
+                ret.status = "success";
+                ret.amount = allOrganizations[request.organization].packs[i].pricePerUnit;
+                allOrganizations[request.organization].balance = allOrganizations[request.organization].balance - allOrganizations[request.organization].packs[i].pricePerUnit;
+                break;
             }
         }
+
+        return ret;
     }
 
     /*

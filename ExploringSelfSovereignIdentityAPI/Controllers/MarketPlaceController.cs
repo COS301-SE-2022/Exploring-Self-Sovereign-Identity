@@ -25,21 +25,21 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 
         [HttpPost]
         [Route("getOrg")]
-        public async Task<GetOrganizationOutputDTO> get([FromBody] CreateOrgRequest request)
+        public async Task<GetOrganizationOutputDTO2> get([FromBody] CreateOrgRequest request)
         {
             return await mps.getOrganization(request);
         }
 
         [HttpPost]
         [Route("buyData")]
-        public async Task<string> buy([FromBody] BuyDataRequest request)
+        public async Task<BuyDataOutputDTO2> buy([FromBody] BuyDataRequest request)
         {
             return await mps.buyData(request);
         }
 
         [HttpPost]
         [Route("addData")]
-        public async Task<string> add([FromBody] AddDataPackRequest request)
+        public async Task<string> add([FromBody] AddDataPackRequest2 request)
         {
             return await mps.addDataPack(request);
         }

@@ -13,6 +13,8 @@ using Nethereum.Contracts.ContractHandlers;
 using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 using Nethereum.Web3.Accounts;
+using Nethereum.Model;
+using Account = Nethereum.Web3.Accounts.Account;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -273,6 +275,16 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             ret.ReturnValue1.ApprovedTransactions = getUserDataOutputDTO.ReturnValue1.ApprovedTransactions;
 
             return ret;
+        }
+
+        public async Task<string> updateBalance(string id, int amount)
+        {
+            var updateBalanceFunction = new UpdateBalanceFunction();
+            updateBalanceFunction.Id = id;
+            updateBalanceFunction.Amount = amount;
+            var updateBalanceFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(updateBalanceFunction);
+
+            return "success";
         }
     }
 

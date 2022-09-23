@@ -14,5 +14,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public Task<string> newTransactionRequest(TransactionRequest request);
         public Task<string> approveTransaction(string id, int index);
         public Task<string> declineTransaction(string id, int index);
+        public Task<string> updateBalance(string id, int amount);
     }
 }
