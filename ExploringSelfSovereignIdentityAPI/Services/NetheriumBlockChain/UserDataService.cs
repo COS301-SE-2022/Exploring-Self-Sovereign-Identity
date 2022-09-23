@@ -11,6 +11,9 @@ using Nethereum.Contracts;
 using System.Threading;
 using Nethereum.Contracts.ContractHandlers;
 using ExploringSelfSovereignIdentityAPI.Models;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Function;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -97,23 +100,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
             tr.Attributes = transaction.Attributes;
             tr.Stamp = transaction.Stamp;
-            
-            /*TransactionStamp stamp = new TransactionStamp();
-            stamp.ToID = transaction.Stamp.ToID;
-            stamp.FromID = transaction.Stamp.FromID;
-            stamp.Message = transaction.Stamp.Message;
-            stamp.Date = transaction.Stamp.Date;
-            stamp.Status = transaction.Stamp.Status;
-
-            List<string> attrs = new List<string>();
-
-            for (int i = 0; i < transaction.Attributes.Count; i++)
-            {
-                attrs.Add(transaction.Attributes[i].Value);
-            }
-            */
-            //tr.Attributes = 
-            //tr.Stamp = stamp;
 
             var approveTransactionStageCFunction = new ApproveTransactionStageCFunction();
             approveTransactionStageCFunction.Id = id;
@@ -241,15 +227,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual TransactionResponse Transaction { get; set; }
     }
 
-    public partial class CreateUserFunction : CreateUserFunctionBase { }
-
-    [Function("createUser")]
-    public class CreateUserFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-    }
-
     public partial class GetAttributesTransactionFunction : GetAttributesTransactionFunctionBase { }
 
     [Function("getAttributesTransaction", typeof(GetAttributesTransactionOutputDTO))]
@@ -355,22 +332,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual string Value { get; set; }
     }
 
-    public partial class TransactionStamp : TransactionStampBase { }
-
-    public class TransactionStampBase
-    {
-        [Parameter("string", "fromID", 1)]
-        public virtual string FromID { get; set; }
-        [Parameter("string", "toID", 2)]
-        public virtual string ToID { get; set; }
-        [Parameter("string", "date", 3)]
-        public virtual string Date { get; set; }
-        [Parameter("string", "message", 4)]
-        public virtual string Message { get; set; }
-        [Parameter("string", "status", 5)]
-        public virtual string Status { get; set; }
-    }
-
     public partial class TransactionResponse : TransactionResponseBase { }
 
     public class TransactionResponseBase
@@ -391,15 +352,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual List<Attribute> Attributes { get; set; }
     }
 
-    public partial class TransactionRequest : TransactionRequestBase { }
-
-    public class TransactionRequestBase
-    {
-        [Parameter("string[]", "attributes", 1)]
-        public virtual List<string> Attributes { get; set; }
-        [Parameter("tuple", "stamp", 2)]
-        public virtual TransactionStamp Stamp { get; set; }
-    }
+    
 
     public partial class UserDataResponse : UserDataResponseBase { }
 
