@@ -17,11 +17,11 @@ export const transactionsStore = defineStore("transactions", () => {
   );
   const approved = ref(userData.user.approvedTransactions);
 
-  function approveTransaction(id: string) {
+  function approveTransaction(id: string, index: number) {
     api
       .post("/api/UserData/approveTransaction", {
         id: id,
-        index: 0,
+        index: index,
       })
       .then((response) => {
         if (response.data == "success") return true;
@@ -32,11 +32,11 @@ export const transactionsStore = defineStore("transactions", () => {
       });
   }
 
-  function declineTransaction(id: string) {
+  function declineTransaction(id: string, index: number) {
     api
       .post("/api/UserData/declineTransaction", {
         id: id,
-        index: 0,
+        index: index,
       })
       .then((response) => {
         if (response.data == "success") return true;
