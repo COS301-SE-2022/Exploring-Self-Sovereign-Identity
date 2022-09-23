@@ -258,15 +258,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         public virtual string Id { get; set; }
     }
 
-    public partial class NewTransactionRequestFunction : NewTransactionRequestFunctionBase { }
-
-    [Function("newTransactionRequest")]
-    public class NewTransactionRequestFunctionBase : FunctionMessage
-    {
-        [Parameter("tuple", "request", 1)]
-        public virtual TransactionRequest Request { get; set; }
-    }
-
     public partial class UpdateUserFunction : UpdateUserFunctionBase { }
 
     [Function("updateUser")]
