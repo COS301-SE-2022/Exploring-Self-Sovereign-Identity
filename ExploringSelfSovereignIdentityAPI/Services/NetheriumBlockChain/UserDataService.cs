@@ -193,17 +193,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         }
     }
 
-    public partial class GetAttributesTransactionFunction : GetAttributesTransactionFunctionBase { }
-
-    [Function("getAttributesTransaction", typeof(GetAttributesTransactionOutputDTO))]
-    public class GetAttributesTransactionFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
-    }
-
     public partial class GetCredentialTransactionFunction : GetCredentialTransactionFunctionBase { }
 
     [Function("getCredentialTransaction", typeof(GetCredentialTransactionOutputDTO))]
@@ -231,18 +220,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         [Parameter("tuple", "update", 1)]
         public virtual Update Update { get; set; }
-    }
-
-
-
-
-    public partial class GetAttributesTransactionOutputDTO : GetAttributesTransactionOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetAttributesTransactionOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple[]", "", 1)]
-        public virtual List<Attribute> ReturnValue1 { get; set; }
     }
 
     public partial class GetCredentialTransactionOutputDTO : GetCredentialTransactionOutputDTOBase { }
