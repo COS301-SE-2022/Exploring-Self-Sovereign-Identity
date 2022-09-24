@@ -9,7 +9,6 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css'
 import './styles/reset.css'
 import './styles/global.scss'
 import ActionBar from './components/ActionBar.vue'
-import ConfettiCanvas from './components/ConfettiCanvas.vue'
 import Configurator from './components/Configurator.vue'
 import Container from './components/Container.vue'
 import Footer from './components/Footer.vue'
@@ -21,7 +20,6 @@ import store, { storeKey } from '@/stores'
 
 const app = createApp(App)
 app.component('ActionBar', ActionBar)
-app.component('ConfettiCanvas', ConfettiCanvas)
 app.component('Configurator', Configurator)
 app.component('Container', Container)
 app.component('FooterVue', Footer)
