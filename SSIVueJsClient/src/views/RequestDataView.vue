@@ -42,7 +42,7 @@ export default defineComponent({
     ></n-input>
   </n-input-group>
 
-  <BackNav>
+  <BackNav page="Request Data">
     <n-button type="primary" @click="request"> Request </n-button>
   </BackNav>
 </template>

@@ -57,7 +57,7 @@ export default defineComponent({
 <template>
   <n-collapse accordion arrow-placement="right">
     <n-collapse-item
-      v-for="(t, index) in transactions.requests"
+      v-for="(t, index) in transactions.pending"
       :key="t.stamp.fromID"
       :name="t.stamp.fromID"
       :title="t.stamp.fromID"

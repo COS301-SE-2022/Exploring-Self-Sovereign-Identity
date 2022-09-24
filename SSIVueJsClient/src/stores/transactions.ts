@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { userDataStore } from "@/stores/userData";
 import axios from "axios";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const transactionsStore = defineStore("transactions", () => {
   const api = axios.create({
@@ -15,7 +15,9 @@ export const transactionsStore = defineStore("transactions", () => {
   const requests = ref(
     userData.user.transactionRequests as unknown as transactionRequests[]
   );
-  const approved = ref(userData.user.approvedTransactions);
+  const approved = ref(
+    userData.user.approvedTransactions as unknown as approvedTransactions[]
+  );
 
   function approveTransaction(id: string, index: number) {
     api
@@ -75,6 +77,16 @@ export const transactionsStore = defineStore("transactions", () => {
     else return value;
   }
 
+  const pending = computed(() => {
+    return requests.value.filter((x) => x.stamp.status == "pending");
+  });
+
+  const past = computed(() => {
+    return requests.value.filter(
+      (x) => x.stamp.status == "approved" || x.stamp.status == "declined"
+    );
+  });
+
   return {
     api,
     userData,
@@ -84,6 +96,8 @@ export const transactionsStore = defineStore("transactions", () => {
     declineTransaction,
     newTransaction,
     exists,
+    pending,
+    past,
   };
 });
 
