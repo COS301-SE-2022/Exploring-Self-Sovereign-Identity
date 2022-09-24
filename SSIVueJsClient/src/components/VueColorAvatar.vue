@@ -17,7 +17,7 @@
 <script lang="ts">
 import { ref, toRefs, watchEffect } from 'vue'
 import { defineComponent } from 'vue'
-import { WrapperShape } from '@/enums'
+import { WidgetType, WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
 import { getRandomAvatarOption } from '@/utils'
 import { AVATAR_LAYER, NONE } from '@/utils/constant'
@@ -61,8 +61,8 @@ export default defineComponent({
     watchEffect(async () => {
       const sortedList = Object.entries(avatarOption.value.widgets).sort(
         ([prevShape, prev], [nextShape, next]) => {
-          const ix = prev.zIndex ?? AVATAR_LAYER[prevShape]?.zIndex ?? 0
-          const iix = next.zIndex ?? AVATAR_LAYER[nextShape]?.zIndex ?? 0
+          const ix = prev.zIndex ?? AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
+          const iix = next.zIndex ?? AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
           return ix - iix
         }
       )
@@ -75,8 +75,8 @@ export default defineComponent({
 
       const promises: Promise<string>[] = sortedList.map(
         async ([widgetType, opt]) => {
-          if (opt.shape !== NONE && widgetData?.[widgetType]?.[opt.shape]) {
-            return (await widgetData[widgetType][opt.shape]()).default
+          if (opt.shape !== NONE && widgetData?.[widgetType as keyof typeof widgetData]?.[opt.shape]) {
+            return (await widgetData[widgetType as keyof typeof widgetData][opt.shape]()).default
           }
           return ''
         }

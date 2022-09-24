@@ -21,7 +21,7 @@ import {
 
 export const AVATAR_LAYER: Readonly<{
   [key in `${WidgetType}`]: { zIndex: number }
-}> = {
+}> = { 
   [WidgetType.Face]: {
     zIndex: 10,
   },

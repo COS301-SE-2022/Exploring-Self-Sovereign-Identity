@@ -9,7 +9,6 @@ declare module '@vue/runtime-core' {
     Background: typeof import('./src/components/Background.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
     CodeModal: typeof import('./src/components/Modal/CodeModal.vue')['default']
-    ConfettiCanvas: typeof import('./src/components/ConfettiCanvas.vue')['default']
     Configurator: typeof import('./src/components/Configurator.vue')['default']
     Container: typeof import('./src/components/Container.vue')['default']
     DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
