@@ -17,6 +17,8 @@ import {
   WrapperShape,
 } from '../enums'
 
+//export const AvatarArray: typeof AVATAR_LAYER[] = []
+
 export const AVATAR_LAYER: Readonly<{
   [key in `${WidgetType}`]: { zIndex: number }
 }> = {
