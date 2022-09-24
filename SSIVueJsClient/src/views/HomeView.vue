@@ -1,26 +1,32 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import IconAvatar from '../components/icons/IconAvatar.vue'
-import IconPending from '../components/icons/IconPending.vue'
-import IconPast from '../components/icons/IconPast.vue'
-import IconFile from '../components/icons/IconFile.vue'
-import { Passage } from '@passageidentity/passage-js'
-// import { getuserdata } from "@/services/UserDataService";
-import { userDataStore } from '@/stores/userData'
+import { defineComponent } from "vue";
+import IconAvatar from "../components/icons/IconAvatar.vue";
+import IconPending from "../components/icons/IconPending.vue";
+import IconPast from "../components/icons/IconPast.vue";
+import IconFile from "../components/icons/IconFile.vue";
+import { userDataStore } from "@/stores/userData";
+import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 
-// import { UserService } from "../services/UserService";
-// import { RegisterRequest } from "../models/requests/RegisterRequest";
-import { isNull } from 'lodash'
 export default defineComponent({
   setup() {
-    const appid = 'Q17Gza9k49k1ieI15r73xaQf'
-    // getuserdata("orhfaoiuhosdhgosir");
-    const userData = userDataStore()
-    return { appid, userData }
+    const userData = userDataStore();
+    const user = new PassageUser();
+    user.userInfo().then(async (info) => {
+      await userData.getuserdata(info?.email || "");
+      console.log("here", userData.getId);
+      if (!userData.exists()) {
+        await userData.createUser(info?.email || "");
+        console.log("User created");
+      } else {
+        console.log("User data fetched", userData);
+      }
+    });
+
+    return { userData };
   },
-  data() {
-    return {}
-  },
+  // data() {
+  //   return {};
+  // },
   methods: {
     goProfile() {
       this.$router.push({ path: '/profile' })
@@ -30,27 +36,10 @@ export default defineComponent({
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
-  mounted() {
-    //Passage store
-    const passage = new Passage(this.appid)
-    const user = passage.getCurrentUser()
-    user.getMetadata().then((Response) => {
-      // const userService = new UserService();
-      if (!isNull(Response)) {
-        //userService.register(new RegisterRequest("sudfhsd"));
-        console.log('Should not be here')
-      } else {
-        user.updateMetadata({
-          key: 'This is a test',
-          userid: 'This is also a test',
-        })
-      }
-      // console.log(Response);
-    })
-
-    console.log(this.userData.getuserdata('orhfaoiuhosdhgosir'))
-  },
-})
+  // mounted() {
+  //   this.userData.getuserdata("aaa");
+  // },
+});
 </script>
 
 <template>

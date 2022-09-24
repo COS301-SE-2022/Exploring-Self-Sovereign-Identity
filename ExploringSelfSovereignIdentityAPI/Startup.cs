@@ -46,12 +46,14 @@ namespace exploring_self_sovereign_identity_api
 
 
             //Adding my service
+            //services.AddScoped<ISessionService, SessionService>();
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<ISessionService, SessionService>();     
             services.AddTransient<IUserDataRepository, UserDataRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<IMarketPlaceService, MarketPlaceService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.UserDataService.IUserDataService, UserdataService>();
             services.AddTransient<IBlockchainService, BlockchainService>();

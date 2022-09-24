@@ -1,11 +1,7 @@
-﻿using ExploringSelfSovereignIdentityAPI.Commands.Example;
-using ExploringSelfSovereignIdentityAPI.Commands.SessionCommand;
-using ExploringSelfSovereignIdentityAPI.Models.Default;
-using ExploringSelfSovereignIdentityAPI.Models.DefaultIdentity;
-using ExploringSelfSovereignIdentityAPI.Models.Example;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
-using ExploringSelfSovereignIdentityAPI.Queries.ConnectEndpoint;
-using ExploringSelfSovereignIdentityAPI.Queries.Example;
+using ExploringSelfSovereignIdentityAPI.Services;
+using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -16,50 +12,39 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.Session
     [Route("api/[controller]")]
     public class SessionController : Controller
     {
-        private readonly IMediator mediator;
+        private ISessionService sessionService;
 
-        public SessionController(IMediator med)
+        public SessionController(ISessionService service)
         {
-            mediator = med;
+            this.sessionService = service;
         }
 
-        [HttpPost("init")]
-        public async Task<OtpResponse> Init()
+        [HttpPost]
+        [Route("issue")]
+        public async Task<OtpConnectResponse> issue([FromBody] IssueCredentialRequest request)
         {
-            //return otp
-
-            return  await mediator.Send(new OtpResponseCommand());
-
+            return await sessionService.issue(request.id, request.credential);
         }
 
-        [HttpPost("connect")]
-        public async Task<DefaultIdentityModel> validateOTP([FromBody] GetDefaultSessionCommand sessionCommand)
+        [HttpPost]
+        [Route("initialize")]
+        public OtpResponse initialize()
         {
-            //Accept the OTP
-            DefaultSessionModel isSession = await mediator.Send(sessionCommand);
-
-            if (isSession == null)
-                return null;
-
-            //Return the required set of fields
-            GetDefaultIdentityCommand identityCommand = new GetDefaultIdentityCommand();
-            return await mediator.Send(identityCommand);
-            //Should redirect to the page where they have to check/select the fields the Holder wants to expose
-
-           //return Ok();
+            return sessionService.initializeSession();
         }
 
-        [HttpPost("confirm")]
-        public async Task<DefaultIdentityResponse> confirm([FromBody] ConfirmIdentityCommand command)
+        [HttpPost]
+        [Route("connect")]
+        public OtpConnectResponse connect([FromBody] ConnectRequest request)
         {
-
-            //Receive the selected fields  to expose
-            //Finalise the identity creation
-            //Return the fileds to expose and a token
-            return await mediator.Send(command);
-
+            return sessionService.connect(request.otp, request.credential);
         }
 
-
+        [HttpPost]
+        [Route("finish")]
+        public CredentialResponseBase finish([FromBody] FinishRequest request)
+        {
+            return sessionService.finish(request.otp);
+        }
     }
 }

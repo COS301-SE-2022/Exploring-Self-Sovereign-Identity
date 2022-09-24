@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> SSI Marketplace Manager </title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="navBar">
+        <h1> Marketplace Manager </h1>
+    </div>
+
+    <div class="mainContent">
+        <div class="data" id="orgData">
+
+        </div>
+        <div class="add" id="newData">
+            <div id="newDataInput" style="margin-left: 15%;">
+                <label for="inputNewID"> Pack ID </label>
+                <input type="text" id="inputNewID" onchange="updatePack()"><br>
+                <label for="inputPPU"> Price per Unit </label>
+                <input type="text" id="inputPPU" onchange="updatePack()"><br>
+                <label for="inputAttr"> Attribute </label>
+                <input type="text" id="inputAttr"><br>
+                
+
+                <button onclick="addAttr()"> add </button>
+                <button onclick="undoAdd()"> undo </button>
+
+                <div class="currentPack">
+                    <p id="packID">Organization:  </p>
+                    <p id="packPrice">Price per Unit: </p>
+                    <p id="allAttrs">Requested data: </p>
+                </div>
+
+                <button style="width: 60%;margin-top:10%" onclick="submitToMarketplace()"> Submit to Marketplace </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/scripts.js">
+    </script>
+    <script>
+        window.onload = fetch();
+    </script>
+</body>
+
+</html>

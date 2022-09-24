@@ -9,6 +9,9 @@ import TransactionViewVue from "@/views/TransactionView.vue";
 import PastTransactionsVue from "@/views/PastTransactions.vue";
 import AvatarViewVue from "@/views/AvatarView.vue";
 
+
+import { PassageUser } from "@passageidentity/passage-elements/passage-user";
+
 const routes = [
   { path: "/", component: LoginView },
   { path: "/home", component: HomeView },
@@ -33,6 +36,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to) => {
+  if (to.path !== "/") {
+    if (!new PassageUser().authGuard()) {
+      return "/";
+    }
+  }
 });
 
 export default router;

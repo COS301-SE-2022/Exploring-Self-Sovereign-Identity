@@ -1,37 +1,20 @@
 <script lang="ts">
-import { values } from "lodash";
-import { defineComponent, isReactive, isRef, reactive, ref } from "vue";
+import { transactionsStore } from "@/stores/transactions";
+import { defineComponent, ref } from "vue";
 import BackNav from "../components/Nav/BackNav.vue";
 
 export default defineComponent({
   setup() {
-    const options = [
-      {
-        value: "Name",
-        label: "Name",
-      },
-      {
-        value: "Surname",
-        label: "Surname",
-      },
-      {
-        value: "Number",
-        label: "Number",
-      },
-    ];
-    return { options };
-  },
-  data() {
-    return {
-      data: {
-        id: "",
-        attributes: Array<string>(),
-      },
-    };
+    const transactions = transactionsStore();
+    const attrributes = ref([""]);
+    const id = ref("");
+    const message = ref("");
+    return { attrributes, id, message, transactions };
   },
   methods: {
-    sendData() {
-      console.log;
+    request() {
+      this.transactions.newTransaction(this.id, this.message, this.attrributes);
+      this.$router.go(0);
     },
   },
   components: { BackNav },
@@ -39,57 +22,27 @@ export default defineComponent({
 </script>
 
 <template>
-  <el-form :inline="true" class="form" :model="data" style="padding-top: 2vh">
-    <!-- * User ID  -->
-    <el-form-item label="User ID">
-      <el-input
-        v-model="data.id"
-        placeholder="Please input"
-        data-test-id="userid"
-      >
-      </el-input>
-    </el-form-item>
-    <!-- * Attribute select -->
-    <el-form-item label="Perms">
-      <el-select
-        v-model="data.attributes"
-        multiple
-        placeholder="Attributes"
-        style="width: 100%"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </el-form-item>
-    <el-form-item>
-      <div class="submit">
-        <el-button @click="sendData" plain type="primary" round
-          >Request</el-button
-        >
-      </div>
-    </el-form-item>
-  </el-form>
+  <n-input-group data-test-id="UserId">
+    <n-input-group-label>User ID</n-input-group-label>
+    <n-input placeholder="Please enter user ID" v-model="id"></n-input>
+  </n-input-group>
+  <n-dynamic-input
+    v-model:value="attrributes"
+    placeholder="Enter attribute name"
+    :min="1"
+  />
+  <n-input-group data-test-id="Message">
+    <n-input-group-label>Message</n-input-group-label>
+    <n-input
+      placeholder="Please enter request message for the user"
+      v-model="id"
+      maxlength="200"
+      show-count
+      type="textarea"
+    ></n-input>
+  </n-input-group>
 
-  <BackNav page="Request Data" />
+  <BackNav>
+    <n-button type="primary" @click="request"> Request </n-button>
+  </BackNav>
 </template>
-
-<style lang="scss">
-.form {
-  backdrop-filter: hue-rotate(10deg);
-}
-.submit {
-  margin-top: 15vh;
-  width: 100vw;
-  text-align: center;
-  button {
-    margin-right: auto;
-    margin-left: auto;
-    // color: whitesmoke;
-    // background-color: black;
-  }
-}
-</style>
