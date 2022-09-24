@@ -20,8 +20,8 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         public async Task TestCreateUser()
         {
             string userId = "aaa";
-            //string res = await _userDataService.createUser(userId);
-            string res = "success";
+            string res = await _userDataService.createUser(userId);
+            //string res = "success";
             Assert.IsNotNull(res);
             Assert.AreEqual("success", res);
         }
@@ -36,10 +36,10 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
             //string userId = "testString";
 
-            //UserDataModel res = await _userDataService.GetUserData(_user);
-            //Assert.IsNotNull(res);
-            //Assert.AreEqual(res.Id, _user.Id);
-            //Assert.AreEqual(res.Hash, _user.Hash);
+            /*UserDataModel res = await _userDataService.GetUserData(_user);
+            Assert.IsNotNull(res);
+            Assert.AreEqual(res.Id, _user.Id);
+            Assert.AreEqual(res.Hash, _user.Hash);*/
         }
 
 
@@ -50,10 +50,10 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
             try
             {
-                UserDataResponse res = await _userDataService.getUserData(userId);
+                GetUserDataOutputDTO res = await _userDataService.getUserData(userId);
                 Assert.IsNotNull(res);
-                Assert.IsInstanceOfType(res, typeof(UserDataResponse));
-                Assert.AreEqual(res.Id, userId);
+                Assert.IsInstanceOfType(res, typeof(GetUserDataOutputDTO));
+                Assert.AreEqual(res.ReturnValue1.Id, userId);
             }
             catch(Exception e)
             {
@@ -62,7 +62,6 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             
 
         }
-
 
 
     }
