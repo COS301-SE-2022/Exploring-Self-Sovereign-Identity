@@ -177,7 +177,7 @@ contract MarketPlace {
 
                 ret.status = "success";
                 ret.amount = allOrganizations[request.organization].packs[i].pricePerUnit;
-                allOrganizations[request.organization].balance = allOrganizations[request.organization].balance - allOrganizations[request.organization].packs[i].pricePerUnit;
+                allOrganizations[request.organization].balance -= allOrganizations[request.organization].packs[i].pricePerUnit;
                 break;
             }
         }
