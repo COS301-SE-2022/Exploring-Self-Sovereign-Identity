@@ -1,10 +1,15 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
-  setup() {
-    const props = defineProps<{
-      title?: string
-    }>()
+  props : {
+    title : {
+      type: Object as PropType<string>
+    }
+  },
+  setup(props) {
+    // const props = defineProps<{
+    //   title?: string
+    // }>()
 
     return {
       props,

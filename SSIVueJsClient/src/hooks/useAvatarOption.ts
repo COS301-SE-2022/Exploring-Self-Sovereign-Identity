@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
-import { useStore } from '@/store'
-import { SET_AVATAR_OPTION } from '@/store/mutation-type'
+import { useStore } from '@/stores'
+import { SET_AVATAR_OPTION } from '@/stores/mutation-type'
 import type { AvatarOption } from '@/types'
 
 export default function useAvatarOption() {

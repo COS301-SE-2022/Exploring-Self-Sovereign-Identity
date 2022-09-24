@@ -4,12 +4,17 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 import PerfectScrollbar from 'perfect-scrollbar'
 import { onMounted, onUnmounted, ref } from 'vue'
 export default defineComponent({
-  setup() {
-    const props = defineProps<{ options?: PerfectScrollbar.Options }>()
+  props : {
+    options: {
+      type: Object as PropType<PerfectScrollbar.Options>
+    }
+  },
+  setup(props) {
+    //const props = defineProps<{ options?: PerfectScrollbar.Options }>()
 
     const scrollWrapper = ref<HTMLDivElement>()
 

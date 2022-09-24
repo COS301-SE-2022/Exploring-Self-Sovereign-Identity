@@ -10,10 +10,15 @@ import { ActionType } from '@/enums'
 import { useStore } from '@/stores'
 export default defineComponent({
   //components: { IconBack, IconCode, IconFlip, IconNext },
-  setup() {
-    const emit = defineEmits<{
-      (e: 'action', actionType: ActionType): void
-    }>()
+  emits : ["action"],
+  setup(props, {emit}) {
+
+
+    // const emit = defineEmits<{
+    //   (e: 'action', actionType: ActionType): void
+    // }>()
+
+    
 
     const store = useStore()
 

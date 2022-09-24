@@ -1,15 +1,15 @@
 <template>
   <div
-    v-if="props.visible"
+    v-if="$props.visible"
     class="download-modal-wrapper"
-    @click="emit('close')"
+    @click="$emit('close')"
   >
     <div class="download-modal" @click.stop>
       <div class="modal-body">
         <div class="avatar-preview">
           <img
             alt="vue-color-avatar"
-            :src="props.imageUrl"
+            :src="$props.imageUrl"
             class="avatar-img"
           />
         </div>
@@ -17,7 +17,7 @@
         <p class="tip">{{ 'text.downloadTip' }} 🥳</p>
       </div>
 
-      <button type="button" class="close-btn" @click="emit('close')">
+      <button type="button" class="close-btn" @click="$emit('close')">
         {{ 'action.close' }}
       </button>
     </div>
@@ -25,14 +25,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { emit } from 'process';
+import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
-  setup() {
-    const props = defineProps<{ visible?: boolean; imageUrl: string }>()
+  props : {
+    visible : {
+      type: Object as PropType<boolean>
+    },
+    imageUrl : {
+      type: Object as PropType<string>
+    }
+  },
+  emits : ["close"],
+  setup(props, {emit}) {
+    //const props = defineProps<{ visible?: boolean; imageUrl: string }>()
 
-    const emit = defineEmits<{
-      (e: 'close'): void
-    }>()
+    // const emit = defineEmits<{
+    //   (e: 'close'): void
+    // }>()
   },
 })
 </script>

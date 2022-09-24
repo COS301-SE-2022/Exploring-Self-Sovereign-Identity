@@ -14,8 +14,20 @@
   </div>
 </template>
 
+
+
+<!-- <script setup lang="ts">
+    const propsG = withDefaults(defineProps<{
+      option: AvatarOption
+      size?: number
+    }>(), {
+      option: () => getRandomAvatarOption(),
+      size: 280,
+    })
+</script> -->
+
 <script lang="ts">
-import { ref, toRefs, watchEffect } from 'vue'
+import { ref, toRefs, watchEffect, type PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { WidgetType, WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
@@ -28,22 +40,43 @@ export interface VueColorAvatarRef {
   avatarRef: HTMLDivElement
 }
 export default defineComponent({
-  setup() {
-    interface VueColorAvatarProps {
-      option: AvatarOption
-      size?: number
+  props: {
+      option : {
+      type: Object as PropType<AvatarOption>,
+      default: () => ({
+        value: () => getRandomAvatarOption()
+      })
+    },
+    size : {
+      type: Object as PropType<number>,
+      default: 280
     }
+  },
+  setup(props, { expose }) {
 
-    const props = withDefaults(defineProps<VueColorAvatarProps>(), {
-      option: () => getRandomAvatarOption(),
-      size: 280,
-    })
+    //const props = propsG;
+
+    // interface VueColorAvatarProps {
+    //   option: AvatarOption
+    //   size?: number
+    // }
+
+    // const props = withDefaults(defineProps<VueColorAvatarProps>(), {
+    //   option: () => getRandomAvatarOption(),
+    //   size: 280,
+    // })
+
+    // const { option: avatarOption, size: avatarSize } = toRefs(props)
+
+    
 
     const { option: avatarOption, size: avatarSize } = toRefs(props)
 
     const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
 
-    defineExpose({ avatarRef })
+    //defineExpose({ avatarRef })
+
+    expose({avatarRef})
 
     function getWrapperShapeClassName() {
       return {

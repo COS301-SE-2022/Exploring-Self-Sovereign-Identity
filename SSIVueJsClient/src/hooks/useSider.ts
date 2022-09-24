@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
-import { useStore } from '@/store'
-import { SET_SIDER_STATUS } from '@/store/mutation-type'
+import { useStore } from '@/stores'
+import { SET_SIDER_STATUS } from '@/stores/mutation-type'
 
 export default function useSider() {
   const store = useStore()
