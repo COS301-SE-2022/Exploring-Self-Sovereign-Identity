@@ -48,7 +48,7 @@ namespace exploring_self_sovereign_identity_api
             //services.AddTransient<ITransactionService, TransactionService>();
             //services.AddTransient<ITransactionRepository, TransactionRepository>();
             //services.AddTransient<IUserDataService, UserDataService>();
-            services.AddTransient<IBlockchainService, BlockchainService>();
+            //services.AddTransient<IBlockchainService, BlockchainService>();
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             //services.AddScoped(typeof(IUniversityRepository), typeof(UniversitySqlServerRepository));

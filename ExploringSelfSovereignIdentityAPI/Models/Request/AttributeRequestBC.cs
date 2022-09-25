@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Models.Request
 {

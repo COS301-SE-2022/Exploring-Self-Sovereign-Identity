@@ -4,7 +4,6 @@ using System.Numerics;
 using Nethereum.Web3;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Contracts.ContractHandlers;
-using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Function;
