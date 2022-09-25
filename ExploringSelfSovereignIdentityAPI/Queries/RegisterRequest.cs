@@ -1,7 +1,7 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
 using MediatR;
 
-namespace ExploringSelfSovereignIdentityAPI.Models.Request
+namespace ExploringSelfSovereignIdentityAPI.Queries
 {
     public class RegisterRequest: IRequest<GetUserDataOutputDTO>
     {
