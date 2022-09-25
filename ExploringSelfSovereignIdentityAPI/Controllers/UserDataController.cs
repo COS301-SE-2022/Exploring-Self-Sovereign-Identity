@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
-using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Queries;
+using MediatR;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -15,12 +15,14 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     {
 
         private readonly IUserDataService uds;
+        private readonly IMediator mediator;
 
         private UserDataResponse response = new UserDataResponse();
 
-        public UserDataController(IUserDataService uds)
+        public UserDataController(IUserDataService uds, IMediator med)
         {
             this.uds = uds;
+            this.mediator = med;
         }
 
         [HttpPost]
