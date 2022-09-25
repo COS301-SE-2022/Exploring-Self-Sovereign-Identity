@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.Transactions;

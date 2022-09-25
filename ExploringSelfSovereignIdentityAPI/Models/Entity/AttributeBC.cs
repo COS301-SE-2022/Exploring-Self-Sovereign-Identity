@@ -1,4 +1,4 @@
-﻿namespace ExploringSelfSovereignIdentityAPI.Models
+﻿namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
     public class AttributeBC
     {

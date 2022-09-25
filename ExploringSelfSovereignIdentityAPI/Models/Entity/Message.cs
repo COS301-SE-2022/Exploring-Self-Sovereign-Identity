@@ -1,6 +1,6 @@
 using System;
 
-namespace exploring_self_sovereign_identity_api.Models
+namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
     [Serializable]
     public class Message

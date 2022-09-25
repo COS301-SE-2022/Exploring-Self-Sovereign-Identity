@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using System;
 using System.Collections.Generic;
