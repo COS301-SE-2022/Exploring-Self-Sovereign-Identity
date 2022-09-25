@@ -36,7 +36,8 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("get")]
         public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
         {
-            return await uds.getUserData(request.id);
+            return await mediator.Send(request);
+
         }
 
         [HttpPost]
