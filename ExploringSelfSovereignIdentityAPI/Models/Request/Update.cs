@@ -13,5 +13,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
         public virtual List<AttributeUpdate> Attributes { get; set; }
         [Parameter("tuple[]", "credentials", 3)]
         public virtual List<CredentialUpdate> Credentials { get; set; }
+
+        public UpdateBase() {
+            Attributes = new List<AttributeUpdate>();
+            Credentials = new List<CredentialUpdate>();
+        }
     }
 }

@@ -15,5 +15,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
         public virtual BigInteger Index { get; set; }
         [Parameter("tuple[]", "attributes", 3)]
         public virtual List<Attribute> Attributes { get; set; }
+
+        public CredentialUpdateBase()
+        {
+            Attributes = new List<Attribute>();
+        }
     }
 }

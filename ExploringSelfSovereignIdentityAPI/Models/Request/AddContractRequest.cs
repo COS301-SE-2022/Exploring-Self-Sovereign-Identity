@@ -6,11 +6,11 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
     {
         public string Signature { get; set; }
 
-        public LinkedList<AddAttributeRequest> Attributes { get; set; }
+        public List<AddAttributeRequest> Attributes { get; set; }
 
         public AddContractRequest()
         {
-            Attributes = new LinkedList<AddAttributeRequest>();
+            Attributes = new List<AddAttributeRequest>();
         }
     }
 }

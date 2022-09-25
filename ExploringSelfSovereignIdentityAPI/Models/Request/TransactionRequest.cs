@@ -12,5 +12,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
         public virtual List<string> Attributes { get; set; }
         [Parameter("tuple", "stamp", 2)]
         public virtual TransactionStamp Stamp { get; set; }
+
+        public TransactionRequestBase()
+        {
+            Attributes = new List<string>();
+        }
     }
 }
