@@ -5,6 +5,8 @@ using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using MediatR;
+using ExploringSelfSovereignIdentityAPI.Queries;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -15,11 +17,18 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         private readonly IUserDataService uds;
 
+        private readonly IMediator mediator;
+
+        private readonly IBlockchainService _blockchainService;
+
         private UserDataResponse response = new UserDataResponse();
 
-        public UserDataController(IBlockchainService blockchainService, IUserDataService uds)
+        public UserDataController(IBlockchainService blockchainService, IUserDataService uds, IMediator med)
         {
             this.uds = uds;
+            this._blockchainService = blockchainService;
+            this.mediator = med;
+
         }
 
         [HttpPost]
@@ -33,7 +42,8 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("get")]
         public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
         {
-            return await uds.getUserData(request.id);
+            // return await uds.getUserData(request.id);
+            return await mediator.Send(request);
         }
 
         [HttpPost]
