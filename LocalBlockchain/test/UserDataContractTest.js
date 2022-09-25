@@ -222,7 +222,7 @@ contract("MarketPlace", ([contractOwner, secondAddress, thirdAddress]) => {
                 ]);
 
                 result = await mkp.getOrganization([username, password]);
-                console.log(result.packs[0].received[0]);
+                console.log(result);
             });
         });
     });

@@ -1,11 +1,27 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "declaration": true, 
     "isolatedModules": true,
     "strict": true,
-    "types": ["element-plus/global"]
+    "types": ["element-plus/global"],
+    "module": "esnext",
+    "useDefineForClassFields": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["esnext", "dom"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "files": [],
+  //"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/*/*.ts", "src/**.ts"],
   "references": [
     {
       "path": "./tsconfig.vite-config.json"

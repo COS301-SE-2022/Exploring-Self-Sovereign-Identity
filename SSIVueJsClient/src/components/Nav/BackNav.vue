@@ -1,40 +1,43 @@
 <script lang="ts">
-import { MenuOutline } from "@vicons/ionicons5";
-import { ArrowBackOutline } from "@vicons/ionicons5";
+import { MenuOutline } from '@vicons/ionicons5'
+import { ArrowBackOutline } from '@vicons/ionicons5'
 
 export default {
-  props: ["page"],
+  props: ['page'],
   components: {
     MenuOutline,
     ArrowBackOutline,
   },
   methods: {
     goback() {
-      this.$router.back();
+      //this.$router.back()
     },
   },
-};
+}
 </script>
 
 <template>
-  <n-page-header
-    :title="page"
-    @back="goback"
-    class="nav-component bar"
-    data-testid="NavBack"
-  >
-    <template #back>
-      <n-icon size="30">
-        <ArrowBackOutline />
-      </n-icon>
-    </template>
-    <template #extra>
-      <n-icon size="30" color="white">
-        <MenuOutline />
-      </n-icon>
-    </template>
-  </n-page-header>
+  <div class="nav-component">
+    <div class="slot"><slot /></div>
 
+    <n-page-header
+      :title="page"
+      @back="goback"
+      class="bar"
+      data-testid="NavBack"
+    >
+      <template #back>
+        <n-icon size="30">
+          <ArrowBackOutline />
+        </n-icon>
+      </template>
+      <template #extra>
+        <n-icon size="30" color="white">
+          <MenuOutline />
+        </n-icon>
+      </template>
+    </n-page-header>
+  </div>
   <!-- <n-drawer>
     <n-drawer-content></n-drawer-content>
   </n-drawer> -->
@@ -69,5 +72,9 @@ export default {
   box-shadow: 0 4px 30px rgba(158, 158, 158, 0.1);
   backdrop-filter: blur(12.7px);
   -webkit-backdrop-filter: blur(12.7px);
+}
+.slot {
+  text-align: center;
+  margin-bottom: 0.5vh;
 }
 </style>

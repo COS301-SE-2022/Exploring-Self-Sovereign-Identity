@@ -37,7 +37,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
             do
             {
-                temp = random.NextInt64(0, 10000);
+                temp = random.NextInt64(1000, 10000);
             }
             while (activeSesions.ContainsKey(temp));
 
