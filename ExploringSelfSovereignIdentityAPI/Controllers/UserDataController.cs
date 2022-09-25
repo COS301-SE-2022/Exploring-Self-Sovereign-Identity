@@ -45,7 +45,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         public async Task<UserDataResponse> UpdateAttributesAsync([FromBody] UserDataResponse request)
         {
 
-            return (UserDataResponse)await mediator.Send(request);
+            return await mediator.Send(request);
 
                     
         }
