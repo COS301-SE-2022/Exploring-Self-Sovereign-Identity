@@ -14,14 +14,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     public class UserDataController : Controller
     {
 
-        private readonly IUserDataService uds;
         private readonly IMediator mediator;
 
         private UserDataResponse response = new UserDataResponse();
 
-        public UserDataController(IUserDataService uds, IMediator med)
+        public UserDataController(IMediator med)
         {
-            this.uds = uds;
             this.mediator = med;
         }
 
