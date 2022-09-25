@@ -10,11 +10,9 @@ using Attribute = ExploringSelfSovereignIdentityAPI.Models.Entity.Attribute;
 
 namespace ExploringSelfSovereignIdentityAPI.Handlers
 {
-    public class UpdateAtributesHandler
-    {
-    }
 
-    public class UpdateAtributesHandler : IRequestHandler<UpdateGen2, UserDataResponse>
+
+    public class UpdateAtributesHandler : IRequestHandler<UserDataResponse, UserDataResponse>
     {
 
         private readonly IUserDataService _service;
@@ -28,7 +26,25 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers
         public async Task<UserDataResponse> Handle(UserDataResponse request, CancellationToken cancellationToken)
         {
 
+            for (int i = 0; i < request.Attributes.Count; i++)
+            {
 
+                if (i < response.Attributes.Count)
+                {
+                    response.Attributes[i].Name = request.Attributes[i].Name;
+                    response.Attributes[i].Value = request.Attributes[i].Value;
+                    continue;
+                }
+
+                Attribute a1 = new Attribute();
+                a1.Name = request.Attributes[i].Name;
+                a1.Value = request.Attributes[i].Value;
+
+                response.Attributes.Add(a1);
+
+            }
+
+            return response;
 
 
         }
