@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.Transactions;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.blockChain
 {
-    public class BlockchainService : IBlockchainService
+    public class BlockchainService
     {
 
-        private readonly Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
+        /*private readonly Web3 Web3Instance = new Web3("http://127.0.0.1:8545");
         private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
         private readonly string contractAddress = "0x243892ba7cF981A54562A74f8f9ce924b8D598a9";
 
@@ -66,6 +66,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.blockChain
 
             //return await getUserData(id);
             return "success";
-        }
+        }*/
     }
 }

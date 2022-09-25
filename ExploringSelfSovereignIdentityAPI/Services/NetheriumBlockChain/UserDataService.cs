@@ -1,16 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Numerics;
-using Nethereum.Hex.HexTypes;
-using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.Web3;
 using Nethereum.RPC.Eth.DTOs;
-using Nethereum.Contracts.CQS;
-using Nethereum.Contracts;
-using System.Threading;
 using Nethereum.Contracts.ContractHandlers;
-using ExploringSelfSovereignIdentityAPI.Models;
+using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Models.Function;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Commands;
 using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
@@ -48,7 +46,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
-        public async Task<String> newTransactionRequest(TransactionRequest request)
+        public async Task<string> newTransactionRequest(TransactionRequest request)
         {
             TransactionRequest tr = new TransactionRequest();
 
@@ -69,24 +67,24 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             tr.Attributes = attrs;
             tr.Stamp = stamp;
 
-            var newTransactionRequestFunction = new NewTransactionRequestFunction();
+            NewTransactionRequestFunction newTransactionRequestFunction = new NewTransactionRequestFunction();
             newTransactionRequestFunction.Request = tr;
-            var newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
+            TransactionReceipt newTransactionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(newTransactionRequestFunction);
 
             return "success";
         }
 
         public async Task<string> approveTransaction(string id, int index)
         {
-            var approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
+            ApproveTransactionStageAFunction approveTransactionStageAFunction = new ApproveTransactionStageAFunction();
             approveTransactionStageAFunction.Id = id;
             approveTransactionStageAFunction.Index = index;
-            var approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
+            TransactionReceipt approveAFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(approveTransactionStageAFunction);
 
-            var approveBFunction = new ApproveTransactionStageBFunction();
+            ApproveTransactionStageBFunction approveBFunction = new ApproveTransactionStageBFunction();
             approveBFunction.Id = id;
             approveBFunction.Index = index;
-            var approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
+            ApproveTransactionStageBOutputDTO approveBFunctionTxnReceipDTO = await contractHandler.QueryDeserializingToObjectAsync<ApproveTransactionStageBFunction, ApproveTransactionStageBOutputDTO>(approveBFunction);
 
 
 
@@ -101,23 +99,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
             tr.Attributes = transaction.Attributes;
             tr.Stamp = transaction.Stamp;
-            
-            /*TransactionStamp stamp = new TransactionStamp();
-            stamp.ToID = transaction.Stamp.ToID;
-            stamp.FromID = transaction.Stamp.FromID;
-            stamp.Message = transaction.Stamp.Message;
-            stamp.Date = transaction.Stamp.Date;
-            stamp.Status = transaction.Stamp.Status;
-
-            List<string> attrs = new List<string>();
-
-            for (int i = 0; i < transaction.Attributes.Count; i++)
-            {
-                attrs.Add(transaction.Attributes[i].Value);
-            }
-            */
-            //tr.Attributes = 
-            //tr.Stamp = stamp;
 
             var approveTransactionStageCFunction = new ApproveTransactionStageCFunction();
             approveTransactionStageCFunction.Id = id;
@@ -135,7 +116,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return "success";
         }
 
-        public async Task<GetAttributesTransactionOutputDTO> getAttributesForTransaction(String id, List<Attribute> attributes)
+        public async Task<GetAttributesTransactionOutputDTO> getAttributesForTransaction(string id, List<Attribute> attributes)
         {
             var getAttributesTransaction = new GetAttributesTransactionFunction();
             getAttributesTransaction.Id = id;
@@ -214,291 +195,4 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             return getUserDataOutputDTO;
         }
     }
-
-
-
-    public partial class ApproveTransactionStageAFunction : ApproveTransactionStageAFunctionBase { }
-
-    [Function("approveTransactionStageA")]
-    public class ApproveTransactionStageAFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("uint256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-    }
-
-    public partial class ApproveTransactionStageBFunction : ApproveTransactionStageBFunctionBase { }
-
-    [Function("approveTransactionStageB", typeof(ApproveTransactionStageBOutputDTO))]
-    public class ApproveTransactionStageBFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("uint256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-    }
-
-    public partial class ApproveTransactionStageCFunction : ApproveTransactionStageCFunctionBase { }
-
-    [Function("approveTransactionStageC")]
-    public class ApproveTransactionStageCFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple", "transaction", 2)]
-        public virtual TransactionResponse Transaction { get; set; }
-    }
-
-    public partial class CreateUserFunction : CreateUserFunctionBase { }
-
-    [Function("createUser")]
-    public class CreateUserFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-    }
-
-    public partial class GetAttributesTransactionFunction : GetAttributesTransactionFunctionBase { }
-
-    [Function("getAttributesTransaction", typeof(GetAttributesTransactionOutputDTO))]
-    public class GetAttributesTransactionFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
-    }
-
-    public partial class GetCredentialTransactionFunction : GetCredentialTransactionFunctionBase { }
-
-    [Function("getCredentialTransaction", typeof(GetCredentialTransactionOutputDTO))]
-    public class GetCredentialTransactionFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("string", "organization", 2)]
-        public virtual string Organization { get; set; }
-    }
-
-    public partial class GetUserDataFunction : GetUserDataFunctionBase { }
-
-    [Function("getUserData", typeof(GetUserDataOutputDTO))]
-    public class GetUserDataFunctionBase : FunctionMessage
-    {
-        [Parameter("string", "_id", 1)]
-        public virtual string Id { get; set; }
-    }
-
-    public partial class NewTransactionRequestFunction : NewTransactionRequestFunctionBase { }
-
-    [Function("newTransactionRequest")]
-    public class NewTransactionRequestFunctionBase : FunctionMessage
-    {
-        [Parameter("tuple", "request", 1)]
-        public virtual TransactionRequest Request { get; set; }
-    }
-
-    public partial class UpdateUserFunction : UpdateUserFunctionBase { }
-
-    [Function("updateUser")]
-    public class UpdateUserFunctionBase : FunctionMessage
-    {
-        [Parameter("tuple", "update", 1)]
-        public virtual Update Update { get; set; }
-    }
-
-
-
-    public partial class ApproveTransactionStageBOutputDTO : ApproveTransactionStageBOutputDTOBase { }
-
-    [FunctionOutput]
-    public class ApproveTransactionStageBOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual TransactionResponse ReturnValue1 { get; set; }
-    }
-
-
-
-
-
-    public partial class GetAttributesTransactionOutputDTO : GetAttributesTransactionOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetAttributesTransactionOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple[]", "", 1)]
-        public virtual List<Attribute> ReturnValue1 { get; set; }
-    }
-
-    public partial class GetCredentialTransactionOutputDTO : GetCredentialTransactionOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetCredentialTransactionOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual CredentialResponse ReturnValue1 { get; set; }
-    }
-
-    public partial class GetUserDataOutputDTO : GetUserDataOutputDTOBase { }
-
-    [FunctionOutput]
-    public class GetUserDataOutputDTOBase : IFunctionOutputDTO
-    {
-        [Parameter("tuple", "", 1)]
-        public virtual UserDataResponse ReturnValue1 { get; set; }
-    }
-
-
-
-
-
-    public partial class Attribute : AttributeBase { }
-
-    public class AttributeBase
-    {
-        [Parameter("string", "name", 1)]
-        public virtual string Name { get; set; }
-        [Parameter("string", "value", 2)]
-        public virtual string Value { get; set; }
-    }
-
-    public partial class TransactionStamp : TransactionStampBase { }
-
-    public class TransactionStampBase
-    {
-        [Parameter("string", "fromID", 1)]
-        public virtual string FromID { get; set; }
-        [Parameter("string", "toID", 2)]
-        public virtual string ToID { get; set; }
-        [Parameter("string", "date", 3)]
-        public virtual string Date { get; set; }
-        [Parameter("string", "message", 4)]
-        public virtual string Message { get; set; }
-        [Parameter("string", "status", 5)]
-        public virtual string Status { get; set; }
-    }
-
-    public partial class TransactionResponse : TransactionResponseBase { }
-
-    public class TransactionResponseBase
-    {
-        [Parameter("tuple[]", "attributes", 1)]
-        public virtual List<Attribute> Attributes { get; set; }
-        [Parameter("tuple", "stamp", 2)]
-        public virtual TransactionStamp Stamp { get; set; }
-    }
-
-    public partial class CredentialResponse : CredentialResponseBase { }
-
-    public class CredentialResponseBase
-    {
-        [Parameter("string", "organization", 1)]
-        public virtual string Organization { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
-    }
-
-    public partial class TransactionRequest : TransactionRequestBase { }
-
-    public class TransactionRequestBase
-    {
-        [Parameter("string[]", "attributes", 1)]
-        public virtual List<string> Attributes { get; set; }
-        [Parameter("tuple", "stamp", 2)]
-        public virtual TransactionStamp Stamp { get; set; }
-    }
-
-    public partial class UserDataResponse : UserDataResponseBase { }
-
-    public class UserDataResponseBase
-    {
-        [Parameter("string", "id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<Attribute> Attributes { get; set; }
-        [Parameter("tuple[]", "credentials", 3)]
-        public virtual List<CredentialResponse> Credentials { get; set; }
-        [Parameter("tuple[]", "transactionRequests", 4)]
-        public virtual List<TransactionRequest> TransactionRequests { get; set; }
-        [Parameter("tuple[]", "approvedTransactions", 5)]
-        public virtual List<TransactionResponse> ApprovedTransactions { get; set; }
-    }
-
-    public partial class AttributeUpdate : AttributeUpdateBase { }
-
-    public class AttributeUpdateBase
-    {
-        [Parameter("tuple", "attribute", 1)]
-        public virtual Attribute Attribute { get; set; }
-        [Parameter("int256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-    }
-
-    public partial class CredentialUpdate : CredentialUpdateBase { }
-
-    public class CredentialUpdateBase
-    {
-        [Parameter("string", "organization", 1)]
-        public virtual string Organization { get; set; }
-        [Parameter("int256", "index", 2)]
-        public virtual BigInteger Index { get; set; }
-        [Parameter("tuple[]", "attributes", 3)]
-        public virtual List<Attribute> Attributes { get; set; }
-    }
-
-    public partial class Update : UpdateBase { }
-
-    public class UpdateBase
-    {
-        [Parameter("string", "id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<AttributeUpdate> Attributes { get; set; }
-        [Parameter("tuple[]", "credentials", 3)]
-        public virtual List<CredentialUpdate> Credentials { get; set; }
-    }
-
-
-    public partial class AttributeUpdateGen2 : AttributeUpdateBaseGen2 { }
-
-    public class AttributeUpdateBaseGen2
-    {
-        [Parameter("tuple", "attribute", 1)]
-        public virtual Attribute Attribute { get; set; }
-        [Parameter("int256", "index", 2)]
-        public virtual int Index { get; set; }
-    }
-
-
-
-    public partial class CredentialUpdateGen2 : CredentialUpdateBaseGen2 { }
-
-    public class CredentialUpdateBaseGen2
-    {
-        [Parameter("string", "organization", 1)]
-        public virtual string Organization { get; set; }
-        [Parameter("int256", "index", 2)]
-        public virtual int Index { get; set; }
-        [Parameter("tuple[]", "attributes", 3)]
-        public virtual List<Attribute> Attributes { get; set; }
-    }
-
-
-
-    public partial class UpdateGen2 : UpdateBaseGen2 { }
-
-    public class UpdateBaseGen2
-    {
-        [Parameter("string", "id", 1)]
-        public virtual string Id { get; set; }
-        [Parameter("tuple[]", "attributes", 2)]
-        public virtual List<AttributeUpdateGen2> Attributes { get; set; }
-        [Parameter("tuple[]", "credentials", 3)]
-        public virtual List<CredentialUpdateGen2> Credentials { get; set; }
-    }
-
-
-
 }

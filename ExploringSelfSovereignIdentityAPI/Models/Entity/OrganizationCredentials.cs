@@ -33,10 +33,6 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Entity
         Key
         Value
          */
-        public OrganizationCredentials()
-        {
-
-        }
         public OrganizationCredentials(Guid id, Guid OrganizationId, Guid AttributeId, Guid Key, Guid Value)
         {
             this.Id = id;

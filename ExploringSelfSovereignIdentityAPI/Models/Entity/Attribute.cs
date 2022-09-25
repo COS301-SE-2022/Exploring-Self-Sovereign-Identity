@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nethereum.ABI.FunctionEncoding.Attributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 //! Attribute Class
@@ -10,31 +11,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExploringSelfSovereignIdentityAPI.Models.Entity
 {
-    public class Attribute
+    public partial class Attribute : AttributeBase { }
+
+    public class AttributeBase
     {
-        //! Attributes for User Data
-        /*
-            Id - User Id associated with attribute
-            Name - Name of attribute
-            Value - Value associated with Name attribute
-         */
-        public Guid Id { get; set; }
-
-        [Encrypted]
-        public string Name { get; set; }
-
-
-        [Encrypted]
-        public string Value { get; set; }
-
-        public Attribute()
-        {
-
-        }
-        public Attribute(string Name, string Value)
-        {
-            this.Name = Name;
-            this.Value = Value;
-        }
+        [Parameter("string", "name", 1)]
+        public virtual string Name { get; set; }
+        [Parameter("string", "value", 2)]
+        public virtual string Value { get; set; }
     }
 }

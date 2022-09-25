@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
-using System;
-using ExploringSelfSovereignIdentityAPI.Services.blockChain;
-using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using ExploringSelfSovereignIdentityAPI.Queries;
+using MediatR;
+using ExploringSelfSovereignIdentityAPI.Commands;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -13,26 +15,29 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
     {
 
         private readonly IUserDataService uds;
+        private readonly IMediator mediator;
 
         private UserDataResponse response = new UserDataResponse();
 
-        public UserDataController(IBlockchainService blockchainService, IUserDataService uds)
+        public UserDataController(IUserDataService uds, IMediator med)
         {
             this.uds = uds;
+            this.mediator = med;
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<string> Register([FromBody] RegisterRequest request)
+        public async Task<string> Register([FromBody] CreateRequestCommand request)
         {
-            return await uds.createUser(request.id);
+            return await mediator.Send(request);
         }
 
         [HttpPost]
         [Route("get")]
         public async Task<GetUserDataOutputDTO> GetUserData([FromBody] RegisterRequest request)
         {
-            return await uds.getUserData(request.id);
+            return await mediator.Send(request);
+
         }
 
         [HttpPost]
@@ -50,7 +55,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
                     continue;
                 }
 
-                Services.NetheriumBlockChain.Attribute a1 = new Services.NetheriumBlockChain.Attribute();
+                Attribute a1 = new Attribute();
                 a1.Name = request.Attributes[i].Name;
                 a1.Value = request.Attributes[i].Value;
 
@@ -65,16 +70,16 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("updateCredential")]
         public async Task<GetUserDataOutputDTO> UpdateCredentials([FromBody] UpdateGen2 request )
         {
-            return await uds.updateUserData(request);
+            return await mediator.Send(request);
         }
 
         //Transactions
 
         [HttpPost]
         [Route("newTransaction")]
-        public async Task<String> newTransaction([FromBody] TransactionRequest request)
+        public async Task<string> newTransaction([FromBody] TransactionRequest request)
         {
-            return await uds.newTransactionRequest(request);
+            return await mediator.Send(request);
         }
     }
 }

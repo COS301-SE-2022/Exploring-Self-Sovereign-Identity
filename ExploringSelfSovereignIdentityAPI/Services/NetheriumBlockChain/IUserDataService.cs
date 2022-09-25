@@ -1,5 +1,6 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models;
-using ExploringSelfSovereignIdentityAPI.Models.Request;
+﻿using ExploringSelfSovereignIdentityAPI.Commands;
+using ExploringSelfSovereignIdentityAPI.Models;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using Nethereum.RPC.Eth.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;

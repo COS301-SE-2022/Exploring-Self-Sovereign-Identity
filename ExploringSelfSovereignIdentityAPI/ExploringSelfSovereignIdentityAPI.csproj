@@ -44,6 +44,11 @@
 	<ItemGroup>
 		<InternalsVisible Include="$(AssemblyName).Test" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	  <Folder Include="Repositories\Transactions\" />
+	</ItemGroup>
 	
 
 </Project>

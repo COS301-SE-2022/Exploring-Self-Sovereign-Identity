@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using Nethereum.RPC.Eth.Transactions;
 using System.Threading.Tasks;
 

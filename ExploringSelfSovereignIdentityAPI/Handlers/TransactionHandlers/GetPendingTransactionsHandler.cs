@@ -5,12 +5,12 @@ using System.Threading;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
-using ExploringSelfSovereignIdentityAPI.Services.Transactions;
+//using ExploringSelfSovereignIdentityAPI.Services.Transactions;
 using ExploringSelfSovereignIdentityAPI.Commands.Transactions;
 
 namespace ExploringSelfSovereignIdentityAPI.Handlers.TransactionHandlers
 {
-    public class GetPendingTransactionsHandler : 
+    /*public class GetPendingTransactionsHandler : 
         IRequestHandler<GetPendingTransactionQuery, List<GetTransactionResponse>>,
         IRequestHandler<AddTransactionCommand, Transaction>,
         IRequestHandler<GetPastTransactionQuery, List<Transaction>>
@@ -36,5 +36,5 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.TransactionHandlers
         {
             return await _service.GetPastTransactions(request.Id);
         }
-    }
+    }*/
 }

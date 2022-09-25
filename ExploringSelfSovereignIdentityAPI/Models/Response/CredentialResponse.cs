@@ -4,19 +4,18 @@ using System.Collections.Generic;
 
 namespace ExploringSelfSovereignIdentityAPI.Models.Response
 {
-    public partial class TransactionResponse : TransactionResponseBase { }
+    public partial class CredentialResponse : CredentialResponseBase { }
 
-    public class TransactionResponseBase
+    public class CredentialResponseBase
     {
-        [Parameter("tuple[]", "attributes", 1)]
+        [Parameter("string", "organization", 1)]
+        public virtual string Organization { get; set; }
+        [Parameter("tuple[]", "attributes", 2)]
         public virtual List<Attribute> Attributes { get; set; }
-        [Parameter("tuple", "stamp", 2)]
-        public virtual TransactionStamp Stamp { get; set; }
 
-        public TransactionResponseBase() 
+        public CredentialResponseBase()
         {
             Attributes = new List<Attribute>();
-            Stamp = new TransactionStamp();
         }
     }
 }
