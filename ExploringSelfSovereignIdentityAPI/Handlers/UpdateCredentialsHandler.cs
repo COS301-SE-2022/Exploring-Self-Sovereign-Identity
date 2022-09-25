@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
+﻿using ExploringSelfSovereignIdentityAPI.Commands;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using MediatR;

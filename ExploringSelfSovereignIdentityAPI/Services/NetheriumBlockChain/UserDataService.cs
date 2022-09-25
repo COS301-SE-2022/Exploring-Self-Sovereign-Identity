@@ -8,6 +8,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Function;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
+using ExploringSelfSovereignIdentityAPI.Commands;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {

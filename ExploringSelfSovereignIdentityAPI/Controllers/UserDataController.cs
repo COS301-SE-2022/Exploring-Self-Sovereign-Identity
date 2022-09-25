@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
-using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Queries;

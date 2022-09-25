@@ -1,11 +1,12 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using MediatR;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using System.Collections.Generic;
 
-namespace ExploringSelfSovereignIdentityAPI.Models.Request
+namespace ExploringSelfSovereignIdentityAPI.Commands
 {
-    public partial class UpdateGen2 :  UpdateBaseGen2 { }
+    public partial class UpdateGen2 : UpdateBaseGen2 { }
 
     public class UpdateBaseGen2 : IRequest<GetUserDataOutputDTO>
     {

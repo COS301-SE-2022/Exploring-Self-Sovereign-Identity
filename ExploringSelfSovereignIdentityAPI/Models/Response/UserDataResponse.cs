@@ -1,5 +1,5 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Entity;
-using ExploringSelfSovereignIdentityAPI.Models.Request;
+﻿using ExploringSelfSovereignIdentityAPI.Commands;
+using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using System.Collections.Generic;
 

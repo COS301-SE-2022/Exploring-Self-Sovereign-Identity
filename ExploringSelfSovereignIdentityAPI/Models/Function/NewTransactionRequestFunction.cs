@@ -1,4 +1,4 @@
-﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
+﻿using ExploringSelfSovereignIdentityAPI.Commands;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.Contracts;
 
