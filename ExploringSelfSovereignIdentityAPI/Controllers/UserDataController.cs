@@ -6,6 +6,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Queries;
 using MediatR;
+using ExploringSelfSovereignIdentityAPI.Commands;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
@@ -27,9 +28,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("create")]
-        public async Task<string> Register([FromBody] RegisterRequest request)
+        public async Task<string> Register([FromBody] CreateRequestCommand request)
         {
-            return await uds.createUser(request.id);
+            return await mediator.Send(request);
         }
 
         [HttpPost]
