@@ -1,6 +1,9 @@
-﻿namespace ExploringSelfSovereignIdentityAPI.Models.Request
+﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+using MediatR;
+
+namespace ExploringSelfSovereignIdentityAPI.Models.Request
 {
-    public class RegisterRequest
+    public class RegisterRequest: IRequest<GetUserDataOutputDTO>
     {
         public string id { get; set; }
     }
