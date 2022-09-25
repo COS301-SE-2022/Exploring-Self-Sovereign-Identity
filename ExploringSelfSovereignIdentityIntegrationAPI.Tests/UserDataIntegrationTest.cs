@@ -2,6 +2,7 @@ using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
+using System.Numerics;
 using Attribute = ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.Attribute;
 
 namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
@@ -87,7 +88,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
 
         [TestMethod]
-        public async Task getAttributesForTransaction()
+        public async Task TestgetAttributesForTransaction()
         {
             string userId = "aaa";
             List<Attribute> attributes = new List<Attribute>();
@@ -100,6 +101,37 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
                 Assert.IsNotNull(res);
                 Assert.IsInstanceOfType(res, typeof(GetAttributesTransactionOutputDTO));
                 Assert.AreEqual(res, attributes);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+        [TestMethod]
+        public async Task TestupdateUserData()
+        {
+            
+            UpdateGen2 update = new UpdateGen2();
+            update.Id = "test";
+
+            AttributeUpdate item = new AttributeUpdate();
+
+
+
+
+            try
+            {
+                if(update != null)
+                {
+                    GetUserDataOutputDTO res = await _userDataService.updateUserData(update);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(GetUserDataOutputDTO));
+                    Assert.AreEqual(res, update);
+                }
+
             }
             catch (Exception e)
             {
