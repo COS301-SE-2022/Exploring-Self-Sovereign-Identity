@@ -39,7 +39,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (to.path !== "/") {
+  if (to.path !== "/" && to.path !== "/avatar") {
     if (!new PassageUser().authGuard()) {
       return "/";
     }
