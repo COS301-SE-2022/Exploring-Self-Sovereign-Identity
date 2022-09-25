@@ -16,6 +16,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
         public TransactionRequestBase()
         {
             Attributes = new List<string>();
+            Stamp = new TransactionStamp();
         }
     }
 }

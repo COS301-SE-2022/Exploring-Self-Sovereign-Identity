@@ -11,5 +11,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Request
         public virtual Attribute Attribute { get; set; }
         [Parameter("int256", "index", 2)]
         public virtual int Index { get; set; }
+
+        public AttributeUpdateBaseGen2()
+        {
+            Attribute = new Attribute();
+        }
     }
 }
