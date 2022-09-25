@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
+using MediatR;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
 {
     public partial class UserDataResponse : UserDataResponseBase { }
 
-    public class UserDataResponseBase
+    public class UserDataResponseBase: IRequest<UserDataResponse>
     {
         [Parameter("string", "id", 1)]
         public virtual string Id { get; set; }
