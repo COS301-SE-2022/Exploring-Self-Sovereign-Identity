@@ -79,7 +79,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("newTransaction")]
         public async Task<string> newTransaction([FromBody] TransactionRequest request)
         {
-            return await uds.newTransactionRequest(request);
+            return await mediator.Send(request);
         }
     }
 }
