@@ -4,7 +4,7 @@ import "@passageidentity/passage-elements/passage-auth";
 import { userDataStore } from "@/stores/userData";
 export default defineComponent({
   data() {
-    return {};
+    return {}
   },
   components: {},
   methods: {
@@ -18,7 +18,7 @@ export default defineComponent({
 
     return { appid, userData };
   },
-});
+})
 </script>
 
 <template>

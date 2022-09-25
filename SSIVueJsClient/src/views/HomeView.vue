@@ -29,10 +29,10 @@ export default defineComponent({
   // },
   methods: {
     goProfile() {
-      this.$router.push({ path: "/profile" });
+      this.$router.push({ path: '/profile' })
     },
     go(p: string) {
-      this.$router.push({ path: p });
+      this.$router.push({ path: p })
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
