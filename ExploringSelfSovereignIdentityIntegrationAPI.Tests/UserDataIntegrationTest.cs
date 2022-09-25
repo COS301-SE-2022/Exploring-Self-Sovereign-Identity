@@ -8,7 +8,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     [TestClass]
     public class UserDataIntegrationTest
     {
-        public UserDataService _userDataService;
+        /*public UserDataService _userDataService;
 
         public UserDataIntegrationTest()
         {
@@ -61,7 +61,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             }
             
 
-        }
+        }*/
 
 
 

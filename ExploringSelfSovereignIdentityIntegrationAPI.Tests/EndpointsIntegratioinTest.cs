@@ -13,7 +13,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     [TestClass]
     public class EndpointsIntegratioinTest
     {
-        public UserdataService _userDataService;
+        /*public UserdataService _userDataService;
         //public IUserDataService _userRepo = new IUserDataService();
         public EndpointsIntegratioinTest()
         {
@@ -68,8 +68,8 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             Assert.IsNotNull(res);
             Assert.AreEqual("success", res);*/
 
-        }
-
+        /*}
+        */
 
     }
 }
