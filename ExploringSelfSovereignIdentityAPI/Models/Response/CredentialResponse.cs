@@ -12,5 +12,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
         public virtual string Organization { get; set; }
         [Parameter("tuple[]", "attributes", 2)]
         public virtual List<Attribute> Attributes { get; set; }
+
+        public CredentialResponseBase()
+        {
+            Attributes = new List<Attribute>();
+        }
     }
 }

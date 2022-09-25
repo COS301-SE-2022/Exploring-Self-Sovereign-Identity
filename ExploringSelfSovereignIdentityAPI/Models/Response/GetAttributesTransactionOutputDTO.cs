@@ -11,5 +11,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
     {
         [Parameter("tuple[]", "", 1)]
         public virtual List<Attribute> ReturnValue1 { get; set; }
+
+        public GetAttributesTransactionOutputDTOBase()
+        {
+            ReturnValue1 = new List<Attribute>();
+        }
     }
 }

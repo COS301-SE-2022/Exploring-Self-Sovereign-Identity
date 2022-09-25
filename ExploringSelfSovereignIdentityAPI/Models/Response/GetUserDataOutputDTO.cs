@@ -9,5 +9,10 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
     {
         [Parameter("tuple", "", 1)]
         public virtual UserDataResponse ReturnValue1 { get; set; }
+
+        public GetUserDataOutputDTOBase()
+        {
+            ReturnValue1 = new UserDataResponse();
+        }
     }
 }

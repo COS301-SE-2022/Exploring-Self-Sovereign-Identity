@@ -10,11 +10,11 @@ namespace ExploringSelfSovereignIdentityAPI.Models.Response
         public string Signature { get; set; }
         public Guid Id { get; set; }
 
-        public LinkedList<AddAttributeRequest> Attributes { get; set; }
+        public List<AddAttributeRequest> Attributes { get; set; }
 
         public GetContractResponse()
         {
-            Attributes = new LinkedList<AddAttributeRequest>();
+            Attributes = new List<AddAttributeRequest>();
         }
 
     }
