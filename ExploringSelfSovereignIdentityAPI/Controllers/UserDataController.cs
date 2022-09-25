@@ -71,7 +71,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
         [Route("updateCredential")]
         public async Task<GetUserDataOutputDTO> UpdateCredentials([FromBody] UpdateGen2 request )
         {
-            return await uds.updateUserData(request);
+            return await mediator.Send(request);
         }
 
         //Transactions
