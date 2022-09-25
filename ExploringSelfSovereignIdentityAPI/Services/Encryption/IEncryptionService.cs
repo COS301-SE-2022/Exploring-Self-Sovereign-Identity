@@ -2,7 +2,7 @@
 {
     public interface IEncryptionService
     {
-        string EncryptString(string key, string plainText);
-        string DecryptString(string key, string plainText);
+        string EncryptString(string userID, string plainText);
+        string DecryptString(string userID, string plainText);
     }
 }

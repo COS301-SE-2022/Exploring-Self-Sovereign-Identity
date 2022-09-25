@@ -9,6 +9,7 @@ using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Models.Function;
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Commands;
+using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -27,9 +28,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         private ContractHandler contractHandler = web3.Eth.GetContractHandler(contractAddress);
 
+        private readonly IEncryptionService encryptservice;
+
         public UserDataService()
         {
             web3.TransactionManager.UseLegacyAsDefault = true;
+            encryptservice = new EncryptionService();
         }
 
         
@@ -134,7 +138,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
                 AttributeUpdate item = new AttributeUpdate();
                 item.Attribute = new Attribute();
                 item.Attribute.Name = update.Attributes[i].Attribute.Name;
-                item.Attribute.Value = update.Attributes[i].Attribute.Value;
+                //item.Attribute.Value = update.Attributes[i].Attribute.Value;
+                item.Attribute.Value = encryptservice.EncryptString(u.Id, update.Attributes[i].Attribute.Value);
 
                 item.Index = new BigInteger(update.Attributes[i].Index);
 
@@ -154,7 +159,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
                 {
                     Attribute item3 = new Attribute();
                     item3.Name = update.Credentials[i].Attributes[j].Name; 
-                    item3.Value = update.Credentials[i].Attributes[j].Value;
+                    item3.Value = encryptservice.EncryptString(u.Id, update.Credentials[i].Attributes[j].Value);
 
                     ca.Add(item3);
                 }
@@ -181,7 +186,11 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         {
             var getUserDataFunction = new GetUserDataFunction(); 
             getUserDataFunction.Id = id;
-            var getUserDataOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetUserDataFunction, GetUserDataOutputDTO>(getUserDataFunction);
+            GetUserDataOutputDTO getUserDataOutputDTO = await contractHandler.QueryDeserializingToObjectAsync<GetUserDataFunction, GetUserDataOutputDTO>(getUserDataFunction);
+
+            getUserDataOutputDTO.ReturnValue1.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id, attribute.Value));
+
+            getUserDataOutputDTO.ReturnValue1.Credentials.ForEach(credential => credential.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id,attribute.Value)));
 
             return getUserDataOutputDTO;
         }
