@@ -42,28 +42,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         [HttpPost]
         [Route("updateAttribute")]
-        public UserDataResponse UpdateAttributes([FromBody] UserDataResponse request)
+        public async Task<UserDataResponse> UpdateAttributesAsync([FromBody] UserDataResponse request)
         {
 
-            for (int i = 0; i < request.Attributes.Count; i++)
-            {
+            return (UserDataResponse)await mediator.Send(request);
 
-                if (i < response.Attributes.Count)
-                {
-                    response.Attributes[i].Name = request.Attributes[i].Name;
-                    response.Attributes[i].Value = request.Attributes[i].Value;
-                    continue;
-                }
-
-                Attribute a1 = new Attribute();
-                a1.Name = request.Attributes[i].Name;
-                a1.Value = request.Attributes[i].Value;
-
-                response.Attributes.Add(a1);
-
-            }
-
-            return response;
+                    
         }
 
         [HttpPost]
