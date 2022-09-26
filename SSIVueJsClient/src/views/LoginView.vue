@@ -4,7 +4,7 @@ import "@passageidentity/passage-elements/passage-auth";
 import { userDataStore } from "@/stores/userData";
 export default defineComponent({
   data() {
-    return {}
+    return {};
   },
   components: {},
   methods: {
@@ -18,7 +18,7 @@ export default defineComponent({
 
     return { appid, userData };
   },
-})
+});
 </script>
 
 <template>
@@ -40,6 +40,7 @@ export default defineComponent({
   top: 10em;
   width: 100%;
   text-align: center;
+
   svg {
     width: 80%;
     height: auto;
@@ -56,11 +57,13 @@ export default defineComponent({
   bottom: 4em;
   position: fixed;
   width: 100%;
+
   div {
     height: auto;
     width: 100%;
     text-align: center;
   }
+
   button {
     width: 25%;
     height: auto;
