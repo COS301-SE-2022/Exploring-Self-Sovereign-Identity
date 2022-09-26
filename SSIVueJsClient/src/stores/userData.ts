@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { ref } from "vue";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
@@ -11,6 +12,8 @@ export const userDataStore = defineStore("userData", {
     }),
     user: {} as User,
     attributes: { attributes: [] } as Attributes,
+    loading: ref(false),
+    description: ref(""),
   }),
   getters: {
     getId: (state) => {
@@ -26,7 +29,9 @@ export const userDataStore = defineStore("userData", {
   actions: {
     getuserdata(userid: string) {
       //   const axios = require("axios");
-      console.log("id", userid);
+      this.description = "Fetching user data";
+      this.loading = true;
+      console.log("Fetching user data", this.$state.loading);
       const repsonse = this.api
         .post(`/api/UserData/get`, {
           id: userid,
@@ -40,9 +45,13 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
+      this.loading = false;
+      this.description = "";
       return repsonse;
     },
     setuserdata() {
+      this.description = "Saving user data";
+      this.loading = true;
       console.log(this.attributes.attributes[0].attribute.value);
       const response = this.api
         .post(`/api/UserData/update`, {
@@ -58,6 +67,8 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
           throw error;
         });
+      this.loading = false;
+      this.description = "";
       return response;
     },
     createUser(id: string) {

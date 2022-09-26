@@ -2,6 +2,7 @@
 import { RouterView } from "vue-router";
 import { NConfigProvider } from "naive-ui";
 import { darkTheme } from "naive-ui";
+import { userDataStore } from "@/stores/userData";
 
 /**
  * Use this for type hints under js file
@@ -17,6 +18,9 @@ const themeOverrides = {
     darkTheme,
   },
 };
+
+const userData = userDataStore();
+const { loading, description } = userData;
 </script>
 
 <template>
@@ -24,7 +28,9 @@ const themeOverrides = {
     <router-view v-slot="{ Component }">
       <transition name="fade">
         <n-message-provider>
-          <component :is="Component" />
+          <n-spin class="loading" :show="loading" :description="description">
+            <component :is="Component" />
+          </n-spin>
         </n-message-provider>
       </transition>
     </router-view>
@@ -54,6 +60,9 @@ const themeOverrides = {
 </template>
 
 <style lang="scss">
+.loading {
+  z-index: 1000;
+}
 .fade-enter-active {
   transition: all opacity 1s ease;
 }
