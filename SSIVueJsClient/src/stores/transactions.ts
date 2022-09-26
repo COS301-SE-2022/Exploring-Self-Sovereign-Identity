@@ -5,7 +5,7 @@ import { computed, ref } from "vue";
 
 export const transactionsStore = defineStore("transactions", () => {
   const api = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://ssi-api.azurewebsites.net",
     timeout: 20000,
     headers: {
       "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import axios from "axios";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ssi-api.azurewebsites.net",
       timeout: 20000,
       headers: {
         "Content-Type": "application/json",
