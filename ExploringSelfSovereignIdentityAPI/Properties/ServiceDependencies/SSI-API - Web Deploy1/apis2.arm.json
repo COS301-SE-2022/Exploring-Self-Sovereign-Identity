@@ -36,7 +36,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('ExploringSelfSovereignIdentityAPI', subscription().subscriptionId)))]",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('ssi-api', subscription().subscriptionId)))]",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "apiVersion": "2019-10-01",
       "dependsOn": [
@@ -94,13 +94,13 @@
             },
             {
               "type": "Microsoft.ApiManagement/service/apis",
-              "name": "ExploringSelfSovereignIdentityAPIapi/ExploringSelfSovereignIdentityAPI",
+              "name": "ExploringSelfSovereignIdentityAPIapi/ssi-api",
               "properties": {
-                "displayName": "ExploringSelfSovereignIdentityAPI",
+                "displayName": "exploring_self_sovereign_identity_api",
                 "apiRevision": "1",
                 "description": null,
-                "subscriptionRequired": true,
-                "serviceUrl": null,
+                "subscriptionRequired": false,
+                "serviceUrl": "https://ssi-api.azurewebsites.net",
                 "path": "",
                 "protocols": [
                   "https"
