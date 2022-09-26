@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { NConfigProvider } from 'naive-ui'
-import { darkTheme } from 'naive-ui'
+import { RouterView } from "vue-router";
+import { NConfigProvider } from "naive-ui";
+import { darkTheme } from "naive-ui";
 
 /**
  * Use this for type hints under js file
@@ -9,14 +9,14 @@ import { darkTheme } from 'naive-ui'
  */
 const themeOverrides = {
   common: {
-    primaryColor: '#C197D2',
-    primaryColorHover: '#613659',
-    primaryColorPressed: '#613659',
+    primaryColor: "#C197D2",
+    primaryColorHover: "#613659",
+    primaryColorPressed: "#613659",
   },
   return: {
     darkTheme,
   },
-}
+};
 </script>
 
 <template>

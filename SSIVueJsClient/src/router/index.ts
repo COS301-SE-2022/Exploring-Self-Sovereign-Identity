@@ -37,8 +37,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (!new PassageUser().authGuard()) {
-    return "/";
+  if (to.path !== "/") {
+    if (!new PassageUser().authGuard()) {
+      return "/";
+    }
   }
 });
 
