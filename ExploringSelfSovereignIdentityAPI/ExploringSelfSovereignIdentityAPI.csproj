@@ -9,6 +9,7 @@
   <PropertyGroup>
     <SteeltoeVersion>3.2.0-rc1</SteeltoeVersion>
     <RootNamespace>$(MSBuildProjectName.Replace(" -", "_"))</RootNamespace>
+    <UserSecretsId>0cb0251e-ffc7-4468-a2fb-3ee2934096aa</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
