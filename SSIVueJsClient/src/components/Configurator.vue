@@ -1,74 +1,79 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { onMounted, reactive, ref } from 'vue'
-import PerfectScrollbar from '@/components/PerfectScrollbar.vue'
-import SectionWrapper from '@/components/SectionWrapper.vue'
-import { type WidgetShape, WrapperShape, BeardShape, WidgetType } from '@/enums'
-import { useAvatarOption } from '@/hooks'
-import { AVATAR_LAYER, SETTINGS } from '@/utils/constant'
-import { previewData } from '@/utils/dynamic-data'
+import { defineComponent } from "vue";
+import { onMounted, reactive, ref } from "vue";
+import PerfectScrollbar from "@/components/PerfectScrollbar.vue";
+import SectionWrapper from "@/components/SectionWrapper.vue";
+import {
+  type WidgetShape,
+  WrapperShape,
+  BeardShape,
+  WidgetType,
+} from "@/enums";
+import { useAvatarOption } from "@/hooks";
+import { AVATAR_LAYER, SETTINGS } from "@/utils/constant";
+import { previewData } from "@/utils/dynamic-data";
 
 export default defineComponent({
   setup() {
-    const [avatarOption, setAvatarOption] = useAvatarOption()
+    const [avatarOption, setAvatarOption] = useAvatarOption();
 
-    const sectionList = reactive(Object.values(WidgetType))
+    const sectionList = reactive(Object.values(WidgetType));
     const sections = ref<
       {
-        widgetType: WidgetType
+        widgetType: WidgetType;
         widgetList: {
-          widgetType: WidgetType
-          widgetShape: WidgetShape
-          svgRaw: string
-        }[]
+          widgetType: WidgetType;
+          widgetShape: WidgetShape;
+          svgRaw: string;
+        }[];
       }[]
-    >([])
+    >([]);
 
     onMounted(() => {
       void (async () => {
         const a = await Promise.all(
           sectionList.map((section) => {
-            return getWidgets(section)
+            return getWidgets(section);
           })
-        )
+        );
 
         sections.value = sectionList.map((li, i) => {
           return {
             widgetType: li,
             widgetList: a[i],
-          }
-        })
-      })()
-    })
+          };
+        });
+      })();
+    });
 
     async function getWidgets(widgetType: WidgetType) {
-      const list = SETTINGS[`${widgetType}Shape`]
+      const list = SETTINGS[`${widgetType}Shape`];
       // const promises: Promise<string>[] = list.map(async (widget: string) => {
       //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
       //     .default
       // })
       const promises: Promise<string>[] = list.map(async (widget: string) => {
-        if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
-          return (await previewData[widgetType][widget]()).default
+        if (widget !== "none" && previewData?.[widgetType]?.[widget]) {
+          return (await previewData[widgetType][widget]()).default;
         }
-        return 'X'
-      })
+        return "X";
+      });
       const svgRawList = await Promise.all(promises).then((raw) => {
         return raw.map((svgRaw, i) => {
           return {
             widgetType,
             widgetShape: list[i],
             svgRaw,
-          }
-        })
-      })
-      return svgRawList
+          };
+        });
+      });
+      return svgRawList;
     }
 
     function switchWrapperShape(wrapperShape: WrapperShape) {
       if (wrapperShape !== avatarOption.value.wrapperShape) {
-        setAvatarOption({ ...avatarOption.value, wrapperShape })
+        setAvatarOption({ ...avatarOption.value, wrapperShape });
       }
     }
 
@@ -77,7 +82,7 @@ export default defineComponent({
         setAvatarOption({
           ...avatarOption.value,
           background: { ...avatarOption.value.background, color: bgColor },
-        })
+        });
       }
     }
 
@@ -91,11 +96,11 @@ export default defineComponent({
               ...avatarOption.value.widgets?.[widgetType],
               shape: widgetShape,
               ...(widgetShape === BeardShape.Scruff
-                ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
+                ? { zIndex: AVATAR_LAYER["mouth"].zIndex - 1 }
                 : undefined),
             },
           },
-        })
+        });
       }
     }
 
@@ -110,14 +115,14 @@ export default defineComponent({
               fillColor,
             },
           },
-        })
+        });
       }
     }
 
     function getWidgetColor(type: string) {
       if (type === WidgetType.Tops || type === WidgetType.Clothes) {
-        return avatarOption.value.widgets[type]?.fillColor
-      } else return ''
+        return avatarOption.value.widgets[type]?.fillColor;
+      } else return "";
     }
 
     return {
@@ -131,7 +136,7 @@ export default defineComponent({
       avatarOption,
       sections,
       WidgetType,
-    }
+    };
   },
 
   /*methods:{
@@ -159,7 +164,7 @@ export default defineComponent({
 
 
   },*/
-})
+});
 </script>
 <template>
   <PerfectScrollbar class="configurator-scroll">
@@ -216,7 +221,7 @@ export default defineComponent({
           "
           class="color-picker"
         >
-          <summary class="color">{{ 'label.colors' }}</summary>
+          <summary class="color">{{ "label.colors" }}</summary>
           <ul class="color-list">
             <li
               v-for="fillColor in SETTINGS.commonColors"
@@ -254,7 +259,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .configurator-scroll {
   width: var.$layout-sider-width;
@@ -346,7 +351,7 @@ export default defineComponent({
             font-size: 1.8rem;
             transform: translate(-50%, -50%) scale(0.5);
             opacity: 1;
-            content: '\\';
+            content: "\\";
           }
         }
 
@@ -362,7 +367,7 @@ export default defineComponent({
           transform: translate(-50%, -50%);
           opacity: 0.5;
           transition: width 0.15s, height 0.15s;
-          content: '';
+          content: "";
         }
 
         &::after {
@@ -375,7 +380,7 @@ export default defineComponent({
           transform: translate(-50%, -50%) scale(0.5);
           opacity: 0;
           transition: opacity 0.15s;
-          content: '\2714';
+          content: "\2714";
         }
 
         &.active::before {
