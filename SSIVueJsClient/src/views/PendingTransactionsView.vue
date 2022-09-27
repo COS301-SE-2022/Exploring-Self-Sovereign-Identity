@@ -26,7 +26,8 @@ export default defineComponent({
         return "";
       }
     },
-    update(index: string, value: string) {
+    update(value: string, index: string) {
+      console.log(index, value);
       this.arr.set(index, value);
     },
     async updateUser() {
@@ -35,6 +36,7 @@ export default defineComponent({
       for (let [key, value] of this.arr) {
         if (value != "") {
           console.log("here");
+          console.log(key, value);
           await this.userData.attributes.attributes.push({
             attribute: {
               name: key,
@@ -93,7 +95,7 @@ export default defineComponent({
             :key="att"
             :default-value="exists(att)"
             :readonly="transactions.exists(att) != ''"
-            @update="update(att, $event)"
+            @input="update($event, att)"
           ></n-input>
         </n-input-group>
         <n-space>
