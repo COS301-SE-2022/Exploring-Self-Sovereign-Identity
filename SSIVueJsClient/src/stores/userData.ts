@@ -117,6 +117,22 @@ export const userDataStore = defineStore("userData", {
     updateAttribute(index: number, value: string) {
       this.attributes.attributes[index].attribute.value = value;
     },
+
+    otp(value: string, otp: string) {
+      const cred = this.user.credentials.find((c) => c.organization == value);
+      const response = this.api
+        .post("/api/Session/connect", {
+          otp: otp,
+          credential: cred,
+        })
+        .then((response) => {
+          console.log("success", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      return response;
+    },
   },
 });
 
