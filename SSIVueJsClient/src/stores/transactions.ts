@@ -19,8 +19,8 @@ export const transactionsStore = defineStore("transactions", () => {
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
 
-  function approveTransaction(id: string, index: number) {
-    api
+  async function approveTransaction(id: string, index: number) {
+    const response = api
       .post("/api/UserData/approveTransaction", {
         id: id,
         index: index,
@@ -32,10 +32,11 @@ export const transactionsStore = defineStore("transactions", () => {
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
-  function declineTransaction(id: string, index: number) {
-    api
+  async function declineTransaction(id: string, index: number) {
+    const response = api
       .post("/api/UserData/declineTransaction", {
         id: id,
         index: index,
@@ -47,10 +48,15 @@ export const transactionsStore = defineStore("transactions", () => {
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
-  function newTransaction(toID: string, message: string, attributes: string[]) {
-    api
+  async function newTransaction(
+    toID: string,
+    message: string,
+    attributes: string[]
+  ) {
+    const response = api
       .post("/api/UserData/newTransaction", {
         attributes: attributes,
         stamp: {
@@ -68,6 +74,7 @@ export const transactionsStore = defineStore("transactions", () => {
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
   function exists(att: string) {
