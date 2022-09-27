@@ -29,23 +29,31 @@ export default defineComponent({
     update(index: string, value: string) {
       this.arr.set(index, value);
     },
-    updateUser() {
+    async updateUser() {
+      let changed = false;
       if (this.arr.size == 0) return;
       for (let [key, value] of this.arr) {
         if (value != "") {
-          this.userData.attributes.attributes.push({
+          console.log("here");
+          await this.userData.attributes.attributes.push({
             attribute: {
               name: key,
               value: value,
             },
             index: -1,
           });
+          changed = true;
         } else {
           // * fix empty checks
           console.log("empty");
         }
       }
-      this.userData.setuserdata();
+      console.log("here2");
+      if (changed) {
+        console.log("changed");
+        await this.userData.setuserdata();
+      }
+      console.log("done");
     },
     async decline(index: transactionRequests) {
       this.description = "Declining transaction...";
@@ -56,7 +64,7 @@ export default defineComponent({
     async approve(index: transactionRequests) {
       this.description = "Approving transaction...";
       this.loading = true;
-      this.updateUser();
+      await this.updateUser();
       await this.transactions.approveTransaction(this.userData.getId, index);
       this.loading = false;
     },

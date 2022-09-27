@@ -1,5 +1,5 @@
-./coverage
-./cypress
+.coverage
+.cypress
 deploy.sh
 deploy.ps1
 

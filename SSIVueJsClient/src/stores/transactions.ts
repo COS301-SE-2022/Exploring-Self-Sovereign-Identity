@@ -20,7 +20,10 @@ export const transactionsStore = defineStore("transactions", () => {
   );
 
   async function approveTransaction(id: string, request: transactionRequests) {
-    const index = requests.value.indexOf(request);
+    const index = requests.value.findIndex(
+      (x) => JSON.stringify(x) === JSON.stringify(request)
+    );
+    console.log(index);
     const response = api
       .post("/api/UserData/approveTransaction", {
         id: id,
@@ -39,7 +42,9 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   async function declineTransaction(id: string, request: transactionRequests) {
-    const index = requests.value.indexOf(request);
+    const index = requests.value.findIndex(
+      (x) => JSON.stringify(x) === JSON.stringify(request)
+    );
     const response = api
       .post("/api/UserData/declineTransaction", {
         id: id,

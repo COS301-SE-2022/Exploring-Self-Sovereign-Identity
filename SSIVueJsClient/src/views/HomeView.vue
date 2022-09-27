@@ -20,7 +20,7 @@ export default defineComponent({
         await userData.createUser(info?.email || "");
         console.log("User created");
       } else {
-        console.log("User data fetched", userData);
+        console.log("User data fetched", userData.$state);
       }
       loading.value = false;
       description.value = "";
