@@ -224,6 +224,12 @@ contract("MarketPlace", ([contractOwner, secondAddress, thirdAddress]) => {
                 result = await mkp.getOrganization([username, password]);
                 console.log(result);
             });
+
+            it("getsAllData", async () => {
+                result = await mkp.getAllOrganizations();
+
+                console.log(result);
+            });
         });
     });
 });
