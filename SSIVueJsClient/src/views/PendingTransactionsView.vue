@@ -27,7 +27,6 @@ export default defineComponent({
       }
     },
     update(value: string, index: string) {
-      console.log(index, value);
       this.arr.set(index, value);
     },
     async updateUser() {
@@ -35,9 +34,9 @@ export default defineComponent({
       if (this.arr.size == 0) return;
       for (let [key, value] of this.arr) {
         if (value != "") {
-          console.log("here");
+          console.log("arr");
           console.log(key, value);
-          await this.userData.attributes.attributes.push({
+          this.userData.attributes.attributes.push({
             attribute: {
               name: key,
               value: value,
