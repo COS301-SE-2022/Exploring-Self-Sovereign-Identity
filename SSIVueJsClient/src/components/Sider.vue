@@ -1,20 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script lang="ts">
-import { defineComponent } from 'vue'
-import IconRight from '@/assets/icons/icon-right.svg'
-import { useSider } from '@/hooks'
+import { defineComponent } from "vue";
+import IconRight from "@/assets/icons/icon-right.svg";
+import { useSider } from "@/hooks";
 export default defineComponent({
   setup() {
-    const { isCollapsed, openSider, closeSider } = useSider()
+    const { isCollapsed, openSider, closeSider } = useSider();
 
     return {
       isCollapsed,
       openSider,
       closeSider,
       IconRight,
-    }
+    };
   },
-})
+});
 </script>
 
 <template>
@@ -28,7 +28,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .sider {
   position: fixed;

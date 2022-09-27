@@ -1,10 +1,10 @@
 export function recordEvent(
   action: string,
   params: {
-    event_category: string
-    event_label?: string
-    value?: number
+    event_category: string;
+    event_label?: string;
+    value?: number;
   }
 ) {
-  window?.gtag('event', action, params)
+  window?.gtag("event", action, params);
 }

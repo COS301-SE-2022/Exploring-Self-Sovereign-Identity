@@ -14,8 +14,6 @@
   </div>
 </template>
 
-
-
 <!-- <script setup lang="ts">
     const propsG = withDefaults(defineProps<{
       option: AvatarOption
@@ -27,33 +25,32 @@
 </script> -->
 
 <script lang="ts">
-import { ref, toRefs, watchEffect, type PropType } from 'vue'
-import { defineComponent } from 'vue'
-import { WidgetType, WrapperShape } from '@/enums'
-import type { AvatarOption } from '@/types'
-import { getRandomAvatarOption } from '@/utils'
-import { AVATAR_LAYER, NONE } from '@/utils/constant'
-import { widgetData } from '@/utils/dynamic-data'
+import { ref, toRefs, watchEffect, type PropType } from "vue";
+import { defineComponent } from "vue";
+import { WidgetType, WrapperShape } from "@/enums";
+import type { AvatarOption } from "@/types";
+import { getRandomAvatarOption } from "@/utils";
+import { AVATAR_LAYER, NONE } from "@/utils/constant";
+import { widgetData } from "@/utils/dynamic-data";
 
 //import Background from '@/components/Background.vue'
 export interface VueColorAvatarRef {
-  avatarRef: HTMLDivElement
+  avatarRef: HTMLDivElement;
 }
 export default defineComponent({
   props: {
-      option : {
+    option: {
       type: Object as PropType<AvatarOption>,
       default: () => ({
-        value: () => getRandomAvatarOption()
-      })
+        value: () => getRandomAvatarOption(),
+      }),
     },
-    size : {
+    size: {
       type: Object as PropType<number>,
-      default: 280
-    }
+      default: 280,
+    },
   },
   setup(props, { expose }) {
-
     //const props = propsG;
 
     // interface VueColorAvatarProps {
@@ -68,15 +65,13 @@ export default defineComponent({
 
     // const { option: avatarOption, size: avatarSize } = toRefs(props)
 
-    
+    const { option: avatarOption, size: avatarSize } = toRefs(props);
 
-    const { option: avatarOption, size: avatarSize } = toRefs(props)
-
-    const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
+    const avatarRef = ref<VueColorAvatarRef["avatarRef"]>();
 
     //defineExpose({ avatarRef })
 
-    expose({avatarRef})
+    expose({ avatarRef });
 
     function getWrapperShapeClassName() {
       return {
@@ -86,19 +81,25 @@ export default defineComponent({
           avatarOption.value.wrapperShape === WrapperShape.Square,
         [WrapperShape.Squircle]:
           avatarOption.value.wrapperShape === WrapperShape.Squircle,
-      }
+      };
     }
 
-    const svgContent = ref('')
+    const svgContent = ref("");
 
     watchEffect(async () => {
       const sortedList = Object.entries(avatarOption.value.widgets).sort(
         ([prevShape, prev], [nextShape, next]) => {
-          const ix = prev.zIndex ?? AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
-          const iix = next.zIndex ?? AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
-          return ix - iix
+          const ix =
+            prev.zIndex ??
+            AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ??
+            0;
+          const iix =
+            next.zIndex ??
+            AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ??
+            0;
+          return ix - iix;
         }
-      )
+      );
 
       /*const promises: Promise<string>[] = sortedList.map(async ([widgetType, opt]) => {
        return (
@@ -108,29 +109,36 @@ export default defineComponent({
 
       const promises: Promise<string>[] = sortedList.map(
         async ([widgetType, opt]) => {
-          if (opt.shape !== NONE && widgetData?.[widgetType as keyof typeof widgetData]?.[opt.shape]) {
-            return (await widgetData[widgetType as keyof typeof widgetData][opt.shape]()).default
+          if (
+            opt.shape !== NONE &&
+            widgetData?.[widgetType as keyof typeof widgetData]?.[opt.shape]
+          ) {
+            return (
+              await widgetData[widgetType as keyof typeof widgetData][
+                opt.shape
+              ]()
+            ).default;
           }
-          return ''
+          return "";
         }
-      )
+      );
 
       const svgRawList = await Promise.all(promises).then((raw) => {
         return raw.map((svgRaw, i) => {
-          const widgetFillColor = sortedList[i][1].fillColor
+          const widgetFillColor = sortedList[i][1].fillColor;
 
           const content = svgRaw
-            .slice(svgRaw.indexOf('>', svgRaw.indexOf('<svg')) + 1)
-            .replace('</svg>', '')
+            .slice(svgRaw.indexOf(">", svgRaw.indexOf("<svg")) + 1)
+            .replace("</svg>", "");
           //.replaceAll('$fillColor', widgetFillColor || 'transparent')
 
           return `
         <g id="vue-color-avatar-${sortedList[i][0]}">
           ${content}
         </g>
-      `
-        })
-      })
+      `;
+        });
+      });
 
       svgContent.value = `
     <svg
@@ -142,11 +150,11 @@ export default defineComponent({
       xmlns="http://www.w3.org/2000/svg"
     >
       <g transform="translate(100, 65)">
-        ${svgRawList.join('')}
+        ${svgRawList.join("")}
       </g>
     </svg>
-  `
-    })
+  `;
+    });
 
     return {
       avatarSize,
@@ -154,9 +162,9 @@ export default defineComponent({
       avatarOption,
       svgContent,
       widgetData,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

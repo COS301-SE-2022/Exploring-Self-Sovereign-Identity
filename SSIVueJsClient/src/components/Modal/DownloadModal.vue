@@ -14,41 +14,40 @@
           />
         </div>
 
-        <p class="tip">{{ 'text.downloadTip' }} 🥳</p>
+        <p class="tip">{{ "text.downloadTip" }} 🥳</p>
       </div>
 
       <button type="button" class="close-btn" @click="$emit('close')">
-        {{ 'action.close' }}
+        {{ "action.close" }}
       </button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { emit } from 'process';
-import { defineComponent, type PropType } from 'vue'
+import { emit } from "process";
+import { defineComponent, type PropType } from "vue";
 export default defineComponent({
-  props : {
-    visible : {
-      type: Object as PropType<boolean>
+  props: {
+    visible: {
+      type: Object as PropType<boolean>,
     },
-    imageUrl : {
-      type: Object as PropType<string>
-    }
+    imageUrl: {
+      type: Object as PropType<string>,
+    },
   },
-  emits : ["close"],
-  setup(props, {emit}) {
+  emits: ["close"],
+  setup(props, { emit }) {
     //const props = defineProps<{ visible?: boolean; imageUrl: string }>()
-
     // const emit = defineEmits<{
     //   (e: 'close'): void
     // }>()
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .download-modal-wrapper {
   position: fixed;
