@@ -19,15 +19,18 @@ export const transactionsStore = defineStore("transactions", () => {
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
 
-  async function approveTransaction(id: string, index: number) {
+  async function approveTransaction(id: string, request: transactionRequests) {
+    const index = requests.value.indexOf(request);
     const response = api
       .post("/api/UserData/approveTransaction", {
         id: id,
         index: index,
       })
       .then((response) => {
-        if (response.data == "success") return true;
-        else return false;
+        if (response.data == "success") {
+          requests.value[index].stamp.status = "approved";
+          return true;
+        } else return false;
       })
       .catch((error) => {
         console.log(error);
@@ -35,15 +38,18 @@ export const transactionsStore = defineStore("transactions", () => {
     return response;
   }
 
-  async function declineTransaction(id: string, index: number) {
+  async function declineTransaction(id: string, request: transactionRequests) {
+    const index = requests.value.indexOf(request);
     const response = api
       .post("/api/UserData/declineTransaction", {
         id: id,
         index: index,
       })
       .then((response) => {
-        if (response.data == "success") return true;
-        else return false;
+        if (response.data == "success") {
+          requests.value[index].stamp.status = "declined";
+          return true;
+        } else return false;
       })
       .catch((error) => {
         console.log(error);
