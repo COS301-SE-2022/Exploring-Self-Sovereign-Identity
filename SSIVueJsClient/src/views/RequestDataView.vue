@@ -15,6 +15,7 @@ export default defineComponent({
   },
   methods: {
     async request() {
+      console.log("Requesting data", this.id);
       this.loading = true;
       await this.transactions.newTransaction(
         this.id,
@@ -33,7 +34,7 @@ export default defineComponent({
   <n-spin :show="loading" :description="description">
     <n-input-group data-test-id="UserId">
       <n-input-group-label>User ID</n-input-group-label>
-      <n-input placeholder="Please enter user ID" v-model="id"></n-input>
+      <n-input placeholder="Please enter user ID" v-model:value="id"></n-input>
     </n-input-group>
     <n-dynamic-input
       v-model:value="attrributes"
@@ -44,7 +45,7 @@ export default defineComponent({
       <n-input-group-label>Message</n-input-group-label>
       <n-input
         placeholder="Please enter request message for the user"
-        v-model="id"
+        v-model:value="message"
         maxlength="200"
         show-count
         type="textarea"

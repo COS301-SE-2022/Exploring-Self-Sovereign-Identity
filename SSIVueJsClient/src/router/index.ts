@@ -36,12 +36,12 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to) => {
-//   if (to.path !== "/") {
-//     if (!new PassageUser().authGuard()) {
-//       return "/";
-//     }
-//   }
-// });
+router.beforeEach((to) => {
+  if (to.path !== "/") {
+    if (!new PassageUser().authGuard()) {
+      return "/";
+    }
+  }
+});
 
 export default router;
