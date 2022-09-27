@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import IconAvatar from "../components/icons/IconAvatar.vue";
 import IconPending from "../components/icons/IconPending.vue";
 import IconPast from "../components/icons/IconPast.vue";
@@ -9,6 +9,8 @@ import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 
 export default defineComponent({
   setup() {
+    const loading = ref(true);
+    const description = ref("Fetching user data...");
     const userData = userDataStore();
     const user = new PassageUser();
     user.userInfo().then(async (info) => {
@@ -18,21 +20,22 @@ export default defineComponent({
         await userData.createUser(info?.email || "");
         console.log("User created");
       } else {
-        console.log("User data fetched", userData);
+        console.log("User data fetched", userData.$state);
       }
+      loading.value = false;
+      description.value = "";
     });
-
-    return { userData };
+    return { userData, loading, description };
   },
   // data() {
   //   return {};
   // },
   methods: {
     goProfile() {
-      this.$router.push({ path: '/profile' })
+      this.$router.push({ path: "/profile" });
     },
     go(p: string) {
-      this.$router.push({ path: p })
+      this.$router.push({ path: p });
     },
   },
   components: { IconAvatar, IconPending, IconPast, IconFile },
@@ -43,66 +46,68 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- *Row 1 -->
-  <n-grid
-    cols="2"
-    responsive="screen"
-    x-gap="5"
-    y-gap="5"
-    :item-responsive="true"
-  >
-    <n-gi>
-      <n-card
-        title="Profile"
-        @click="go('profile')"
-        data-test-id="profile"
-        :bordered="false"
-      >
-        <template #cover>
-          <IconAvatar class="icon card" />
-        </template>
-      </n-card>
-    </n-gi>
-    <n-gi>
-      <n-card
-        title="Pending"
-        @click="go('pending')"
-        data-test-id="pending"
-        :bordered="false"
-      >
-        <template #cover>
-          <IconPending class="icon card" />
-        </template>
-      </n-card>
-    </n-gi>
-    <!-- </n-grid> -->
-    <!-- *Row 2 -->
-    <!-- <n-grid cols="2" responsive="screen"> -->
-    <n-gi>
-      <n-card
-        title="Past"
-        @click="go('past')"
-        data-test-id="past"
-        :bordered="false"
-      >
-        <template #cover>
-          <IconPast class="icon card" />
-        </template>
-      </n-card>
-    </n-gi>
-    <n-gi>
-      <n-card
-        title="Request data"
-        @click="go('request')"
-        data-test-id="request"
-        :bordered="false"
-      >
-        <template #cover>
-          <IconFile class="icon card" />
-        </template>
-      </n-card>
-    </n-gi>
-  </n-grid>
+  <n-spin :show="loading" :description="description">
+    <!-- *Row 1 -->
+    <n-grid
+      cols="2"
+      responsive="screen"
+      x-gap="5"
+      y-gap="5"
+      :item-responsive="true"
+    >
+      <n-gi>
+        <n-card
+          title="Profile"
+          @click="go('profile')"
+          data-test-id="profile"
+          :bordered="false"
+        >
+          <template #cover>
+            <IconAvatar class="icon card" />
+          </template>
+        </n-card>
+      </n-gi>
+      <n-gi>
+        <n-card
+          title="Pending"
+          @click="go('pending')"
+          data-test-id="pending"
+          :bordered="false"
+        >
+          <template #cover>
+            <IconPending class="icon card" />
+          </template>
+        </n-card>
+      </n-gi>
+      <!-- </n-grid> -->
+      <!-- *Row 2 -->
+      <!-- <n-grid cols="2" responsive="screen"> -->
+      <n-gi>
+        <n-card
+          title="Past"
+          @click="go('past')"
+          data-test-id="past"
+          :bordered="false"
+        >
+          <template #cover>
+            <IconPast class="icon card" />
+          </template>
+        </n-card>
+      </n-gi>
+      <n-gi>
+        <n-card
+          title="Request data"
+          @click="go('request')"
+          data-test-id="request"
+          :bordered="false"
+        >
+          <template #cover>
+            <IconFile class="icon card" />
+          </template>
+        </n-card>
+      </n-gi>
+    </n-grid>
+  </n-spin>
 </template>
 
 <style lang="scss">

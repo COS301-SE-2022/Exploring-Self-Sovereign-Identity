@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 export default defineComponent({
   // setup() {},
   data() {
-    return {}
+    return {};
   },
   components: {},
   methods: {},
-})
+});
 </script>
 <template>
   <footer class="footer">
@@ -31,7 +31,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .footer {
   display: flex;

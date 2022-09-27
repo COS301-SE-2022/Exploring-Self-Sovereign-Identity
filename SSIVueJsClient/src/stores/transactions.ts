@@ -19,38 +19,55 @@ export const transactionsStore = defineStore("transactions", () => {
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
 
-  function approveTransaction(id: string, index: number) {
-    api
+  async function approveTransaction(id: string, request: transactionRequests) {
+    const index = requests.value.findIndex(
+      (x) => JSON.stringify(x) === JSON.stringify(request)
+    );
+    console.log(index);
+    const response = api
       .post("/api/UserData/approveTransaction", {
         id: id,
         index: index,
       })
       .then((response) => {
-        if (response.data == "success") return true;
-        else return false;
+        if (response.data == "success") {
+          requests.value[index].stamp.status = "approved";
+          return true;
+        } else return false;
       })
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
-  function declineTransaction(id: string, index: number) {
-    api
+  async function declineTransaction(id: string, request: transactionRequests) {
+    const index = requests.value.findIndex(
+      (x) => JSON.stringify(x) === JSON.stringify(request)
+    );
+    const response = api
       .post("/api/UserData/declineTransaction", {
         id: id,
         index: index,
       })
       .then((response) => {
-        if (response.data == "success") return true;
-        else return false;
+        if (response.data == "success") {
+          requests.value[index].stamp.status = "declined";
+          return true;
+        } else return false;
       })
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
-  function newTransaction(toID: string, message: string, attributes: string[]) {
-    api
+  async function newTransaction(
+    toID: string,
+    message: string,
+    attributes: string[]
+  ) {
+    const response = api
       .post("/api/UserData/newTransaction", {
         attributes: attributes,
         stamp: {
@@ -68,13 +85,14 @@ export const transactionsStore = defineStore("transactions", () => {
       .catch((error) => {
         console.log(error);
       });
+    return response;
   }
 
   function exists(att: string) {
-    const value =
-      userData.getAttributes.find((x) => x.attribute.name == att) != undefined;
-    if (value == undefined) return "";
-    else return value;
+    const val = userData.getAttributes.find((x) => x.attribute.name == att)
+      ?.attribute.value;
+    if (val == undefined) return "";
+    else return val;
   }
 
   const pending = computed(() => {
