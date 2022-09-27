@@ -1,6 +1,6 @@
 # Logs
 .env
-deploy.sh
+deploy.*
 logs
 *.log
 npm-debug.log*
