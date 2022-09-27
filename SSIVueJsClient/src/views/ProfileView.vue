@@ -83,7 +83,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-spin>
+  <n-spin :show="loading" :description="description">
     <!-- * Naive tabs -->
     <n-tabs type="bar" size="large" justify-content="space-evenly">
       <n-tab-pane name="Attributes">

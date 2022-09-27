@@ -66,7 +66,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-spin>
+  <n-spin :show="loading" :description="description">
     <n-collapse accordion arrow-placement="right">
       <n-collapse-item
         v-for="t in transactions.pending"
@@ -84,7 +84,7 @@ export default defineComponent({
           <n-input
             :key="att"
             :default-value="exists(att)"
-            :readonly="!transactions.exists(att)"
+            :readonly="transactions.exists(att) != ''"
             @update="update(att, $event)"
           ></n-input>
         </n-input-group>
