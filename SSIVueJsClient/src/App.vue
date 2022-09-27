@@ -3,6 +3,7 @@ import { RouterView } from "vue-router";
 import { NConfigProvider } from "naive-ui";
 import { darkTheme } from "naive-ui";
 import { userDataStore } from "@/stores/userData";
+import { ref } from "vue";
 
 /**
  * Use this for type hints under js file
@@ -18,21 +19,29 @@ const themeOverrides = {
     darkTheme,
   },
 };
-
+// const loading = ref(false);
+// const description = ref("Loading...");
 const userData = userDataStore();
-const { loading, description } = userData;
+// userData.$subscribe((mutation) => {
+//   if (mutation.type === "patch object") {
+//     if (mutation.payload.description) {
+//       description.value = mutation.payload.description.value || "";
+//     }
+//     if (mutation.payload.loading) {
+//       loading.value = mutation.payload.loading.value || false;
+//     }
+//   }
+// });
 </script>
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="darkTheme">
     <router-view v-slot="{ Component }">
-      <transition name="fade">
-        <n-message-provider>
-          <n-spin class="loading" :show="loading" :description="description">
-            <component :is="Component" />
-          </n-spin>
-        </n-message-provider>
-      </transition>
+      <!-- <transition name="fade"> -->
+      <n-message-provider>
+        <component :is="Component" />
+      </n-message-provider>
+      <!-- </transition> -->
     </router-view>
     <div class="background">
       <span></span>

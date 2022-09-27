@@ -29,8 +29,8 @@ export const userDataStore = defineStore("userData", {
   actions: {
     getuserdata(userid: string) {
       //   const axios = require("axios");
-      this.description = "Fetching user data";
-      this.loading = true;
+      // this.$patch({ description: "Fetching user data..." });
+      // this.$patch({ loading: true });
       console.log("Fetching user data", this.$state.loading);
       const repsonse = this.api
         .post(`/api/UserData/get`, {
@@ -45,14 +45,16 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
-      this.loading = false;
-      this.description = "";
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      console.log("Fetching user data", this.$state.loading);
       return repsonse;
     },
     setuserdata() {
-      this.description = "Saving user data";
-      this.loading = true;
-      console.log(this.attributes.attributes[0].attribute.value);
+      // this.$patch({ description: "Saving user data..." });
+      // this.$patch({ loading: true });
+      // console.log("Saving user data", this.$state.loading);
+      // console.log(this.attributes.attributes[0].attribute.value);
       const response = this.api
         .post(`/api/UserData/update`, {
           id: this.user.id,
@@ -67,11 +69,17 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
           throw error;
         });
-      this.loading = false;
-      this.description = "";
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      console.log("Fetching user data", this.$state.loading);
+
       return response;
     },
     createUser(id: string) {
+      // this.$patch({ description: "Creating user..." });
+      // this.$patch({ loading: true });
+      // console.log("Creating user data", this.$state.loading);
+
       const response = this.api
         .post("/api/UserData/create", {
           id: id,
@@ -85,6 +93,9 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      // console.log("Fetching user data", this.$state.loading);
       return response;
     },
     sync() {

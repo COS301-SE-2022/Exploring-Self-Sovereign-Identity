@@ -14,6 +14,7 @@ export default defineComponent({
   },
   setup() {
     const appid = import.meta.env.VITE_APP_ID;
+    // const appid = import.meta.env.VITE_TEST_ID;
     const userData = userDataStore();
 
     return { appid, userData };

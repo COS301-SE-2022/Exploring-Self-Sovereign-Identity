@@ -1,6 +1,6 @@
 <script lang="ts">
 import BackNav from "../components/Nav/BackNav.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { userDataStore } from "@/stores/userData";
 import { Add } from "@vicons/ionicons5";
 import { useMessage } from "naive-ui";
@@ -9,8 +9,10 @@ export default defineComponent({
   setup() {
     const userData = userDataStore();
     const message = useMessage();
+    const loading = ref(false);
+    const description = ref("Saving user data...");
 
-    return { userData, message };
+    return { userData, message, loading, description };
   },
   data() {
     return {
@@ -41,6 +43,7 @@ export default defineComponent({
     },
 
     async submitForm() {
+      this.loading = true;
       this.saving;
 
       await this.userData
@@ -54,6 +57,7 @@ export default defineComponent({
           this.message.error("could not save information");
         });
       this.change = false;
+      this.loading = false;
     },
     goBack() {
       this.$router.back();
@@ -79,93 +83,104 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- * Naive tabs -->
-  <n-tabs type="bar" size="large" justify-content="space-evenly">
-    <n-tab-pane name="Attributes">
-      <n-input-group
-        v-for="(att, index) in userData.$state.attributes.attributes"
-        :key="att.attribute.name"
-        data-test-id="attribute"
-      >
-        <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
-        <n-input
+  <n-spin>
+    <!-- * Naive tabs -->
+    <n-tabs type="bar" size="large" justify-content="space-evenly">
+      <n-tab-pane name="Attributes">
+        <n-input-group
+          v-for="(att, index) in userData.$state.attributes.attributes"
           :key="att.attribute.name"
-          :default-value="att.attribute.value"
-          @change="changeAtt(index, $event)"
-        ></n-input>
-      </n-input-group>
-
-      <n-space justify="center" size="small" class="space" item-style="object">
-        <n-button
-          strong
-          secondary
-          circle
-          type="primary"
-          size="large"
-          @click="showMod"
-          class="button"
+          data-test-id="attribute"
         >
-          Add Attribute
-          <template #icon>
-            <n-icon><Add /></n-icon>
-          </template>
-        </n-button>
-        <n-collapse-transition :show="change" :appear="true">
+          <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
+          <n-input
+            :key="att.attribute.name"
+            :default-value="att.attribute.value"
+            @change="changeAtt(index, $event)"
+          ></n-input>
+        </n-input-group>
+
+        <n-space
+          justify="center"
+          size="small"
+          class="space"
+          item-style="object"
+        >
           <n-button
             strong
             secondary
             circle
             type="primary"
             size="large"
-            @click="submitForm"
+            @click="showMod"
             class="button"
           >
-            Save
+            Add Attribute
+            <template #icon>
+              <n-icon><Add /></n-icon>
+            </template>
           </n-button>
-        </n-collapse-transition>
-      </n-space>
-    </n-tab-pane>
+          <n-collapse-transition :show="change" :appear="true">
+            <n-button
+              strong
+              secondary
+              circle
+              type="primary"
+              size="large"
+              @click="submitForm"
+              class="button"
+            >
+              Save
+            </n-button>
+          </n-collapse-transition>
+        </n-space>
+      </n-tab-pane>
 
-    <n-tab-pane name="Credentials">
-      <n-collapse accordion>
-        <n-collapse-item
-          v-for="cred in userData.getCredentials"
-          :key="cred.organization"
-          :title="cred.organization"
-        >
-          <n-input-group
-            v-for="att in cred.attributes"
-            :key="att.name"
-            data-test-id="attribute"
+      <n-tab-pane name="Credentials">
+        <n-collapse accordion>
+          <n-collapse-item
+            v-for="cred in userData.getCredentials"
+            :key="cred.organization"
+            :title="cred.organization"
           >
-            <n-input-group-label>{{ att.name }}</n-input-group-label>
-            <n-input :value="att.value" v-model="att.value"></n-input>
-          </n-input-group>
-        </n-collapse-item>
-      </n-collapse>
-    </n-tab-pane>
-  </n-tabs>
+            <n-input-group
+              v-for="att in cred.attributes"
+              :key="att.name"
+              data-test-id="attribute"
+            >
+              <n-input-group-label>{{ att.name }}</n-input-group-label>
+              <n-input :value="att.value" v-model="att.value"></n-input>
+            </n-input-group>
+          </n-collapse-item>
+        </n-collapse>
+      </n-tab-pane>
+    </n-tabs>
 
-  <!-- *Modal -->
-  <n-modal
-    v-model:show="showModal"
-    preset="dialog"
-    title="Add attribute"
-    positive-text="Add"
-    negative-text="Cancel"
-    @positive-click="addAtt"
-  >
-    <n-space vertical>
-      <n-input v-model:value="name" type="text" placeholder="Attribute name" />
-      <n-input
-        v-model:value="value"
-        type="text"
-        placeholder="Attribute value"
-      />
-    </n-space>
-  </n-modal>
-  <!-- * -->
-  <BackNav page="Profile" />
+    <!-- *Modal -->
+    <n-modal
+      v-model:show="showModal"
+      preset="dialog"
+      title="Add attribute"
+      positive-text="Add"
+      negative-text="Cancel"
+      @positive-click="addAtt"
+    >
+      <n-space vertical>
+        <n-input
+          v-model:value="name"
+          type="text"
+          placeholder="Attribute name"
+        />
+        <n-input
+          v-model:value="value"
+          type="text"
+          placeholder="Attribute value"
+        />
+      </n-space>
+    </n-modal>
+    <!-- * -->
+    <BackNav page="Profile" />
+  </n-spin>
 </template>
 
 <style lang="scss">
