@@ -8,6 +8,7 @@ import RequestDataViewVue from "@/views/RequestDataView.vue";
 import TransactionViewVue from "@/views/TransactionView.vue";
 import PastTransactionsVue from "@/views/PastTransactions.vue";
 import AvatarViewVue from "@/views/AvatarView.vue";
+import MarketViewVue from "@/views/MarketView.vue";
 
 import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 
@@ -22,14 +23,9 @@ const routes = [
     component: TransactionViewVue,
     props: (route: { query: { c: unknown } }) => ({ index: route.query.c }),
   },
-  {
-    path: "/past",
-    component: PastTransactionsVue,
-  },
-  {
-    path: "/avatar",
-    component: AvatarViewVue,
-  },
+  { path: "/past", component: PastTransactionsVue },
+  { path: "/avatar", component: AvatarViewVue },
+  { path: "/market", component: MarketViewVue },
 ];
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
