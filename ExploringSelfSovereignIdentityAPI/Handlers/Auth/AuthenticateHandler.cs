@@ -1,4 +1,5 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Commands.Auth;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Services.Auth;
 using MediatR;
 using System.Threading;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Handlers.Auth
 {
-    public class AuthenticateHandler : IRequestHandler<AuthCommand, string>
+    public class AuthenticateHandler : IRequestHandler<AuthCommand, AuthenticateResponse>
     {
         private readonly IAuthService _service;
 
@@ -14,7 +15,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Auth
         {
             _service = service;
         }
-        public async Task<string> Handle(AuthCommand request, CancellationToken cancellationToken)
+        public async Task<AuthenticateResponse> Handle(AuthCommand request, CancellationToken cancellationToken)
         {
 
             return await _service.Authenticate(request);

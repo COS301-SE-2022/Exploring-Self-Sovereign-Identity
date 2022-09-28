@@ -1,6 +1,9 @@
-﻿namespace ExploringSelfSovereignIdentityAPI.Commands.Auth
+﻿using ExploringSelfSovereignIdentityAPI.Models.Response;
+using MediatR;
+
+namespace ExploringSelfSovereignIdentityAPI.Commands.Auth
 {
-    public class AuthCommand
+    public class AuthCommand : IRequest<AuthenticateResponse>
     {
         public string userId { get; set; }
 
