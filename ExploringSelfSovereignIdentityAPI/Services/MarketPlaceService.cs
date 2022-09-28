@@ -172,7 +172,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
                 AllOrganizationResponse2 p = new AllOrganizationResponse2();
 
-                if (p.Id == "") continue;
+                if (temp.ReturnValue1[i].Organization == "") continue;
 
                 p.Id = temp.ReturnValue1[i].Id;
                 p.PricePerUnit = (int) temp.ReturnValue1[i].PricePerUnit;
