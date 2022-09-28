@@ -30,5 +30,10 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
         {
             return null;
         }
+
+        private bool isKeyValid(String key)
+        {
+            return false;
+        }
     }
 }
