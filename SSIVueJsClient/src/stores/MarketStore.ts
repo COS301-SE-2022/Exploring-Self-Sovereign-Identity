@@ -41,6 +41,7 @@ export const marketStore = defineStore("market", () => {
   }
 
   async function get() {
+    console.log("Fetching market data", userData.user.id);
     const response = api
       .post("/api/MarketPlace/getAllOrganizations", {
         id: userData.user.id,
@@ -49,7 +50,7 @@ export const marketStore = defineStore("market", () => {
         markets = response.data.returnValue1;
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       });
     return response;
   }
