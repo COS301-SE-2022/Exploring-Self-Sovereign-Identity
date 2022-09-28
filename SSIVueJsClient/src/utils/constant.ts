@@ -134,9 +134,6 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       glasses: {
         shape: NONE,
       },
-      mouth: {
-        shape: MouthShape.Laughing,
-      },
       beard: {
         shape: NONE,
       },
