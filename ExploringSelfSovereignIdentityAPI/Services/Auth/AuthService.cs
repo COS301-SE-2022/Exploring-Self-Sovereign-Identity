@@ -55,7 +55,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
                 expires: DateTime.Now.AddSeconds(15),
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token); 
         }
 
         private bool isKeyValid(String key)

@@ -4,11 +4,13 @@ using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using System;
 using ExploringSelfSovereignIdentityAPI.Services.blockChain;
 using ExploringSelfSovereignIdentityAPI.Models.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserDataController : Controller
     {
 
