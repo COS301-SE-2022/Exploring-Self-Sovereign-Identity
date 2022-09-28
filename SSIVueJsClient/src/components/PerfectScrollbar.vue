@@ -8,10 +8,10 @@ import { defineComponent, type PropType } from 'vue'
 import PerfectScrollbar from 'perfect-scrollbar'
 import { onMounted, onUnmounted, ref } from 'vue'
 export default defineComponent({
-  props : {
+  props: {
     options: {
-      type: Object as PropType<PerfectScrollbar.Options>
-    }
+      type: Object as PropType<PerfectScrollbar.Options>,
+    },
   },
   setup(props) {
     //const props = defineProps<{ options?: PerfectScrollbar.Options }>()
