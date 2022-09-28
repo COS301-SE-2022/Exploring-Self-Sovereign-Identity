@@ -27,7 +27,7 @@
 <script lang="ts">
 import { ref, toRefs, watchEffect, type PropType } from 'vue'
 import { defineComponent } from 'vue'
-import { WidgetType, WrapperShape } from '@/enums'
+import { WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
 import { getRandomAvatarOption } from '@/utils'
 import { AVATAR_LAYER, NONE } from '@/utils/constant'
@@ -39,16 +39,17 @@ export interface VueColorAvatarRef {
 }
 export default defineComponent({
   props: {
-      option : {
+    option: {
       type: Object as PropType<AvatarOption>,
       default: () => ({
-        value: () => getRandomAvatarOption()
-      })
+        value: () => getRandomAvatarOption(),
+      }),
     },
-    size : {
+    size: {
       type: Object as PropType<number>,
-      default: 280
-    }
+      // eslint-disable-next-line vue/require-valid-default-prop
+      default: 280,
+    },
   },
   setup(props, { expose }) {
     //const props = propsG;
@@ -71,7 +72,7 @@ export default defineComponent({
 
     //defineExpose({ avatarRef })
 
-    expose({avatarRef})
+    expose({ avatarRef })
 
     function getWrapperShapeClassName() {
       return {
@@ -89,8 +90,14 @@ export default defineComponent({
     watchEffect(async () => {
       const sortedList = Object.entries(avatarOption.value.widgets).sort(
         ([prevShape, prev], [nextShape, next]) => {
-          const ix = prev.zIndex ?? AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
-          const iix = next.zIndex ?? AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ?? 0
+          const ix =
+            prev.zIndex ??
+            AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ??
+            0
+          const iix =
+            next.zIndex ??
+            AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ??
+            0
           return ix - iix
         }
       )
@@ -103,8 +110,15 @@ export default defineComponent({
 
       const promises: Promise<string>[] = sortedList.map(
         async ([widgetType, opt]) => {
-          if (opt.shape !== NONE && widgetData?.[widgetType as keyof typeof widgetData]?.[opt.shape]) {
-            return (await widgetData[widgetType as keyof typeof widgetData][opt.shape]()).default
+          if (
+            opt.shape !== NONE &&
+            widgetData?.[widgetType as keyof typeof widgetData]?.[opt.shape]
+          ) {
+            return (
+              await widgetData[widgetType as keyof typeof widgetData][
+                opt.shape
+              ]()
+            ).default
           }
           return ''
         }
@@ -112,7 +126,7 @@ export default defineComponent({
 
       const svgRawList = await Promise.all(promises).then((raw) => {
         return raw.map((svgRaw, i) => {
-          const widgetFillColor = sortedList[i][1].fillColor
+          //const widgetFillColor = sortedList[i][1].fillColor
 
           const content = svgRaw
             .slice(svgRaw.indexOf('>', svgRaw.indexOf('<svg')) + 1)
