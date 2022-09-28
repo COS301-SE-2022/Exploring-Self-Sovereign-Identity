@@ -38,6 +38,7 @@ declare module '@vue/runtime-core' {
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']
     NDynamicInput: typeof import('naive-ui')['NDynamicInput']
+    NEmpty: typeof import('naive-ui')['NEmpty']
     NGi: typeof import('naive-ui')['NGi']
     NGrid: typeof import('naive-ui')['NGrid']
     NIcon: typeof import('naive-ui')['NIcon']
