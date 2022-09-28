@@ -25,21 +25,20 @@
 </template>
 
 <script lang="ts">
-import { emit } from 'process';
+import { emit } from 'process'
 import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
-  props : {
-    visible : {
-      type: Object as PropType<boolean>
+  props: {
+    visible: {
+      type: Object as PropType<boolean>,
     },
-    imageUrl : {
-      type: Object as PropType<string>
-    }
+    imageUrl: {
+      type: Object as PropType<string>,
+    },
   },
-  emits : ["close"],
-  setup(props, {emit}) {
+  emits: ['close'],
+  setup(props, { emit }) {
     //const props = defineProps<{ visible?: boolean; imageUrl: string }>()
-
     // const emit = defineEmits<{
     //   (e: 'close'): void
     // }>()
