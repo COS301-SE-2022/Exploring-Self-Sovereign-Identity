@@ -93,6 +93,28 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         }
 
 
+        [TestMethod]
+        public async Task TestDeclineTransaction()
+        {
+            string userId = "aaa";
+            int index = -1;
+
+            try
+            {
+                string res = await _userDataService.declineTransaction(userId, index);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(string));
+                Assert.AreEqual(res, "success");
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
 
 
 
@@ -117,6 +139,9 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             }
 
         }
+
+
+
 
 
         [TestMethod]
