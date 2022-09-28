@@ -10,9 +10,9 @@ export default defineComponent({
     const cred = ref("");
 
     const userData = userDataStore();
-    const options = ref([""]);
-    for (let x in userData.$state.user.credentials)
-      options.value.push(userData.$state.user.credentials[x].organization);
+    const options = ref([] as { label: string; value: string }[]);
+    for (let x of userData.getCredentials)
+      options.value.push({ label: x.organization, value: x.organization });
     return { otp, loading, description, cred, userData, options };
   },
   methods: {

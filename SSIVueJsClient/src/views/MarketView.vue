@@ -86,7 +86,9 @@ export default defineComponent({
         };
       });
       await this.market.approve(org, id, atts).then(() => {
-        this.$router.go(0);
+        this.market.get().then(() => {
+          this.loading = false;
+        });
       });
       // *
     },
