@@ -107,11 +107,6 @@ export function getRandomAvatarOption(
           avoid: [useOption.widgets?.eyes?.shape],
         }),
       },
-      nose: {
-        shape: getRandomValue(SETTINGS.noseShape, {
-          avoid: [useOption.widgets?.nose?.shape],
-        }),
-      },
       glasses: {
         shape: getRandomValue<GlassesShape | None>(SETTINGS.glassesShape, {
           usually: [NONE],
