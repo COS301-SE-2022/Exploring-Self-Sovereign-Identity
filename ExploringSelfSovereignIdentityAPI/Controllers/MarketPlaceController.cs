@@ -46,9 +46,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 
         [HttpPost]
         [Route("getAllOrganizations")]
-        public async Task<GetAllOrganizationsOutputDTO2> getAll()
+        public async Task<GetAllOrganizationsOutputDTO2> getAll([FromBody] RegisterRequest request)
         {
-            return await mps.getAllOrganizations();
+            return await mps.getAllOrganizations(request.id);
         }
     }
 }

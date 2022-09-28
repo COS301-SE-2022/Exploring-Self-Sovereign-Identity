@@ -202,7 +202,7 @@ contract MarketPlace {
         return ret;
     }
 
-    function getAllOrganizations() public view returns (AllOrganizationResponse[] memory) {
+    function getAllOrganizations(string memory id) public view returns (AllOrganizationResponse[] memory) {
         AllOrganizationResponse[] memory ret = new AllOrganizationResponse[](packTotal);
 
         string memory oName;
@@ -213,6 +213,19 @@ contract MarketPlace {
             uint size = allOrganizations[oName].packCount;
 
             for (uint k=0; k<size; k++) {
+
+                bool flag = false;
+
+                for (uint kl=0; kl<allOrganizations[oName].packs[k].receivedAttributeCount; kl++) {
+                    if (stringCompare(allOrganizations[oName].packs[k].receivedAttributes[kl].userID, id)) {
+                        flag = true;
+                    }
+                }
+
+                if (flag) {
+                    continue;
+                }
+
                 ret[k].organization = allOrganizations[oName].id;
                 ret[k].id = allOrganizations[oName].packs[k].id;
                 ret[k].pricePerUnit = allOrganizations[oName].packs[k].pricePerUnit;
