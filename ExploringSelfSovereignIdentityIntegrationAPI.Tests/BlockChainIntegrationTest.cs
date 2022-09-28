@@ -18,7 +18,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             _blockChainService = new BlockchainService();
         }
 
-        [TestMethod]
+/*        [TestMethod]
         public async Task TestCreateUser()
         {
             string userId = "aaa";
@@ -57,6 +57,6 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
             Assert.IsNotNull(res);
             Assert.AreEqual("success", res);
-        }
+        }*/
     }
 }
