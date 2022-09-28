@@ -6,7 +6,6 @@ import Footer from '@/components/Footer.vue'
 import { ref, watchEffect } from 'vue'
 import ActionBar from '@/components/ActionBar.vue'
 import Configurator from '@/components/Configurator.vue'
-import CodeModal from '@/components/Modal/CodeModal.vue'
 import DownloadModal from '@/components/Modal/DownloadModal.vue'
 import type VueColorAvatar from '../components/VueColorAvatar.vue'
 import type { VueColorAvatarRef } from '../components/VueColorAvatar.vue'
@@ -81,7 +80,7 @@ export default defineComponent({
           } else {
             const trigger = document.createElement('a')
             trigger.href = dataURL
-            //trigger.download = `${appName}.png`
+            trigger.download = `MiDentityAvatar.png`
             trigger.click()
           }
         }
@@ -176,7 +175,7 @@ export default defineComponent({
                 class="action-btn action-randomize"
                 @click="handleGenerate"
               >
-                {{ 'action.randomize' }}
+                {{ 'Randomize' }}
               </button>
 
               <button
@@ -185,9 +184,7 @@ export default defineComponent({
                 :disabled="downloading"
                 @click="handleDownload"
               >
-                {{
-                  downloading ? `${'action.downloading'}...` : 'action.download'
-                }}
+                {{ downloading ? `${'Downloading'}...` : 'Download' }}
               </button>
             </div>
           </div>
@@ -200,8 +197,6 @@ export default defineComponent({
             @close=";(downloadModalVisible = false), (imageDataURL = '')"
           />
         </div>
-
-        <ConfettiCanvas />
 
         <div class="gradient-bg">
           <div class="gradient-top"></div>
