@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Handlers.Auth
 {
-    public class AuthenticateHandler : IRequestHandler<AuthCommand, AuthenticateResponse>
+    public class AuthenticateHandler : IRequestHandler<AuthenticateCommand, AuthenticateResponse>
     {
         private readonly IAuthService _service;
 
@@ -15,7 +15,7 @@ namespace ExploringSelfSovereignIdentityAPI.Handlers.Auth
         {
             _service = service;
         }
-        public async Task<AuthenticateResponse> Handle(AuthCommand request, CancellationToken cancellationToken)
+        public async Task<AuthenticateResponse> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
         {
 
             return await _service.Authenticate(request);
