@@ -87,18 +87,26 @@ export default defineComponent({
     <!-- * Naive tabs -->
     <n-tabs type="bar" size="large" justify-content="space-evenly">
       <n-tab-pane name="Attributes">
-        <n-input-group
-          v-for="(att, index) in userData.$state.attributes.attributes"
-          :key="att.attribute.name"
-          data-test-id="attribute"
-        >
-          <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
-          <n-input
+        <n-card>
+          <n-empty
+            v-if="userData.getAttributes.length == 0"
+            size="large"
+            description="No attributes to be shown..."
+          ></n-empty>
+          <n-input-group
+            v-else
+            v-for="(att, index) in userData.$state.attributes.attributes"
             :key="att.attribute.name"
-            :default-value="att.attribute.value"
-            @change="changeAtt(index, $event)"
-          ></n-input>
-        </n-input-group>
+            data-test-id="attribute"
+          >
+            <n-input-group-label>{{ att.attribute.name }}</n-input-group-label>
+            <n-input
+              :key="att.attribute.name"
+              :default-value="att.attribute.value"
+              @change="changeAtt(index, $event)"
+            ></n-input>
+          </n-input-group>
+        </n-card>
 
         <n-space
           justify="center"
@@ -137,22 +145,29 @@ export default defineComponent({
       </n-tab-pane>
 
       <n-tab-pane name="Credentials">
-        <n-collapse accordion>
-          <n-collapse-item
-            v-for="cred in userData.getCredentials"
-            :key="cred.organization"
-            :title="cred.organization"
-          >
-            <n-input-group
-              v-for="att in cred.attributes"
-              :key="att.name"
-              data-test-id="attribute"
+        <n-card>
+          <n-empty
+            v-if="userData.getCredentials.length == 0"
+            size="large"
+            description="No credentials to be shown..."
+          ></n-empty>
+          <n-collapse v-else accordion>
+            <n-collapse-item
+              v-for="cred in userData.getCredentials"
+              :key="cred.organization"
+              :title="cred.organization"
             >
-              <n-input-group-label>{{ att.name }}</n-input-group-label>
-              <n-input :value="att.value" v-model="att.value"></n-input>
-            </n-input-group>
-          </n-collapse-item>
-        </n-collapse>
+              <n-input-group
+                v-for="att in cred.attributes"
+                :key="att.name"
+                data-test-id="attribute"
+              >
+                <n-input-group-label>{{ att.name }}</n-input-group-label>
+                <n-input :value="att.value" v-model="att.value"></n-input>
+              </n-input-group>
+            </n-collapse-item>
+          </n-collapse>
+        </n-card>
       </n-tab-pane>
     </n-tabs>
 

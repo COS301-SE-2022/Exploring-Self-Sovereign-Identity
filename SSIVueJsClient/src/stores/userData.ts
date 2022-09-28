@@ -145,17 +145,13 @@ export interface User {
       // index: number;
     }
   ];
-  credentials: [
-    {
-      organization: string;
-      attributes: [
-        {
-          name: string;
-          value: string;
-        }
-      ];
-    }
-  ];
+  credentials: {
+    organization: string;
+    attributes: {
+      name: string;
+      value: string;
+    }[];
+  }[];
   transactionRequests: {
     attributes: string;
     stamp: {
