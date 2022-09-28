@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     goback() {
-      //this.$router.back()
+      this.$router.back();
     },
   },
 };
