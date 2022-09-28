@@ -7,6 +7,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
     public interface IAuthService
     {
 
-        Task<AuthenticateResponse> Authenticate(AuthCommand request);
+        Task<AuthenticateResponse> Authenticate(AuthenticateCommand request);
     }
 }
