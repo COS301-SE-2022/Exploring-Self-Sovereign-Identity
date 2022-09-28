@@ -16,7 +16,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
         {
             var user = _userDataService.getUserData(request.userId);
 
-            if (user == null )
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            if (!isKeyValid(request.apiKey))
             {
                 throw new Exception("User not found");
             }
@@ -33,7 +38,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
 
         private bool isKeyValid(String key)
         {
-            return false;
+            return key == _config["apiKey"];
         }
     }
 }
