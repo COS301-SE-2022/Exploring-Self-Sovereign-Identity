@@ -14,8 +14,6 @@
   </div>
 </template>
 
-
-
 <!-- <script setup lang="ts">
     const propsG = withDefaults(defineProps<{
       option: AvatarOption
@@ -53,7 +51,6 @@ export default defineComponent({
     }
   },
   setup(props, { expose }) {
-
     //const props = propsG;
 
     // interface VueColorAvatarProps {
@@ -67,8 +64,6 @@ export default defineComponent({
     // })
 
     // const { option: avatarOption, size: avatarSize } = toRefs(props)
-
-    
 
     const { option: avatarOption, size: avatarSize } = toRefs(props)
 
