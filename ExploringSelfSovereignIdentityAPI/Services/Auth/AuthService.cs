@@ -2,7 +2,11 @@
 using ExploringSelfSovereignIdentityAPI.Models.Response;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.Auth
@@ -23,17 +27,35 @@ namespace ExploringSelfSovereignIdentityAPI.Services.Auth
 
             if (!isKeyValid(request.apiKey))
             {
-                throw new Exception("User not found");
+                throw new Exception("Invalid key");
             }
 
-            return null;
+            AuthenticateResponse response = new AuthenticateResponse();
+
+            response.token = generateToken(request.userId);
+
+            return response;
 
 
         }
 
         private string generateToken(String userId)
         {
-            return null;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, userId)
+            };
+
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                _config["Jwt:Audiance"],
+                claims,
+                expires: DateTime.Now.AddSeconds(15),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token); 
         }
 
         private bool isKeyValid(String key)

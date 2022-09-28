@@ -3,7 +3,7 @@ import { userDataStore } from "@/stores/userData";
 import axios from "axios";
 import { computed, reactive, ref } from "vue";
 
-export const transactionsStore = defineStore("transactions", () => {
+export const marketStore = defineStore("market", () => {
   const api = axios.create({
     baseURL: "https://ssi-api.azurewebsites.net",
     timeout: 20000,
@@ -17,7 +17,10 @@ export const transactionsStore = defineStore("transactions", () => {
   async function approve(
     organization: string,
     dataPackID: string,
-    attributes: string[]
+    attributes: {
+      name: string;
+      value: string;
+    }[]
   ) {
     const response = api
       .post("/api/MarketPlace/buyData", {
@@ -43,7 +46,7 @@ export const transactionsStore = defineStore("transactions", () => {
         id: userData.user.id,
       })
       .then((response) => {
-        markets = response.data;
+        markets = response.data.returnValue1;
       })
       .catch((error) => {
         console.log(error);
@@ -58,10 +61,9 @@ export const transactionsStore = defineStore("transactions", () => {
 });
 
 export interface Market {
-  returnValue1: {
-    organization: string;
-    id: string;
-    pricePerUnit: number;
-    attributes: string[];
-  }[];
+  organization: string;
+  id: string;
+  pricePerUnit: number;
+  attributes: string[];
 }
+[];
