@@ -36,7 +36,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.getUserData(request.id);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost]
         [Route("update")]
         public async Task<GetUserDataOutputDTO2> UpdateCredentials([FromBody] UpdateGen2 request )
@@ -46,7 +46,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         //Transactions
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost]
         [Route("newTransaction")]
         public async Task<String> newTransaction([FromBody] TransactionRequest request)
@@ -54,7 +54,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.newTransactionRequest(request);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost]
         [Route("approveTransaction")]
         public async Task<String> approveTransaction([FromBody] ApproveTransactionRequest request)
@@ -62,7 +62,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.approveTransaction(request.id, request.index);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost]
         [Route("declineTransaction")]
         public async Task<String> declineTransaction([FromBody] ApproveTransactionRequest request)
