@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ExploringSelfSovereignIdentityAPI.Commands.Auth
 {
-    public class AuthCommand : IRequest<AuthenticateResponse>
+    public class AuthenticateCommand : IRequest<AuthenticateResponse>
     {
         public string userId { get; set; }
 
