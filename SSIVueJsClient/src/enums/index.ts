@@ -47,24 +47,27 @@ export enum TopsShape {
   Turban = 'turban',
   Pixie = 'pixie',
   Beanie = 'beanie',
+  None = 'none', 
 }
 
 export enum EarShape {
   Attached = 'attached',
   Detached = 'detached',
+  None = 'none', 
 }
 
 export enum EarringsShape {
   Hoop = 'hoop',
   Stud = 'stud',
+  Detached = 'detached',
   None = 'none',
 }
 
 export enum EyebrowsShape {
   Up = 'up',
-  Down = 'down',
   Eyelashesup = 'eyelashesup',
   Eyelashesdown = 'eyelashesdown',
+  None = 'none',
 }
 
 export enum EyesShape {
@@ -72,18 +75,19 @@ export enum EyesShape {
   Smiling = 'smiling',
   Eyeshadow = 'eyeshadow',
   Round = 'round',
+  None = 'none', 
 }
 
 
 export enum MouthShape {
   Frown = 'frown',
-  Laughing = 'laughing',
   Nervous = 'nervous',
   Pucker = 'pucker',
   Sad = 'sad',
   Smile = 'smile',
   Smirk = 'smirk',
   Surprised = 'surprised',
+  None = 'none', 
 }
 
 export enum BeardShape {
