@@ -19,6 +19,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Connector.OAuth;
 using System.Reflection;
+using ExploringSelfSovereignIdentityAPI.Services.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace exploring_self_sovereign_identity_api
 {
@@ -35,7 +39,28 @@ namespace exploring_self_sovereign_identity_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOAuthServiceOptions(Configuration);
+
+            //Authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audiance"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+
+                    };
+                });
+
+            services.AddMvc();
             services.AddControllers();
+
+            //Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "exploring_self_sovereign_identity_api", Version = "v1" });
@@ -45,7 +70,7 @@ namespace exploring_self_sovereign_identity_api
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
 
-            //Adding my service
+            //Services
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddTransient<ISessionRepository, SessionRepository>();
@@ -56,10 +81,11 @@ namespace exploring_self_sovereign_identity_api
             services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.UserDataService.IUserDataService, UserdataService>();
             services.AddTransient<IBlockchainService, BlockchainService>();
             services.AddTransient<ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.IUserDataService, UserDataService>();
+            services.AddTransient<IAuthService, AuthService>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             //services.AddScoped(typeof(IUniversityRepository), typeof(UniversitySqlServerRepository));
 
-
+            //Cors
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -82,12 +108,18 @@ namespace exploring_self_sovereign_identity_api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "exploring_self_sovereign_identity_api"));
             }
+
+            //Cors
             app.UseCors(app =>
             {
                 app.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
             });
+
+            //Auth
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHttpsRedirection();
             app.UseRouting();
