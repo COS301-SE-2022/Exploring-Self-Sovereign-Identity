@@ -10,7 +10,6 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UserDataController : Controller
     {
 
@@ -21,6 +20,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             this.uds = uds;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("create")]
         public async Task<string> Register([FromBody] RegisterRequest request)
@@ -28,6 +28,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.createUser(request.id);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("get")]
         public async Task<GetUserDataOutputDTO2> GetUserData([FromBody] RegisterRequest request)
@@ -35,6 +36,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.getUserData(request.id);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("update")]
         public async Task<GetUserDataOutputDTO2> UpdateCredentials([FromBody] UpdateGen2 request )
@@ -44,6 +46,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
 
         //Transactions
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("newTransaction")]
         public async Task<String> newTransaction([FromBody] TransactionRequest request)
@@ -51,6 +54,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.newTransactionRequest(request);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("approveTransaction")]
         public async Task<String> approveTransaction([FromBody] ApproveTransactionRequest request)
@@ -58,6 +62,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers.UserData
             return await uds.approveTransaction(request.id, request.index);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("declineTransaction")]
         public async Task<String> declineTransaction([FromBody] ApproveTransactionRequest request)
