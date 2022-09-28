@@ -8,7 +8,6 @@ import {
   FaceShape,
   GlassesShape,
   MouthShape,
-  NoseShape,
   TopsShape,
   WidgetType,
 } from '../enums'
@@ -24,6 +23,11 @@ type Data = Readonly<{
 const widgetData: Data = {
   [WidgetType.Face]: {
     [FaceShape.Base]: () => import(`../assets/widgets/face/base.svg?raw`),
+    [FaceShape.Purple]: () => import(`../assets/widgets/face/purple.svg?raw`),
+    [FaceShape.Brown]: () => import(`../assets/widgets/face/brown.svg?raw`),
+    [FaceShape.Black]: () => import(`../assets/widgets/face/black.svg?raw`),
+
+
   },
 
   [WidgetType.Ear]: {
@@ -88,12 +92,6 @@ const widgetData: Data = {
       import(`../assets/widgets/mouth/surprised.svg?raw`),
   },
 
-  [WidgetType.Nose]: {
-    [NoseShape.Curve]: () => import(`../assets/widgets/nose/curve.svg?raw`),
-    [NoseShape.Pointed]: () => import(`../assets/widgets/nose/pointed.svg?raw`),
-    [NoseShape.Round]: () => import(`../assets/widgets/nose/round.svg?raw`),
-  },
-
   [WidgetType.Tops]: {
     [TopsShape.Beanie]: () => import(`../assets/widgets/tops/beanie.svg?raw`),
     [TopsShape.Clean]: () => import(`../assets/widgets/tops/clean.svg?raw`),
@@ -110,6 +108,9 @@ const widgetData: Data = {
 const previewData: Data = {
   [WidgetType.Face]: {
     [FaceShape.Base]: () => import(`../assets/preview/face/base.svg?raw`),
+    [FaceShape.Purple]: () => import(`../assets/widgets/face/purple.svg?raw`),
+    [FaceShape.Brown]: () => import(`../assets/widgets/face/brown.svg?raw`),
+    [FaceShape.Black]: () => import(`../assets/widgets/face/black.svg?raw`),
   },
 
   [WidgetType.Ear]: {
@@ -172,12 +173,6 @@ const previewData: Data = {
     [MouthShape.Smirk]: () => import(`../assets/preview/mouth/smirk.svg?raw`),
     [MouthShape.Surprised]: () =>
       import(`../assets/preview/mouth/surprised.svg?raw`),
-  },
-
-  [WidgetType.Nose]: {
-    [NoseShape.Curve]: () => import(`../assets/preview/nose/curve.svg?raw`),
-    [NoseShape.Pointed]: () => import(`../assets/preview/nose/pointed.svg?raw`),
-    [NoseShape.Round]: () => import(`../assets/preview/nose/round.svg?raw`),
   },
 
   [WidgetType.Tops]: {
