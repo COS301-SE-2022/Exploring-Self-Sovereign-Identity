@@ -259,9 +259,8 @@ export default defineComponent({
 .configurator-scroll {
   width: var.$layout-sider-width;
   height: 100%;
-
   @media screen and (max-width: var.$screen-lg) {
-    background-color: var.$color-configurator;
+    background-color: var.$color-configurator; 
   }
 }
 
