@@ -6,7 +6,7 @@ import type { MenuOption } from "naive-ui";
 import { defineComponent, h, ref, type Component } from "vue";
 import { RouterLink } from "vue-router";
 import { Home, UserAvatar, NewTab, Store } from "@vicons/carbon";
-import { PendingActionsRound } from "@vicons/material";
+import { PendingActionsRound, PinFilled } from "@vicons/material";
 
 export default defineComponent({
   setup() {
@@ -78,6 +78,19 @@ export default defineComponent({
           ),
         key: "Market",
         icon: renderIcon(Store),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/otp",
+              name: "OTP",
+            },
+            { default: () => "OTP" }
+          ),
+        key: "OTP",
+        icon: renderIcon(PinFilled),
       },
     ] as MenuOption[];
     return { renderIcon, menuOptions };
