@@ -1,6 +1,6 @@
-﻿namespace ExploringSelfSovereignIdentityAPI.Models.Request
+﻿namespace ExploringSelfSovereignIdentityAPI.Commands.Auth
 {
-    public class AuthRequest
+    public class AuthCommand
     {
         public string userId { get; set; }
 
