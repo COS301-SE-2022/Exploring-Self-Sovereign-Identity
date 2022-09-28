@@ -1,19 +1,93 @@
 <script lang="ts">
 import { MenuOutline } from "@vicons/ionicons5";
 import { ArrowBackOutline } from "@vicons/ionicons5";
+import { NIcon } from "naive-ui";
+import type { MenuOption } from "naive-ui";
+import { defineComponent, h, ref, type Component } from "vue";
+import { RouterLink } from "vue-router";
+import { Home, UserAvatar, NewTab } from "@vicons/carbon";
+import { PendingActionsRound } from "@vicons/material";
 
-export default {
+export default defineComponent({
+  setup() {
+    function renderIcon(icon: Component) {
+      return () => h(NIcon, null, { default: () => h(icon) });
+    }
+    const menuOptions = [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/home",
+              name: "Home",
+            },
+            { default: () => "Home" }
+          ),
+        key: "home",
+        icon: renderIcon(Home),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/profile",
+              name: "Profile",
+            },
+            { default: () => "Profile" }
+          ),
+        key: "Profile",
+        icon: renderIcon(UserAvatar),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/pending",
+              name: "Pending",
+            },
+            { default: () => "Pending" }
+          ),
+        key: "Pending",
+        icon: renderIcon(PendingActionsRound),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/request",
+              name: "Request",
+            },
+            { default: () => "Request" }
+          ),
+        key: "Request",
+        icon: renderIcon(NewTab),
+      },
+    ] as MenuOption[];
+    return { renderIcon, menuOptions };
+  },
   props: ["page"],
   components: {
     MenuOutline,
     ArrowBackOutline,
   },
+  data() {
+    return {
+      active: ref(false),
+    };
+  },
   methods: {
     goback() {
       this.$router.back();
     },
+    show() {
+      this.active = true;
+    },
   },
-};
+});
 </script>
 
 <template>
@@ -33,8 +107,13 @@ export default {
       </template>
       <template #extra>
         <n-icon size="30" color="white">
-          <MenuOutline />
+          <MenuOutline @click="show" />
         </n-icon>
+        <n-drawer v-model:show="active" width="50vw" placement="right">
+          <n-drawer-content title="Menu">
+            <n-menu :options="menuOptions" />
+          </n-drawer-content>
+        </n-drawer>
       </template>
     </n-page-header>
   </div>
