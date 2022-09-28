@@ -4,6 +4,7 @@ using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
 using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
 using Microsoft.Extensions.Configuration;
+using Attribute = ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.Attribute;
 
 namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 {
@@ -92,6 +93,28 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         }
 
 
+
+        [TestMethod]
+        public async Task TestgetAttributesForTransaction()
+        {
+            string userId = "aaa";
+            List<Attribute> attributes = new List<Attribute>();
+            attributes.Add(new Attribute());
+
+
+            try
+            {
+                GetAttributesTransactionOutputDTO res = await _userDataService.getAttributesForTransaction(userId, attributes);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(GetAttributesTransactionOutputDTO));
+                Assert.AreEqual(res, attributes);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
 
 
 
