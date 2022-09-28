@@ -1,5 +1,9 @@
-﻿using MediatR;
+﻿using ExploringSelfSovereignIdentityAPI.Commands.Auth;
+using ExploringSelfSovereignIdentityAPI.Models.Response;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ExploringSelfSovereignIdentityAPI.Controllers
 {
@@ -13,10 +17,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
             mediator = med;
         }
 
+        [AllowAnonymous]
 
-        public IActionResult Index()
+        [HttpPost("auth")]
+        public async Task<AuthenticateResponse> AddExample([FromBody] AuthenticateCommand command)
         {
-            return View();
+            return await mediator.Send(command);
         }
     }
 }
