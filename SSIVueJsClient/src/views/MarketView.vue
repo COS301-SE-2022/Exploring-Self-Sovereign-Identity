@@ -12,9 +12,14 @@ export default defineComponent({
     return { market, loading, userData, arr };
   },
   mounted() {
-    this.market.get().then(() => {
-      this.loading = false;
-    });
+    this.market
+      .get()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   methods: {
     update(value: string, index: string) {
@@ -81,7 +86,7 @@ export default defineComponent({
         };
       });
       await this.market.approve(org, id, atts).then(() => {
-        this.$router.back(0);
+        this.$router.go(0);
       });
       // *
     },
@@ -93,16 +98,23 @@ export default defineComponent({
   <div>
     <n-skeleton
       v-if="loading"
-      :width="146"
       :sharp="false"
       size="medium"
       :repeat="7"
+      height="6vh"
+      width="99vw"
     />
     <template v-else>
       <n-card v-for="m in market.getMarkets" :key="m.id">
         <n-collapse accordion arrow-placement="right">
-          <n-collapse-item>
-            <template #header-extra>{{ m.organization }}</template>
+          <n-collapse-item :title="m.organization">
+            <template #header-extra>
+              <n-statistic label="ETH" tabular-nums :value="m.pricePerUnit">
+                <template #suffix>
+                  <n-icon name="eth" />
+                </template>
+              </n-statistic>
+            </template>
             <n-input-group
               v-for="att in m.attributes"
               :key="att"
@@ -126,6 +138,7 @@ export default defineComponent({
       </n-card>
     </template>
   </div>
+  <BackNav page="Market" />
 </template>
 
 <style lang="scss"></style>
