@@ -118,6 +118,50 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
 
 
+        [TestMethod]
+        public async Task TestnewTransactionRequest()
+        {
+
+            TransactionRequest request = new TransactionRequest();
+            request.Stamp = new TransactionStamp();
+            request.Attributes = new List<string>();
+            request.Stamp.ToID = "1234";
+            request.Stamp.FromID = "4321";
+            request.Stamp.Message = "Test";
+            request.Stamp.Date = "Date";
+            request.Stamp.Status = "Status";
+
+            List<string> attrs = new List<string>();
+
+            
+
+            for (int i = 0; i < request.Attributes.Count; i++)
+            {
+                attrs.Add(request.Attributes[i]);
+            }
+            request.Attributes = attrs;
+
+            try
+            {
+                if (request != null)
+                {
+                    string res = await _userDataService.newTransactionRequest(request);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(string));
+                    Assert.AreEqual(res, request);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+
 
     }
 }

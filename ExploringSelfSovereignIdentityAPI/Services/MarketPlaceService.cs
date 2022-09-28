@@ -157,6 +157,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         public async Task<GetAllOrganizationsOutputDTO2> getAllOrganizations(string id)
         {
 
+            if (contractHandler == null) contractHandler = await deploy();
+
             var getAllOrganizationsFunction = new GetAllOrganizationsFunction();
             getAllOrganizationsFunction.Id = id;
             var temp = await contractHandler.QueryDeserializingToObjectAsync<GetAllOrganizationsFunction, GetAllOrganizationsOutputDTO>(getAllOrganizationsFunction);
