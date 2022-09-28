@@ -5,7 +5,7 @@ import { NIcon } from "naive-ui";
 import type { MenuOption } from "naive-ui";
 import { defineComponent, h, ref, type Component } from "vue";
 import { RouterLink } from "vue-router";
-import { Home, UserAvatar, NewTab } from "@vicons/carbon";
+import { Home, UserAvatar, NewTab, Store } from "@vicons/carbon";
 import { PendingActionsRound } from "@vicons/material";
 
 export default defineComponent({
@@ -65,6 +65,19 @@ export default defineComponent({
           ),
         key: "Request",
         icon: renderIcon(NewTab),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/market",
+              name: "Market",
+            },
+            { default: () => "Market" }
+          ),
+        key: "Market",
+        icon: renderIcon(Store),
       },
     ] as MenuOption[];
     return { renderIcon, menuOptions };
