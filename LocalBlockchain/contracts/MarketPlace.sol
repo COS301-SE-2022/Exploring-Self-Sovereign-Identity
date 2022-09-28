@@ -166,31 +166,18 @@ contract MarketPlace {
         uint amount;
     }
 
-    function buyData(BuyDataRequest memory request) public returns (BuyDataResponse memory) {
-
+    function buyData1(BuyDataRequest memory request) public returns (BuyDataResponse memory) {
         BuyDataResponse memory ret;
 
         for (uint i=0; i<allOrganizations[request.organization].packCount; i++) {
             
             if (stringCompare(allOrganizations[request.organization].packs[i].id, request.dataPackID)) {
 
-            for (uint k=0; k<allOrganizations[request.organization].packs[i].receivedAttributeCount; k++) {
-                if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID)){
-                    ret.status = "failed";
-                    return ret;}
-            }
-
-               uint index = allOrganizations[request.organization].packs[i].receivedAttributeCount++;
-               
-               allOrganizations[request.organization].packs[i].receivedAttributes[index].userID = request.userID;
-               allOrganizations[request.organization].packs[i].receivedAttributes[index].attributeCount = request.attributes.length;
-
-               for (uint k=0; k<request.attributes.length; k++) {
-                    allOrganizations[request.organization].packs[i].receivedAttributes[index].attributes[k].name = request.attributes[k].name;
-                    allOrganizations[request.organization].packs[i].receivedAttributes[index].attributes[k].value = request.attributes[k].value;
-                    //allOrganizations[request.organization].packs[i].receivedAttributes[index].attributeCount++;
-               }
-
+                for (uint k=0; k<allOrganizations[request.organization].packs[i].receivedAttributeCount; k++) {
+                    if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID)){
+                        ret.status = "failed";
+                        return ret;}
+                }
 
                 ret.status = "success";
                 ret.amount = allOrganizations[request.organization].packs[i].pricePerUnit;
@@ -200,6 +187,33 @@ contract MarketPlace {
         }
 
         return ret;
+    }
+
+    function buyData(BuyDataRequest memory request) public {
+
+        for (uint i=0; i<allOrganizations[request.organization].packCount;i++) {
+            for (uint k=0; k<allOrganizations[request.organization].packs[i].receivedAttributeCount; k++) {
+                if (stringCompare(allOrganizations[request.organization].packs[i].receivedAttributes[k].userID, request.userID))
+                    return;
+            }
+        }
+
+        for (uint i=0; i<allOrganizations[request.organization].packCount; i++) {
+            
+            if (stringCompare(allOrganizations[request.organization].packs[i].id, request.dataPackID)) {
+               uint index = allOrganizations[request.organization].packs[i].receivedAttributeCount++;
+               
+               allOrganizations[request.organization].packs[i].receivedAttributes[index].userID = request.userID;
+               //allOrganizations[request.organization].packs[i].receivedAttributes[index].attributeCount = request.attributes.length;
+
+               for (uint k=0; k<request.attributes.length; k++) {
+                    allOrganizations[request.organization].packs[i].receivedAttributes[index].attributes[k].name = request.attributes[k].name;
+                    allOrganizations[request.organization].packs[i].receivedAttributes[index].attributes[k].value = request.attributes[k].value;
+                    allOrganizations[request.organization].packs[i].receivedAttributes[index].attributeCount++;
+               }
+               break;
+            }
+        }
     }
 
     function getAllOrganizations(string memory id) public view returns (AllOrganizationResponse[] memory) {
