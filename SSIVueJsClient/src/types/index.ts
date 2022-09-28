@@ -13,7 +13,6 @@ import type {
   Gender,
   GlassesShape,
   MouthShape,
-  NoseShape,
   TopsShape,
   WrapperShape,
 } from '../enums'
@@ -33,7 +32,6 @@ type AvatarWidgets = {
   eyebrows: Widget<EyebrowsShape>
   glasses: Widget<GlassesShape>
   eyes: Widget<EyesShape>
-  nose: Widget<NoseShape>
   mouth: Widget<MouthShape>
   beard: Widget<BeardShape>
   clothes: Widget<ClothesShape>
@@ -61,7 +59,6 @@ export interface AvatarSettings {
   earringsShape: EarringsShape[]
   eyebrowsShape: EyebrowsShape[]
   eyesShape: EyesShape[]
-  noseShape: NoseShape[]
   mouthShape: MouthShape[]
   beardShape: BeardShape[]
   glassesShape: GlassesShape[]
