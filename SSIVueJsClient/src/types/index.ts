@@ -1,6 +1,6 @@
-import type { NONE } from '@/utils/constant'
+import type { NONE } from "@/utils/constant";
 
-export type None = typeof NONE
+export type None = typeof NONE;
 
 import type {
   BeardShape,
@@ -16,58 +16,58 @@ import type {
   NoseShape,
   TopsShape,
   WrapperShape,
-} from '../enums'
+} from "../enums";
 
 interface Widget<Shape> {
-  shape: Shape | None
-  zIndex?: number
-  fillColor?: string
-  strokeColor?: string
+  shape: Shape | None;
+  zIndex?: number;
+  fillColor?: string;
+  strokeColor?: string;
 }
 
 type AvatarWidgets = {
-  face: Widget<FaceShape>
-  tops: Widget<TopsShape>
-  ear: Widget<EarShape>
-  earrings: Widget<EarringsShape>
-  eyebrows: Widget<EyebrowsShape>
-  glasses: Widget<GlassesShape>
-  eyes: Widget<EyesShape>
-  nose: Widget<NoseShape>
-  mouth: Widget<MouthShape>
-  beard: Widget<BeardShape>
-  clothes: Widget<ClothesShape>
-}
+  face: Widget<FaceShape>;
+  tops: Widget<TopsShape>;
+  ear: Widget<EarShape>;
+  earrings: Widget<EarringsShape>;
+  eyebrows: Widget<EyebrowsShape>;
+  glasses: Widget<GlassesShape>;
+  eyes: Widget<EyesShape>;
+  nose: Widget<NoseShape>;
+  mouth: Widget<MouthShape>;
+  beard: Widget<BeardShape>;
+  clothes: Widget<ClothesShape>;
+};
 
 export interface AvatarOption {
-  gender?: Gender
+  gender?: Gender;
 
-  wrapperShape?: `${WrapperShape}`
+  wrapperShape?: `${WrapperShape}`;
 
   background: {
-    color: string
-  }
+    color: string;
+  };
 
-  widgets: Partial<AvatarWidgets>
+  widgets: Partial<AvatarWidgets>;
 }
 
 export interface AvatarSettings {
-  gender: [Gender, Gender]
+  gender: [Gender, Gender];
 
-  wrapperShape: WrapperShape[]
-  faceShape: FaceShape[]
-  topsShape: TopsShape[]
-  earShape: EarShape[]
-  earringsShape: EarringsShape[]
-  eyebrowsShape: EyebrowsShape[]
-  eyesShape: EyesShape[]
-  noseShape: NoseShape[]
-  mouthShape: MouthShape[]
-  beardShape: BeardShape[]
-  glassesShape: GlassesShape[]
-  clothesShape: ClothesShape[]
+  wrapperShape: WrapperShape[];
+  faceShape: FaceShape[];
+  topsShape: TopsShape[];
+  earShape: EarShape[];
+  earringsShape: EarringsShape[];
+  eyebrowsShape: EyebrowsShape[];
+  eyesShape: EyesShape[];
+  noseShape: NoseShape[];
+  mouthShape: MouthShape[];
+  beardShape: BeardShape[];
+  glassesShape: GlassesShape[];
+  clothesShape: ClothesShape[];
 
-  commonColors: string[]
-  backgroundColor: string[]
-  skinColor: string[]
+  commonColors: string[];
+  backgroundColor: string[];
+  skinColor: string[];
 }

@@ -43,5 +43,12 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
         {
             return await mps.addDataPack(request);
         }
+
+        [HttpPost]
+        [Route("getAllOrganizations")]
+        public async Task<GetAllOrganizationsOutputDTO2> getAll()
+        {
+            return await mps.getAllOrganizations();
+        }
     }
 }

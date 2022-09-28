@@ -1,10 +1,10 @@
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent, type PropType } from "vue";
 export default defineComponent({
-  props : {
-    title : {
-      type: Object as PropType<string>
-    }
+  props: {
+    title: {
+      type: Object as PropType<string>,
+    },
   },
   setup(props) {
     // const props = defineProps<{
@@ -13,9 +13,9 @@ export default defineComponent({
 
     return {
       props,
-    }
+    };
   },
-})
+});
 </script>
 
 <template>

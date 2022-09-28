@@ -32,6 +32,13 @@ contract MarketPlace {
         DataPackResponse[] packs;
     }
 
+    struct AllOrganizationResponse {
+        string organization;
+        string id;
+        uint pricePerUnit;
+        string[] attributes;
+    }
+
     struct DataPackReceivedRequest {
         string userID;
         Attribute[] attributes;
@@ -80,6 +87,11 @@ contract MarketPlace {
         Attribute[] attributes;
     }
 
+    uint orgCount;
+    uint packTotal;
+
+    mapping (uint => string) orgNames;
+
     mapping (string => Organization) allOrganizations;
 
     function createOrganization(CreateOrgRequest memory request) public {
@@ -87,6 +99,9 @@ contract MarketPlace {
         allOrganizations[request.id].hashedPassword = request.password;
         allOrganizations[request.id].packCount = 0;
         allOrganizations[request.id].balance = 100;
+
+        uint index = orgCount++;
+        orgNames[index] = request.id;
     }
 
     function getOrganization(CreateOrgRequest memory request) public view returns (OrganizationResponse memory) {
@@ -141,6 +156,8 @@ contract MarketPlace {
         for (uint i=0; i<request.requestedAttributes.length; i++) {
             allOrganizations[request.organization].packs[index].requestedAttributes[i] = request.requestedAttributes[i];
         }
+
+        packTotal++;
         
     }
 
@@ -179,6 +196,34 @@ contract MarketPlace {
                 ret.amount = allOrganizations[request.organization].packs[i].pricePerUnit;
                 allOrganizations[request.organization].balance -= allOrganizations[request.organization].packs[i].pricePerUnit;
                 break;
+            }
+        }
+
+        return ret;
+    }
+
+    function getAllOrganizations() public view returns (AllOrganizationResponse[] memory) {
+        AllOrganizationResponse[] memory ret = new AllOrganizationResponse[](packTotal);
+
+        string memory oName;
+
+        for (uint i=0; i<orgCount; i++) {
+            oName = orgNames[i];
+
+            uint size = allOrganizations[oName].packCount;
+
+            for (uint k=0; k<size; k++) {
+                ret[k].organization = allOrganizations[oName].id;
+                ret[k].id = allOrganizations[oName].packs[k].id;
+                ret[k].pricePerUnit = allOrganizations[oName].packs[k].pricePerUnit;
+
+                uint size2 = allOrganizations[oName].packs[k].requestedAttributeCount;
+
+                ret[k].attributes = new string[](size2);
+
+                for (uint n=0; n<size2; n++) {
+                    ret[k].attributes[n] = allOrganizations[oName].packs[k].requestedAttributes[n];
+                }
             }
         }
 

@@ -89,10 +89,10 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   function exists(att: string) {
-    const value =
-      userData.getAttributes.find((x) => x.attribute.name == att) != undefined;
-    if (value == undefined) return "";
-    else return value;
+    const val = userData.getAttributes.find((x) => x.attribute.name == att)
+      ?.attribute.value;
+    if (val == undefined) return "";
+    else return val;
   }
 
   const pending = computed(() => {
