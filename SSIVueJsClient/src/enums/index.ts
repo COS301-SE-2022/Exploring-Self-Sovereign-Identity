@@ -18,7 +18,6 @@ export enum WidgetType {
   Earrings = 'earrings',
   Eyebrows = 'eyebrows',
   Eyes = 'eyes',
-  Nose = 'nose',
   Glasses = 'glasses',
   Mouth = 'mouth',
   Beard = 'beard',
@@ -33,6 +32,9 @@ export enum WrapperShape {
 
 export enum FaceShape {
   Base = 'base',
+  Purple = 'purple',
+  Brown = 'brown',
+  Black = 'black', 
 }
 
 export enum TopsShape {
@@ -72,11 +74,6 @@ export enum EyesShape {
   Round = 'round',
 }
 
-export enum NoseShape {
-  Curve = 'curve',
-  Round = 'round',
-  Pointed = 'pointed',
-}
 
 export enum MouthShape {
   Frown = 'frown',
@@ -113,7 +110,6 @@ export type WidgetShape =
   | EarringsShape
   | EyebrowsShape
   | EyesShape
-  | NoseShape
   | MouthShape
   | BeardShape
   | GlassesShape
