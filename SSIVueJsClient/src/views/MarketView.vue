@@ -7,12 +7,14 @@ export default defineComponent({
   setup() {
     const market = marketStore();
     const userData = userDataStore();
-    const loading = ref(false);
+    const loading = ref(true);
     const arr = new Map<string, string>();
     return { market, loading, userData, arr };
   },
-  created() {
-    this.market.get;
+  mounted() {
+    this.market.get().then(() => {
+      this.loading = false;
+    });
   },
   methods: {
     update(value: string, index: string) {
@@ -78,7 +80,9 @@ export default defineComponent({
           value: x[1],
         };
       });
-      await this.market.approve(org, id, atts);
+      await this.market.approve(org, id, atts).then(() => {
+        this.$router.back(0);
+      });
       // *
     },
   },
@@ -87,31 +91,40 @@ export default defineComponent({
 
 <template>
   <div>
-    <n-card v-for="m in market.getMarkets" :key="m.id">
-      <n-collapse accordion arrow-placement="right">
-        <n-collapse-item>
-          <template #header-extra>{{ m.organization }}</template>
-          <n-input-group
-            v-for="att in m.attributes"
-            :key="att"
-            data-test-id="attribute"
-          >
-            <n-input-group-label>{{ att }}</n-input-group-label>
-            <n-input
+    <n-skeleton
+      v-if="loading"
+      :width="146"
+      :sharp="false"
+      size="medium"
+      :repeat="7"
+    />
+    <template v-else>
+      <n-card v-for="m in market.getMarkets" :key="m.id">
+        <n-collapse accordion arrow-placement="right">
+          <n-collapse-item>
+            <template #header-extra>{{ m.organization }}</template>
+            <n-input-group
+              v-for="att in m.attributes"
               :key="att"
-              :default-value="exists(att)"
-              :readonly="exists(att) != ''"
-              @input="update($event, att)"
-            ></n-input>
-          </n-input-group>
-          <n-space>
-            <n-button type="primary" @click="approve(m.id, m.organization)">
-              Approve
-            </n-button>
-          </n-space>
-        </n-collapse-item>
-      </n-collapse>
-    </n-card>
+              data-test-id="attribute"
+            >
+              <n-input-group-label>{{ att }}</n-input-group-label>
+              <n-input
+                :key="att"
+                :default-value="exists(att)"
+                :readonly="exists(att) != ''"
+                @input="update($event, att)"
+              ></n-input>
+            </n-input-group>
+            <n-space>
+              <n-button type="primary" @click="approve(m.id, m.organization)">
+                Approve
+              </n-button>
+            </n-space>
+          </n-collapse-item>
+        </n-collapse>
+      </n-card>
+    </template>
   </div>
 </template>
 
