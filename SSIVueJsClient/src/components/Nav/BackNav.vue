@@ -13,6 +13,7 @@ import {
   CheckmarkOutline,
 } from "@vicons/carbon";
 import { PendingActionsRound, PinFilled } from "@vicons/material";
+import { PaintBrush } from "@vicons/fa";
 
 export default defineComponent({
   setup() {
@@ -45,6 +46,19 @@ export default defineComponent({
           ),
         key: "Profile",
         icon: renderIcon(UserAvatar),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/avatar",
+              name: "Avatar",
+            },
+            { default: () => "Create avatar" }
+          ),
+        key: "Profile",
+        icon: renderIcon(PaintBrush),
       },
       {
         label: () =>
@@ -175,7 +189,7 @@ export default defineComponent({
   left: 0;
   width: 100%;
   padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
+  // padding-bottom: 0.5vh;
   // height: 100%;
   z-index: 1;
   // display: grid;
