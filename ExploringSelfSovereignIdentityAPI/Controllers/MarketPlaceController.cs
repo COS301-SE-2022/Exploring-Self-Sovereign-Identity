@@ -8,7 +8,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class MarketPlaceController
     {
         private readonly IMarketPlaceService mps;

@@ -77,31 +77,33 @@ export default defineComponent({
 <template>
   <n-spin :show="loading" :description="description">
     <n-collapse accordion arrow-placement="right">
-      <n-collapse-item
-        v-for="t in transactions.pending"
-        :key="t.stamp.fromID"
-        :name="t.stamp.fromID"
-        :title="t.stamp.fromID"
-      >
-        <template #header-extra>{{ t.stamp.date }}</template>
-        <n-input-group
-          v-for="att in t.attributes"
-          :key="att"
-          data-test-id="attribute"
+      <n-card>
+        <n-collapse-item
+          v-for="t in transactions.pending"
+          :key="t.stamp.fromID"
+          :name="t.stamp.fromID"
+          :title="t.stamp.fromID"
         >
-          <n-input-group-label>{{ att }}</n-input-group-label>
-          <n-input
+          <template #header-extra>{{ t.stamp.date }}</template>
+          <n-input-group
+            v-for="att in t.attributes"
             :key="att"
-            :default-value="exists(att)"
-            :readonly="transactions.exists(att) != ''"
-            @input="update($event, att)"
-          ></n-input>
-        </n-input-group>
-        <n-space>
-          <n-button @click="decline(t)"> Decline </n-button>
-          <n-button type="primary" @click="approve(t)"> Approve </n-button>
-        </n-space>
-      </n-collapse-item>
+            data-test-id="attribute"
+          >
+            <n-input-group-label>{{ att }}</n-input-group-label>
+            <n-input
+              :key="att"
+              :default-value="exists(att)"
+              :readonly="transactions.exists(att) != ''"
+              @input="update($event, att)"
+            ></n-input>
+          </n-input-group>
+          <n-space>
+            <n-button @click="decline(t)"> Decline </n-button>
+            <n-button type="primary" @click="approve(t)"> Approve </n-button>
+          </n-space>
+        </n-collapse-item>
+      </n-card>
     </n-collapse>
     <BackNav page="Request Data" />
   </n-spin>

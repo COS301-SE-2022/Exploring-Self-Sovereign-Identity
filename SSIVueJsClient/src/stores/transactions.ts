@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { userDataStore } from "@/stores/userData";
 import axios from "axios";
-import { computed, ref } from "vue";
+import { computed, reactive } from "vue";
 
 export const transactionsStore = defineStore("transactions", () => {
   const api = axios.create({
@@ -12,15 +12,15 @@ export const transactionsStore = defineStore("transactions", () => {
     },
   });
   const userData = userDataStore();
-  const requests = ref(
+  const requests = reactive(
     userData.user.transactionRequests as unknown as transactionRequests[]
   );
-  const approved = ref(
+  const approved = reactive(
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
 
   async function approveTransaction(id: string, request: transactionRequests) {
-    const index = requests.value.findIndex(
+    const index = requests.findIndex(
       (x) => JSON.stringify(x) === JSON.stringify(request)
     );
     console.log(index);
@@ -31,7 +31,7 @@ export const transactionsStore = defineStore("transactions", () => {
       })
       .then((response) => {
         if (response.data == "success") {
-          requests.value[index].stamp.status = "approved";
+          requests[index].stamp.status = "approved";
           return true;
         } else return false;
       })
@@ -42,7 +42,7 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   async function declineTransaction(id: string, request: transactionRequests) {
-    const index = requests.value.findIndex(
+    const index = requests.findIndex(
       (x) => JSON.stringify(x) === JSON.stringify(request)
     );
     const response = api
@@ -52,7 +52,7 @@ export const transactionsStore = defineStore("transactions", () => {
       })
       .then((response) => {
         if (response.data == "success") {
-          requests.value[index].stamp.status = "declined";
+          requests[index].stamp.status = "declined";
           return true;
         } else return false;
       })
@@ -96,13 +96,17 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   const pending = computed(() => {
-    return requests.value.filter((x) => x.stamp.status == "pending");
+    return requests.filter((x) => x.stamp.status == "pending");
   });
 
   const past = computed(() => {
-    return requests.value.filter(
+    return requests.filter(
       (x) => x.stamp.status == "approved" || x.stamp.status == "declined"
     );
+  });
+
+  const approvedTransactions = computed(() => {
+    return approved;
   });
 
   return {
@@ -116,6 +120,7 @@ export const transactionsStore = defineStore("transactions", () => {
     exists,
     pending,
     past,
+    approvedTransactions,
   };
 });
 

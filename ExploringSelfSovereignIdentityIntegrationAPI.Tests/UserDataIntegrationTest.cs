@@ -93,6 +93,30 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         }
 
 
+        [TestMethod]
+        public async Task TestDeclineTransaction()
+        {
+            string userId = "aaa";
+            int index = -1;
+
+            try
+            {
+                string res = await _userDataService.declineTransaction(userId, index);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(string));
+                Assert.AreEqual(res, "success");
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+
+
 
         [TestMethod]
         public async Task TestgetAttributesForTransaction()
@@ -115,6 +139,84 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             }
 
         }
+
+
+
+
+
+        [TestMethod]
+        public async Task TestupdateUserData()
+        {
+
+            UpdateGen2 update = new UpdateGen2();
+            update.Id = "test";
+
+            AttributeUpdate item = new AttributeUpdate();
+
+
+
+
+            try
+            {
+                if (update != null)
+                {
+                    GetUserDataOutputDTO2 res = await _userDataService.updateUserData(update);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(GetUserDataOutputDTO2));
+                    Assert.AreEqual(res, update);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+        [TestMethod]
+        public async Task TestnewTransactionRequest()
+        {
+
+            TransactionRequest request = new TransactionRequest();
+            request.Stamp = new TransactionStamp();
+            request.Attributes = new List<string>();
+            request.Stamp.ToID = "1234";
+            request.Stamp.FromID = "4321";
+            request.Stamp.Message = "Test";
+            request.Stamp.Date = "Date";
+            request.Stamp.Status = "Status";
+
+            List<string> attrs = new List<string>();
+
+            
+
+            for (int i = 0; i < request.Attributes.Count; i++)
+            {
+                attrs.Add(request.Attributes[i]);
+            }
+            request.Attributes = attrs;
+
+            try
+            {
+                if (request != null)
+                {
+                    string res = await _userDataService.newTransactionRequest(request);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(string));
+                    Assert.AreEqual(res, request);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
 
 
 

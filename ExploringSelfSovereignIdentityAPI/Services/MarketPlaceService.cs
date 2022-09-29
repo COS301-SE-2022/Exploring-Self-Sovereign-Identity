@@ -46,7 +46,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services
 
         private async Task<ContractHandler> deploy()
         {
-            privateKey = configuration["accPKMarketplace"];
+            privateKey = configuration["accountPrivateKey"];
             acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
 
             web3 = new Web3(acc, url);
@@ -89,15 +89,12 @@ namespace ExploringSelfSovereignIdentityAPI.Services
                 var buyDataFunction = new BuyDataFunction();
                 buyDataFunction.Request = request;
                 var buyDataFunctionTxnReceipt = await contractHandler.SendRequestAndWaitForReceiptAsync(buyDataFunction);
+
+                await userData.updateBalance(request.UserID, (int) vd1.ReturnValue1.Amount);
             }
 
             BuyDataOutputDTO2 ret = new BuyDataOutputDTO2();
 
-
-            if (vd1.ReturnValue1.Status == "success")
-            {
-                //await userData.updateBalance(request.UserID, (int)buyDataFunctionTxnReceipt.ReturnValue1.Amount);
-            }
 
             //buyDataFunction.Request.Attributes.ForEach(attr => Console.WriteLine("Here: " + attr.Name));
 
@@ -157,6 +154,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         public async Task<GetAllOrganizationsOutputDTO2> getAllOrganizations(string id)
         {
 
+            if (contractHandler == null) contractHandler = await deploy();
+
             var getAllOrganizationsFunction = new GetAllOrganizationsFunction();
             getAllOrganizationsFunction.Id = id;
             var temp = await contractHandler.QueryDeserializingToObjectAsync<GetAllOrganizationsFunction, GetAllOrganizationsOutputDTO>(getAllOrganizationsFunction);
@@ -172,6 +171,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services
                 Console.WriteLine(temp.ReturnValue1[i].Organization);
 
                 AllOrganizationResponse2 p = new AllOrganizationResponse2();
+
+                if (temp.ReturnValue1[i].Organization == "") continue;
 
                 p.Id = temp.ReturnValue1[i].Id;
                 p.PricePerUnit = (int) temp.ReturnValue1[i].PricePerUnit;
