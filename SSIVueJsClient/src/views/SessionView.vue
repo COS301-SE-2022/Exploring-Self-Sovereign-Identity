@@ -37,7 +37,7 @@ export default defineComponent({
     />
 
     <BackNav page="Request Data">
-      <n-button type="primary" @click="request"> Request </n-button>
+      <n-button type="primary" @click="request"> Connect </n-button>
     </BackNav>
   </n-spin>
 </template>

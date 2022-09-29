@@ -13,19 +13,22 @@ export default defineComponent({
     const description = ref("Fetching user data...");
     const userData = userDataStore();
     const user = new PassageUser();
-    user.userInfo().then(async (info) => {
-      await userData.getuserdata(info?.email || "");
-      console.log("here", userData.getId);
-      if (!userData.exists()) {
-        await userData.createUser(info?.email || "");
+
+    return { userData, loading, description, user };
+  },
+  mounted() {
+    this.user.userInfo().then(async (info) => {
+      await this.userData.getuserdata(info?.email || "");
+      console.log("here", this.userData.getId);
+      if (!this.userData.exists()) {
+        await this.userData.createUser(info?.email || "");
         console.log("User created");
       } else {
-        console.log("User data fetched", userData.$state);
+        console.log("User data fetched", this.userData.$state);
       }
-      loading.value = false;
-      description.value = "";
+      this.loading = false;
+      this.description = "";
     });
-    return { userData, loading, description };
   },
   // data() {
   //   return {};

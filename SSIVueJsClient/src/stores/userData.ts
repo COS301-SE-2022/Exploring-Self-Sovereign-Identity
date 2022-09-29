@@ -38,7 +38,8 @@ export const userDataStore = defineStore("userData", {
         })
         .then((response) => {
           if (response.data) {
-            this.user = response.data.returnValue1;
+            // this.user = response.data.returnValue1;
+            this.$patch({ user: response.data.returnValue1 });
             this.sync();
           }
         })
