@@ -31,7 +31,7 @@
 * [Technical Installation Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9208974/Technical.Installation.Manual.pdf)
 * [Coding Standards Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9209052/Coding.Standards.Document.pdf)
 * [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9213050/SRS.Document.pdf)
-* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
+* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679377/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
 * [Presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9216758/Demo.3.exploring.self-sovereign.identities.pdf)
 * [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9453546/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
 
