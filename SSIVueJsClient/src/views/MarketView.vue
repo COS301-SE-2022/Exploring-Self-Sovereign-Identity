@@ -8,8 +8,10 @@ export default defineComponent({
     const market = marketStore();
     const userData = userDataStore();
     const loading = ref(true);
+    const spin = ref(false);
+    const description = ref("Approving...");
     const arr = new Map<string, string>();
-    return { market, loading, userData, arr };
+    return { market, loading, userData, arr, spin, description };
   },
   mounted() {
     this.market
@@ -66,6 +68,7 @@ export default defineComponent({
     async approve(id: string, org: string) {
       // *
       this.loading = true;
+      this.spin = true;
       await this.updateUser();
       const attributes = new Map<string, string>();
       const att = this.market.getMarkets.find((x) => x.id == id)?.attributes;
@@ -88,6 +91,7 @@ export default defineComponent({
       await this.market.approve(org, id, atts).then(() => {
         this.market.get().then(() => {
           this.loading = false;
+          this.spin = false;
         });
       });
       // *
@@ -98,47 +102,58 @@ export default defineComponent({
 
 <template>
   <div>
-    <n-skeleton
-      v-if="loading"
-      :sharp="false"
-      size="medium"
-      :repeat="7"
-      height="6vh"
-      width="99vw"
-    />
-    <template v-else>
-      <n-card v-for="m in market.getMarkets" :key="m.id">
-        <n-collapse accordion arrow-placement="right">
-          <n-collapse-item :title="m.organization">
-            <template #header-extra>
-              <n-statistic label="ETH" tabular-nums :value="m.pricePerUnit">
-                <template #suffix>
-                  <n-icon name="eth" />
-                </template>
-              </n-statistic>
-            </template>
-            <n-input-group
-              v-for="att in m.attributes"
-              :key="att"
-              data-test-id="attribute"
-            >
-              <n-input-group-label>{{ att }}</n-input-group-label>
-              <n-input
+    <n-spin :show="spin" :description="description">
+      <n-skeleton
+        v-if="loading"
+        :sharp="false"
+        size="medium"
+        :repeat="7"
+        height="6vh"
+        width="99vw"
+      />
+      <template v-else>
+        <n-card
+          v-if="market.getMarkets.length == 0 || market.getMarkets == undefined"
+        >
+          <n-empty
+            size="large"
+            description="No packages to be shown..."
+          ></n-empty>
+        </n-card>
+
+        <n-card v-for="m in market.getMarkets" :key="m.id">
+          <n-collapse accordion arrow-placement="right">
+            <n-collapse-item :title="m.organization">
+              <template #header-extra>
+                <n-statistic label="ETH" tabular-nums :value="m.pricePerUnit">
+                  <template #suffix>
+                    <n-icon name="eth" />
+                  </template>
+                </n-statistic>
+              </template>
+              <n-input-group
+                v-for="att in m.attributes"
                 :key="att"
-                :default-value="exists(att)"
-                :readonly="exists(att) != ''"
-                @input="update($event, att)"
-              ></n-input>
-            </n-input-group>
-            <n-space>
-              <n-button type="primary" @click="approve(m.id, m.organization)">
-                Approve
-              </n-button>
-            </n-space>
-          </n-collapse-item>
-        </n-collapse>
-      </n-card>
-    </template>
+                data-test-id="attribute"
+              >
+                <n-input-group-label>{{ att }}</n-input-group-label>
+                <n-input
+                  :key="att"
+                  :default-value="exists(att)"
+                  :readonly="exists(att) != ''"
+                  @input="update($event, att)"
+                ></n-input>
+              </n-input-group>
+              <n-space>
+                <n-button type="primary" @click="approve(m.id, m.organization)">
+                  Approve
+                </n-button>
+              </n-space>
+            </n-collapse-item>
+          </n-collapse>
+        </n-card>
+      </template>
+    </n-spin>
   </div>
   <BackNav page="Market" />
 </template>

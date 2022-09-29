@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import BackNav from "../components/Nav/BackNav.vue";
 import { transactionsStore } from "@/stores/transactions";
 import { userDataStore } from "@/stores/userData";
@@ -8,15 +8,34 @@ export default defineComponent({
   setup() {
     const transactions = transactionsStore();
     const userData = userDataStore();
+    const loading = ref(true);
     const arr = new Map<string, string>();
-    return { transactions, arr, userData };
+    return { transactions, arr, userData, loading };
   },
   components: { BackNav },
+  mounted() {
+    this.loading = false;
+  },
 });
 </script>
 
 <template>
-  <div>
+  <n-skeleton
+    v-if="loading"
+    :sharp="false"
+    size="medium"
+    :repeat="5"
+    height="6vh"
+    width="99vw"
+  />
+  <div v-else>
+    <n-card v-if="transactions.past.length === 0 || !transactions.past">
+      <n-empty
+        size="large"
+        description="No transactions to be shown..."
+      ></n-empty>
+    </n-card>
+
     <n-collapse accordion arrow-placement="right">
       <n-card>
         <n-collapse-item

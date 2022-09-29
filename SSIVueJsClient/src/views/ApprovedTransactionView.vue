@@ -16,6 +16,18 @@ export default defineComponent({
 
 <template>
   <div>
+    <n-card
+      v-if="
+        transactions.approvedTransactions.length == 0 ||
+        transactions.approvedTransactions === undefined
+      "
+    >
+      <n-empty
+        size="large"
+        description="No transactions to be shown..."
+      ></n-empty>
+    </n-card>
+
     <n-collapse accordion arrow-placement="right">
       <n-card>
         <n-collapse-item
