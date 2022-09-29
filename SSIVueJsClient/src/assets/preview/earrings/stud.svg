@@ -1,23 +1,13 @@
 <svg
-  width="48"
-  height="50"
-  viewBox="0 0 48 50"
+  width="52"
+  height="52"
+  viewBox="0 0 52 52"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <g transform="translate(0, 24)">
-    <title>earrings - stud</title>
-    <circle
-      cx="25"
-      cy="4"
-      r="4"
-      fill="#F4D150"
-    />
-    <circle
-      cx="26"
-      cy="3"
-      r="1"
-      fill="#FFEDEF"
-    />
+  <g transform="translate(0, 0) scale(0.2,0.2)">
+    <title>earrings - hoop</title>
+    <circle fill="gold" cx="21" cy="60" r="9"/>
+    <circle fill="gold" cx="89" cy="60" r="9"/>
   </g>
 </svg>

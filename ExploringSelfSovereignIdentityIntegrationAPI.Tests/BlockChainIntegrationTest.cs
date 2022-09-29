@@ -18,7 +18,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             _blockChainService = new BlockchainService();
         }
 
-        [TestMethod]
+/*        [TestMethod]
         public async Task TestCreateUser()
         {
             string userId = "aaa";

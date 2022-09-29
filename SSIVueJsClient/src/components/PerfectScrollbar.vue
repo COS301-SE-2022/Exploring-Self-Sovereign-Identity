@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollWrapper" style="position: relative; overflow: hidden">
+  <div ref="scrollWrapper" style="position: relative; overflow: scroll">
     <slot />
   </div>
 </template>
@@ -51,5 +51,6 @@ export default defineComponent({
   &.ps--clicking {
     background-color: #2c323a;
   }
+  
 }
 </style>

@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts">
-import { emit } from "process";
-import { defineComponent, type PropType } from "vue";
+import { emit } from 'process'
+import { defineComponent, type PropType } from 'vue'
 export default defineComponent({
   props: {
     visible: {
@@ -36,7 +36,7 @@ export default defineComponent({
       type: Object as PropType<string>,
     },
   },
-  emits: ["close"],
+  emits: ['close'],
   setup(props, { emit }) {
     //const props = defineProps<{ visible?: boolean; imageUrl: string }>()
     // const emit = defineEmits<{

@@ -10,6 +10,6 @@ namespace ExploringSelfSovereignIdentityAPI.Services
         public Task<GetOrganizationOutputDTO2> getOrganization(CreateOrgRequest request);
         public Task<string> addDataPack(AddDataPackRequest2 request);
         public Task<BuyDataOutputDTO2> buyData(BuyDataRequest request);
-        public Task<GetAllOrganizationsOutputDTO2> getAllOrganizations();
+        public Task<GetAllOrganizationsOutputDTO2> getAllOrganizations(string id);
     }
 }

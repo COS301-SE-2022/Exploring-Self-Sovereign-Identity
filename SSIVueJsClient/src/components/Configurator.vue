@@ -169,7 +169,7 @@ export default defineComponent({
 <template>
   <PerfectScrollbar class="configurator-scroll">
     <div class="configurator">
-      <SectionWrapper :title="'label.wrapperShape'">
+      <!-- <SectionWrapper :title="'Background Shape'">
         <ul class="wrapper-shape">
           <li
             v-for="wrapperShape in SETTINGS.wrapperShape"
@@ -187,9 +187,9 @@ export default defineComponent({
             />
           </li>
         </ul>
-      </SectionWrapper>
+      </SectionWrapper> -->
 
-      <SectionWrapper :title="'label.backgroundColor'">
+      <!-- <SectionWrapper :title="'Background Colour'">
         <ul class="color-list">
           <li
             v-for="bgColor in SETTINGS.backgroundColor"
@@ -207,12 +207,12 @@ export default defineComponent({
             ></div>
           </li>
         </ul>
-      </SectionWrapper>
+      </SectionWrapper> -->
 
       <SectionWrapper
         v-for="s in sections"
         :key="s.widgetType"
-        :title="`widgetType.${s.widgetType}`"
+        :title="`${s.widgetType}`"
       >
         <details
           v-if="
@@ -221,7 +221,7 @@ export default defineComponent({
           "
           class="color-picker"
         >
-          <summary class="color">{{ "label.colors" }}</summary>
+          <summary class="color">{{ 'Colours' }}</summary>
           <ul class="color-list">
             <li
               v-for="fillColor in SETTINGS.commonColors"
@@ -264,9 +264,8 @@ export default defineComponent({
 .configurator-scroll {
   width: var.$layout-sider-width;
   height: 100%;
-
   @media screen and (max-width: var.$screen-lg) {
-    background-color: var.$color-configurator;
+    background-color: var.$color-configurator; 
   }
 }
 

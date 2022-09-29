@@ -10,9 +10,9 @@ export default defineComponent({
     const cred = ref("");
 
     const userData = userDataStore();
-    const options = ref([""]);
-    for (let x in userData.$state.user.credentials)
-      options.value.push(userData.$state.user.credentials[x].organization);
+    const options = ref([] as { label: string; value: string }[]);
+    for (let x of userData.getCredentials)
+      options.value.push({ label: x.organization, value: x.organization });
     return { otp, loading, description, cred, userData, options };
   },
   methods: {
@@ -25,19 +25,21 @@ export default defineComponent({
 
 <template>
   <n-spin :show="loading" :description="description">
-    <n-input-group data-test-id="OTP">
-      <n-input-group-label>OTP</n-input-group-label>
-      <n-input placeholder="Please enter OTP" v-model:value="otp"></n-input>
-    </n-input-group>
-    <n-select
-      v-model:value="cred"
-      filterable
-      placeholder="Please select a credential"
-      :options="options"
-    />
+    <n-card>
+      <n-input-group data-test-id="OTP">
+        <n-input-group-label>OTP</n-input-group-label>
+        <n-input placeholder="Please enter OTP" v-model:value="otp"></n-input>
+      </n-input-group>
+      <n-select
+        v-model:value="cred"
+        filterable
+        placeholder="Please select a credential"
+        :options="options"
+      />
+    </n-card>
 
     <BackNav page="Request Data">
-      <n-button type="primary" @click="request"> Request </n-button>
+      <n-button type="primary" @click="request"> Connect </n-button>
     </BackNav>
   </n-spin>
 </template>

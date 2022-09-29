@@ -8,7 +8,6 @@ import {
   FaceShape,
   GlassesShape,
   MouthShape,
-  NoseShape,
   TopsShape,
   WidgetType,
 } from "../enums";
@@ -24,11 +23,13 @@ type Data = Readonly<{
 const widgetData: Data = {
   [WidgetType.Face]: {
     [FaceShape.Base]: () => import(`../assets/widgets/face/base.svg?raw`),
+    [FaceShape.Purple]: () => import(`../assets/widgets/face/purple.svg?raw`),
+    [FaceShape.Brown]: () => import(`../assets/widgets/face/brown.svg?raw`),
+    [FaceShape.Black]: () => import(`../assets/widgets/face/black.svg?raw`),
   },
 
   [WidgetType.Ear]: {
     [EarShape.Attached]: () => import(`../assets/widgets/ear/attached.svg?raw`),
-    [EarShape.Detached]: () => import(`../assets/widgets/ear/detached.svg?raw`),
   },
 
   [WidgetType.Eyes]: {
@@ -55,11 +56,11 @@ const widgetData: Data = {
       import(`../assets/widgets/earrings/hoop.svg?raw`),
     [EarringsShape.Stud]: () =>
       import(`../assets/widgets/earrings/stud.svg?raw`),
+    [EarringsShape.Detached]: () =>
+      import(`../assets/widgets/earrings/detached.svg?raw`),
   },
 
   [WidgetType.Eyebrows]: {
-    [EyebrowsShape.Down]: () =>
-      import(`../assets/widgets/eyebrows/down.svg?raw`),
     [EyebrowsShape.Eyelashesdown]: () =>
       import(`../assets/widgets/eyebrows/eyelashesdown.svg?raw`),
     [EyebrowsShape.Eyelashesup]: () =>
@@ -76,8 +77,6 @@ const widgetData: Data = {
 
   [WidgetType.Mouth]: {
     [MouthShape.Frown]: () => import(`../assets/widgets/mouth/frown.svg?raw`),
-    [MouthShape.Laughing]: () =>
-      import(`../assets/widgets/mouth/laughing.svg?raw`),
     [MouthShape.Nervous]: () =>
       import(`../assets/widgets/mouth/nervous.svg?raw`),
     [MouthShape.Pucker]: () => import(`../assets/widgets/mouth/pucker.svg?raw`),
@@ -86,12 +85,6 @@ const widgetData: Data = {
     [MouthShape.Smirk]: () => import(`../assets/widgets/mouth/smirk.svg?raw`),
     [MouthShape.Surprised]: () =>
       import(`../assets/widgets/mouth/surprised.svg?raw`),
-  },
-
-  [WidgetType.Nose]: {
-    [NoseShape.Curve]: () => import(`../assets/widgets/nose/curve.svg?raw`),
-    [NoseShape.Pointed]: () => import(`../assets/widgets/nose/pointed.svg?raw`),
-    [NoseShape.Round]: () => import(`../assets/widgets/nose/round.svg?raw`),
   },
 
   [WidgetType.Tops]: {
@@ -110,11 +103,13 @@ const widgetData: Data = {
 const previewData: Data = {
   [WidgetType.Face]: {
     [FaceShape.Base]: () => import(`../assets/preview/face/base.svg?raw`),
+    [FaceShape.Purple]: () => import(`../assets/widgets/face/purple.svg?raw`),
+    [FaceShape.Brown]: () => import(`../assets/widgets/face/brown.svg?raw`),
+    [FaceShape.Black]: () => import(`../assets/widgets/face/black.svg?raw`),
   },
 
   [WidgetType.Ear]: {
     [EarShape.Attached]: () => import(`../assets/preview/ear/attached.svg?raw`),
-    [EarShape.Detached]: () => import(`../assets/preview/ear/detached.svg?raw`),
   },
 
   [WidgetType.Eyes]: {
@@ -141,11 +136,11 @@ const previewData: Data = {
       import(`../assets/preview/earrings/hoop.svg?raw`),
     [EarringsShape.Stud]: () =>
       import(`../assets/preview/earrings/stud.svg?raw`),
+    [EarringsShape.Detached]: () =>
+      import(`../assets/preview/earrings/detached.svg?raw`),
   },
 
   [WidgetType.Eyebrows]: {
-    [EyebrowsShape.Down]: () =>
-      import(`../assets/preview/eyebrows/down.svg?raw`),
     [EyebrowsShape.Eyelashesdown]: () =>
       import(`../assets/preview/eyebrows/eyelashesdown.svg?raw`),
     [EyebrowsShape.Eyelashesup]: () =>
@@ -162,8 +157,6 @@ const previewData: Data = {
 
   [WidgetType.Mouth]: {
     [MouthShape.Frown]: () => import(`../assets/preview/mouth/frown.svg?raw`),
-    [MouthShape.Laughing]: () =>
-      import(`../assets/preview/mouth/laughing.svg?raw`),
     [MouthShape.Nervous]: () =>
       import(`../assets/preview/mouth/nervous.svg?raw`),
     [MouthShape.Pucker]: () => import(`../assets/preview/mouth/pucker.svg?raw`),
@@ -172,12 +165,6 @@ const previewData: Data = {
     [MouthShape.Smirk]: () => import(`../assets/preview/mouth/smirk.svg?raw`),
     [MouthShape.Surprised]: () =>
       import(`../assets/preview/mouth/surprised.svg?raw`),
-  },
-
-  [WidgetType.Nose]: {
-    [NoseShape.Curve]: () => import(`../assets/preview/nose/curve.svg?raw`),
-    [NoseShape.Pointed]: () => import(`../assets/preview/nose/pointed.svg?raw`),
-    [NoseShape.Round]: () => import(`../assets/preview/nose/round.svg?raw`),
   },
 
   [WidgetType.Tops]: {

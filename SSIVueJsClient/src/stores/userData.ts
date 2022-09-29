@@ -38,7 +38,8 @@ export const userDataStore = defineStore("userData", {
         })
         .then((response) => {
           if (response.data) {
-            this.user = response.data.returnValue1;
+            // this.user = response.data.returnValue1;
+            this.$patch({ user: response.data.returnValue1 });
             this.sync();
           }
         })
@@ -145,17 +146,13 @@ export interface User {
       // index: number;
     }
   ];
-  credentials: [
-    {
-      organization: string;
-      attributes: [
-        {
-          name: string;
-          value: string;
-        }
-      ];
-    }
-  ];
+  credentials: {
+    organization: string;
+    attributes: {
+      name: string;
+      value: string;
+    }[];
+  }[];
   transactionRequests: {
     attributes: string;
     stamp: {

@@ -1,5 +1,6 @@
 ﻿using ExploringSelfSovereignIdentityAPI.Models.Request;
 using ExploringSelfSovereignIdentityAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class MarketPlaceController
     {
         private readonly IMarketPlaceService mps;
@@ -46,9 +48,9 @@ namespace ExploringSelfSovereignIdentityAPI.Controllers
 
         [HttpPost]
         [Route("getAllOrganizations")]
-        public async Task<GetAllOrganizationsOutputDTO2> getAll()
+        public async Task<GetAllOrganizationsOutputDTO2> getAll([FromBody] RegisterRequest request)
         {
-            return await mps.getAllOrganizations();
+            return await mps.getAllOrganizations(request.id);
         }
     }
 }

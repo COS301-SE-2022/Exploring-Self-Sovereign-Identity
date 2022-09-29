@@ -1,19 +1,152 @@
 <script lang="ts">
 import { MenuOutline } from "@vicons/ionicons5";
 import { ArrowBackOutline } from "@vicons/ionicons5";
+import { NIcon } from "naive-ui";
+import type { MenuOption } from "naive-ui";
+import { defineComponent, h, ref, type Component } from "vue";
+import { RouterLink } from "vue-router";
+import {
+  Home,
+  UserAvatar,
+  NewTab,
+  Store,
+  CheckmarkOutline,
+} from "@vicons/carbon";
+import { PendingActionsRound, PinFilled } from "@vicons/material";
+import { PaintBrush } from "@vicons/fa";
 
-export default {
+export default defineComponent({
+  setup() {
+    function renderIcon(icon: Component) {
+      return () => h(NIcon, null, { default: () => h(icon) });
+    }
+    const menuOptions = [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/home",
+              name: "Home",
+            },
+            { default: () => "Home" }
+          ),
+        key: "home",
+        icon: renderIcon(Home),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/profile",
+              name: "Profile",
+            },
+            { default: () => "Profile" }
+          ),
+        key: "Profile",
+        icon: renderIcon(UserAvatar),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/avatar",
+              name: "Avatar",
+            },
+            { default: () => "Create avatar" }
+          ),
+        key: "Profile",
+        icon: renderIcon(PaintBrush),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/pending",
+              name: "Pending",
+            },
+            { default: () => "Pending" }
+          ),
+        key: "Pending",
+        icon: renderIcon(PendingActionsRound),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/request",
+              name: "Request",
+            },
+            { default: () => "Request" }
+          ),
+        key: "Request",
+        icon: renderIcon(NewTab),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/approved",
+              name: "Approved",
+            },
+            { default: () => "Approved" }
+          ),
+        key: "Approved",
+        icon: renderIcon(CheckmarkOutline),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/market",
+              name: "Market",
+            },
+            { default: () => "Market" }
+          ),
+        key: "Market",
+        icon: renderIcon(Store),
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: "/otp",
+              name: "OTP",
+            },
+            { default: () => "OTP" }
+          ),
+        key: "OTP",
+        icon: renderIcon(PinFilled),
+      },
+    ] as MenuOption[];
+    return { renderIcon, menuOptions };
+  },
   props: ["page"],
   components: {
     MenuOutline,
     ArrowBackOutline,
   },
+  data() {
+    return {
+      active: ref(false),
+    };
+  },
   methods: {
     goback() {
-      //this.$router.back()
+      this.$router.back();
+    },
+    show() {
+      this.active = true;
     },
   },
-};
+});
 </script>
 
 <template>
@@ -33,8 +166,13 @@ export default {
       </template>
       <template #extra>
         <n-icon size="30" color="white">
-          <MenuOutline />
+          <MenuOutline @click="show" />
         </n-icon>
+        <n-drawer v-model:show="active" width="50vw" placement="right">
+          <n-drawer-content title="Menu">
+            <n-menu :options="menuOptions" />
+          </n-drawer-content>
+        </n-drawer>
       </template>
     </n-page-header>
   </div>
@@ -51,7 +189,7 @@ export default {
   left: 0;
   width: 100%;
   padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
+  // padding-bottom: 0.5vh;
   // height: 100%;
   z-index: 1;
   // display: grid;

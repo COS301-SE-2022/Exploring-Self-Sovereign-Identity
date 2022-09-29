@@ -19,7 +19,7 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
         {
            // _userDataService = new UserdataService ();
         }
-
+        /*
         [TestMethod]
         public async Task TestRegister()
         {
@@ -66,10 +66,9 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             string res = await UserdataService.UpdateUserData(userId, attributes);
 
             Assert.IsNotNull(res);
-            Assert.AreEqual("success", res);*/
+            Assert.AreEqual("success", res);
 
-        /*}
-        */
+        }*/
 
     }
 }
