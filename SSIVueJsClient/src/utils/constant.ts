@@ -11,7 +11,6 @@ import {
   Gender,
   GlassesShape,
   MouthShape,
-  NoseShape,
   TopsShape,
   WidgetType,
   WrapperShape,
@@ -36,9 +35,6 @@ export const AVATAR_LAYER: Readonly<{
   },
   [WidgetType.Eyes]: {
     zIndex: 50,
-  },
-  [WidgetType.Nose]: {
-    zIndex: 60,
   },
   [WidgetType.Glasses]: {
     zIndex: 90,
@@ -67,7 +63,6 @@ export const SETTINGS: Readonly<AvatarSettings> = {
   earringsShape: Object.values(EarringsShape),
   eyebrowsShape: Object.values(EyebrowsShape),
   eyesShape: Object.values(EyesShape),
-  noseShape: Object.values(NoseShape),
   glassesShape: Object.values(GlassesShape),
   mouthShape: Object.values(MouthShape),
   beardShape: Object.values(BeardShape),
@@ -136,14 +131,8 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       eyes: {
         shape: EyesShape.Eyeshadow,
       },
-      nose: {
-        shape: NoseShape.Pointed,
-      },
       glasses: {
         shape: NONE,
-      },
-      mouth: {
-        shape: MouthShape.Laughing,
       },
       beard: {
         shape: NONE,
@@ -177,9 +166,6 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       },
       eyes: {
         shape: EyesShape.Round,
-      },
-      nose: {
-        shape: NoseShape.Round,
       },
       glasses: {
         shape: NONE,

@@ -25,13 +25,13 @@
 </script> -->
 
 <script lang="ts">
-import { ref, toRefs, watchEffect, type PropType } from "vue";
-import { defineComponent } from "vue";
-import { WidgetType, WrapperShape } from "@/enums";
-import type { AvatarOption } from "@/types";
-import { getRandomAvatarOption } from "@/utils";
-import { AVATAR_LAYER, NONE } from "@/utils/constant";
-import { widgetData } from "@/utils/dynamic-data";
+import { ref, toRefs, watchEffect, type PropType } from 'vue'
+import { defineComponent } from 'vue'
+import { WrapperShape } from '@/enums'
+import type { AvatarOption } from '@/types'
+import { getRandomAvatarOption } from '@/utils'
+import { AVATAR_LAYER, NONE } from '@/utils/constant'
+import { widgetData } from '@/utils/dynamic-data'
 
 //import Background from '@/components/Background.vue'
 export interface VueColorAvatarRef {
@@ -47,6 +47,7 @@ export default defineComponent({
     },
     size: {
       type: Object as PropType<number>,
+      // eslint-disable-next-line vue/require-valid-default-prop
       default: 280,
     },
   },
@@ -65,13 +66,11 @@ export default defineComponent({
 
     // const { option: avatarOption, size: avatarSize } = toRefs(props)
 
-    const { option: avatarOption, size: avatarSize } = toRefs(props);
-
-    const avatarRef = ref<VueColorAvatarRef["avatarRef"]>();
+    const { option: avatarOption, size: avatarSize } = toRefs(props)
 
     //defineExpose({ avatarRef })
 
-    expose({ avatarRef });
+    expose({ avatarRef })
 
     function getWrapperShapeClassName() {
       return {
@@ -92,12 +91,12 @@ export default defineComponent({
           const ix =
             prev.zIndex ??
             AVATAR_LAYER[prevShape as keyof typeof AVATAR_LAYER]?.zIndex ??
-            0;
+            0
           const iix =
             next.zIndex ??
             AVATAR_LAYER[nextShape as keyof typeof AVATAR_LAYER]?.zIndex ??
-            0;
-          return ix - iix;
+            0
+          return ix - iix
         }
       );
 
@@ -117,7 +116,7 @@ export default defineComponent({
               await widgetData[widgetType as keyof typeof widgetData][
                 opt.shape
               ]()
-            ).default;
+            ).default
           }
           return "";
         }
@@ -125,7 +124,7 @@ export default defineComponent({
 
       const svgRawList = await Promise.all(promises).then((raw) => {
         return raw.map((svgRaw, i) => {
-          const widgetFillColor = sortedList[i][1].fillColor;
+          //const widgetFillColor = sortedList[i][1].fillColor
 
           const content = svgRaw
             .slice(svgRaw.indexOf(">", svgRaw.indexOf("<svg")) + 1)
