@@ -7,53 +7,7 @@
 >
   <g transform="translate(0, 0)">
     <title>eyebrows - eyelashesup</title>
-    <path
-      d="M99 13.2143C104.667 10.5476 118 8.11427 126 19.7143"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M23.5791 38.521C25.6497 32.6104 33.2612 21.3959 47.1418 23.8224"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M26.0742 32.4578L19.9258 27.0312"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M122.961 14.157L129.109 8.73047"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M32.5233 26.8142L28.4766 19.6816"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M115.512 10.5135L119.559 3.38086"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M40.5994 23.2005L38.3984 15.3008"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-    <path
-      d="M106.436 9.89973L108.637 2"
-      stroke="black"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
+    <path fill="#000000" fill-opacity="0.7" d="M20 100c5,-4 8,-10 14,-13 7,-3 12,-5 23,-5 -10,-3 -20,-4 -27,0 -6,4 -9,11 -10,18z"/>
+    <path fill="#000000" fill-opacity="0.7" d="M129 100c-5,-4 -8,-10 -14,-13 -8,-3 -12,-5 -23,-5 10,-3 20,-4 26,0 6,4 10,11 11,18z"/>
   </g>
 </svg>

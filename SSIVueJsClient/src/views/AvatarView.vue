@@ -1,22 +1,21 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script lang="ts">
-import { defineComponent } from "vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import { ref, watchEffect } from "vue";
-import ActionBar from "@/components/ActionBar.vue";
-import Configurator from "@/components/Configurator.vue";
-import CodeModal from "@/components/Modal/CodeModal.vue";
-import DownloadModal from "@/components/Modal/DownloadModal.vue";
-import type VueColorAvatar from "../components/VueColorAvatar.vue";
-import type { VueColorAvatarRef } from "../components/VueColorAvatar.vue";
-import { ActionType } from "@/enums";
-import { useAvatarOption } from "@/hooks";
-import Container from "@/components/Container.vue";
-import Sider from "@/components/Sider.vue";
-import { useStore } from "@/stores";
-import { REDO, UNDO } from "@/stores/mutation-type";
-import { getRandomAvatarOption, getSpecialAvatarOption } from "../utils";
+import { defineComponent } from 'vue'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+import { ref, watchEffect } from 'vue'
+import ActionBar from '@/components/ActionBar.vue'
+import Configurator from '@/components/Configurator.vue'
+import DownloadModal from '@/components/Modal/DownloadModal.vue'
+import type VueColorAvatar from '../components/VueColorAvatar.vue'
+import type { VueColorAvatarRef } from '../components/VueColorAvatar.vue'
+import { ActionType } from '@/enums'
+import { useAvatarOption } from '@/hooks'
+import Container from '@/components/Container.vue'
+import Sider from '@/components/Sider.vue'
+import { useStore } from '@/stores'
+import { REDO, UNDO } from '@/stores/mutation-type'
+import { getRandomAvatarOption, getSpecialAvatarOption } from '../utils'
 import {
   DOWNLOAD_DELAY,
   NOT_COMPATIBLE_AGENTS,
@@ -79,10 +78,10 @@ export default defineComponent({
             imageDataURL.value = dataURL;
             downloadModalVisible.value = true;
           } else {
-            const trigger = document.createElement("a");
-            trigger.href = dataURL;
-            //trigger.download = `${appName}.png`
-            trigger.click();
+            const trigger = document.createElement('a')
+            trigger.href = dataURL
+            trigger.download = `MiDentityAvatar.png`
+            trigger.click()
           }
         }
 
@@ -176,7 +175,7 @@ export default defineComponent({
                 class="action-btn action-randomize"
                 @click="handleGenerate"
               >
-                {{ "action.randomize" }}
+                {{ 'Randomize' }}
               </button>
 
               <button
@@ -185,9 +184,7 @@ export default defineComponent({
                 :disabled="downloading"
                 @click="handleDownload"
               >
-                {{
-                  downloading ? `${"action.downloading"}...` : "action.download"
-                }}
+                {{ downloading ? `${'Downloading'}...` : 'Download' }}
               </button>
             </div>
           </div>
@@ -200,8 +197,6 @@ export default defineComponent({
             @close="(downloadModalVisible = false), (imageDataURL = '');"
           />
         </div>
-
-        <ConfettiCanvas />
 
         <div class="gradient-bg">
           <div class="gradient-top"></div>

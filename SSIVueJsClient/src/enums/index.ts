@@ -12,17 +12,16 @@ export enum Gender {
 }
 
 export enum WidgetType {
-  Face = "face",
-  Tops = "tops",
-  Ear = "ear",
-  Earrings = "earrings",
-  Eyebrows = "eyebrows",
-  Eyes = "eyes",
-  Nose = "nose",
-  Glasses = "glasses",
-  Mouth = "mouth",
-  Beard = "beard",
-  Clothes = "clothes",
+  Face = 'face',
+  Tops = 'tops',
+  Ear = 'ear',
+  Earrings = 'earrings',
+  Eyebrows = 'eyebrows',
+  Eyes = 'eyes',
+  Glasses = 'glasses',
+  Mouth = 'mouth',
+  Beard = 'beard',
+  Clothes = 'clothes',
 }
 
 export enum WrapperShape {
@@ -32,61 +31,63 @@ export enum WrapperShape {
 }
 
 export enum FaceShape {
-  Base = "base",
+  Base = 'base',
+  Purple = 'purple',
+  Brown = 'brown',
+  Black = 'black', 
 }
 
 export enum TopsShape {
-  Fonze = "fonze",
-  Funny = "funny",
-  Clean = "clean",
-  Punk = "punk",
-  Danny = "danny",
-  Wave = "wave",
-  Turban = "turban",
-  Pixie = "pixie",
-  Beanie = "beanie",
+  Fonze = 'fonze',
+  Funny = 'funny',
+  Clean = 'clean',
+  Punk = 'punk',
+  Danny = 'danny',
+  Wave = 'wave',
+  Turban = 'turban',
+  Pixie = 'pixie',
+  Beanie = 'beanie',
+  None = 'none', 
 }
 
 export enum EarShape {
-  Attached = "attached",
-  Detached = "detached",
+  Attached = 'attached',
+  Detached = 'detached',
+  None = 'none', 
 }
 
 export enum EarringsShape {
-  Hoop = "hoop",
-  Stud = "stud",
-  None = "none",
+  Hoop = 'hoop',
+  Stud = 'stud',
+  Detached = 'detached',
+  None = 'none',
 }
 
 export enum EyebrowsShape {
-  Up = "up",
-  Down = "down",
-  Eyelashesup = "eyelashesup",
-  Eyelashesdown = "eyelashesdown",
+  Up = 'up',
+  Eyelashesup = 'eyelashesup',
+  Eyelashesdown = 'eyelashesdown',
+  None = 'none',
 }
 
 export enum EyesShape {
-  Ellipse = "ellipse",
-  Smiling = "smiling",
-  Eyeshadow = "eyeshadow",
-  Round = "round",
+  Ellipse = 'ellipse',
+  Smiling = 'smiling',
+  Eyeshadow = 'eyeshadow',
+  Round = 'round',
+  None = 'none', 
 }
 
-export enum NoseShape {
-  Curve = "curve",
-  Round = "round",
-  Pointed = "pointed",
-}
 
 export enum MouthShape {
-  Frown = "frown",
-  Laughing = "laughing",
-  Nervous = "nervous",
-  Pucker = "pucker",
-  Sad = "sad",
-  Smile = "smile",
-  Smirk = "smirk",
-  Surprised = "surprised",
+  Frown = 'frown',
+  Nervous = 'nervous',
+  Pucker = 'pucker',
+  Sad = 'sad',
+  Smile = 'smile',
+  Smirk = 'smirk',
+  Surprised = 'surprised',
+  None = 'none', 
 }
 
 export enum BeardShape {
@@ -113,7 +114,6 @@ export type WidgetShape =
   | EarringsShape
   | EyebrowsShape
   | EyesShape
-  | NoseShape
   | MouthShape
   | BeardShape
   | GlassesShape

@@ -2,12 +2,11 @@
 import { defineComponent } from "vue";
 import { computed } from "vue";
 
-import IconBack from "@/assets/icons/icon-back.svg";
-import IconCode from "@/assets/icons/icon-code.svg";
-import IconFlip from "@/assets/icons/icon-flip.svg";
-import IconNext from "@/assets/icons/icon-next.svg";
-import { ActionType } from "@/enums";
-import { useStore } from "@/stores";
+import IconBack from '@/assets/icons/icon-back.svg'
+import IconFlip from '@/assets/icons/icon-flip.svg'
+import IconNext from '@/assets/icons/icon-next.svg'
+import { ActionType } from '@/enums'
+import { useStore } from '@/stores'
 export default defineComponent({
   //components: { IconBack, IconCode, IconFlip, IconNext },
   emits: ["action"],
@@ -34,17 +33,8 @@ export default defineComponent({
         tip: "action.redo",
         disabled: !canRedo.value,
       },
-      {
-        type: ActionType.Flip,
-        icon: IconFlip,
-        tip: "action.flip",
-      },
-      {
-        type: ActionType.Code,
-        icon: IconCode,
-        tip: "action.code",
-      },
-    ]);
+
+    ])
 
     return {
       actions,
