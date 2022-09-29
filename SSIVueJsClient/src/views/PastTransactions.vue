@@ -36,7 +36,7 @@ export default defineComponent({
       ></n-empty>
     </n-card>
 
-    <n-collapse accordion arrow-placement="right">
+    <n-collapse accordion arrow-placement="right" v-else>
       <n-card>
         <n-collapse-item
           v-for="t in transactions.past"

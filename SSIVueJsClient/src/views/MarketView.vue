@@ -121,7 +121,7 @@ export default defineComponent({
           ></n-empty>
         </n-card>
 
-        <n-card v-for="m in market.getMarkets" :key="m.id">
+        <n-card v-for="m in market.getMarkets" :key="m.id" v-else>
           <n-collapse accordion arrow-placement="right">
             <n-collapse-item :title="m.organization">
               <template #header-extra>
