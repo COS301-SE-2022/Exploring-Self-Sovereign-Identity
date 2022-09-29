@@ -147,7 +147,10 @@ export default defineComponent({
       <n-tab-pane name="Credentials">
         <n-card>
           <n-empty
-            v-if="userData.getCredentials.length == 0"
+            v-if="
+              userData.getCredentials.length == 0 ||
+              userData.getCredentials == undefined
+            "
             size="large"
             description="No credentials to be shown..."
           ></n-empty>

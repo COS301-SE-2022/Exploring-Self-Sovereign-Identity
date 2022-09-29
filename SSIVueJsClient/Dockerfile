@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+ENV GENERATE_SOURCEMAP=false
 RUN npm run build
 
 # production stage
