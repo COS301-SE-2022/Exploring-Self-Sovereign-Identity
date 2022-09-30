@@ -12,7 +12,8 @@
     <img width="33%" src="https://user-images.githubusercontent.com/100567494/193163848-2e8e00a3-a1d8-450f-8693-c59fdaf0f19b.png">
 </p>
 
-### The Midentity Application is a realization of the SSI System and all the features associated with it. Click [Here](https://midentity-ssi.azurewebsites.net/) to explore!
+### The Midentity Application is a realization of the SSI System and all the features associated with it. 
+Click [Here](https://midentity-ssi.azurewebsites.net/) to explore!
 
 
 ## Meet The Team 
