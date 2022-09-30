@@ -35,7 +35,6 @@
 * [Technical Installation Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679696/Technical.Installation.Manual.pdf)
 * [Coding Standards Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9209052/Coding.Standards.Document.pdf)
 * [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9213050/SRS.Document.pdf)
-* [Presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9216758/Demo.3.exploring.self-sovereign.identities.pdf)
 * [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9453546/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
 
 
