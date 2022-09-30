@@ -12,7 +12,8 @@
     <img width="33%" src="https://user-images.githubusercontent.com/100567494/193163848-2e8e00a3-a1d8-450f-8693-c59fdaf0f19b.png">
 </p>
 
-### The Midentity Application is a realization of the SSI System and all the features associated with it. 
+### The Midentity Application is a realization of the SSI System and all the features associated with it. Check it out at: (midentity-ssi.azurewebsites.net/)
+
 
 ## Meet The Team 
 *  <b>Johan Smit</b> - I am the Project Manager for our team and will be working on all aspects of the project to ensure effiecient collaboration, deadlines are being met and we meet the client's requirements. Professional Profile, [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157)
