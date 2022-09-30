@@ -13,7 +13,7 @@
 </p>
 
 ### The Midentity Application is a realization of the SSI System and all the features associated with it. 
-Click [Here](https://midentity-ssi.azurewebsites.net/) to explore!
+[Click Here](https://midentity-ssi.azurewebsites.net/) to begin your SSI Journey! 
 
 
 ## Meet The Team 
