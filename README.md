@@ -32,7 +32,8 @@
 * [Demo 3 (29/07)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-3)
   * [video](https://drive.google.com/file/d/1UqejxSGpTyzGVpEmzNhl402VLjz9G6cL/view?usp=sharing)
 * [Demo 4 (29/09)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-4)
-  * [presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679400/d6d8b2e4b97b4b6974f7c296699.pdf)
+  *[video](https://drive.google.com/drive/folders/1tBcWw_pS-QM5_7PO4rk48quSsv6JYiN5?usp=sharing)
+  
 
 
 ## Documentation
@@ -43,6 +44,7 @@
 * [Coding Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9682490/Coding.Standards.-.Code.of.Duty.SSI.pdf)
 * [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679726/SRS.Document.-.Code.of.Duty.SSI.pdf)
 * [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9453546/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
+* [Presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679400/d6d8b2e4b97b4b6974f7c296699.pdf)
 
 
 
