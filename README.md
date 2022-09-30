@@ -32,7 +32,7 @@
 * [Demo 3 (29/07)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-3)
   * [video](https://drive.google.com/file/d/1UqejxSGpTyzGVpEmzNhl402VLjz9G6cL/view?usp=sharing)
 * [Demo 4 (29/09)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-4)
-  *[video](https://drive.google.com/drive/folders/1tBcWw_pS-QM5_7PO4rk48quSsv6JYiN5?usp=sharing)
+  * [video](https://drive.google.com/drive/folders/1tBcWw_pS-QM5_7PO4rk48quSsv6JYiN5?usp=sharing)
   
 
 
