@@ -205,23 +205,29 @@ contract("MarketPlace", ([contractOwner, secondAddress, thirdAddress]) => {
                     ]
                 ]);
 
-                await mkp.buyData([
-                    "bbb",
-                    username,
-                    username+"1",
-                    [
-                        [
-                            "name",
-                            "johan"
-                        ],
-                        [
-                            "surname",
-                            "smit"
-                        ]
-                    ]
-                ]);
+                // await mkp.buyData([
+                //     "bbb",
+                //     username,
+                //     username+"1",
+                //     [
+                //         [
+                //             "name",
+                //             "johan"
+                //         ],
+                //         [
+                //             "surname",
+                //             "smit"
+                //         ]
+                //     ]
+                // ]);
 
                 result = await mkp.getOrganization([username, password]);
+                console.log(result.packs[0].received[0]);
+            });
+
+            it("getsAllData", async () => {
+                result = await mkp.getAllOrganizations("aaa");
+
                 console.log(result);
             });
         });

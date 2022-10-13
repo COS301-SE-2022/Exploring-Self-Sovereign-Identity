@@ -10,15 +10,15 @@ import {
   MouthShape,
   TopsShape,
   WidgetType,
-} from '../enums'
+} from "../enums";
 
 /** @internal */
 type Data = Readonly<{
   [key in `${WidgetType}`]: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key in string]: () => Promise<any>
-  }
-}>
+    [key in string]: () => Promise<any>;
+  };
+}>;
 
 const widgetData: Data = {
   [WidgetType.Face]: {
@@ -98,7 +98,7 @@ const widgetData: Data = {
     [TopsShape.Turban]: () => import(`../assets/widgets/tops/turban.svg?raw`),
     [TopsShape.Wave]: () => import(`../assets/widgets/tops/wave.svg?raw`),
   },
-}
+};
 
 const previewData: Data = {
   [WidgetType.Face]: {
@@ -178,6 +178,6 @@ const previewData: Data = {
     [TopsShape.Turban]: () => import(`../assets/preview/tops/turban.svg?raw`),
     [TopsShape.Wave]: () => import(`../assets/preview/tops/wave.svg?raw`),
   },
-}
+};
 
-export { previewData, widgetData }
+export { previewData, widgetData };

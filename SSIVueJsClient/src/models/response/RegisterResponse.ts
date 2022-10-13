@@ -1,13 +1,16 @@
 export class RegisterResponse {
+  public constructor(userID: String, key: String) {
+    this.userID = userID;
+    this.key = key;
+  }
 
-    public constructor(userID: String, key: String) {
-        this.userID = userID;
-        this.key = key;
-    }
+  public getUserID(): String {
+    return this.userID;
+  }
+  public getKey(): String {
+    return this.key;
+  }
 
-    public getUserID() : String { return this.userID; }
-    public getKey() : String { return this.key; }
-
-    private userID : String;
-    private key : String;
+  private userID: String;
+  private key: String;
 }

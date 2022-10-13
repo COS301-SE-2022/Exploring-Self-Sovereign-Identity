@@ -7,6 +7,15 @@
 
 ### The idea of the SSI-System is to explore the world of SSI and the use cases thereof as we move into the era of the Metaverse.
 
+## Midentity 
+<p align="center" width="100%">
+    <img width="33%" src="https://user-images.githubusercontent.com/100567494/193163848-2e8e00a3-a1d8-450f-8693-c59fdaf0f19b.png">
+</p>
+
+### The Midentity Application is a realization of the SSI System and all the features associated with it. 
+[Click Here](https://midentity-ssi.azurewebsites.net/) to begin your SSI Journey! 
+
+
 ## Meet The Team 
 *  <b>Johan Smit</b> - I am the Project Manager for our team and will be working on all aspects of the project to ensure effiecient collaboration, deadlines are being met and we meet the client's requirements. Professional Profile, [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157)
 *  <b>Rebecca Pillay</b> - I am the Business Analyst for the team. Along with development, I will be responsible for all documentation and ensuring seamless translation of client requirements to development specifications. Professional Profile, [LinkedIn](https://www.linkedin.com/in/rebecca-p-48b236118)
@@ -24,16 +33,22 @@
   * [video](https://drive.google.com/file/d/1FlYbD0541b8dLWB-AisRWcFs9j2SnRK0/view?usp=sharing)
 * [Demo 3 (29/07)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-3)
   * [video](https://drive.google.com/file/d/1UqejxSGpTyzGVpEmzNhl402VLjz9G6cL/view?usp=sharing)
-* Demo 4 (29/09) <i> to be completed. </i>
+* [Demo 4 (29/09)](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Demo-4)
+  * [video](https://drive.google.com/drive/folders/1tBcWw_pS-QM5_7PO4rk48quSsv6JYiN5?usp=sharing)
+  
+
 
 ## Documentation
-* [User Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9208791/User.Manual.pdf)
-* [Technical Installation Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9208974/Technical.Installation.Manual.pdf)
-* [Coding Standards Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9209052/Coding.Standards.Document.pdf)
-* [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9213050/SRS.Document.pdf)
-* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9207869/Architectural.Structural.Design.Requirements.pdf)
-* [Presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9216758/Demo.3.exploring.self-sovereign.identities.pdf)
+* [Deployment Model](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679472/Deployment.Model.-.Code.of.Duty.SSI.pdf)
+* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679377/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
+* [Testing Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9691925/Testing.Standards.-.Final.pdf)
+* [User Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679687/User.Manual.pdf)
+* [Technical Installation Manual](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679696/Technical.Installation.Manual.pdf)
+* [Coding Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9682490/Coding.Standards.-.Code.of.Duty.SSI.pdf)
+* [SRS Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679726/SRS.Document.-.Code.of.Duty.SSI.pdf)
 * [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9453546/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
+* [Presentation](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679400/d6d8b2e4b97b4b6974f7c296699.pdf)
+
 
 
 

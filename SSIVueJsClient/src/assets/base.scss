@@ -20,10 +20,8 @@ $mdc-theme-on-background: #442c2e;
     "box-shadow": 0 4px 30px rgba(0, 0, 0, 0.1),
     "backdrop-filter": blur(12.7px),
     "-webkit-backdrop-filter": blur(12.7px),
-  
   )
 );
-
 
 body {
   max-width: 100vw;
@@ -33,7 +31,7 @@ body {
   // background: var(--color-background);
   // background: linear-gradient(to bottom left, #000000 0%, #131717 100%);\
   //* sun background
-  
+
   background: #211522;
   // background: radial-gradient(
   //   circle farthest-side at top center,
@@ -74,6 +72,6 @@ body {
   --passage-onactive-color: rgb(0, 0, 0);
 }
 
-passage-auth::part(input){
+passage-auth::part(input) {
   color: #000;
 }

@@ -13,13 +13,13 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     [TestClass]
     public class EndpointsIntegratioinTest
     {
-        public UserdataService _userDataService;
+        /*public UserdataService _userDataService;
         //public IUserDataService _userRepo = new IUserDataService();
         public EndpointsIntegratioinTest()
         {
            // _userDataService = new UserdataService ();
         }
-
+        /*
         [TestMethod]
         public async Task TestRegister()
         {
@@ -66,10 +66,9 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
             string res = await UserdataService.UpdateUserData(userId, attributes);
 
             Assert.IsNotNull(res);
-            Assert.AreEqual("success", res);*/
+            Assert.AreEqual("success", res);
 
-        }
-
+        }*/
 
     }
 }

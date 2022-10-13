@@ -1,0 +1,6 @@
+.coverage
+.cypress
+deploy.sh
+deploy.ps1
+.node_modules
+

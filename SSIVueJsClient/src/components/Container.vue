@@ -1,18 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { onMounted, onUnmounted } from 'vue'
-import { useSider } from '@/hooks'
-import { SCREEN } from '@/utils/constant'
+import { defineComponent } from "vue";
+import { onMounted, onUnmounted } from "vue";
+import { useSider } from "@/hooks";
+import { SCREEN } from "@/utils/constant";
 export default defineComponent({
   setup() {
-    const { isCollapsed, openSider, closeSider } = useSider()
+    const { isCollapsed, openSider, closeSider } = useSider();
 
     function handleWindowResize() {
       if (window.innerWidth <= SCREEN.lg) {
-        closeSider()
+        closeSider();
       } else {
-        openSider()
+        openSider();
       }
     }
 
@@ -23,36 +23,36 @@ export default defineComponent({
           customEventName: string,
           obj: Window
         ) {
-          obj = obj || window
-          let running = false
+          obj = obj || window;
+          let running = false;
           const func = () => {
             if (running) {
-              return
+              return;
             }
-            running = true
+            running = true;
             requestAnimationFrame(() => {
-              obj.dispatchEvent(new CustomEvent(customEventName))
-              running = false
-            })
-          }
-          obj.addEventListener(type, func)
-        }
-        throttle('resize', 'optimizedResize', window)
-      })()
+              obj.dispatchEvent(new CustomEvent(customEventName));
+              running = false;
+            });
+          };
+          obj.addEventListener(type, func);
+        };
+        throttle("resize", "optimizedResize", window);
+      })();
 
-      window.addEventListener('optimizedResize', handleWindowResize)
-    })
+      window.addEventListener("optimizedResize", handleWindowResize);
+    });
 
     onUnmounted(() => {
-      window.removeEventListener('optimizedResize', handleWindowResize)
-    })
+      window.removeEventListener("optimizedResize", handleWindowResize);
+    });
 
     return {
       handleWindowResize,
-      isCollapsed, 
-    }
+      isCollapsed,
+    };
   },
-})
+});
 </script>
 <template>
   <section class="container" :class="{ full: isCollapsed }">
@@ -61,7 +61,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .container {
   height: 100%;

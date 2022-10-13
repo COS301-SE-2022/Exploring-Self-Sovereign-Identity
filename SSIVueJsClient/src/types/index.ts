@@ -1,6 +1,6 @@
-import type { NONE } from '@/utils/constant'
+import type { NONE } from "@/utils/constant";
 
-export type None = typeof NONE
+export type None = typeof NONE;
 
 import type {
   BeardShape,
@@ -15,13 +15,13 @@ import type {
   MouthShape,
   TopsShape,
   WrapperShape,
-} from '../enums'
+} from "../enums";
 
 interface Widget<Shape> {
-  shape: Shape | None
-  zIndex?: number
-  fillColor?: string
-  strokeColor?: string
+  shape: Shape | None;
+  zIndex?: number;
+  fillColor?: string;
+  strokeColor?: string;
 }
 
 type AvatarWidgets = {
@@ -38,19 +38,19 @@ type AvatarWidgets = {
 }
 
 export interface AvatarOption {
-  gender?: Gender
+  gender?: Gender;
 
-  wrapperShape?: `${WrapperShape}`
+  wrapperShape?: `${WrapperShape}`;
 
   background: {
-    color: string
-  }
+    color: string;
+  };
 
-  widgets: Partial<AvatarWidgets>
+  widgets: Partial<AvatarWidgets>;
 }
 
 export interface AvatarSettings {
-  gender: [Gender, Gender]
+  gender: [Gender, Gender];
 
   wrapperShape: WrapperShape[]
   faceShape: FaceShape[]
@@ -64,7 +64,7 @@ export interface AvatarSettings {
   glassesShape: GlassesShape[]
   clothesShape: ClothesShape[]
 
-  commonColors: string[]
-  backgroundColor: string[]
-  skinColor: string[]
+  commonColors: string[];
+  backgroundColor: string[];
+  skinColor: string[];
 }

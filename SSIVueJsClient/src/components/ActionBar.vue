@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { computed } from 'vue'
+import { defineComponent } from "vue";
+import { computed } from "vue";
 
 import IconBack from '@/assets/icons/icon-back.svg'
 import IconFlip from '@/assets/icons/icon-flip.svg'
@@ -9,32 +9,28 @@ import { ActionType } from '@/enums'
 import { useStore } from '@/stores'
 export default defineComponent({
   //components: { IconBack, IconCode, IconFlip, IconNext },
-  emits : ["action"],
-  setup(props, {emit}) {
-
-
+  emits: ["action"],
+  setup(props, { emit }) {
     // const emit = defineEmits<{
     //   (e: 'action', actionType: ActionType): void
     // }>()
 
-    
+    const store = useStore();
 
-    const store = useStore()
-
-    const canUndo = computed(() => store.state.history.past.length > 0)
-    const canRedo = computed(() => store.state.history.future.length > 0)
+    const canUndo = computed(() => store.state.history.past.length > 0);
+    const canRedo = computed(() => store.state.history.future.length > 0);
 
     const actions = computed(() => [
       {
         type: ActionType.Undo,
         icon: IconBack,
-        tip: 'action.undo',
+        tip: "action.undo",
         disabled: !canUndo.value,
       },
       {
         type: ActionType.Redo,
         icon: IconNext,
-        tip: 'action.redo',
+        tip: "action.redo",
         disabled: !canRedo.value,
       },
 
@@ -43,9 +39,9 @@ export default defineComponent({
     return {
       actions,
       emit,
-    }
+    };
   },
-})
+});
 </script>
 
 <template>
@@ -64,7 +60,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .action-menu {
   display: flex;

@@ -17,18 +17,18 @@
   </header>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 export default defineComponent({
   data() {
-    return {}
+    return {};
   },
   components: {},
   methods: {},
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .header {
   display: flex;

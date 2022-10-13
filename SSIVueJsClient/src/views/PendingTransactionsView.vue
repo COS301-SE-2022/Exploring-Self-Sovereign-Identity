@@ -1,7 +1,10 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import BackNav from "../components/Nav/BackNav.vue";
-import { transactionsStore } from "@/stores/transactions";
+import {
+  transactionsStore,
+  type transactionRequests,
+} from "@/stores/transactions";
 import { userDataStore } from "@/stores/userData";
 
 export default defineComponent({
@@ -9,7 +12,13 @@ export default defineComponent({
     const transactions = transactionsStore();
     const userData = userDataStore();
     const arr = new Map<string, string>();
-    return { transactions, arr, userData };
+    const loading = ref(false);
+    const skel = ref(true);
+    const description = ref("");
+    return { transactions, arr, userData, loading, description, skel };
+  },
+  mounted() {
+    this.skel = false;
   },
   methods: {
     exists(att: string) {
@@ -21,13 +30,16 @@ export default defineComponent({
         return "";
       }
     },
-    update(index: string, value: string) {
+    update(value: string, index: string) {
       this.arr.set(index, value);
     },
-    updateUser() {
+    async updateUser() {
+      let changed = false;
       if (this.arr.size == 0) return;
       for (let [key, value] of this.arr) {
         if (value != "") {
+          console.log("arr");
+          console.log(key, value);
           this.userData.attributes.attributes.push({
             attribute: {
               name: key,
@@ -35,19 +47,31 @@ export default defineComponent({
             },
             index: -1,
           });
+          changed = true;
         } else {
           // * fix empty checks
           console.log("empty");
         }
       }
-      this.userData.setuserdata();
+      console.log("here2");
+      if (changed) {
+        console.log("changed");
+        await this.userData.setuserdata();
+      }
+      console.log("done");
     },
-    decline(index: number) {
-      this.transactions.declineTransaction(this.userData.getId, index);
+    async decline(index: transactionRequests) {
+      this.description = "Declining transaction...";
+      this.loading = true;
+      await this.transactions.declineTransaction(this.userData.getId, index);
+      this.loading = false;
     },
-    approve(index: number) {
-      this.updateUser();
-      this.transactions.approveTransaction(this.userData.getId, index);
+    async approve(index: transactionRequests) {
+      this.description = "Approving transaction...";
+      this.loading = true;
+      await this.updateUser();
+      await this.transactions.approveTransaction(this.userData.getId, index);
+      this.loading = false;
     },
   },
   components: { BackNav },
@@ -55,34 +79,59 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-collapse accordion arrow-placement="right">
-    <n-collapse-item
-      v-for="(t, index) in transactions.requests"
-      :key="t.stamp.fromID"
-      :name="t.stamp.fromID"
-      :title="t.stamp.fromID"
-    >
-      <template #header-extra>{{ t.stamp.date }}</template>
-      <n-input-group
-        v-for="att in t.attributes"
-        :key="att"
-        data-test-id="attribute"
+  <n-spin :show="loading" :description="description">
+    <n-skeleton
+      v-if="skel"
+      :sharp="false"
+      size="medium"
+      :repeat="7"
+      height="6vh"
+      width="99vw"
+    />
+    <template v-else>
+      <n-card
+        v-if="
+          transactions.pending.length == 0 || transactions.pending == undefined
+        "
       >
-        <n-input-group-label>{{ att }}</n-input-group-label>
-        <n-input
-          :key="att"
-          :default-value="exists(att)"
-          :readonly="!transactions.exists(att)"
-          @update="update(att, $event)"
-        ></n-input>
-      </n-input-group>
-      <n-space>
-        <n-button @click="decline(index)"> Decline </n-button>
-        <n-button type="primary" @click="approve(index)"> Approve </n-button>
-      </n-space>
-    </n-collapse-item>
-  </n-collapse>
-  <BackNav page="Request Data" />
+        <n-empty
+          size="large"
+          description="No attributes to be shown..."
+        ></n-empty>
+      </n-card>
+
+      <n-collapse accordion arrow-placement="right" v-else>
+        <n-card>
+          <n-collapse-item
+            v-for="t in transactions.pending"
+            :key="t.stamp.fromID"
+            :name="t.stamp.fromID"
+            :title="t.stamp.fromID"
+          >
+            <template #header-extra>{{ t.stamp.date }}</template>
+            <n-input-group
+              v-for="att in t.attributes"
+              :key="att"
+              data-test-id="attribute"
+            >
+              <n-input-group-label>{{ att }}</n-input-group-label>
+              <n-input
+                :key="att"
+                :default-value="exists(att)"
+                :readonly="transactions.exists(att) != ''"
+                @input="update($event, att)"
+              ></n-input>
+            </n-input-group>
+            <n-space>
+              <n-button @click="decline(t)"> Decline </n-button>
+              <n-button type="primary" @click="approve(t)"> Approve </n-button>
+            </n-space>
+          </n-collapse-item>
+        </n-card>
+      </n-collapse>
+    </template>
+    <BackNav page="Request Data" />
+  </n-spin>
 </template>
 
 <style lang="scss"></style>

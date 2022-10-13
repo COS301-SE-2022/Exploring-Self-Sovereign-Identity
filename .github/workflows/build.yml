@@ -45,15 +45,6 @@ jobs:
       - name: Building the project
         working-directory: ./SSIVueJsClient
         run: npm run build
-      - name: Running Unit Tests
-        working-directory: ./SSIVueJsClient
-        run: npm run test:unit
-      - name: Running Server
-        working-directory: ./SSIVueJsClient
-        run: npm run test:e2e:ci &
-      - name: Running Integration Tests
-        working-directory: ./SSIVueJsClient
-        run: npx cypress run
   
   SmartContract:
   

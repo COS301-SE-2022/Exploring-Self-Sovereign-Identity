@@ -14,11 +14,11 @@
           />
         </div>
 
-        <p class="tip">{{ 'text.downloadTip' }} 🥳</p>
+        <p class="tip">{{ "text.downloadTip" }} 🥳</p>
       </div>
 
       <button type="button" class="close-btn" @click="$emit('close')">
-        {{ 'action.close' }}
+        {{ "action.close" }}
       </button>
     </div>
   </div>
@@ -43,11 +43,11 @@ export default defineComponent({
     //   (e: 'close'): void
     // }>()
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .download-modal-wrapper {
   position: fixed;
