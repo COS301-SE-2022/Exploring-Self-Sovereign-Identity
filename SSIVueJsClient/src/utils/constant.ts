@@ -1,4 +1,4 @@
-import type { AvatarOption, AvatarSettings } from '@/types'
+import type { AvatarOption, AvatarSettings } from "@/types";
 
 import {
   BeardShape,
@@ -14,13 +14,13 @@ import {
   TopsShape,
   WidgetType,
   WrapperShape,
-} from '../enums'
+} from "../enums";
 
 //export const AvatarArray: typeof AVATAR_LAYER[] = []
 
 export const AVATAR_LAYER: Readonly<{
-  [key in `${WidgetType}`]: { zIndex: number }
-}> = { 
+  [key in `${WidgetType}`]: { zIndex: number };
+}> = {
   [WidgetType.Face]: {
     zIndex: 10,
   },
@@ -51,7 +51,7 @@ export const AVATAR_LAYER: Readonly<{
   [WidgetType.Clothes]: {
     zIndex: 110,
   },
-}
+};
 
 export const SETTINGS: Readonly<AvatarSettings> = {
   gender: [Gender.Male, Gender.Female],
@@ -69,47 +69,47 @@ export const SETTINGS: Readonly<AvatarSettings> = {
   clothesShape: Object.values(ClothesShape),
 
   commonColors: [
-    '#6BD9E9',
-    '#FC909F',
-    '#F4D150',
-    '#E0DDFF',
-    '#D2EFF3',
-    '#FFEDEF',
-    '#FFEBA4',
-    '#506AF4',
-    '#F48150',
-    '#48A99A',
-    '#C09FFF',
-    '#FD6F5D',
+    "#6BD9E9",
+    "#FC909F",
+    "#F4D150",
+    "#E0DDFF",
+    "#D2EFF3",
+    "#FFEDEF",
+    "#FFEBA4",
+    "#506AF4",
+    "#F48150",
+    "#48A99A",
+    "#C09FFF",
+    "#FD6F5D",
   ],
 
   get backgroundColor() {
     return [
       ...this.commonColors,
-      'linear-gradient(45deg, #E3648C, #D97567)',
-      'linear-gradient(62deg, #8EC5FC, #E0C3FC)',
-      'linear-gradient(90deg, #ffecd2, #fcb69f)',
-      'linear-gradient(120deg, #a1c4fd, #c2e9fb)',
-      'linear-gradient(-135deg, #fccb90, #d57eeb)',
-      'transparent',
-    ]
+      "linear-gradient(45deg, #E3648C, #D97567)",
+      "linear-gradient(62deg, #8EC5FC, #E0C3FC)",
+      "linear-gradient(90deg, #ffecd2, #fcb69f)",
+      "linear-gradient(120deg, #a1c4fd, #c2e9fb)",
+      "linear-gradient(-135deg, #fccb90, #d57eeb)",
+      "transparent",
+    ];
   },
-  skinColor: ['#F9C9B6', '#AC6651'],
-}
+  skinColor: ["#F9C9B6", "#AC6651"],
+};
 
 export const SCREEN = {
   lg: 976,
-} as const
+} as const;
 
-export const NONE = 'none'
+export const NONE = "none";
 
-export const TRIGGER_PROBABILITY = 0.1
+export const TRIGGER_PROBABILITY = 0.1;
 
 export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
   {
-    wrapperShape: 'squircle',
+    wrapperShape: "squircle",
     background: {
-      color: 'linear-gradient(62deg, #8EC5FC, #E0C3FC)',
+      color: "linear-gradient(62deg, #8EC5FC, #E0C3FC)",
     },
     widgets: {
       face: {
@@ -117,7 +117,7 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       },
       tops: {
         shape: TopsShape.Pixie,
-        fillColor: '#d2eff3',
+        fillColor: "#d2eff3",
       },
       ear: {
         shape: EarShape.Attached,
@@ -139,14 +139,14 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       },
       clothes: {
         shape: ClothesShape.Crew,
-        fillColor: '#e0ddff',
+        fillColor: "#e0ddff",
       },
     },
   },
   {
-    wrapperShape: 'squircle',
+    wrapperShape: "squircle",
     background: {
-      color: '#fd6f5d',
+      color: "#fd6f5d",
     },
     widgets: {
       face: {
@@ -178,17 +178,17 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
       },
       clothes: {
         shape: ClothesShape.Crew,
-        fillColor: '#f4d150',
+        fillColor: "#f4d150",
       },
     },
   },
-]
+];
 
 export const NOT_COMPATIBLE_AGENTS = [
-  'quark',
-  'micromessenger',
-  'weibo',
-  'douban',
-] as const
+  "quark",
+  "micromessenger",
+  "weibo",
+  "douban",
+] as const;
 
-export const DOWNLOAD_DELAY = 800
+export const DOWNLOAD_DELAY = 800;

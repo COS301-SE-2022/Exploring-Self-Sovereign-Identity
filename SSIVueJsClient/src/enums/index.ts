@@ -1,14 +1,14 @@
 export const enum ActionType {
-  Undo = 'undo',
-  Redo = 'redo',
-  Flip = 'flip',
-  Code = 'code',
+  Undo = "undo",
+  Redo = "redo",
+  Flip = "flip",
+  Code = "code",
 }
 
 export enum Gender {
-  Male = 'male',
-  Female = 'female',
-  NotSet = 'notSet',
+  Male = "male",
+  Female = "female",
+  NotSet = "notSet",
 }
 
 export enum WidgetType {
@@ -25,9 +25,9 @@ export enum WidgetType {
 }
 
 export enum WrapperShape {
-  Circle = 'circle',
-  Square = 'square',
-  Squircle = 'squircle',
+  Circle = "circle",
+  Square = "square",
+  Squircle = "squircle",
 }
 
 export enum FaceShape {
@@ -91,20 +91,20 @@ export enum MouthShape {
 }
 
 export enum BeardShape {
-  Scruff = 'scruff',
-  None = 'none',
+  Scruff = "scruff",
+  None = "none",
 }
 
 export enum GlassesShape {
-  Round = 'round',
-  Square = 'square',
-  None = 'none',
+  Round = "round",
+  Square = "square",
+  None = "none",
 }
 
 export enum ClothesShape {
-  Crew = 'crew',
-  Collared = 'collared',
-  Open = 'open',
+  Crew = "crew",
+  Collared = "collared",
+  Open = "open",
 }
 
 export type WidgetShape =
@@ -117,4 +117,4 @@ export type WidgetShape =
   | MouthShape
   | BeardShape
   | GlassesShape
-  | ClothesShape
+  | ClothesShape;

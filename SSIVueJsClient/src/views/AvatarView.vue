@@ -20,63 +20,63 @@ import {
   DOWNLOAD_DELAY,
   NOT_COMPATIBLE_AGENTS,
   TRIGGER_PROBABILITY,
-} from '../utils/constant'
-import { recordEvent } from '../utils/ga'
+} from "../utils/constant";
+import { recordEvent } from "../utils/ga";
 
-import type { AvatarOption } from '../types'
+import type { AvatarOption } from "../types";
 
 export default defineComponent({
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    const [avatarOption, setAvatarOption] = useAvatarOption()
+    const [avatarOption, setAvatarOption] = useAvatarOption();
 
-    const colorAvatarRef = ref<VueColorAvatarRef>()
+    const colorAvatarRef = ref<VueColorAvatarRef>();
 
     function handleGenerate() {
       if (Math.random() <= TRIGGER_PROBABILITY) {
-        let colorfulOption = getSpecialAvatarOption()
+        let colorfulOption = getSpecialAvatarOption();
         while (
           JSON.stringify(colorfulOption) === JSON.stringify(avatarOption.value)
         ) {
-          colorfulOption = getSpecialAvatarOption()
+          colorfulOption = getSpecialAvatarOption();
         }
-        colorfulOption.wrapperShape = avatarOption.value.wrapperShape
-        setAvatarOption(colorfulOption)
+        colorfulOption.wrapperShape = avatarOption.value.wrapperShape;
+        setAvatarOption(colorfulOption);
       } else {
-        const randomOption = getRandomAvatarOption(avatarOption.value)
-        setAvatarOption(randomOption)
+        const randomOption = getRandomAvatarOption(avatarOption.value);
+        setAvatarOption(randomOption);
       }
 
-      recordEvent('click_randomize', {
-        event_category: 'click',
-      })
+      recordEvent("click_randomize", {
+        event_category: "click",
+      });
     }
 
-    const downloadModalVisible = ref(false)
-    const downloading = ref(false)
-    const imageDataURL = ref('')
+    const downloadModalVisible = ref(false);
+    const downloading = ref(false);
+    const imageDataURL = ref("");
 
     async function handleDownload() {
       try {
-        downloading.value = true
-        const avatarEle = colorAvatarRef.value?.avatarRef
+        downloading.value = true;
+        const avatarEle = colorAvatarRef.value?.avatarRef;
 
-        const userAgent = window.navigator.userAgent.toLowerCase()
+        const userAgent = window.navigator.userAgent.toLowerCase();
         const notCompatible = NOT_COMPATIBLE_AGENTS.some(
           (agent) => userAgent.indexOf(agent) !== -1
-        )
+        );
 
         if (avatarEle) {
-          const html2canvas = (await import('html2canvas')).default
+          const html2canvas = (await import("html2canvas")).default;
           const canvas = await html2canvas(avatarEle, {
             backgroundColor: null,
-          })
-          const dataURL = canvas.toDataURL()
+          });
+          const dataURL = canvas.toDataURL();
 
           if (notCompatible) {
-            imageDataURL.value = dataURL
-            downloadModalVisible.value = true
+            imageDataURL.value = dataURL;
+            downloadModalVisible.value = true;
           } else {
             const trigger = document.createElement('a')
             trigger.href = dataURL
@@ -85,54 +85,54 @@ export default defineComponent({
           }
         }
 
-        recordEvent('click_download', {
-          event_category: 'click',
-        })
+        recordEvent("click_download", {
+          event_category: "click",
+        });
       } finally {
         setTimeout(() => {
-          downloading.value = false
-        }, DOWNLOAD_DELAY)
+          downloading.value = false;
+        }, DOWNLOAD_DELAY);
       }
     }
 
-    const flipped = ref(false)
+    const flipped = ref(false);
     //const codeVisible = ref(false)
 
     function handleAction(actionType: ActionType) {
       switch (actionType) {
         case ActionType.Undo:
-          store.commit(UNDO)
-          recordEvent('action_undo', {
-            event_category: 'action',
-            event_label: 'Undo',
-          })
-          break
+          store.commit(UNDO);
+          recordEvent("action_undo", {
+            event_category: "action",
+            event_label: "Undo",
+          });
+          break;
 
         case ActionType.Redo:
-          store.commit(REDO)
-          recordEvent('action_redo', {
-            event_category: 'action',
-            event_label: 'Redo',
-          })
-          break
+          store.commit(REDO);
+          recordEvent("action_redo", {
+            event_category: "action",
+            event_label: "Redo",
+          });
+          break;
 
         case ActionType.Flip:
-          flipped.value = !flipped.value
-          recordEvent('action_flip_avatar', {
-            event_category: 'action',
-            event_label: 'Flip Avatar',
-          })
-          break
+          flipped.value = !flipped.value;
+          recordEvent("action_flip_avatar", {
+            event_category: "action",
+            event_label: "Flip Avatar",
+          });
+          break;
       }
     }
 
-    const avatarListVisible = ref(false)
-    const avatarList = ref<AvatarOption[]>([])
+    const avatarListVisible = ref(false);
+    const avatarList = ref<AvatarOption[]>([]);
 
     watchEffect(() => {
       avatarListVisible.value =
-        Array.isArray(avatarList.value) && avatarList.value.length > 0
-    })
+        Array.isArray(avatarList.value) && avatarList.value.length > 0;
+    });
 
     return {
       handleGenerate,
@@ -143,9 +143,9 @@ export default defineComponent({
       downloading,
       downloadModalVisible,
       imageDataURL,
-    }
+    };
   },
-})
+});
 </script>
 
 <template>
@@ -194,7 +194,7 @@ export default defineComponent({
           <DownloadModal
             :visible="downloadModalVisible"
             :image-url="imageDataURL"
-            @close=";(downloadModalVisible = false), (imageDataURL = '')"
+            @close="(downloadModalVisible = false), (imageDataURL = '');"
           />
         </div>
 
@@ -211,7 +211,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@use 'src/styles/var';
+@use "src/styles/var";
 
 .main {
   width: 100%;

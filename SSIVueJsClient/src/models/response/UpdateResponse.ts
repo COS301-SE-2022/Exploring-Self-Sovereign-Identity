@@ -1,8 +1,7 @@
 export class UpdateResponse {
+  public constructor(status: String) {
+    this.status = status;
+  }
 
-    public constructor(status: String) {
-        this.status = status;
-    }
-
-    private status : String;
+  private status: String;
 }

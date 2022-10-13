@@ -35,7 +35,7 @@ import { widgetData } from '@/utils/dynamic-data'
 
 //import Background from '@/components/Background.vue'
 export interface VueColorAvatarRef {
-  avatarRef: HTMLDivElement
+  avatarRef: HTMLDivElement;
 }
 export default defineComponent({
   props: {
@@ -68,8 +68,6 @@ export default defineComponent({
 
     const { option: avatarOption, size: avatarSize } = toRefs(props)
 
-    const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
-
     //defineExpose({ avatarRef })
 
     expose({ avatarRef })
@@ -82,10 +80,10 @@ export default defineComponent({
           avatarOption.value.wrapperShape === WrapperShape.Square,
         [WrapperShape.Squircle]:
           avatarOption.value.wrapperShape === WrapperShape.Squircle,
-      }
+      };
     }
 
-    const svgContent = ref('')
+    const svgContent = ref("");
 
     watchEffect(async () => {
       const sortedList = Object.entries(avatarOption.value.widgets).sort(
@@ -100,7 +98,7 @@ export default defineComponent({
             0
           return ix - iix
         }
-      )
+      );
 
       /*const promises: Promise<string>[] = sortedList.map(async ([widgetType, opt]) => {
        return (
@@ -120,26 +118,26 @@ export default defineComponent({
               ]()
             ).default
           }
-          return ''
+          return "";
         }
-      )
+      );
 
       const svgRawList = await Promise.all(promises).then((raw) => {
         return raw.map((svgRaw, i) => {
           //const widgetFillColor = sortedList[i][1].fillColor
 
           const content = svgRaw
-            .slice(svgRaw.indexOf('>', svgRaw.indexOf('<svg')) + 1)
-            .replace('</svg>', '')
+            .slice(svgRaw.indexOf(">", svgRaw.indexOf("<svg")) + 1)
+            .replace("</svg>", "");
           //.replaceAll('$fillColor', widgetFillColor || 'transparent')
 
           return `
         <g id="vue-color-avatar-${sortedList[i][0]}">
           ${content}
         </g>
-      `
-        })
-      })
+      `;
+        });
+      });
 
       svgContent.value = `
     <svg
@@ -151,11 +149,11 @@ export default defineComponent({
       xmlns="http://www.w3.org/2000/svg"
     >
       <g transform="translate(100, 65)">
-        ${svgRawList.join('')}
+        ${svgRawList.join("")}
       </g>
     </svg>
-  `
-    })
+  `;
+    });
 
     return {
       avatarSize,
@@ -163,9 +161,9 @@ export default defineComponent({
       avatarOption,
       svgContent,
       widgetData,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

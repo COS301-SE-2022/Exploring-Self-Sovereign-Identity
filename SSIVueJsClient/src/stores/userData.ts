@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { ref } from "vue";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ssi-api.azurewebsites.net",
       timeout: 20000,
       headers: {
         "Content-Type": "application/json",
@@ -11,6 +12,8 @@ export const userDataStore = defineStore("userData", {
     }),
     user: {} as User,
     attributes: { attributes: [] } as Attributes,
+    loading: ref(false),
+    description: ref(""),
   }),
   getters: {
     getId: (state) => {
@@ -26,24 +29,33 @@ export const userDataStore = defineStore("userData", {
   actions: {
     getuserdata(userid: string) {
       //   const axios = require("axios");
-      console.log("id", userid);
+      // this.$patch({ description: "Fetching user data..." });
+      // this.$patch({ loading: true });
+      console.log("Fetching user data", this.$state.loading);
       const repsonse = this.api
         .post(`/api/UserData/get`, {
           id: userid,
         })
         .then((response) => {
           if (response.data) {
-            this.user = response.data.returnValue1;
+            // this.user = response.data.returnValue1;
+            this.$patch({ user: response.data.returnValue1 });
             this.sync();
           }
         })
         .catch((error) => {
           console.log(error);
         });
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      console.log("Fetching user data", this.$state.loading);
       return repsonse;
     },
     setuserdata() {
-      console.log(this.attributes.attributes[0].attribute.value);
+      // this.$patch({ description: "Saving user data..." });
+      // this.$patch({ loading: true });
+      // console.log("Saving user data", this.$state.loading);
+      // console.log(this.attributes.attributes[0].attribute.value);
       const response = this.api
         .post(`/api/UserData/update`, {
           id: this.user.id,
@@ -58,9 +70,17 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
           throw error;
         });
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      console.log("Fetching user data", this.$state.loading);
+
       return response;
     },
     createUser(id: string) {
+      // this.$patch({ description: "Creating user..." });
+      // this.$patch({ loading: true });
+      // console.log("Creating user data", this.$state.loading);
+
       const response = this.api
         .post("/api/UserData/create", {
           id: id,
@@ -74,6 +94,9 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
+      // this.$patch({ loading: false });
+      // this.$patch({ description: "" });
+      // console.log("Fetching user data", this.$state.loading);
       return response;
     },
     sync() {
@@ -95,6 +118,22 @@ export const userDataStore = defineStore("userData", {
     updateAttribute(index: number, value: string) {
       this.attributes.attributes[index].attribute.value = value;
     },
+
+    otp(value: string, otp: string) {
+      const cred = this.user.credentials.find((c) => c.organization == value);
+      const response = this.api
+        .post("/api/Session/connect", {
+          otp: otp,
+          credential: cred,
+        })
+        .then((response) => {
+          console.log("success", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      return response;
+    },
   },
 });
 
@@ -107,17 +146,13 @@ export interface User {
       // index: number;
     }
   ];
-  credentials: [
-    {
-      organization: string;
-      attributes: [
-        {
-          name: string;
-          value: string;
-        }
-      ];
-    }
-  ];
+  credentials: {
+    organization: string;
+    attributes: {
+      name: string;
+      value: string;
+    }[];
+  }[];
   transactionRequests: {
     attributes: string;
     stamp: {

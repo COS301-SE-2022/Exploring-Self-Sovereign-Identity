@@ -1,8 +1,10 @@
 var attrs = [];
 
+let mainURL = "http://localhost:5000";
+
 function submitToMarketplace() {
     const Http = new XMLHttpRequest();
-    const url = 'http://localhost:5000/api/MarketPlace/addData';
+    const url = mainURL + '/api/MarketPlace/addData';
 
     Http.open("Post", url);
     Http.setRequestHeader("Content-Type", "application/json");
@@ -98,13 +100,79 @@ function login() {
     }
 }
 
+// let mock = {
+//     "returnValue1": {
+//         "id": "Google",
+//         "balance": 100,
+//         "status": "success",
+//         "packs": [
+//           {
+//             "id": "Google Main",
+//             "pricePerUnit": 10,
+//             "received": [
+//               {
+//                 "userID": "jamescharles@gmail.com",
+//                 "attributes": [
+//                   {
+//                     "name": "name",
+//                     "value": "James"
+//                   },{
+//                     "name": "surname",
+//                     "value": "Charles"
+//                   }
+//                 ]
+//               },{
+//                 "userID": "johnnman@gmail.com",
+//                 "attributes": [
+//                   {
+//                     "name": "name",
+//                     "value": "John"
+//                   },{
+//                     "name": "surname",
+//                     "value": "Mann"
+//                   }
+//                 ]
+//               }
+//             ]
+//           }
+//         ]
+//       }
+// }
+
+// result = mock;
+//             console.log(result);
+//             if (result.returnValue1.status == "success") {
+//                 var size =  result.returnValue1.packs.length;
+
+//                 let el = document.getElementById("orgData");
+
+//                 for (let i=0; i<size; i++) {
+//                     el.innerHTML += "<h2 style=\"margin-left:2%;\">" + result.returnValue1.packs[i].id + "</h2><br>";
+//                     let ss = result.returnValue1.packs[i].received.length;
+
+//                     for (let k=0; k<ss; k++) {
+//                         el.innerHTML += "<b style=\"margin-left:5%;\">" + result.returnValue1.packs[i].received[k].userID + "</b><br>";
+//                         let sss = result.returnValue1.packs[i].received[k].attributes.length;
+
+//                         for (let n=0; n<sss; n++) {
+//                             el.innerHTML += "<p style=\"margin-left:10%;\">" + result.returnValue1.packs[i].received[k].attributes[n].name + ": " + result.returnValue1.packs[i].received[k].attributes[n].value + "</p>";
+//                         }
+
+//                     }
+//                 }
+//                 //console.log(result);
+//             }
+//             else {
+//                 //console.log(result);
+//             }
+
 function fetch() {
     //document.getElementById("orgData").innerHTML
 
     console.log("fetching...");
 
     const Http = new XMLHttpRequest();
-    const url = 'http://localhost:5000/api/MarketPlace/getOrg';
+    const url = mainURL + '/api/MarketPlace/getOrg';
 
     Http.open("Post", url);
     Http.setRequestHeader("Content-Type", "application/json");

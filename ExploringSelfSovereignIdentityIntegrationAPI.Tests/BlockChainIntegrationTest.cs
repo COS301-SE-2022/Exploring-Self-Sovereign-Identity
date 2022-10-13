@@ -11,14 +11,14 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
     [TestClass]
     public class BlockChainIntegrationTest
     {
-        public BlockchainService _blockChainService;
+       /* public BlockchainService _blockChainService;
 
         public BlockChainIntegrationTest()
         {
             _blockChainService = new BlockchainService();
         }
 
-        [TestMethod]
+/*        [TestMethod]
         public async Task TestCreateUser()
         {
             string userId = "aaa";
@@ -57,6 +57,6 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
             Assert.IsNotNull(res);
             Assert.AreEqual("success", res);
-        }
+        }*/
     }
 }

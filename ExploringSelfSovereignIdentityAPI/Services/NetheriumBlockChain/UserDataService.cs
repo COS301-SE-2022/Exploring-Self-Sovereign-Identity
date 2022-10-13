@@ -15,44 +15,44 @@ using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 using Nethereum.Web3.Accounts;
 using Nethereum.Model;
 using Account = Nethereum.Web3.Accounts.Account;
+using Microsoft.Extensions.Configuration;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
     public class UserDataService : IUserDataService
     {
-        /*static string url = "http://127.0.0.1:8545";
-        static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
-        private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
-        private static string contractAddress = "0xA52dD18FF4b5C5E84502C09f31068BAB7aD01C00";
-
-        static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
-
-        private ContractHandler contractHandler = web3.Eth.GetContractHandler(contractAddress);
-
-        public UserDataService()
-        {
-            web3.TransactionManager.UseLegacyAsDefault = true;
-        }*/
 
         private static string url = "http://testchain.nethereum.com:8545";
-        private static string privateKey = "0x7580e7fb49df1c861f0050fae31c2224c6aba908e116b8da44ee8cd927b990b0";
+
+        /*private static string privateKey = "0x7580e7fb49df1c861f0050fae31c2224c6aba908e116b8da44ee8cd927b990b0";
         private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
-        private static Web3 web3 = new Web3(acc, url);
+        private static Web3 web3 = new Web3(acc, url);*/
+
+        private static string privateKey;
+        private static Account acc;
+        private static Web3 web3;
 
         private static ContractHandler contractHandler;
 
+        private static IConfiguration configuration;
+
         private readonly IEncryptionService encryptservice;
 
-        public UserDataService()
+        public UserDataService(IConfiguration config)
         {
-            web3.TransactionManager.UseLegacyAsDefault = true;
             encryptservice = new EncryptionService();
 
-            Console.WriteLine(acc.Address);
+            configuration = config;
         }
 
         private async Task<ContractHandler> deploy()
         {
+            privateKey = configuration["accountPrivateKey"];
+            acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
+
+            web3 = new Web3(acc, url);
+            web3.TransactionManager.UseLegacyAsDefault = true;
+
             var userDataContractDeployment = new UserDataContractDeployment();
 
             var transactionReceiptDeployment = await web3.Eth.GetContractDeploymentHandler<UserDataContractDeployment>().SendRequestAndWaitForReceiptAsync(userDataContractDeployment);

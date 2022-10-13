@@ -1,18 +1,26 @@
 using ExploringSelfSovereignIdentityAPI.Models;
 using ExploringSelfSovereignIdentityAPI.Models.Entity;
 using ExploringSelfSovereignIdentityAPI.Repositories.UserDataRepository;
+using ExploringSelfSovereignIdentityAPI.Services.Encryption;
 using ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain;
+using Microsoft.Extensions.Configuration;
+using Attribute = ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain.Attribute;
 
 namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 {
     [TestClass]
     public class UserDataIntegrationTest
     {
-        public UserDataService _userDataService;
+        /*public UserDataService _userDataService;
+
+        private static IConfiguration config;
+
+        private readonly IEncryptionService encryptservice;
 
         public UserDataIntegrationTest()
         {
-            _userDataService = new UserDataService();
+            _userDataService = new UserDataService(config);
+            encryptservice = new EncryptionService();
         }
 
 
@@ -50,18 +58,166 @@ namespace ExploringSelfSovereignIdentityIntegrationAPI.Tests
 
             try
             {
-                UserDataResponse res = await _userDataService.getUserData(userId);
+                GetUserDataOutputDTO2 res = await _userDataService.getUserData(userId);
                 Assert.IsNotNull(res);
-                Assert.IsInstanceOfType(res, typeof(UserDataResponse));
-                Assert.AreEqual(res.Id, userId);
+                Assert.IsInstanceOfType(res, typeof(GetUserDataOutputDTO2));
+                Assert.AreEqual(res.ReturnValue1.Id, userId);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                    
+
             }
-            
+
 
         }
+
+
+        [TestMethod]
+        public async Task TestApproveTransaction()
+        {
+            string userId = "aaa";
+            int index = -1;
+
+            try
+            {
+                string res = await _userDataService.approveTransaction(userId, index);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(string));
+                Assert.AreEqual(res, "success");
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+        [TestMethod]
+        public async Task TestDeclineTransaction()
+        {
+            string userId = "aaa";
+            int index = -1;
+
+            try
+            {
+                string res = await _userDataService.declineTransaction(userId, index);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(string));
+                Assert.AreEqual(res, "success");
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+
+
+
+        [TestMethod]
+        public async Task TestgetAttributesForTransaction()
+        {
+            string userId = "aaa";
+            List<Attribute> attributes = new List<Attribute>();
+            attributes.Add(new Attribute());
+
+
+            try
+            {
+                GetAttributesTransactionOutputDTO res = await _userDataService.getAttributesForTransaction(userId, attributes);
+                Assert.IsNotNull(res);
+                Assert.IsInstanceOfType(res, typeof(GetAttributesTransactionOutputDTO));
+                Assert.AreEqual(res, attributes);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+
+
+        [TestMethod]
+        public async Task TestupdateUserData()
+        {
+
+            UpdateGen2 update = new UpdateGen2();
+            update.Id = "test";
+
+            AttributeUpdate item = new AttributeUpdate();
+
+
+
+
+            try
+            {
+                if (update != null)
+                {
+                    GetUserDataOutputDTO2 res = await _userDataService.updateUserData(update);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(GetUserDataOutputDTO2));
+                    Assert.AreEqual(res, update);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
+
+        [TestMethod]
+        public async Task TestnewTransactionRequest()
+        {
+
+            TransactionRequest request = new TransactionRequest();
+            request.Stamp = new TransactionStamp();
+            request.Attributes = new List<string>();
+            request.Stamp.ToID = "1234";
+            request.Stamp.FromID = "4321";
+            request.Stamp.Message = "Test";
+            request.Stamp.Date = "Date";
+            request.Stamp.Status = "Status";
+
+            List<string> attrs = new List<string>();
+
+            
+
+            for (int i = 0; i < request.Attributes.Count; i++)
+            {
+                attrs.Add(request.Attributes[i]);
+            }
+            request.Attributes = attrs;
+
+            try
+            {
+                if (request != null)
+                {
+                    string res = await _userDataService.newTransactionRequest(request);
+                    Assert.IsNotNull(res);
+                    Assert.IsInstanceOfType(res, typeof(string));
+                    Assert.AreEqual(res, request);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+
 
 
 

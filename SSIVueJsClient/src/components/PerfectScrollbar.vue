@@ -4,9 +4,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue'
-import PerfectScrollbar from 'perfect-scrollbar'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { defineComponent, type PropType } from "vue";
+import PerfectScrollbar from "perfect-scrollbar";
+import { onMounted, onUnmounted, ref } from "vue";
 export default defineComponent({
   props: {
     options: {
@@ -16,33 +16,33 @@ export default defineComponent({
   setup(props) {
     //const props = defineProps<{ options?: PerfectScrollbar.Options }>()
 
-    const scrollWrapper = ref<HTMLDivElement>()
+    const scrollWrapper = ref<HTMLDivElement>();
 
-    let ps: PerfectScrollbar
+    let ps: PerfectScrollbar;
 
     onMounted(() => {
       if (!scrollWrapper.value) {
-        console.warn(`No valid 'PerfectScrollbar' container found`)
-        return
+        console.warn(`No valid 'PerfectScrollbar' container found`);
+        return;
       }
 
       ps = new PerfectScrollbar(scrollWrapper.value, {
         minScrollbarLength: 20,
         maxScrollbarLength: 160,
         ...props.options,
-      })
-    })
+      });
+    });
 
     onUnmounted(() => {
-      ps.destroy()
-    })
+      ps.destroy();
+    });
   },
   data() {
-    return {}
+    return {};
   },
   components: {},
   methods: {},
-})
+});
 </script>
 
 <style lang="scss">
