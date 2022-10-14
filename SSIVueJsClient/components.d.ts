@@ -8,7 +8,6 @@ declare module '@vue/runtime-core' {
     ActionBar: typeof import('./src/components/ActionBar.vue')['default']
     Background: typeof import('./src/components/Background.vue')['default']
     BackNav: typeof import('./src/components/Nav/BackNav.vue')['default']
-    CodeModal: typeof import('./src/components/Modal/CodeModal.vue')['default']
     Configurator: typeof import('./src/components/Configurator.vue')['default']
     Container: typeof import('./src/components/Container.vue')['default']
     DownloadModal: typeof import('./src/components/Modal/DownloadModal.vue')['default']
@@ -37,10 +36,6 @@ declare module '@vue/runtime-core' {
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
     NCollapseTransition: typeof import('naive-ui')['NCollapseTransition']
     NDynamicInput: typeof import('naive-ui')['NDynamicInput']
-<<<<<<< Updated upstream
-=======
-    NEmpty: typeof import('naive-ui')['NEmpty']
->>>>>>> Stashed changes
     NGi: typeof import('naive-ui')['NGi']
     NGrid: typeof import('naive-ui')['NGrid']
     NIcon: typeof import('naive-ui')['NIcon']
@@ -50,9 +45,7 @@ declare module '@vue/runtime-core' {
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NModal: typeof import('naive-ui')['NModal']
     NPageHeader: typeof import('naive-ui')['NPageHeader']
-    NSkeleton: typeof import('naive-ui')['NSkeleton']
     NSpace: typeof import('naive-ui')['NSpace']
-    NSpin: typeof import('naive-ui')['NSpin']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
     PerfectScrollbar: typeof import('./src/components/PerfectScrollbar.vue')['default']
