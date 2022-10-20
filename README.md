@@ -15,12 +15,38 @@ Click Here: https://midentity-ssi.azurewebsites.net/ to begin your SSI Journey!
 
 
 ## Meet The Team 
-*  <b>Johan Smit</b> - I am the Project Manager for our team and I worked on all aspects of the project to ensure effiecient collaboration, meeting of deadlines and the client's requirements. Profiles: [Github](https://github.com/JohanCSmit) [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157) 
-*  <b>Rebecca Pillay</b> - I am the Business Analyst for the team. Along with front end and back end development, I was responsible for all documentation and ensuring seamless translation of client requirements to development specifications. Profiles: [Github](https://github.com/RebeccaPillay) [LinkedIn](https://www.linkedin.com/in/rebecca-p-48b236118) 
-*  <b>Henri van der Grijp</b> - I am one of the developers for the team. I was responsible for the front end as a designer and UI engineer as well as related back end work. Profiles: [Github](https://github.com/H-e-n-r-i) [LinkedIn](https://www.linkedin.com/in/henri-van-der-grijp-31a70123a/)
-*  <b>Sboniso Masilela</b> - I am one of the developers for the team. I was responsible for mostly the back end implementation. Profiles: [Github](https://github.com/10416260) [LinkedIn](https://www.linkedin.com/in/sboniso-masilela-b0a5a335/)
-*  <b>Mxolisi Mkanzi</b> - I am the Service and API Engineer for the team. I was responsible for developing services for our backend project and providing end points for our API. Profiles: [Github](https://github.com/MxolisiMkanzi) [LinkedIn](https://www.linkedin.com/in/mxolisi-mkanzi-1a40bb168)
 
+<img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197061318-b241d1d2-3c2d-4357-bb28-45694f8e8369.jpg">
+  
+<b>Johan Smit</b> - I am the Project Manager for our team and I worked on all aspects of the project to ensure efficient collaboration, meeting of deadlines and the client's requirements. Profiles: [Github](https://github.com/JohanCSmit) | [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157) 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197062205-40d2c30c-6f55-457b-9148-8058380e8f5b.jpg">
+
+<b>Rebecca Pillay</b> - I am the Business Analyst for the team. Along with development, I was responsible for all documentation and ensuring seamless translation of client requirements to development specifications. Profiles: [Github](https://github.com/RebeccaPillay) | [LinkedIn](https://www.linkedin.com/in/rebecca-p-48b236118) 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197062487-9f177613-91ab-48a0-9b69-baa4d036573c.jpg">
+
+<b>Henri van der Grijp</b> - I am one of the developers for the team. I was responsible for the front end as a designer and UI engineer as well as related back end work. Profiles: [Github](https://github.com/H-e-n-r-i) | [LinkedIn](https://www.linkedin.com/in/henri-van-der-grijp-31a70123a/)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197062655-9f49bbce-8393-4f93-aa3a-b89d0751c3c8.jpg">
+
+<b>Sboniso Masilela</b> - I am one of the developers for the team. I was responsible for mostly the back end implementation. Profiles: [Github](https://github.com/10416260) | [LinkedIn](https://www.linkedin.com/in/sboniso-masilela-b0a5a335/)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197062767-4b26490f-2686-44a2-92f9-8fd23c36f31c.jpg">
+
+
+<b>Mxolisi Mkanzi</b> - I am the Service and API Engineer for the team. I was responsible for developing services for our backend project and providing end points for our API. Profiles: [Github](https://github.com/MxolisiMkanzi) | [LinkedIn](https://www.linkedin.com/in/mxolisi-mkanzi-1a40bb168)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ## Documentation
 * [Deployment Model](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679472/Deployment.Model.-.Code.of.Duty.SSI.pdf)
