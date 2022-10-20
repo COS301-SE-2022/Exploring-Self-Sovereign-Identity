@@ -29,7 +29,7 @@ Click Here: https://midentity-ssi.azurewebsites.net/ to begin your SSI Journey!
 
 <img align="left" width="100" src="https://user-images.githubusercontent.com/100567494/197061318-b241d1d2-3c2d-4357-bb28-45694f8e8369.jpg">
   
-<b>Johan Smit</b> - I am the Project Manager for our team and I worked on all aspects of the project to ensure efficient collaboration, meeting of deadlines and the client's requirements. Profiles: [Github](https://github.com/JohanCSmit) | [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157) 
+<b>Johan Smit</b> - I am the Project Manager for our team and I worked on all aspects of the project to ensure efficient collaboration, meeting of deadlines and the fulfilment of all client requirements. Profiles: [Github](https://github.com/JohanCSmit) | [LinkedIn](https://www.linkedin.com/in/johan-smit-2aa294157) 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
