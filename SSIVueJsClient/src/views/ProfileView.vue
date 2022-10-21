@@ -14,6 +14,18 @@ export default defineComponent({
 
     return { userData, message, loading, description };
   },
+  async mounted() {
+    this.loading = true;
+    this.description = "Fetching user data...";
+    await this.userData
+      .getuserdata()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
+  },
   data() {
     return {
       name: "",
@@ -44,6 +56,7 @@ export default defineComponent({
 
     async submitForm() {
       this.loading = true;
+      this.description = "Saving user data...";
       this.saving;
 
       await this.userData

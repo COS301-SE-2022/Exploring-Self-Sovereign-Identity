@@ -15,6 +15,18 @@ export default defineComponent({
       options.value.push({ label: x.organization, value: x.organization });
     return { otp, loading, description, cred, userData, options };
   },
+  async mounted() {
+    this.loading = true;
+    this.description = "Fetching user data...";
+    await this.userData
+      .getuserdata()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
+  },
   methods: {
     async request() {
       this.userData.otp(this.cred, this.otp);

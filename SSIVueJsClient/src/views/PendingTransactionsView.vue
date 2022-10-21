@@ -17,8 +17,16 @@ export default defineComponent({
     const description = ref("");
     return { transactions, arr, userData, loading, description, skel };
   },
-  mounted() {
-    this.skel = false;
+  async mounted() {
+    this.skel = true;
+    this.loading = true;
+    await this.userData.getuserdata().then(() => {
+      this.loading = false;
+      this.skel = false;
+    }).catch(() => {
+      this.loading = false;
+      this.skel = false;
+    });
   },
   methods: {
     exists(att: string) {

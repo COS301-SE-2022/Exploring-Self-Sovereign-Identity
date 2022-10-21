@@ -136,18 +136,18 @@ export default defineComponent({
     return { userData, loading, description, user, menuOptions, active };
   },
   mounted() {
-    this.user.userInfo().then(async (info) => {
-      await this.userData.getuserdata();
-      console.log("here", this.userData.getId);
-      if (!this.userData.exists()) {
-        await this.userData.createUser(info?.email || "");
-        console.log("User created");
-      } else {
-        console.log("User data fetched", this.userData.$state);
-      }
-      this.loading = false;
-      this.description = "";
-    });
+    // this.user.userInfo().then(async (info) => {
+    //   await this.userData.getuserdata();
+    //   console.log("here", this.userData.getId);
+    //   if (!this.userData.exists()) {
+    //     await this.userData.createUser(info?.email || "");
+    //     console.log("User created");
+    //   } else {
+    //     console.log("User data fetched", this.userData.$state);
+    //   }
+    //   this.loading = false;
+    //   this.description = "";
+    // });
   },
   // data() {
   //   return {};
