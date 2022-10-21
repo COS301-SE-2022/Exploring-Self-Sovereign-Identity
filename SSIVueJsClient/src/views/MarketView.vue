@@ -32,8 +32,6 @@ export default defineComponent({
       if (this.arr.size == 0) return;
       for (let [key, value] of this.arr) {
         if (value != "") {
-          console.log("arr");
-          console.log(key, value);
           this.userData.attributes.attributes.push({
             attribute: {
               name: key,
@@ -47,12 +45,9 @@ export default defineComponent({
           console.log("empty");
         }
       }
-      console.log("here2");
       if (changed) {
-        console.log("changed");
         await this.userData.setuserdata();
       }
-      console.log("done");
     },
     exists(att: string) {
       const value = this.userData.getAttributes.find(

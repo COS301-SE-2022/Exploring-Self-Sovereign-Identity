@@ -1,3 +1,4 @@
+import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 import { defineStore } from "pinia";
 import axios from "axios";
 import { ref } from "vue";
@@ -14,6 +15,7 @@ export const userDataStore = defineStore("userData", {
     attributes: { attributes: [] } as Attributes,
     loading: ref(false),
     description: ref(""),
+    passage: new PassageUser(),
   }),
   getters: {
     getId: (state) => {
@@ -27,11 +29,15 @@ export const userDataStore = defineStore("userData", {
     },
   },
   actions: {
-    getuserdata(userid: string) {
-      //   const axios = require("axios");
-      // this.$patch({ description: "Fetching user data..." });
-      // this.$patch({ loading: true });
-      console.log("Fetching user data", this.$state.loading);
+    getuserdata() {
+      const userid = this.passage
+        .userInfo()
+        .then((user) => {
+          return user?.email;
+        })
+        .catch((error) => {
+          return "";
+        });
       const repsonse = this.api
         .post(`/api/UserData/get`, {
           id: userid,
@@ -46,16 +52,10 @@ export const userDataStore = defineStore("userData", {
         .catch((error) => {
           console.log(error);
         });
-      // this.$patch({ loading: false });
-      // this.$patch({ description: "" });
       console.log("Fetching user data", this.$state.loading);
       return repsonse;
     },
     setuserdata() {
-      // this.$patch({ description: "Saving user data..." });
-      // this.$patch({ loading: true });
-      // console.log("Saving user data", this.$state.loading);
-      // console.log(this.attributes.attributes[0].attribute.value);
       const response = this.api
         .post(`/api/UserData/update`, {
           id: this.user.id,
@@ -70,8 +70,6 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
           throw error;
         });
-      // this.$patch({ loading: false });
-      // this.$patch({ description: "" });
       console.log("Fetching user data", this.$state.loading);
 
       return response;
@@ -88,7 +86,7 @@ export const userDataStore = defineStore("userData", {
         .then((response) => {
           const suc = "success";
           if ((response.data = suc)) {
-            this.getuserdata(id);
+            this.getuserdata();
           } else console.log("User not created");
         })
         .catch((error) => {

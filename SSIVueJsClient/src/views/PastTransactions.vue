@@ -13,10 +13,17 @@ export default defineComponent({
     return { transactions, arr, userData, loading };
   },
   components: { BackNav },
-  mounted() {
-    this.loading = false;
+  async mounted() {
+    this.loading = true;
+    await this.userData.getuserdata().then(() => {
+      this.loading = false;
+    })
+    .catch(() => {
+      // * deal with error
+    });
   },
-});
+  },
+);
 </script>
 
 <template>
