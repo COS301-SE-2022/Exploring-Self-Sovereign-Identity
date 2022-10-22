@@ -102,7 +102,7 @@ export default defineComponent({
       <n-tab-pane name="Attributes">
         <n-card>
           <n-empty
-            v-if="userData.getAttributes.length == 0"
+            v-if="userData.getAttributes?.length == 0"
             size="large"
             description="No attributes to be shown..."
           ></n-empty>
@@ -161,7 +161,7 @@ export default defineComponent({
         <n-card>
           <n-empty
             v-if="
-              userData.getCredentials.length == 0 ||
+              userData.getCredentials?.length == 0 ||
               userData.getCredentials == undefined
             "
             size="large"

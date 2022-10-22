@@ -15,6 +15,9 @@ const themeOverrides = {
     primaryColorHover: "#613659",
     primaryColorPressed: "#613659",
   },
+  Empty: {
+    textColor: "rgba(255, 255, 255, 0.68)",
+  },
   return: {
     darkTheme,
   },

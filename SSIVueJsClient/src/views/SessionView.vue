@@ -11,7 +11,7 @@ export default defineComponent({
 
     const userData = userDataStore();
     const options = ref([] as { label: string; value: string }[]);
-    for (let x of userData.getCredentials)
+    for (let x of userData.getCredentials ?? [])
       options.value.push({ label: x.organization, value: x.organization });
     return { otp, loading, description, cred, userData, options };
   },
@@ -37,7 +37,7 @@ export default defineComponent({
 
 <template>
   <n-spin :show="loading" :description="description">
-    <n-card>
+    <n-card class="centre">
       <n-input-group data-test-id="OTP">
         <n-input-group-label>OTP</n-input-group-label>
         <n-input placeholder="Please enter OTP" v-model:value="otp"></n-input>
@@ -46,6 +46,7 @@ export default defineComponent({
         v-model:value="cred"
         filterable
         placeholder="Please select a credential"
+        label="Please select a credential"
         :options="options"
       />
     </n-card>
@@ -56,4 +57,18 @@ export default defineComponent({
   </n-spin>
 </template>
 
-<style lang="scss"></style>
+<style scoped lang="scss">
+.centre {
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  top: 20vh;
+  height: 100%;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  * {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+  }
+}
+</style>

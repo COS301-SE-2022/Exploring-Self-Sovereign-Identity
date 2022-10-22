@@ -18,7 +18,7 @@ import { RouterLink } from "vue-router";
 
 export default defineComponent({
   setup() {
-    const loading = ref(true);
+    const loading = ref(false);
     const description = ref("Fetching user data...");
     const userData = userDataStore();
     const user = new PassageUser();
@@ -136,6 +136,10 @@ export default defineComponent({
     return { userData, loading, description, user, menuOptions, active };
   },
   mounted() {
+    this.user.userInfo().then(async (info) => {
+      this.userData.passage = info?.email;
+    });
+
     // this.user.userInfo().then(async (info) => {
     //   await this.userData.getuserdata();
     //   console.log("here", this.userData.getId);
@@ -197,21 +201,12 @@ export default defineComponent({
   </n-spin>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .icon {
   background-color: rgba(255, 255, 255, 0);
   height: auto;
   width: auto;
   max-width: 25vw;
-}
-.n-card {
-  // width: fit-content;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.53);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12.7px);
-  -webkit-backdrop-filter: blur(12.7px);
 }
 .n-grid {
   margin-top: 1vh;

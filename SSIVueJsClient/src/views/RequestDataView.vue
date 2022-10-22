@@ -32,7 +32,7 @@ export default defineComponent({
 
 <template>
   <n-spin :show="loading" :description="description">
-    <n-card>
+    <n-card class="centre">
       <n-input-group data-test-id="UserId">
         <n-input-group-label>User ID</n-input-group-label>
         <n-input
@@ -62,3 +62,19 @@ export default defineComponent({
     </BackNav>
   </n-spin>
 </template>
+
+<style scoped lang="scss">
+.centre {
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  top: 20vh;
+  height: 100%;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  * {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+  }
+}
+</style>
