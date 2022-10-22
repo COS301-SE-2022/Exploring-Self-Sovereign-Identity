@@ -23,20 +23,20 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     public class UserDataService : IUserDataService
     {
 
-        private static string url = "http://testchain.nethereum.com:8545";
-        /*private static string url = "http://51.105.244.38:8545";
+        //private static string url = "http://testchain.nethereum.com:8545";
+        private static string url = "http://51.105.244.38:8545";
 
-        private static string privateKey = "0x16bb2c7ea4ddd7776823ecc3d5fbca0489a485619a5ba5253b5fa760f9497a49";
+        private static string privateKey = "0x338b19081204e2061ecd3a0cad760a48796991f736567dc81b8d211d395b5264";
         private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey, 1337);
         private static Web3 web3 = new Web3(acc, url);
-        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0x3138d023be3bb6943d3de3544761a88f5ae7e729");*/
+        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0xe2121329FC89e0a055737757256a86A94D1431b1");
 
 
-        private static string privateKey;
+        /*private static string privateKey;
         private static Account acc;
         private static Web3 web3;
 
-        private static ContractHandler contractHandler;
+        private static ContractHandler contractHandler;*/
 
         private static IConfiguration configuration;
 
@@ -44,8 +44,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public UserDataService(IConfiguration config)
         {
-            //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            //web3.TransactionManager.UseLegacyAsDefault = true;
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            web3.TransactionManager.UseLegacyAsDefault = true;
             encryptservice = new EncryptionService();
 
             configuration = config;
@@ -53,6 +53,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         private async Task<ContractHandler> deploy()
         {
+            Console.WriteLine("deploying");
             privateKey = configuration["accountPrivateKey"];
             acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
 
