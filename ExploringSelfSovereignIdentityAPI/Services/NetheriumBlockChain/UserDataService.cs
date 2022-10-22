@@ -16,6 +16,7 @@ using Nethereum.Web3.Accounts;
 using Nethereum.Model;
 using Account = Nethereum.Web3.Accounts.Account;
 using Microsoft.Extensions.Configuration;
+using System.Net;
 
 namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 {
@@ -23,10 +24,13 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
 
         private static string url = "http://testchain.nethereum.com:8545";
+        /*private static string url = "http://51.105.244.38:8545";
 
-        /*private static string privateKey = "0x7580e7fb49df1c861f0050fae31c2224c6aba908e116b8da44ee8cd927b990b0";
-        private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
-        private static Web3 web3 = new Web3(acc, url);*/
+        private static string privateKey = "0x16bb2c7ea4ddd7776823ecc3d5fbca0489a485619a5ba5253b5fa760f9497a49";
+        private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey, 1337);
+        private static Web3 web3 = new Web3(acc, url);
+        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0x3138d023be3bb6943d3de3544761a88f5ae7e729");*/
+
 
         private static string privateKey;
         private static Account acc;
@@ -40,6 +44,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public UserDataService(IConfiguration config)
         {
+            //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            //web3.TransactionManager.UseLegacyAsDefault = true;
             encryptservice = new EncryptionService();
 
             configuration = config;
