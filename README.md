@@ -18,7 +18,7 @@ Click Here: https://midentity-ssi.azurewebsites.net/ to begin your SSI Journey!
 * [Requirements and Design (SRS) Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679726/SRS.Document.-.Code.of.Duty.SSI.pdf)
 * [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679377/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
 * [Coding Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9682490/Coding.Standards.-.Code.of.Duty.SSI.pdf)
-* [Testing Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9691925/Testing.Standards.-.Final.pdf)
+* [Testing Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847247/Testing.Standards.-.Code.of.Duty.SSI.pdf)
 * [Project Management](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/projects?type=classic)
 * [Manuals & Tutorials](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Manuals-&-Tutorials)
 * [Team Profiles](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Team-Profiles)
