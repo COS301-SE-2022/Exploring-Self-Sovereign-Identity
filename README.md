@@ -15,16 +15,16 @@ Click Here: https://midentity-ssi.azurewebsites.net/ to begin your SSI Journey!
 
 ## Documentation
 
-* [Requirements and Design (SRS) Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679726/SRS.Document.-.Code.of.Duty.SSI.pdf)
-* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679377/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
-* [Coding Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9682490/Coding.Standards.-.Code.of.Duty.SSI.pdf)
+* [Requirements and Design (SRS) Document](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847274/SRS.Document.-.Code.of.Duty.SSI.pdf)
+* [Architectural Structural Design & Requirements](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847260/Architectural.Structural.Design.Requirements.-.Code.of.Duty.SSI.pdf)
+* [Coding Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847262/Coding.Standards.-.Code.of.Duty.SSI.pdf)
 * [Testing Standards](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847247/Testing.Standards.-.Code.of.Duty.SSI.pdf)
 * [Project Management](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/projects?type=classic)
 * [Manuals & Tutorials](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Manuals-&-Tutorials)
 * [Team Profiles](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Team-Profiles)
 * [Presentation & Videos](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/wiki/Presentation-&-Videos)
-* [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9453546/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
-* [Deployment Model](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9679472/Deployment.Model.-.Code.of.Duty.SSI.pdf)
+* [Literature Review](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847266/Literature.Review.-.Code.of.Duty.Exploring.SSI.pdf)
+* [Deployment Model](https://github.com/COS301-SE-2022/Exploring-Self-Sovereign-Identity/files/9847268/Deployment.Model.-.Code.of.Duty.SSI.pdf)
 
 
 
