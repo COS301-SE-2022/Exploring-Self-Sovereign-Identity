@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { marketStore } from "@/stores/marketStore";
+import { marketStore } from "@/stores/MarketStore";
 import { userDataStore } from "@/stores/userData";
 
 export default defineComponent({

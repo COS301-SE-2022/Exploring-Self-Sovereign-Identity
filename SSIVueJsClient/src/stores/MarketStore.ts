@@ -5,7 +5,7 @@ import { computed, reactive, ref } from "vue";
 
 export const marketStore = defineStore("market", () => {
   const api = axios.create({
-    baseURL: "https://api-manager-ssi.azure-api.net/",
+    baseURL: "https://api-manager-ssi.azure-api.net",
     timeout: 20000,
     headers: {
       "Content-Type": "application/json",
