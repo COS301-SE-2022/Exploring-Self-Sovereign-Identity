@@ -25,10 +25,10 @@ export default defineConfig({
     }),
     vueJsx(),
     AutoImport({
-      resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+      resolvers: [ NaiveUiResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+      resolvers: [ NaiveUiResolver()],
     }),
   ],
   resolve: {

@@ -6,7 +6,8 @@ import { Unknown } from "@vicons/carbon";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
-      baseURL: "https://exploringselfsovereignidentityapi20221023153355.azurewebsites.net",
+      baseURL:
+        "https://exploringselfsovereignidentityapi20221023153355.azurewebsites.net",
       timeout: 20000,
       headers: {
         "Content-Type": "application/json",
@@ -35,8 +36,7 @@ export const userDataStore = defineStore("userData", {
   actions: {
     async getuserdata() {
       const userid = this.passage;
-      console.log("ID", userid);
-      const repsonse = this.api
+      const repsonse = await this.api
         .post(`/api/UserData/get`, {
           id: userid,
         })
@@ -44,16 +44,21 @@ export const userDataStore = defineStore("userData", {
           if (response.data) {
             // this.user = response.data.returnValue1;
             this.$patch({ user: response.data.returnValue1 });
-            this.sync();
-            if (!this.user) {
-              await this.createUser(userid);
-              this.getuserdata;
-            }
+            await this.sync();
           }
         })
         .catch((error) => {
           console.log("get data", error);
         });
+      if (
+        this.user == undefined ||
+        this.user.id == "undefined" ||
+        this.user.id == undefined
+      ) {
+        await this.createUser(userid);
+        this.getuserdata;
+      }
+
       console.log("Fetching user data", this.$state.loading);
       return repsonse;
     },
@@ -72,7 +77,6 @@ export const userDataStore = defineStore("userData", {
           console.log(error);
           throw error;
         });
-      console.log("Fetching user data", this.$state.loading);
 
       return response;
     },
