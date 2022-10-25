@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { marketStore } from "@/stores/marketStore";
+import { marketStore } from "@/stores/MarketStore";
 import { userDataStore } from "@/stores/userData";
 
 export default defineComponent({
@@ -50,7 +50,7 @@ export default defineComponent({
       }
     },
     exists(att: string) {
-      const value = this.userData.getAttributes.find(
+      const value = this.userData.getAttributes?.find(
         (x) => x.attribute.name == att
       )?.attribute.value;
       if (value) {
@@ -72,7 +72,7 @@ export default defineComponent({
           attributes.set(att[i], "");
         }
       }
-      for (let x of this.userData.getAttributes) {
+      for (let x of this.userData.getAttributes ?? []) {
         if (attributes.has(x.attribute.name)) {
           attributes.set(x.attribute.name, x.attribute.value);
         }

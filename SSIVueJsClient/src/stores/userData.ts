@@ -6,7 +6,7 @@ import { Unknown } from "@vicons/carbon";
 export const userDataStore = defineStore("userData", {
   state: () => ({
     api: axios.create({
-      baseURL: "https://ssi-api.azurewebsites.net",
+      baseURL: "https://api-manager-ssi.azure-api.net/",
       timeout: 20000,
       headers: {
         "Content-Type": "application/json",

@@ -5,7 +5,7 @@ import { computed, reactive } from "vue";
 
 export const transactionsStore = defineStore("transactions", () => {
   const api = axios.create({
-    baseURL: "https://ssi-api.azurewebsites.net",
+    baseURL: "https://api-manager-ssi.azure-api.net/",
     timeout: 20000,
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   function exists(att: string) {
-    const val = userData.getAttributes.find((x) => x.attribute.name == att)
+    const val = userData.getAttributes?.find((x) => x.attribute.name == att)
       ?.attribute.value;
     if (val == undefined) return "";
     else return val;
