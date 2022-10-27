@@ -23,22 +23,14 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     public class UserDataService : IUserDataService
     {
 
-        //private static string url = "http://testchain.nethereum.com:8545";
-        //private static string url = "http://102.37.154.105:8545";
-        private static string url = "http://127.0.0.1:8545";
+        static string url = "http://127.0.0.1:8545";
+        static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
+        private readonly string senderAddress = "0x8A1f48B91fbDC94b82E1997c2630466c5FaCf38b";
+        private static string contractAddress = "0x181d4AD12616E4cD79E3F17B0E73290562C535e3";
 
-        private static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
-        private static string contractAddress = "0xdA5eB8FB6D88B05Ef6e6407A0A242648bC71D4B8";
-        //private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey);
         static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
+
         private ContractHandler contractHandler = web3.Eth.GetContractHandler(contractAddress);
-
-
-        /*private static string privateKey;
-        private static Account acc;
-        private static Web3 web3;
-
-        private static ContractHandler contractHandler;*/
 
         private static IConfiguration configuration;
 
@@ -46,10 +38,9 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public UserDataService(IConfiguration config)
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             web3.TransactionManager.UseLegacyAsDefault = true;
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             encryptservice = new EncryptionService();
-
             configuration = config;
         }
 
@@ -270,6 +261,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
             getUserDataOutputDTO.ReturnValue1.Credentials.ForEach(credential => credential.Attributes.ForEach(attribute => attribute.Value = encryptservice.DecryptString(id,attribute.Value)));
 
+            Console.WriteLine(getUserDataOutputDTO.ReturnValue1.Id);
+
             if (getUserDataOutputDTO.ReturnValue1.Id == "")
                 getUserDataOutputDTO.ReturnValue1.Id = "undefined";
 
@@ -277,7 +270,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             ret.ReturnValue1 = new UserDataResponse2();
 
             ret.ReturnValue1.Id = getUserDataOutputDTO.ReturnValue1.Id;
-            ret.ReturnValue1.Balance = (int) getUserDataOutputDTO.ReturnValue1.Balance;
+            ret.ReturnValue1.Balance = 0;
             ret.ReturnValue1.Attributes = getUserDataOutputDTO.ReturnValue1.Attributes;
             ret.ReturnValue1.Credentials = getUserDataOutputDTO.ReturnValue1.Credentials;
             ret.ReturnValue1.TransactionRequests = getUserDataOutputDTO.ReturnValue1.TransactionRequests;
@@ -576,8 +569,8 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
         [Parameter("string", "id", 1)]
         public virtual string Id { get; set; }
-        [Parameter("uint256", "balance", 2)]
-        public virtual BigInteger Balance { get; set; }
+        //[Parameter("uint256", "balance", 2)]
+        //public virtual BigInteger Balance { get; set; }
         [Parameter("tuple[]", "attributes", 3)]
         public virtual List<Attribute> Attributes { get; set; }
         [Parameter("tuple[]", "credentials", 4)]

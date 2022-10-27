@@ -26,6 +26,8 @@ contract UserDataContract {
     struct UserData {
         string id;
 
+        bool created;
+
         uint balance;
 
         uint attributeCount;
@@ -53,7 +55,7 @@ contract UserDataContract {
     /* What will be returned in place of a UserData struct. */
     struct UserDataResponse{
         string id;
-        uint balance;
+        //uint balance;
         Attribute[] attributes;
         CredentialResponse[] credentials;
         TransactionRequest[] transactionRequests;
@@ -91,6 +93,8 @@ contract UserDataContract {
         }
 
         allUserData[_id].id = _id;
+        allUserData[_id].created = true;
+        allUserData[_id].balance = 0;
         allUserData[_id].attributeCount = 0;
         allUserData[_id].credentialCount = 0;
         allUserData[_id].transactionRequestCount = 0;
@@ -185,11 +189,17 @@ contract UserDataContract {
             }
         }
 
+        string memory iid = "";
+
+        if (allUserData[_id].created) {
+            iid = _id;
+        }
+
 
         //Create UserDataResponse
         return (UserDataResponse({
-            id: allUserData[_id].id,
-            balance: allUserData[_id].balance,
+            id: iid,
+            //balance: 0,
             attributes: attrs,
             credentials: creds,
             transactionRequests: transactionRequests,
@@ -537,12 +547,14 @@ contract UserDataContract {
         // }
         // return false;
 
-        address API = 0x94618601FE6cb8912b274E5a00453949A57f8C1e;
+        return true;
 
-        if (msg.sender == API) {
-            return true;
-        }
-        return false;
+        // address API = 0x94618601FE6cb8912b274E5a00453949A57f8C1e;
+
+        // if (msg.sender == API) {
+        //     return true;
+        // }
+        // return false;
 
     }
 
