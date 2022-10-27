@@ -24,12 +24,13 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
     {
 
         //private static string url = "http://testchain.nethereum.com:8545";
-        private static string url = "http://51.105.244.38:8545";
+        //private static string url = "http://102.37.154.105:8545";
+        private static string url = "http://127.0.0.1:8545";
 
-        private static string privateKey = "0x338b19081204e2061ecd3a0cad760a48796991f736567dc81b8d211d395b5264";
-        private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey, 1337);
+        private static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
+        private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey);
         private static Web3 web3 = new Web3(acc, url);
-        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0xe2121329FC89e0a055737757256a86A94D1431b1");
+        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0xdA5eB8FB6D88B05Ef6e6407A0A242648bC71D4B8");
 
 
         /*private static string privateKey;

@@ -272,7 +272,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -320,7 +321,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -501,7 +503,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -618,7 +621,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -666,7 +670,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"approveTransactionStageA\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"approveTransactionStageB\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionResponse\",\"name\":\"transaction\",\"type\":\"tuple\"}],\"name\":\"approveTransactionStageC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"}],\"name\":\"createUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"declineTransaction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"name\":\"getAttributesTransaction\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"}],\"name\":\"getCredential\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"}],\"name\":\"getCredentialTransaction\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"}],\"name\":\"getUserData\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialResponse[]\",\"name\":\"credentials\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string[]\",\"name\":\"attributes\",\"type\":\"string[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionRequest[]\",\"name\":\"transactionRequests\",\"type\":\"tuple[]\"},{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionResponse[]\",\"name\":\"approvedTransactions\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.UserDataResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string[]\",\"name\":\"attributes\",\"type\":\"string[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"fromID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"toID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.TransactionStamp\",\"name\":\"stamp\",\"type\":\"tuple\"}],\"internalType\":\"struct UserDataContract.TransactionRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"newTransactionRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"updateBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute\",\"name\":\"attribute\",\"type\":\"tuple\"},{\"internalType\":\"int256\",\"name\":\"index\",\"type\":\"int256\"}],\"internalType\":\"struct UserDataContract.AttributeUpdate[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"int256\",\"name\":\"index\",\"type\":\"int256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct UserDataContract.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.CredentialUpdate[]\",\"name\":\"credentials\",\"type\":\"tuple[]\"}],\"internalType\":\"struct UserDataContract.Update\",\"name\":\"update\",\"type\":\"tuple\"}],\"name\":\"updateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/UserDataContract.sol\":\"UserDataContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/UserDataContract.sol\":{\"keccak256\":\"0x7165e2fcc5fb6790084401fc3d4f9342dad4750f161b8f84a32ea0b8d32a8f1f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://be24fc2574559c0deba0a3aa4a3c207a1be92b4f29ce5bd10b6db7523117d362\",\"dweb:/ipfs/QmVm4ktg95EiUvxPk5Aks2FKKj9aazJsTr1R6YaeAriCpL\"]}},\"version\":1}",
@@ -52206,12 +52211,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x79dEe41e535De9fF3DAfA3dA7037843E7e26aEC6",
-      "transactionHash": "0xf45df747e31ddeb5168b1801dadf8d8f37c9b9be6e0c5d393e2a7154857e7c9c"
+      "address": "0xdA5eB8FB6D88B05Ef6e6407A0A242648bC71D4B8",
+      "transactionHash": "0xdba788682ea120e3929e34d072e2c4c1512ad3deaa750abf380a09ab1470bdf9"
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-09-28T10:10:40.021Z",
+  "updatedAt": "2022-10-27T05:59:58.419Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -118,7 +118,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -306,7 +307,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"pricePerUnit\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"requestedAttributes\",\"type\":\"string[]\"}],\"internalType\":\"struct MarketPlace.AddDataPackRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"addDataPack\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"userID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"dataPackID\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct MarketPlace.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct MarketPlace.BuyDataRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"buyData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"userID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"dataPackID\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct MarketPlace.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct MarketPlace.BuyDataRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"buyData1\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct MarketPlace.BuyDataResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"internalType\":\"struct MarketPlace.CreateOrgRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"createOrganization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"}],\"name\":\"getAllOrganizations\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"organization\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"pricePerUnit\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"attributes\",\"type\":\"string[]\"}],\"internalType\":\"struct MarketPlace.AllOrganizationResponse[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"internalType\":\"struct MarketPlace.CreateOrgRequest\",\"name\":\"request\",\"type\":\"tuple\"}],\"name\":\"getOrganization\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"pricePerUnit\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"userID\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"internalType\":\"struct MarketPlace.Attribute[]\",\"name\":\"attributes\",\"type\":\"tuple[]\"}],\"internalType\":\"struct MarketPlace.DataPackReceivedRequest[]\",\"name\":\"received\",\"type\":\"tuple[]\"}],\"internalType\":\"struct MarketPlace.DataPackResponse[]\",\"name\":\"packs\",\"type\":\"tuple[]\"}],\"internalType\":\"struct MarketPlace.OrganizationResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/MarketPlace.sol\":\"MarketPlace\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/MarketPlace.sol\":{\"keccak256\":\"0x1b3fb158f5c5c72bcb3c14bf2a237024639d46d8eede497b468e2b37c967687d\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://be1f3d4fc71af30142914c8ef40795feb3542e5ca3623664aa449b5f256b7a44\",\"dweb:/ipfs/QmW6ZJfCrFXQV8c29iWuNmujMBFbK2PtRQs79iPFivUjZq\"]}},\"version\":1}",
@@ -32259,12 +32261,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xD622eDb02cF0FD6fe9175C2064Ad27DB6CdC9AAD",
-      "transactionHash": "0xcc765e76038b4d259493464572231eb0c61ff67bf250244e525b58aad5d4af28"
+      "address": "0x650DE781A5a0508d774c913B0623d4B19DE1AAe2",
+      "transactionHash": "0x7094282e4a9fb9a2c8f38af970de8551e4e5c683e4891f0e288ffe92a883d169"
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-09-28T10:10:39.988Z",
+  "updatedAt": "2022-10-27T05:59:58.463Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
