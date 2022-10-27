@@ -28,9 +28,10 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
         private static string url = "http://127.0.0.1:8545";
 
         private static string privateKey = "734674bd34f2476f15c6d5f6c8c1c7c92e465921e546771d088b958607531d10";
-        private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey);
-        private static Web3 web3 = new Web3(acc, url);
-        private static ContractHandler contractHandler = web3.Eth.GetContractHandler("0xdA5eB8FB6D88B05Ef6e6407A0A242648bC71D4B8");
+        private static string contractAddress = "0xdA5eB8FB6D88B05Ef6e6407A0A242648bC71D4B8";
+        //private static Account acc = new Nethereum.Web3.Accounts.Account(privateKey);
+        static Web3 web3 = new Web3(new Nethereum.Web3.Accounts.Account(privateKey), url);
+        private ContractHandler contractHandler = web3.Eth.GetContractHandler(contractAddress);
 
 
         /*private static string privateKey;
@@ -54,7 +55,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         private async Task<ContractHandler> deploy()
         {
-            Console.WriteLine("deploying");
+            /*Console.WriteLine("deploying");
             privateKey = configuration["accountPrivateKey"];
             acc = new Nethereum.Web3.Accounts.Account(privateKey, 444444444500);
 
@@ -64,7 +65,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
             var userDataContractDeployment = new UserDataContractDeployment();
 
             var transactionReceiptDeployment = await web3.Eth.GetContractDeploymentHandler<UserDataContractDeployment>().SendRequestAndWaitForReceiptAsync(userDataContractDeployment);
-            var contractAddress = transactionReceiptDeployment.ContractAddress;
+            var contractAddress = transactionReceiptDeployment.ContractAddress;*/
 
             return web3.Eth.GetContractHandler(contractAddress);
         }
@@ -73,7 +74,7 @@ namespace ExploringSelfSovereignIdentityAPI.Services.NetheriumBlockChain
 
         public async Task<string> createUser(string id)
         {
-            if (contractHandler == null) contractHandler = await deploy();
+            //if (contractHandler == null) contractHandler = await deploy();
 
             var createUserFunction = new CreateUserFunction();
             createUserFunction.Id = id;
