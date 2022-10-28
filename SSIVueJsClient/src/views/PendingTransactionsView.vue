@@ -20,13 +20,16 @@ export default defineComponent({
   async mounted() {
     this.skel = true;
     this.loading = true;
-    await this.userData.getuserdata().then(() => {
-      this.loading = false;
-      this.skel = false;
-    }).catch(() => {
-      this.loading = false;
-      this.skel = false;
-    });
+    await this.userData
+      .getuserdata()
+      .then(() => {
+        this.loading = false;
+        this.skel = false;
+      })
+      .catch(() => {
+        this.loading = false;
+        this.skel = false;
+      });
   },
   methods: {
     exists(att: string) {

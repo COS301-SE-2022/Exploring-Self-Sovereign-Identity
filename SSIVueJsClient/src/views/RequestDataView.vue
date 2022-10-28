@@ -17,13 +17,12 @@ export default defineComponent({
     async request() {
       console.log("Requesting data", this.id);
       this.loading = true;
-      await this.transactions.newTransaction(
-        this.id,
-        this.message,
-        this.attrributes
-      );
-      this.$router.go(0);
-      this.loading = false;
+      await this.transactions
+        .newTransaction(this.id, this.message, this.attrributes)
+        .then(() => {
+          this.$router.go(0);
+          this.loading = false;
+        });
     },
   },
   components: { BackNav },

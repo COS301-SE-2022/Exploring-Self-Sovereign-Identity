@@ -5,7 +5,8 @@ import { computed, reactive } from "vue";
 
 export const transactionsStore = defineStore("transactions", () => {
   const api = axios.create({
-    baseURL: "https://exploringselfsovereignidentityapi20221023153355.azurewebsites.net",
+    baseURL:
+      "https://exploringselfsovereignidentityapi20221023153355.azurewebsites.net",
     timeout: 20000,
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +20,10 @@ export const transactionsStore = defineStore("transactions", () => {
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
 
-  async function approveTransaction(id: string, request: transactionRequests) {
+  async function approveTransaction(
+    id: string | undefined,
+    request: transactionRequests
+  ) {
     const index = requests.findIndex(
       (x) => JSON.stringify(x) === JSON.stringify(request)
     );
@@ -41,7 +45,10 @@ export const transactionsStore = defineStore("transactions", () => {
     return response;
   }
 
-  async function declineTransaction(id: string, request: transactionRequests) {
+  async function declineTransaction(
+    id: string | undefined,
+    request: transactionRequests
+  ) {
     const index = requests.findIndex(
       (x) => JSON.stringify(x) === JSON.stringify(request)
     );
