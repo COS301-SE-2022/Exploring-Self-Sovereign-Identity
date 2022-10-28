@@ -15,15 +15,16 @@ export default defineComponent({
   components: { BackNav },
   async mounted() {
     this.loading = true;
-    await this.userData.getuserdata().then(() => {
-      this.loading = false;
-    })
-    .catch(() => {
-      // * deal with error
-    });
+    await this.userData
+      .getuserdata()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        // * deal with error
+      });
   },
-  },
-);
+});
 </script>
 
 <template>

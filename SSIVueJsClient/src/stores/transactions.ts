@@ -13,12 +13,20 @@ export const transactionsStore = defineStore("transactions", () => {
     },
   });
   const userData = userDataStore();
-  const requests = reactive(
+  let requests = reactive(
     userData.user.transactionRequests as unknown as transactionRequests[]
   );
-  const approved = reactive(
+  // const requests = userData.user
+  //   .transactionRequests as unknown as transactionRequests[];
+  let approved = reactive(
     userData.user.approvedTransactions as unknown as approvedTransactions[]
   );
+  async function sync() {
+    requests = userData.user
+      .transactionRequests as unknown as transactionRequests[];
+    approved = userData.user
+      .approvedTransactions as unknown as approvedTransactions[];
+  }
 
   async function approveTransaction(
     id: string | undefined,
@@ -103,6 +111,7 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   const pending = computed(() => {
+    if (requests == undefined) return undefined;
     return requests.filter((x) => x?.stamp.status == "pending");
   });
 
@@ -128,6 +137,7 @@ export const transactionsStore = defineStore("transactions", () => {
     pending,
     past,
     approvedTransactions,
+    sync,
   };
 });
 

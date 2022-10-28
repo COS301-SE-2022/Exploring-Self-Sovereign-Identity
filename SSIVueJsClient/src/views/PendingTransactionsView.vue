@@ -22,7 +22,8 @@ export default defineComponent({
     this.loading = true;
     await this.userData
       .getuserdata()
-      .then(() => {
+      .then(async () => {
+        await this.transactions.sync();
         this.loading = false;
         this.skel = false;
       })
@@ -81,8 +82,11 @@ export default defineComponent({
       this.description = "Approving transaction...";
       this.loading = true;
       await this.updateUser();
-      await this.transactions.approveTransaction(this.userData.getId, index);
-      this.loading = false;
+      await this.transactions
+        .approveTransaction(this.userData.getId, index)
+        .then(() => {
+          this.loading = false;
+        });
     },
   },
   components: { BackNav },
