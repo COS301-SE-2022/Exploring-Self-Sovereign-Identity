@@ -14,8 +14,10 @@ export default defineComponent({
   },
   components: { BackNav },
   async mounted() {
-    await this.userData.getuserdata().then(() => {
-      this.loading = false;
+    await this.userData.getuserdata().then(async() => {
+      await this.transactions.sync();
+        this.loading = false;
+
     });
   },
 });
