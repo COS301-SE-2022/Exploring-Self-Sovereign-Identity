@@ -102,7 +102,7 @@ export default defineComponent({
     <template v-else>
       <n-card
         v-if="
-          transactions.pending.length == 0 || transactions.pending == undefined
+          transactions.pending == undefined || transactions.pending?.length == 0
         "
       >
         <n-empty

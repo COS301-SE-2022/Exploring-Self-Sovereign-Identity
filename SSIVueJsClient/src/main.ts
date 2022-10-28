@@ -3,8 +3,6 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import "./styles/reset.css";
 import "./styles/global.scss";
@@ -28,7 +26,6 @@ app.component("PerfectScrollbar", PerfectScrollbar);
 app.component("SectionWrapper", SectionWrapper);
 app.component("Sider", Sider);
 
-app.use(ElementPlus);
 app.use(createPinia());
 app.use(router);
 app.use(store, storeKey);

@@ -103,7 +103,7 @@ export const transactionsStore = defineStore("transactions", () => {
   }
 
   const pending = computed(() => {
-    return requests.filter((x) => x.stamp.status == "pending");
+    return requests.filter((x) => x?.stamp.status == "pending");
   });
 
   const past = computed(() => {
