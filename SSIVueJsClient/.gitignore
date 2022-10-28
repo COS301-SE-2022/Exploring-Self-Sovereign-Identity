@@ -1,6 +1,7 @@
 # Logs
 .env
 logs
+deploy.ps1
 *.log
 npm-debug.log*
 yarn-debug.log*
